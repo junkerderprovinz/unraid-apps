@@ -16,24 +16,95 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 
 ## Templates
 
-**Own-image apps** — built and published by junkerderprovinz:
+### Own-image apps
 
-| App | Description | Folder |
-|---|---|---|
-| **Krusader** | Twin-pane KDE file manager, native dark theme, KasmVNC web desktop | [`krusader/`](krusader/) |
-| **JDownloader** | JDownloader 2 with a clean, sleek, fully dark UI (KasmVNC) | [`jdownloader/`](jdownloader/) |
-| **Matrix** | All-in-one homeserver: Synapse + coturn + Element Web + Synapse-Admin | [`matrix/`](matrix/) |
-| **featherdrop** | Sleek self-hosted file sharer, encrypted at rest, expiring links | [`featherdrop/`](featherdrop/) |
+*Built and published by junkerderprovinz — each has its own image repository.*
 
-**Upstream-image wrappers** — templates for third-party images:
+<img src="krusader/icon.png" width="84" align="left" alt="Krusader">
 
-| App | Description | Folder |
-|---|---|---|
-| **OpenHands** | Open-source AI software-development agent (local Ollama by default) | [`openhands/`](openhands/) |
-| **Standard Notes Server** | Self-hosted Standard Notes sync server (external MariaDB + Redis) | [`standardnotes-server/`](standardnotes-server/) |
-| **Standard Notes LocalStack** | S3-compatible file storage for the Standard Notes server | [`standardnotes-server/`](standardnotes-server/) |
-| **Standard Notes Web UI** | Official Standard Notes web client | [`standardnotes-webui/`](standardnotes-webui/) |
-| **n8n** | Workflow automation (400+ integrations); PostgreSQL by default, every option exposed | [`n8n/`](n8n/) |
+#### Krusader
+
+Twin-pane KDE file manager with a native dark theme, on a fast KasmVNC web desktop (Kate, krename, RAR).
+
+**[→ Krusader README](krusader/README.md)**
+
+<br clear="left">
+
+<img src="jdownloader/icon.png" width="84" align="left" alt="JDownloader">
+
+#### JDownloader
+
+JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web desktop.
+
+**[→ JDownloader README](jdownloader/README.md)**
+
+<br clear="left">
+
+<img src="matrix/icon.png" width="84" align="left" alt="Matrix">
+
+#### Matrix
+
+All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in one container.
+
+**[→ Matrix README](matrix/README.md)**
+
+<br clear="left">
+
+<img src="featherdrop/icon.png" width="84" align="left" alt="featherdrop">
+
+#### featherdrop
+
+A clean, login-free self-hosted file sharer — drop a file, set an expiry, share a link.
+
+**[→ featherdrop README](featherdrop/README.md)**
+
+<br clear="left">
+
+### Upstream-image wrappers
+
+*Templates for third-party images (no custom build).*
+
+<img src="openhands/icon.png" width="84" align="left" alt="OpenHands">
+
+#### OpenHands
+
+Open-source AI software-development agent, pre-wired for a local Ollama model.
+
+**[→ OpenHands README](openhands/README.md)**
+
+<br clear="left">
+
+<img src="standardnotes-server/icon.png" width="84" align="left" alt="Standard Notes Server">
+
+#### Standard Notes Server
+
+Self-hosted Standard Notes sync server (external MariaDB + Redis). Includes an optional **LocalStack** template for S3-compatible file storage.
+
+**[→ Standard Notes Server README](standardnotes-server/README.md)**
+
+<br clear="left">
+
+<img src="standardnotes-webui/icon.png" width="84" align="left" alt="Standard Notes Web UI">
+
+#### Standard Notes Web UI
+
+The official Standard Notes web client.
+
+**[→ Standard Notes Web UI README](standardnotes-webui/README.md)**
+
+<br clear="left">
+
+<img src="n8n/icon.png" width="84" align="left" alt="n8n">
+
+#### n8n
+
+Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every option exposed in the template form.
+
+**[→ n8n README](n8n/README.md)**
+
+<br clear="left">
+
+> Each app's `icon.png` above is the icon shown in Community Applications.
 
 ## Install
 
