@@ -18,7 +18,7 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 
 ### Own-image apps
 
-*Built and published by junkerderprovinz — each has its own image repository.*
+*Built and published by junkerderprovinz — full docs live in each app's own repository.*
 
 <img src="krusader/icon.png" width="84" align="left" alt="Krusader">
 
@@ -26,45 +26,45 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 
 Twin-pane KDE file manager with a native dark theme, on a fast KasmVNC web desktop (Kate, krename, RAR).
 
-**[→ Krusader README](krusader/README.md)**
+**[→ Krusader repo &amp; README](https://github.com/junkerderprovinz/krusader#readme)**
 
 <br clear="left">
 
-<img src="jdownloader/icon.png" width="84" align="left" alt="JDownloader">
+<img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
 
 #### JDownloader
 
 JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web desktop.
 
-**[→ JDownloader README](jdownloader/README.md)**
+**[→ JDownloader repo &amp; README](https://github.com/junkerderprovinz/jdownloader#readme)**
 
 <br clear="left">
 
-<img src="matrix/icon.png" width="84" align="left" alt="Matrix">
+<img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
 
 #### Matrix
 
 All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in one container.
 
-**[→ Matrix README](matrix/README.md)**
+**[→ Matrix repo &amp; README](https://github.com/junkerderprovinz/matrix#readme)**
 
 <br clear="left">
 
-<img src="featherdrop/icon.png" width="84" align="left" alt="featherdrop">
+<img src=".github/readme-icons/featherdrop.png" width="84" align="left" alt="featherdrop">
 
 #### featherdrop
 
 A clean, login-free self-hosted file sharer — drop a file, set an expiry, share a link.
 
-**[→ featherdrop README](featherdrop/README.md)**
+**[→ featherdrop repo &amp; README](https://github.com/junkerderprovinz/featherdrop#readme)**
 
 <br clear="left">
 
 ### Upstream-image wrappers
 
-*Templates for third-party images (no custom build).*
+*Templates for third-party images (no custom build) — full docs in each app's folder below.*
 
-<img src="openhands/icon.png" width="84" align="left" alt="OpenHands">
+<img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
 
 #### OpenHands
 
@@ -74,7 +74,7 @@ Open-source AI software-development agent, pre-wired for a local Ollama model.
 
 <br clear="left">
 
-<img src="standardnotes-server/icon.png" width="84" align="left" alt="Standard Notes Server">
+<img src=".github/readme-icons/standardnotes-server.png" width="84" align="left" alt="Standard Notes Server">
 
 #### Standard Notes Server
 
@@ -84,7 +84,7 @@ Self-hosted Standard Notes sync server (external MariaDB + Redis). Includes an o
 
 <br clear="left">
 
-<img src="standardnotes-webui/icon.png" width="84" align="left" alt="Standard Notes Web UI">
+<img src=".github/readme-icons/standardnotes-webui.png" width="84" align="left" alt="Standard Notes Web UI">
 
 #### Standard Notes Web UI
 
@@ -94,7 +94,7 @@ The official Standard Notes web client.
 
 <br clear="left">
 
-<img src="n8n/icon.png" width="84" align="left" alt="n8n">
+<img src=".github/readme-icons/n8n.png" width="84" align="left" alt="n8n">
 
 #### n8n
 
@@ -104,8 +104,6 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 
 <br clear="left">
 
-> Each app's `icon.png` above is the icon shown in Community Applications.
-
 ## Install
 
 On Unraid: open **Apps** (Community Applications) and search for the app name — these templates are published from this repository.
@@ -113,7 +111,7 @@ On Unraid: open **Apps** (Community Applications) and search for the app name �
 To add a single template by hand, paste its raw `*.xml` URL into **Add Container → Template**, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml`
 
-Each app folder has its own README with full details and a link to its Unraid support thread.
+Own-image apps link to their dedicated repository's README; wrapper apps keep their README in their folder here.
 
 ## License
 
