@@ -1,5 +1,3 @@
-<h1 align="center">Unraid Docker Templates</h1>
-
 <p align="center">
   <img src=".github/assets/banner.svg" alt="Unraid Docker Templates" width="100%">
 </p>
