@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommunityApplications>
   <Profile>
-    junkerderprovinz Unraid templates — Community Applications templates for apps
-    that run from an upstream Docker image (no custom build): OpenHands, Standard
-    Notes Server (+ LocalStack file storage), Standard Notes Web UI and n8n.
-    Containers with their own image (Krusader, JDownloader, Matrix, featherdrop)
-    live in their own repositories. Maintained by junkerderprovinz; support via
-    the per-app Unraid forum threads or GitHub issues.
+    junkerderprovinz Unraid templates — Community Applications templates for all of
+    junkerderprovinz's containers: own-image apps (Krusader, JDownloader, Matrix,
+    featherdrop) and upstream-image wrappers (OpenHands, Standard Notes Server +
+    LocalStack, Standard Notes Web UI, n8n). Each app folder has its own template,
+    icon and README; the images and full source live in their per-app repositories.
+    Maintained by junkerderprovinz; support via the per-app Unraid forum threads.
   </Profile>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/icon.png</Icon>
   <WebPage>https://github.com/junkerderprovinz/unraid-docker-templates</WebPage>
