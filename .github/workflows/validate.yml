@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           fail=0
-          for d in openhands standardnotes-server standardnotes-webui; do
+          for d in openhands standardnotes-server standardnotes-webui n8n; do
             for f in "$d"/*.xml; do
               [ -e "$f" ] || continue
               for tag in Name Repository Icon TemplateURL; do

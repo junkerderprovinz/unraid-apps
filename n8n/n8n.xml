@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>n8n</Name>
+  <Repository>n8nio/n8n:latest</Repository>
+  <Registry>https://hub.docker.com/r/n8nio/n8n</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/n8n/issues</Support>
+  <Project>https://n8n.io</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/n8n/README.md</ReadMe>
+  <Overview>
+    n8n is a powerful workflow-automation tool: connect 400+ apps and APIs, build flows&#xD;
+    visually, and drop into code whenever you need to. This is a plug-and-play Unraid&#xD;
+    Community Applications template that wraps the official n8nio/n8n image, tuned with&#xD;
+    sensible production defaults.&#xD;
+    &#xD;
+    IMPORTANT - two one-time setup steps (see the README):&#xD;
+    1. DATABASE: this template defaults to PostgreSQL (recommended). Create a database and&#xD;
+       user first, then fill in the Postgres Host / Database / User / Password fields below.&#xD;
+       (To use SQLite instead, set DB Type to 'sqlite' and ignore the Postgres fields.)&#xD;
+    2. PERMISSIONS: n8n runs as user 'node' (UID 1000) and has no PUID/PGID. The AppData&#xD;
+       folder must be writable by UID 1000 - run once on the Unraid console:&#xD;
+       chown -R 1000:1000 /mnt/user/appdata/n8n&#xD;
+    &#xD;
+    Included defaults: task runners on, execution-history pruning (no DB bloat), binary&#xD;
+    data stored on disk, telemetry off, and N8N_SECURE_COOKIE=false so login works over&#xD;
+    plain LAN HTTP (set it to true behind HTTPS).&#xD;
+    &#xD;
+    Detailed README (full setup &amp; options): https://github.com/junkerderprovinz/unraid-docker-templates/blob/main/n8n/README.md
+  </Overview>
+  <Category>Productivity: Tools: Other:</Category>
+  <WebUI>http://[IP]:[PORT:5678]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/n8n/n8n.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/n8n/icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A reachable PostgreSQL server with a database and user created for n8n (template default). See the README for the SQL. To use SQLite instead, set DB Type to 'sqlite'. The AppData folder must be owned by UID 1000 (chown -R 1000:1000).</Requires>
+
+  <Config Name="WebUI Port" Target="5678" Default="5678" Mode="tcp" Description="n8n web interface / editor port." Type="Port" Display="always" Required="true" Mask="false">5678</Config>
+
+  <Config Name="AppData (n8n data)" Target="/home/node/.n8n" Default="/mnt/user/appdata/n8n" Mode="rw" Description="Persistent n8n data: encryption key, binary data, logs. MUST be owned by UID 1000 - run once: chown -R 1000:1000 /mnt/user/appdata/n8n" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/n8n</Config>
+  <Config Name="Local Files (/files)" Target="/files" Default="/mnt/user/appdata/n8n-files" Mode="rw" Description="Optional host folder the Read/Write Files node can access. Must also be writable by UID 1000." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/n8n-files</Config>
+
+  <Config Name="DB Type" Target="DB_TYPE" Default="postgresdb" Mode="" Description="Database type. 'postgresdb' (recommended, template default) or 'sqlite'. For SQLite, set this to sqlite and leave the Postgres fields empty." Type="Variable" Display="always" Required="true" Mask="false">postgresdb</Config>
+  <Config Name="Postgres Host" Target="DB_POSTGRESDB_HOST" Default="" Mode="" Description="Hostname or IP of your PostgreSQL server (e.g. the official PostgreSQL CA app, or 192.168.x.x). Required when DB Type is postgresdb." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Postgres Port" Target="DB_POSTGRESDB_PORT" Default="5432" Mode="" Description="PostgreSQL port." Type="Variable" Display="always" Required="true" Mask="false">5432</Config>
+  <Config Name="Postgres Database" Target="DB_POSTGRESDB_DATABASE" Default="n8n" Mode="" Description="Database name (create it first - see README)." Type="Variable" Display="always" Required="true" Mask="false">n8n</Config>
+  <Config Name="Postgres User" Target="DB_POSTGRESDB_USER" Default="n8n" Mode="" Description="Database user (create it first - see README)." Type="Variable" Display="always" Required="true" Mask="false">n8n</Config>
+  <Config Name="Postgres Password" Target="DB_POSTGRESDB_PASSWORD" Default="" Mode="" Description="Password for the database user." Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Encryption Key" Target="N8N_ENCRYPTION_KEY" Default="" Mode="" Description="Key used to encrypt stored credentials. STRONGLY recommended: set a long random value and back it up. If left empty, n8n generates one into the AppData folder (persist it, or saved credentials become unreadable)." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Secure Cookie" Target="N8N_SECURE_COOKIE" Default="false" Mode="" Description="Keep 'false' for LAN access over plain HTTP (otherwise the login is blocked). Set 'true' when running behind HTTPS." Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+  <Config Name="Timezone (TZ)" Target="TZ" Default="Europe/Vienna" Mode="" Description="Container timezone." Type="Variable" Display="always" Required="true" Mask="false">Europe/Vienna</Config>
+  <Config Name="Generic Timezone" Target="GENERIC_TIMEZONE" Default="Europe/Vienna" Mode="" Description="Timezone n8n uses for Schedule/Cron triggers. Keep equal to TZ." Type="Variable" Display="always" Required="true" Mask="false">Europe/Vienna</Config>
+  <Config Name="Task Runners" Target="N8N_RUNNERS_ENABLED" Default="true" Mode="" Description="Run Code-node tasks in a separate runner process (n8n recommended). 'true' or 'false'." Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+
+  <Config Name="Prune Executions" Target="EXECUTIONS_DATA_PRUNE" Default="true" Mode="" Description="Auto-delete old execution history so the database doesn't grow forever ('true'/'false')." Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="Execution Max Age (hours)" Target="EXECUTIONS_DATA_MAX_AGE" Default="336" Mode="" Description="How many hours of execution history to keep when pruning is on (336 = 14 days)." Type="Variable" Display="always" Required="false" Mask="false">336</Config>
+  <Config Name="Binary Data Mode" Target="N8N_DEFAULT_BINARY_DATA_MODE" Default="filesystem" Mode="" Description="Where to store binary data: 'filesystem' (recommended, on disk) or 'default' (in the database)." Type="Variable" Display="always" Required="false" Mask="false">filesystem</Config>
+  <Config Name="Telemetry" Target="N8N_DIAGNOSTICS_ENABLED" Default="false" Mode="" Description="Anonymous usage diagnostics. 'false' disables telemetry." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Webhook URL" Target="WEBHOOK_URL" Default="" Mode="" Description="Public base URL for webhooks behind a reverse proxy, e.g. https://n8n.example.com/ . Leave empty for LAN-only use." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Host" Target="N8N_HOST" Default="" Mode="" Description="Public hostname behind a reverse proxy, e.g. n8n.example.com . Leave empty for LAN-only use." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Protocol" Target="N8N_PROTOCOL" Default="http" Mode="" Description="'http' for LAN. Usually keep 'http' and terminate TLS at your reverse proxy; use 'https' only if n8n itself serves TLS." Type="Variable" Display="always" Required="false" Mask="false">http</Config>
+</Container>

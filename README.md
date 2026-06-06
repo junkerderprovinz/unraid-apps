@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#templates"><img src="https://img.shields.io/badge/Templates-4-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#templates"><img src="https://img.shields.io/badge/Templates-5-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-docker-templates/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-docker-templates?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
@@ -22,6 +22,7 @@ Unraid <b>Community Applications</b> templates for apps that run from an <b>upst
 | **Standard Notes Server** | Self-hosted Standard Notes sync server (external MariaDB + Redis) | [`standardnotes-server/`](standardnotes-server/) |
 | **Standard Notes LocalStack** | S3-compatible file storage for the Standard Notes server | [`standardnotes-server/`](standardnotes-server/) |
 | **Standard Notes Web UI** | Official Standard Notes web client | [`standardnotes-webui/`](standardnotes-webui/) |
+| **n8n** | Workflow automation (400+ integrations); PostgreSQL by default, every option exposed | [`n8n/`](n8n/) |
 
 ## Install
 
