@@ -32,6 +32,8 @@
     • WebUI opens via HTTPS (port 3001, self-signed cert — accept once); clipboard needs HTTPS.&#xD;
       Plain HTTP (3000) is also exposed.&#xD;
     • Map /downloads to your download share. PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
+    • Language: English by default — change it any time in JDownloader's own language menu&#xD;
+      (Settings, the flag icon); your choice persists across restarts.&#xD;
     • Auth: leave Username and Password EMPTY for no login.&#xD;
     &#xD;
     Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
