@@ -10,7 +10,7 @@
   <Support>https://forums.unraid.net/topic/199203-support-junkerderprovinz-featherdrop/</Support>
   <Project>https://github.com/junkerderprovinz/featherdrop</Project>
   <ReadMe>https://github.com/junkerderprovinz/featherdrop/blob/main/README.md</ReadMe>
-  <Overview>featherdrop is a sleek, feather-light, self-hosted file sharer. Open the page, drop a file, set an expiry (plus an optional password or download limit), and share a short link or QR code. Files are encrypted at rest with age; set a MASTER_KEY to get short share links. Resumable uploads (tus), files on a local volume, metadata in a single SQLite file — no separate database, no accounts, no tracking. 26 languages, light/dark, and custom branding (APP_NAME/APP_LOGO/ACCENT_COLOR). Put it behind a reverse proxy and set BASE_URL so share links use your public domain.</Overview>
+  <Overview>featherdrop is a sleek, feather-light, self-hosted file sharer. Open the page, drop a file, set an expiry (plus an optional password or download limit), and share a short link or QR code. Files are end-to-end encrypted in your browser before upload — the server only ever stores opaque ciphertext and never sees your files, their names, or the key. Resumable uploads (tus), files on a local volume, metadata in a single SQLite file — no separate database, no accounts, no tracking. 26 languages, light/dark, and custom branding (APP_NAME/APP_LOGO/ACCENT_COLOR). Put it behind a reverse proxy and set BASE_URL so share links use your public domain.</Overview>
   <Category>Tools:Utilities Productivity:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/featherdrop/featherdrop.xml</TemplateURL>
@@ -89,26 +89,6 @@
     Display="always"
     Required="false"
     Mask="false">0</Config>
-  <Config
-    Name="Encrypt Uploads"
-    Target="ENCRYPT_UPLOADS"
-    Default="true|false"
-    Mode=""
-    Description="Encrypt new uploads at rest with age. true (recommended) = files are encrypted on disk and the filename is hidden too. false = store plaintext. Existing files keep their stored mode."
-    Type="Variable"
-    Display="always"
-    Required="false"
-    Mask="false">true</Config>
-  <Config
-    Name="Master Key (short links)"
-    Target="MASTER_KEY"
-    Default=""
-    Mode=""
-    Description="Optional. Set a secret here to get SHORT links for password-less shares (e.g. /d/aB3xK instead of a long #key in the URL). The per-file key is then wrapped with this master key and stored, instead of riding in the link. Keep it secret and back it up: it lives only here, not in the data volume, so a stolen backup stays unreadable — but if you lose it, password-less files become unrecoverable. Generate one with: openssl rand -base64 32. Leave empty to keep the long #key links."
-    Type="Variable"
-    Display="always"
-    Required="false"
-    Mask="true"></Config>
   <Config
     Name="Custom App Name"
     Target="APP_NAME"
