@@ -100,9 +100,9 @@
   <!-- ========================================================
        DATABASE (must be supplied by a separate MariaDB container)
        ======================================================== -->
-  <Config Name="MariaDB Host" Target="DB_HOST" Default="192.168.x.x" Mode=""
-          Description="IP address of your MariaDB container."
-          Type="Variable" Display="always" Required="true" Mask="false">192.168.x.x</Config>
+  <Config Name="MariaDB Host" Target="DB_HOST" Default="192.168.1.10" Mode=""
+          Description="IP address of your MariaDB container. 192.168.1.10 is a placeholder — replace it with your MariaDB container's IP."
+          Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
 
   <Config Name="MariaDB Port" Target="DB_PORT" Default="3306" Mode=""
           Description="MariaDB server port. Default 3306."
@@ -127,15 +127,15 @@
   <!-- ========================================================
        CACHE (must be supplied by a separate Redis container)
        ======================================================== -->
-  <Config Name="Redis Host" Target="REDIS_HOST" Default="192.168.x.x" Mode=""
-          Description="IP address of your Redis container."
-          Type="Variable" Display="always" Required="true" Mask="false">192.168.x.x</Config>
+  <Config Name="Redis Host" Target="REDIS_HOST" Default="192.168.1.10" Mode=""
+          Description="IP address of your Redis container. 192.168.1.10 is a placeholder — replace it with your Redis container's IP."
+          Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
 
   <Config Name="Redis Port" Target="REDIS_PORT" Default="6379" Mode=""
           Description="Redis server port. Default 6379. Reachability must be tested from inside this container (same network namespace the server uses). See README for the exact node TCP probe."
           Type="Variable" Display="always" Required="true" Mask="false">6379</Config>
 
-  <Config Name="Cache Backend" Target="CACHE_TYPE" Default="redis" Mode=""
+  <Config Name="Cache Backend" Target="CACHE_TYPE" Default="redis|memory" Mode=""
           Description="Cache backend. Leave at 'redis'."
           Type="Variable" Display="advanced" Required="true" Mask="false">redis</Config>
 

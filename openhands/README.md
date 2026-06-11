@@ -409,8 +409,6 @@ Two ways out:
   Anthropic, etc.), every file the agent reads is sent to that provider.
   Ollama keeps everything on-box.
 
-See [`SECURITY.md`](SECURITY.md) for the reporting policy.
-
 <br>
 
 ## 10. Screenshots

@@ -17,10 +17,11 @@
     to avoid clashing with the Standard Notes server's :3000 API gateway.&#xD;
     &#xD;
     IMPORTANT: This template only ships the WEB CLIENT. You still need a&#xD;
-    running Standard Notes backend (see the companion repo&#xD;
-    https://github.com/junkerderprovinz/standardnotes-server, container&#xD;
-    name "StandardNotes-Server"). The web client itself does not host a&#xD;
-    sync server — it is just the browser UI.&#xD;
+    running Standard Notes backend (see the companion folder&#xD;
+    https://github.com/junkerderprovinz/unraid-docker-templates/tree/main/standardnotes-server&#xD;
+    in this template repo, container name "StandardNotes-Server").&#xD;
+    The web client itself does not host a sync server — it is just the&#xD;
+    browser UI.&#xD;
     &#xD;
     Configuring the sync server:&#xD;
     The official standardnotes/web image is configured at RUNTIME from&#xD;
@@ -69,7 +70,7 @@
   <DateInstalled/>
   <DonateText/>
   <DonateLink/>
-  <Requires>A separately running Standard Notes backend (standardnotes/server) reachable over HTTPS via your reverse proxy. See https://github.com/junkerderprovinz/standardnotes-server for the matching backend template.</Requires>
+  <Requires>A separately running Standard Notes backend (standardnotes/server) reachable over HTTPS via your reverse proxy. See the companion folder https://github.com/junkerderprovinz/unraid-docker-templates/tree/main/standardnotes-server in this template repo for the matching backend template.</Requires>
 
   <!-- ========================================================
        PORT  — host 3001 to avoid the backend's :3000

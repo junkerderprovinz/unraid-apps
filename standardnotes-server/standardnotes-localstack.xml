@@ -86,7 +86,7 @@
           Description="Keep localstack. Server resolves this name."
           Type="Variable" Display="always" Required="true" Mask="false">localstack</Config>
 
-  <Config Name="Log Level (LS_LOG)" Target="LS_LOG" Default="warn" Mode=""
+  <Config Name="Log Level (LS_LOG)" Target="LS_LOG" Default="warn|error|info|debug|trace" Mode=""
           Description="Log level. Default warn."
           Type="Variable" Display="advanced" Required="false" Mask="false">warn</Config>
 

@@ -21,7 +21,7 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 
 *Built and published by junkerderprovinz — full docs live in each app's own repository.*
 
-<img src="krusader/icon.png" width="84" align="left" alt="Krusader">
+<img src=".github/readme-icons/krusader.png" width="84" align="left" alt="Krusader">
 <a href="https://github.com/junkerderprovinz/krusader#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
 
 #### Krusader

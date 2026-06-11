@@ -4,8 +4,8 @@
 These icons are shown ONLY in the root README cards — they are NOT the Community
 Applications icons (those stay at ``<app>/icon.png``). Each one gets a white
 background and rounded corners (matching Krusader's corner radius). Standard Notes
-logos are cropped edge-to-edge. Krusader keeps its own transparent icon and is not
-generated here.
+logos are cropped edge-to-edge. Krusader is generated too (white background baked
+in); its CA icon at ``krusader/icon.png`` stays the corner-radius reference.
 
 GitHub strips CSS, so the white background + rounding must be baked into the PNG.
 
@@ -17,8 +17,8 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-# README-card icons to generate (every app except Krusader, which stays transparent)
-APPS = ["featherdrop", "jdownloader", "matrix", "openhands",
+# README-card icons to generate (Krusader's CA icon doubles as the radius reference)
+APPS = ["featherdrop", "jdownloader", "krusader", "matrix", "openhands",
         "n8n", "standardnotes-server", "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
 MARGIN_LOGOS = {"standardnotes-server", "standardnotes-webui"}

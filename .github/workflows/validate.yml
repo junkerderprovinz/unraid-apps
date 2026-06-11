@@ -31,8 +31,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          shopt -s nullglob
           fail=0
-          for d in openhands standardnotes-server standardnotes-webui n8n krusader matrix featherdrop jdownloader; do
+          for d in */; do
+            d="${d%/}"
+            if [ "$d" = ".github" ]; then continue; fi
             for f in "$d"/*.xml; do
               [ -e "$f" ] || continue
               for tag in Name Repository Icon TemplateURL; do
