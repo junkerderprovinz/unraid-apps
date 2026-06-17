@@ -5,7 +5,7 @@
 </a>
 
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
   <a href="https://hub.docker.com/r/standardnotes/web"><img src="https://img.shields.io/badge/Docker-standardnotes%2Fweb-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker image" height="36"></a>&nbsp;
   <a href="https://standardnotes.com"><img src="https://img.shields.io/badge/Standard%20Notes-Web%20UI-086DD7?style=for-the-badge&logo=standardnotes&logoColor=white" alt="Standard Notes Web UI" height="36"></a>&nbsp;
   <a href="../standardnotes-server/"><img src="https://img.shields.io/badge/Backend-standardnotes--server-1C6EE0?style=for-the-badge&logo=github&logoColor=white" alt="Backend repo" height="36"></a>&nbsp;
@@ -128,7 +128,7 @@ Pull the template into Unraid's user-template folder:
 mkdir -p /boot/config/plugins/dockerMan/templates-user
 
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-StandardNotes-WebUI.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-webui/standardnotes-webui.xml
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-webui/standardnotes-webui.xml
 ```
 
 > 📌 Templates dropped into
@@ -370,14 +370,14 @@ Before submitting this repo at <https://ca.unraid.net/submit>:
   `<Icon>`) returns 200.
 - A shared Unraid forum **support thread** for these templates is set in
   the template's `<Support>` tag:
-  <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-docker-templates/>.
+  <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/>.
 
 ```bash
 xmllint --noout templates/standardnotes-webui.xml ca_profile.xml
 
 for url in \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-webui/standardnotes-webui.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/ca_profile.xml \
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-webui/standardnotes-webui.xml \
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/ca_profile.xml \
   assets/icon.png
 do
   echo "$url"; curl -fsI "$url" | head -n 1
@@ -392,7 +392,7 @@ fix before submitting.
 ## 10. Contributing / License
 
 Pull requests welcome. Issues:
-<https://github.com/junkerderprovinz/unraid-docker-templates/issues>.
+<https://github.com/junkerderprovinz/unraid-apps/issues>.
 
 **License:** [MIT](LICENSE).
 

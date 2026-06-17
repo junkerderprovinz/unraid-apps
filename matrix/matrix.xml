@@ -34,8 +34,8 @@
   </Overview>
   <Category>Network:Messenger Network:Other Productivity:</Category>
   <WebUI>http://[IP]:[PORT:8080]/element/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/matrix/matrix.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/matrix/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/matrix/matrix.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/matrix/icon.png</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>

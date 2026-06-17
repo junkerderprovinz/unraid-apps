@@ -13,7 +13,7 @@ Full documentation, how-it-works and roadmap: **https://github.com/junkerderprov
 Search **ShipLog** in the Unraid **Apps** tab, or add the template URL manually:
 
 ```
-https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/shiplog/shiplog.xml
+https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/shiplog/shiplog.xml
 ```
 
 The only required mount is the Docker socket, **read-only**. Open the WebUI on port **8484**.

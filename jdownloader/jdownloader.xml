@@ -40,8 +40,8 @@
   </Overview>
   <Category>Downloaders:</Category>
   <WebUI>https://[IP]:[PORT:3001]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/jdownloader/jdownloader.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/jdownloader/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/jdownloader/jdownloader.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/jdownloader/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
 
   <!-- ========================================================

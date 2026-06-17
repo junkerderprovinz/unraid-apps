@@ -44,8 +44,8 @@
   </Overview>
   <Category>Tools: Productivity:</Category>
   <WebUI>https://[IP]:[PORT:3001]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/krusader/krusader.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/krusader/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/krusader/krusader.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/krusader/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
 
   <!-- ========================================================

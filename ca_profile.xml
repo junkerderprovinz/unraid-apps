@@ -8,6 +8,6 @@
     icon and README; the images and full source live in their per-app repositories.
     Maintained by junkerderprovinz; support via the per-app Unraid forum threads.
   </Profile>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/.github/assets/icon.png</Icon>
-  <WebPage>https://github.com/junkerderprovinz/unraid-docker-templates</WebPage>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/icon.png</Icon>
+  <WebPage>https://github.com/junkerderprovinz/unraid-apps</WebPage>
 </CommunityApplications>

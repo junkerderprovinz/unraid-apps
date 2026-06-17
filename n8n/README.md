@@ -5,7 +5,7 @@
 </a>
 
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
   <a href="https://n8n.io"><img src="https://img.shields.io/badge/Upstream-n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white" alt="Upstream n8n" height="36"></a>&nbsp;
   <a href="https://hub.docker.com/r/n8nio/n8n"><img src="https://img.shields.io/badge/Image-n8nio%2Fn8n-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Image" height="36"></a>&nbsp;
   <a href="https://www.postgresql.org"><img src="https://img.shields.io/badge/DB-PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" height="36"></a>&nbsp;

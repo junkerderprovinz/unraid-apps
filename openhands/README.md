@@ -5,7 +5,7 @@
 </a>
 
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
   <a href="https://github.com/OpenHands/OpenHands"><img src="https://img.shields.io/badge/Upstream-OpenHands-FFFF8B?style=for-the-badge&logo=github&logoColor=black" alt="Upstream" height="36"></a>&nbsp;
   <a href="https://docker.openhands.dev/openhands/openhands"><img src="https://img.shields.io/badge/Image-docker.openhands.dev-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Image" height="36"></a>&nbsp;
   <a href="https://ollama.com"><img src="https://img.shields.io/badge/LLM-Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" height="36"></a>&nbsp;
@@ -162,7 +162,7 @@ or via SSH:
 ```bash
 mkdir -p /boot/config/plugins/dockerMan/templates-user && \
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-OpenHands.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/openhands.xml
 ```
 
 Then in the Unraid Web UI: **Docker** → **Add Container** → in the
@@ -433,7 +433,7 @@ Two ways out:
 ## 11. Contributing / License
 
 Pull requests welcome. Issues:
-<https://github.com/junkerderprovinz/unraid-docker-templates/issues>.
+<https://github.com/junkerderprovinz/unraid-apps/issues>.
 
 CI runs XML validation, an Unraid CA sanity check, markdown + YAML lint
 and a link check on every PR — see [`.github/workflows/ci.yml`](.github/workflows/ci.yml).

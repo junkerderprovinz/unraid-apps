@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
   <a href="#templates"><img src="https://img.shields.io/badge/Templates-11-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-docker-templates?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
@@ -135,7 +135,7 @@ Pre-reboot health check — a single **GO / CAUTION / NO-GO** verdict before you
 On Unraid: open **Apps** (Community Applications) and search for the app name — these templates are published from this repository.
 
 To add a single template by hand, paste its raw `*.xml` URL into **Add Container → Template**, e.g.
-`https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/openhands/openhands.xml`
+`https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/openhands.xml`
 
 Own-image apps link to their dedicated repository's README; wrapper apps keep their README in their folder here.
 

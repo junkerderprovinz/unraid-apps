@@ -5,7 +5,7 @@
 </a>
 
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/unraid-docker-templates/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-docker-templates/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
   <a href="https://hub.docker.com/r/standardnotes/server"><img src="https://img.shields.io/badge/Docker-standardnotes%2Fserver-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker image" height="36"></a>&nbsp;
   <a href="https://standardnotes.com"><img src="https://img.shields.io/badge/Standard%20Notes-self--hosted-086DD7?style=for-the-badge&logo=standardnotes&logoColor=white" alt="Standard Notes" height="36"></a>&nbsp;
   <a href="#5-database--cache"><img src="https://img.shields.io/badge/Database-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="MariaDB" height="36"></a>&nbsp;
@@ -287,7 +287,7 @@ LocalStack in place, without recreating it:
 ```bash
 # 1. Pull the script onto the Unraid host
 curl -fsSL -o /tmp/localstack_bootstrap.sh \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/scripts/localstack_bootstrap.sh
 
 # 2. Copy it into the running LocalStack container
 docker cp /tmp/localstack_bootstrap.sh \
@@ -572,10 +572,10 @@ console / SSH:
 mkdir -p /boot/config/plugins/dockerMan/templates-user
 
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-StandardNotes-Server.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-server.xml
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/standardnotes-server.xml
 
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-StandardNotes-LocalStack.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/standardnotes-localstack.xml
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/standardnotes-localstack.xml
 ```
 
 > 📌 The Unraid templates-user destination is
@@ -598,7 +598,7 @@ On the Unraid host, **before** starting the LocalStack container:
 ```bash
 mkdir -p /mnt/user/appdata/standardnotes
 curl -fsSL -o /mnt/user/appdata/standardnotes/localstack_bootstrap.sh \
-  https://raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/standardnotes-server/scripts/localstack_bootstrap.sh
+  https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/scripts/localstack_bootstrap.sh
 chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh
 ```
 
@@ -1154,11 +1154,11 @@ start — watch the log for errors.
 ## 12. Contributing / License
 
 Pull requests welcome. Issues:
-<https://github.com/junkerderprovinz/unraid-docker-templates/issues>.
+<https://github.com/junkerderprovinz/unraid-apps/issues>.
 
 > **Support link note / Hinweis zum Support-Link:** The `<Support>` tag in
 > both Unraid templates points at the shared support thread for these templates:
-> <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-docker-templates/>.
+> <https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/>.
 > Der `<Support>`-Link beider Templates zeigt auf diesen gemeinsamen Thread.
 
 **License:** [MIT](LICENSE).

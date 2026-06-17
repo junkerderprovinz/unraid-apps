@@ -41,7 +41,7 @@ jobs:
               for tag in Name Repository Icon TemplateURL; do
                 grep -q "<$tag>" "$f" || { echo "::error file=$f::missing <$tag>"; fail=1; }
               done
-              grep -q "raw.githubusercontent.com/junkerderprovinz/unraid-docker-templates/main/$d/" "$f" \
+              grep -q "raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/$d/" "$f" \
                 || { echo "::error file=$f::TemplateURL/Icon does not self-reference $d/"; fail=1; }
             done
           done
