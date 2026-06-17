@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, Matrix, featherdrop, ShipLog, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n). One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, Matrix, featherdrop, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal). One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -54,15 +54,6 @@ All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in 
 #### featherdrop
 
 Feather-light, login-free, end-to-end encrypted self-hosted file sharing — drop a file, set an expiry, share a link.
-
-<br clear="all">
-
-<img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
-<a href="https://github.com/junkerderprovinz/shiplog#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
-
-#### ShipLog
-
-Read-only update advisor — what changes between your running image and the newest one, and how risky, before you press update.
 
 <br clear="all">
 
@@ -118,7 +109,16 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 
 ## Plugins
 
-*Unraid **plugins** (not containers) — installed from the Plugins tab via a `.plg` URL, not pulled from the CA template feed.*
+*Unraid **plugins** (not containers) — listed on CA, installed from the Plugins tab via a `.plg` URL.*
+
+<img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
+<a href="https://github.com/junkerderprovinz/shiplog#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
+
+#### ShipLog
+
+Read-only update advisor in Unraid's native Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you press update. Remembers the running version (real "1.7 → 1.8"); optional Ollama summaries + Matrix alerts.
+
+<br clear="all">
 
 <img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
 <a href="https://github.com/junkerderprovinz/smokesignal#readme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Repository%20%26%20ReadMe-f6f8fa?style=for-the-badge&logo=github&logoColor=181717"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-181717?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></picture></a>
