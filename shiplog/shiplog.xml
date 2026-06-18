@@ -6,13 +6,11 @@
   <Beta>False</Beta>
   <Category>Productivity: Tools:</Category>
   <Name>ShipLog</Name>
-  <Description>Read-only update advisor, right inside Unraid's native Docker tab.&#xD;
+  <Description>Read the changelog before you update - right inside Unraid's Docker tab.&#xD;
 &#xD;
-ShipLog adds a small changelog bubble next to each container: what actually changes between your running image and the newest one, a deterministic risk verdict (patch / minor / major), the release notes, and a DEPRECATED badge when the upstream repo is archived. It remembers the running version, so even a ":latest" container shows a real "1.7 -&gt; 1.8" jump.&#xD;
+Next to each container ShipLog shows WHAT changes between your running image and the newest: the release notes, a risk badge (patch / minor / major) and the real version jump (e.g. 1.7 -&gt; 1.8).&#xD;
 &#xD;
-Read-only by construction - it never pulls, recreates or stops anything (the Docker socket is read-only; updating stays Unraid's own job). Optional: AI changelog summaries via a local Ollama, and Matrix notifications when a new update is first seen.&#xD;
-&#xD;
-Runs as a lightweight host daemon (no extra container). Follows your Unraid light/dark theme and language (English + German, English fallback).</Description>
+Read-only - it never updates anything. Optional AI summary (Ollama) + Matrix alerts.</Description>
   <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png</Icon>
