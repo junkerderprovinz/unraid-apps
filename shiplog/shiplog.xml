@@ -13,7 +13,7 @@ ShipLog adds a small changelog bubble next to each container: what actually chan
 Read-only by construction - it never pulls, recreates or stops anything (the Docker socket is read-only; updating stays Unraid's own job). Optional: AI changelog summaries via a local Ollama, and Matrix notifications when a new update is first seen.&#xD;
 &#xD;
 Runs as a lightweight host daemon (no extra container). Follows your Unraid light/dark theme and language (English + German, English fallback).</Description>
-  <Support>https://github.com/junkerderprovinz/shiplog/issues</Support>
+  <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png</Icon>
   <DonateText>Buy me a coffee</DonateText>
