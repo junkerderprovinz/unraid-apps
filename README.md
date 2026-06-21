@@ -22,7 +22,7 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 *Built and published by junkerderprovinz — full docs live in each app's own repository.*
 
 <img src=".github/readme-icons/krusader.png" width="84" align="left" alt="Krusader">
-<a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### Krusader
 
@@ -31,7 +31,7 @@ Twin-pane KDE file manager with a native dark theme, on a fast KasmVNC web deskt
 <br clear="all">
 
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
-<a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### JDownloader
 
@@ -40,7 +40,7 @@ JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web de
 <br clear="all">
 
 <img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
-<a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### Matrix
 
@@ -49,7 +49,7 @@ All-in-one Matrix homeserver: Synapse + coturn + Element Web + Synapse-Admin in 
 <br clear="all">
 
 <img src=".github/readme-icons/featherdrop.png" width="84" align="left" alt="featherdrop">
-<a href="https://github.com/junkerderprovinz/featherdrop#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/featherdrop#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### featherdrop
 
@@ -58,7 +58,7 @@ Feather-light, login-free, end-to-end encrypted self-hosted file sharing — dro
 <br clear="all">
 
 <img src=".github/readme-icons/bombvault.png" width="84" align="left" alt="BombVault">
-<a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### BombVault
 
@@ -71,7 +71,7 @@ Backup & full disaster recovery for Docker containers, KVM/libvirt VMs and the U
 *Templates for third-party images (no custom build) — full docs in each app's folder below.*
 
 <img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
-<a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### OpenHands
 
@@ -80,7 +80,7 @@ Open-source AI software-development agent, pre-wired for a local Ollama model.
 <br clear="all">
 
 <img src=".github/readme-icons/standardnotes-server.png" width="84" align="left" alt="Standard Notes Server">
-<a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### Standard Notes Server
 
@@ -89,7 +89,7 @@ Self-hosted Standard Notes sync server (external MariaDB + Redis). Includes an o
 <br clear="all">
 
 <img src=".github/readme-icons/standardnotes-webui.png" width="84" align="left" alt="Standard Notes Web UI">
-<a href="standardnotes-webui/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="standardnotes-webui/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### Standard Notes Web UI
 
@@ -98,7 +98,7 @@ The official Standard Notes web client.
 <br clear="all">
 
 <img src=".github/readme-icons/n8n.png" width="84" align="left" alt="n8n">
-<a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### n8n
 
@@ -112,7 +112,7 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 *Unraid **plugins** (not containers) — listed on CA, installed from the Plugins tab via a `.plg` URL.*
 
 <img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
-<a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### ShipLog
 
@@ -121,7 +121,7 @@ Read-only update advisor in Unraid's native Docker tab — a per-container chang
 <br clear="all">
 
 <img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
-<a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<div align="right"><a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" alt="Repository &amp; ReadMe"></a></div>
 
 #### SmokeSignal
 
