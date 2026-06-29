@@ -119,4 +119,14 @@
     Display="always"
     Required="false"
     Mask="false"></Config>
+  <Config
+    Name="Upload Password"
+    Target="UPLOAD_PASSWORD"
+    Default=""
+    Mode=""
+    Description="Optional. If set, only people who know this password can upload / create shares; download links still work for everyone (instance-private uploads). Leave empty to allow open uploads. Use a value without leading or trailing spaces."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="true"></Config>
 </Container>
