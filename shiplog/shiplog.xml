@@ -6,14 +6,14 @@
   <Beta>False</Beta>
   <Category>Productivity: Tools:</Category>
   <Name>ShipLog</Name>
-  <Description>Read the changelog before you update - right inside Unraid's Docker tab.&#xD;
+  <Overview>Read the changelog before you update - right inside Unraid's Docker tab.&#xD;
 &#xD;
 Next to each container ShipLog shows WHAT changes between your running image and the newest: the release notes, a risk badge (patch / minor / major) and the real version jump (e.g. 1.7 -&gt; 1.8).&#xD;
 &#xD;
-Read-only - it never updates anything. Optional AI summary (Ollama) + Matrix alerts.</Description>
+Read-only - it never updates anything. Optional AI summary (Ollama) + Matrix alerts.</Overview>
   <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=2</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=3</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>
