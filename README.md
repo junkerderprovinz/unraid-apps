@@ -62,7 +62,7 @@ Your own private WeTransfer — feather-light, login-free, end-to-end encrypted 
 
 #### BombVault
 
-Backup & full disaster recovery for Docker containers, KVM/libvirt VMs and the Unraid flash — one-click backup and automatic re-install, powered by restic.
+Backup and full disaster recovery for Docker containers, VMs and the flash USB. One-click backup and automatic re-install, powered by restic.
 
 <br clear="all">
 
