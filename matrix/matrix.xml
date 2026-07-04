@@ -27,8 +27,10 @@
          proxy_read_timeout 600s;
        (Without these, media uploads fail and long-running requests time out.)
 
-    3) For federation: two extra Custom Locations on the SAME proxy host for
-       /.well-known/matrix/server and /.well-known/matrix/client &#x2192; Unraid-IP:8080.
+    3) Federation discovery works out of the box: Synapse serves
+       /.well-known/matrix/server and /.well-known/matrix/client itself on the
+       API port (8008), so the proxy host from step 2 already covers them.
+       No extra Custom Locations needed (remove any manual ones from older setups).
        Full step-by-step guide (NPM screenshots, well-known, first user):
        https://github.com/junkerderprovinz/matrix#readme
   </Overview>
