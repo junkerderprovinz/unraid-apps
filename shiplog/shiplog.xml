@@ -10,7 +10,7 @@
 &#xD;
 Next to each container ShipLog shows WHAT changes between your running image and the newest: the release notes, a risk badge (patch / minor / major) and the real version jump (e.g. 1.7 -&gt; 1.8).&#xD;
 &#xD;
-Read-only - it never updates anything. Optional AI summary (Ollama) + Matrix alerts.</Overview>
+Read-only by construction - updates always run through Unraid's own mechanism, including the one-click "Update all (N)" button ShipLog adds next to the Basic/Advanced toggle. Optional AI summary (Ollama) + Matrix alerts.</Overview>
   <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=4</Icon>
