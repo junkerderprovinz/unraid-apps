@@ -2,7 +2,7 @@
 <Containers>
   <Plugin>True</Plugin>
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/cannonadecommand/main/plugin/cannonadecommand.plg</PluginURL>
-  <PluginAuthor>junkerderprovinz</PluginAuthor>
+  <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
   <Category>Productivity: Tools:</Category>
   <Name>CannonadeCommand</Name>

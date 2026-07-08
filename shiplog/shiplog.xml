@@ -2,7 +2,7 @@
 <Containers>
   <Plugin>True</Plugin>
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/plugin/shiplog.plg</PluginURL>
-  <PluginAuthor>junkerderprovinz</PluginAuthor>
+  <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
   <Category>Productivity: Tools:</Category>
   <Name>ShipLog</Name>

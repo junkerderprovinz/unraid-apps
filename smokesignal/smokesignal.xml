@@ -2,7 +2,7 @@
 <Containers>
   <Plugin>True</Plugin>
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg</PluginURL>
-  <PluginAuthor>junkerderprovinz</PluginAuthor>
+  <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
   <Category>Tools: System:</Category>
   <Name>SmokeSignal</Name>
