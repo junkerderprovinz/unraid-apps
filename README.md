@@ -116,6 +116,14 @@ Pre-reboot health check — a single **GO / CAUTION / NO-GO** verdict before you
 
 <br clear="all">
 
+<img src=".github/readme-icons/cannonadecommand.png" width="84" align="left" alt="CannonadeCommand">
+<a href="https://github.com/junkerderprovinz/cannonadecommand#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**CannonadeCommand**<br>
+Container command post in Unraid's native Docker tab — dependency-aware, health-gated start orchestration (probes, watchdog, schedules), live CPU/RAM limits + pinning, kernel-safe upload/download bandwidth limits with built-in proof diagnostics, a one-click actions column and clean themeable badges. *Shoots your commands where you need them — and that very nicely.*
+
+<br clear="all">
+
 
 ## Install
 

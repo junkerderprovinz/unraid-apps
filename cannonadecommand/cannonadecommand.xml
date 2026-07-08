@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>True</Plugin>
+  <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/cannonadecommand/main/plugin/cannonadecommand.plg</PluginURL>
+  <PluginAuthor>junkerderprovinz</PluginAuthor>
+  <Beta>False</Beta>
+  <Category>Productivity: Tools:</Category>
+  <Name>CannonadeCommand</Name>
+  <Overview>Shoots your commands where you need them - and that very nicely.&#xD;
+&#xD;
+CannonadeCommand upgrades Unraid's Docker tab into a container command post: a start plan with dependencies and readiness probes (running/tcp/http/log/exec), watchdog and time schedules; live CPU/RAM limits and CPU pinning via docker update; upload AND download bandwidth limits per container (kernel-safe netfilter policing, never a tc ingress qdisc) with live proof diagnostics; a one-click actions column; clean themeable badges with a card view. All enhanced in place on the native page - a small Go engine does the work, nothing leaves your server.</Overview>
+  <Support>https://github.com/junkerderprovinz/cannonadecommand/issues</Support>
+  <Project>https://github.com/junkerderprovinz/cannonadecommand</Project>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/cannonadecommand/main/plugin/src/cannonadecommand/usr/local/emhttp/plugins/cannonadecommand/images/cannonadecommand.png</Icon>
+  <DonateText>Buy me a coffee</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+</Containers>
