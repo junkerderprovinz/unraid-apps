@@ -9,6 +9,12 @@ in); its CA icon at ``krusader/icon.png`` stays the corner-radius reference.
 
 GitHub strips CSS, so the white background + rounding must be baked into the PNG.
 
+EXCEPTION — ShipLog is NOT generated here: its card is a transparent, theme-flipping
+``<picture>`` pair (``shiplog.png`` = dark-ring logo for light mode, ``shiplog-dark.png``
+= white-ring logo for dark mode), rendered from the shiplog repo's SVG masters
+(``.github/assets/shiplog-{dunkel,hell}.svg``), NOT a white tile. Do not add it back
+to APPS or this script would overwrite that pair with a white tile.
+
 Usage:  python .github/readme-icons/generate.py      (requires Pillow)
 """
 import os
@@ -17,9 +23,10 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-# README-card icons to generate (Krusader's CA icon doubles as the radius reference)
+# README-card icons to generate (Krusader's CA icon doubles as the radius reference).
+# ShipLog is intentionally excluded — see the module docstring (flipping <picture> pair).
 APPS = ["bombvault", "featherdrop", "jdownloader", "krusader", "matrix", "openhands",
-        "n8n", "shiplog", "standardnotes-server", "standardnotes-webui"]
+        "n8n", "standardnotes-server", "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
 MARGIN_LOGOS = {"standardnotes-server", "standardnotes-webui"}
 LOGO_FILL = 0.82  # fraction of the tile the cropped logo fills (rest = white margin)

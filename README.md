@@ -100,11 +100,14 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 
 *Unraid **plugins** (not containers) — listed on CA, installed from the Plugins tab via a `.plg` URL.*
 
-<img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/shiplog-dark.png">
+  <img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
+</picture>
 <a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **ShipLog**<br>
-Read-only update advisor in Unraid's native Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you press update. Remembers the running version (real "1.7 → 1.8"); optional Ollama summaries + Matrix alerts.
+Read-only update advisor in Unraid's Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you update. Optional Ollama summaries + Matrix alerts.
 
 <br clear="all">
 
