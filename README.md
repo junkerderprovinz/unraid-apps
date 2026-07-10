@@ -111,7 +111,10 @@ Read-only update advisor in Unraid's Docker tab — a per-container changelog bu
 
 <br clear="all">
 
-<img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/smokesignal-dark.png">
+  <img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
+</picture>
 <a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **SmokeSignal**<br>

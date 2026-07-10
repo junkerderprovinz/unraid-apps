@@ -9,11 +9,11 @@ in); its CA icon at ``krusader/icon.png`` stays the corner-radius reference.
 
 GitHub strips CSS, so the white background + rounding must be baked into the PNG.
 
-EXCEPTION — ShipLog is NOT generated here: its card is a transparent, theme-flipping
-``<picture>`` pair (``shiplog.png`` = dark-ring logo for light mode, ``shiplog-dark.png``
-= white-ring logo for dark mode), rendered from the shiplog repo's SVG masters
-(``.github/assets/shiplog-{dunkel,hell}.svg``), NOT a white tile. Do not add it back
-to APPS or this script would overwrite that pair with a white tile.
+EXCEPTION — the PLUGINS ShipLog and SmokeSignal are NOT generated here: their cards are
+transparent, theme-flipping ``<picture>`` pairs (``<slug>.png`` = dark-ring logo for light
+mode, ``<slug>-dark.png`` = white-ring logo for dark mode), rendered from each repo's SVG
+masters (``.github/assets/<slug>-{dunkel,hell}.svg``), NOT white tiles. Do not add them to
+APPS or this script would overwrite those pairs with white tiles.
 
 Usage:  python .github/readme-icons/generate.py      (requires Pillow)
 """
@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 # README-card icons to generate (Krusader's CA icon doubles as the radius reference).
-# ShipLog is intentionally excluded — see the module docstring (flipping <picture> pair).
+# ShipLog + SmokeSignal are intentionally excluded — see the docstring (flipping <picture> pairs).
 APPS = ["bombvault", "featherdrop", "jdownloader", "krusader", "matrix", "openhands",
         "n8n", "standardnotes-server", "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
