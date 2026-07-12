@@ -15,7 +15,7 @@ It catches the reboot landmines that are detectable from the running system: an 
 Adds a button next to Reboot on the Main tab. Follows your Unraid light/dark theme and language (English + German, English fallback).</Overview>
   <Support>https://forums.unraid.net/topic/199508-support-junkerderprovinz-smokesignal/</Support>
   <Project>https://github.com/junkerderprovinz/smokesignal</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/.github/assets/icon.png?v=6</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/.github/assets/icon.png?v=7</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>
