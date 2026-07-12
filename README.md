@@ -107,7 +107,7 @@ Workflow automation — connect 400+ apps and APIs. PostgreSQL by default, every
 <a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **ShipLog**<br>
-Read-only update advisor in Unraid's Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you update. Optional Ollama summaries + Matrix alerts.
+Update advisor in Unraid's Docker tab — a per-container changelog bubble: what changes between your running image and the newest, and how risky, before you update. Optional scheduled auto-update gated by SemVer level (off by default), plus Ollama summaries + Matrix alerts.
 
 <br clear="all">
 
