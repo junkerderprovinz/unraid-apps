@@ -34,7 +34,7 @@
   <Category>Productivity: Tools: Other:</Category>
   <WebUI>http://[IP]:[PORT:5678]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/n8n/n8n.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/n8n/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/n8n/icon.png?v=1</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
