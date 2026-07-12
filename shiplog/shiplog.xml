@@ -13,7 +13,7 @@ Next to each container ShipLog shows WHAT changes between your running image and
 Read-only by construction - updates always run through Unraid's own mechanism, including the one-click "Update all (N)" button ShipLog adds next to the Basic/Advanced toggle. Registry-friendly: HEAD-only manifest checks (no Docker Hub pull-limit cost), token caching and host-wide backoff; digest-pinned and locally built images are labelled honestly instead of guessing. Optional AI summary (Ollama) + Matrix alerts.</Overview>
   <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=8</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=9</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>
