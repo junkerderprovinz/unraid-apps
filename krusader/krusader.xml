@@ -12,7 +12,7 @@
   <Project>https://krusader.org</Project>
   <Overview>
     Krusader file manager with native Dark Mode (Dark Mode) – built on
-    KasmVNC for a smooth,
+    Selkies for a smooth,
     hardware-accelerated web desktop. Far snappier than the noVNC-based
     Krusader containers (binhex / jlesage / ich777).&#xD;
     &#xD;
@@ -36,7 +36,7 @@
       HTTPS is required for clipboard support in the browser. HTTP 3000 is&#xD;
       also exposed as a fallback.&#xD;
     • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
-    • Auth: leave "KasmVNC Username" and "Password" EMPTY to run without&#xD;
+    • Auth: leave "WebUI Username" and "Password" EMPTY to run without&#xD;
       login. Set both to enable HTTP-basic auth on the WebUI. Recommended&#xD;
       whenever the container is reachable from anything beyond your LAN.&#xD;
     &#xD;
@@ -51,12 +51,12 @@
   <!-- ========================================================
        PORTS
        ======================================================== -->
-  <Config Name="WebUI Port (HTTPS / KasmVNC)" Target="3001" Default="3001" Mode="tcp"
-          Description="HTTPS port of the KasmVNC WebUI (self-signed cert). This is the default WebUI — HTTPS is required for clipboard support in the browser. Accept the self-signed certificate once."
+  <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
+          Description="HTTPS port of the Selkies WebUI (self-signed cert). This is the default WebUI — HTTPS is required for clipboard support in the browser. Accept the self-signed certificate once."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
 
-  <Config Name="WebUI Port (HTTP / KasmVNC)" Target="3000" Default="3000" Mode="tcp"
-          Description="HTTP port of the KasmVNC WebUI. Optional fallback — the WebUI defaults to HTTPS (3001) because browsers only allow seamless clipboard over HTTPS."
+  <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
+          Description="HTTP port of the Selkies WebUI. Optional fallback — the WebUI defaults to HTTPS (3001) because browsers only allow seamless clipboard over HTTPS."
           Type="Port" Display="always" Required="false" Mask="false">3000</Config>
 
   <!-- ========================================================
@@ -90,11 +90,11 @@
   <!-- ========================================================
        KASMVNC SECURITY
        ======================================================== -->
-  <Config Name="KasmVNC Username" Target="CUSTOM_USER" Default="" Mode=""
+  <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
           Description="Optional. Username for HTTP-basic-auth on the WebUI. Leave EMPTY together with the password for no login. Set both fields to enable login (recommended outside trusted LANs)."
           Type="Variable" Display="always" Required="false" Mask="false"/>
 
-  <Config Name="KasmVNC Password" Target="PASSWORD" Default="" Mode=""
+  <Config Name="WebUI Password" Target="PASSWORD" Default="" Mode=""
           Description="Optional. Password for HTTP-basic-auth on the WebUI. Leave EMPTY together with the username for no login. STRONGLY recommended whenever the container is reachable from outside your LAN."
           Type="Variable" Display="always" Required="false" Mask="true"/>
 
