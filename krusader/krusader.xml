@@ -11,36 +11,23 @@
   <Support>https://forums.unraid.net/topic/198816-support-junkerderprovinz-krusader/</Support>
   <Project>https://krusader.org</Project>
   <Overview>
-    Krusader file manager with native Dark Mode – built on
-    Selkies for a smooth,
-    hardware-accelerated web desktop. Far snappier than the noVNC-based
-    Krusader containers (binhex / jlesage / ich777).&#xD;
-    &#xD;
-    What's pre-configured:&#xD;
-    • Dark Mode theme for Krusader, Kate and KDE&#xD;
-    • Kate as Krusader's external editor&#xD;
-    • RAR support: right-click → "Extract RAR here" / "to subfolder"&#xD;
-    • 7z, ZIP, TAR, GZ, BZ2, XZ, LHA, ARJ, ACE, RPM, CPIO&#xD;
-    • Selectable UI language: 33 languages incl. German, English,&#xD;
-      French, Spanish, Italian, Portuguese (PT/BR), Dutch, Catalan, Basque,&#xD;
-      Irish, Danish, Swedish, Norwegian, Finnish, Icelandic, Polish, Czech,&#xD;
-      Slovak, Hungarian, Romanian, Slovenian, Croatian, Serbian, Bulgarian,&#xD;
-      Ukrainian, Russian, Greek, Turkish, Hebrew, Arabic, Japanese, Korean,&#xD;
-      Chinese (CN/TW)&#xD;
-    • Spell-checking in Kate for ~25 languages via Hunspell&#xD;
-    &#xD;
-    Notes:&#xD;
-    • The /storage volume defaults to /mnt – this gives Krusader access to all&#xD;
-      shares (/mnt/user) and individual disks (/mnt/disk*).&#xD;
-    • WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once).&#xD;
-      HTTPS is required for clipboard support in the browser. HTTP 3000 is&#xD;
-      also exposed as a fallback.&#xD;
-    • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
-    • Auth: leave "WebUI Username" and "Password" EMPTY to run without&#xD;
-      login. Set both to enable HTTP-basic auth on the WebUI. Recommended&#xD;
-      whenever the container is reachable from anything beyond your LAN.&#xD;
-    &#xD;
-    Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
+Krusader file manager with native Dark Mode – built on Selkies for a smooth, hardware-accelerated web desktop. Far snappier than the noVNC-based Krusader containers (binhex / jlesage / ich777).&#xD;
+&#xD;
+What's pre-configured:&#xD;
+• Dark Mode theme for Krusader, Kate and KDE&#xD;
+• Kate as Krusader's external editor&#xD;
+• RAR support: right-click → "Extract RAR here" / "to subfolder"&#xD;
+• 7z, ZIP, TAR, GZ, BZ2, XZ, LHA, ARJ, ACE, RPM, CPIO&#xD;
+• Selectable UI language: 33 languages incl. German, English, French, Spanish, Italian, Portuguese (PT/BR), Dutch, Catalan, Basque, Irish, Danish, Swedish, Norwegian, Finnish, Icelandic, Polish, Czech, Slovak, Hungarian, Romanian, Slovenian, Croatian, Serbian, Bulgarian, Ukrainian, Russian, Greek, Turkish, Hebrew, Arabic, Japanese, Korean, Chinese (CN/TW)&#xD;
+• Spell-checking in Kate for ~25 languages via Hunspell&#xD;
+&#xD;
+Notes:&#xD;
+• The /storage volume defaults to /mnt – this gives Krusader access to all shares (/mnt/user) and individual disks (/mnt/disk*).&#xD;
+• WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). HTTPS is required for clipboard support in the browser. HTTP 3000 is also exposed as a fallback.&#xD;
+• PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
+• Auth: leave "WebUI Username" and "Password" EMPTY to run without login. Set both to enable HTTP-basic auth on the WebUI. Recommended whenever the container is reachable from anything beyond your LAN.&#xD;
+&#xD;
+Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
   </Overview>
   <Category>Tools: Productivity:</Category>
   <WebUI>https://[IP]:[PORT:3001]/</WebUI>
