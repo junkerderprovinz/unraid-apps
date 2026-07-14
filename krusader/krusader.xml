@@ -11,7 +11,7 @@
   <Support>https://forums.unraid.net/topic/198816-support-junkerderprovinz-krusader/</Support>
   <Project>https://krusader.org</Project>
   <Overview>
-    Krusader file manager with native Dark Mode (Dark Mode) – built on
+    Krusader file manager with native Dark Mode – built on
     Selkies for a smooth,
     hardware-accelerated web desktop. Far snappier than the noVNC-based
     Krusader containers (binhex / jlesage / ich777).&#xD;
@@ -21,7 +21,7 @@
     • Kate as Krusader's external editor&#xD;
     • RAR support: right-click → "Extract RAR here" / "to subfolder"&#xD;
     • 7z, ZIP, TAR, GZ, BZ2, XZ, LHA, ARJ, ACE, RPM, CPIO&#xD;
-    • Selectable UI language: 25 languages incl. German, English,&#xD;
+    • Selectable UI language: 33 languages incl. German, English,&#xD;
       French, Spanish, Italian, Portuguese (PT/BR), Dutch, Catalan, Basque,&#xD;
       Irish, Danish, Swedish, Norwegian, Finnish, Icelandic, Polish, Czech,&#xD;
       Slovak, Hungarian, Romanian, Slovenian, Croatian, Serbian, Bulgarian,&#xD;
@@ -79,7 +79,7 @@
   -->
   <Config Name="UI Language (KRUSADER_LANG)" Target="KRUSADER_LANG"
           Default="de|en|fr|es|it|pt|nl|ca|eu|ga|da|sv|nb|fi|is|pl|cs|sk|hu|ro|sl|hr|sr|bg|uk|ru|el|tr|he|ar|ja|ko|zh|system" Mode=""
-          Description="Language for the Krusader / Kate UI. 25 codes available: de, en, fr, es, it, pt, nl, ca, eu, ga, da, sv, nb, fi, is, pl, cs, sk, hu, ro, sl, hr, sr, bg, uk, ru, el, tr, he, ar, ja, ko, zh. Use 'system' for the container default. Re-applied on every container start."
+          Description="Language for the Krusader / Kate UI. 33 codes available: de, en, fr, es, it, pt, nl, ca, eu, ga, da, sv, nb, fi, is, pl, cs, sk, hu, ro, sl, hr, sr, bg, uk, ru, el, tr, he, ar, ja, ko, zh. Use 'system' for the container default. Re-applied on every container start."
           Type="Variable" Display="always" Required="false" Mask="false">de</Config>
 
   <Config Name="Theme (KRUSADER_THEME)" Target="KRUSADER_THEME"
@@ -88,7 +88,7 @@
           Type="Variable" Display="always" Required="false" Mask="false">dark</Config>
 
   <!-- ========================================================
-       KASMVNC SECURITY
+       WEBUI AUTH (SELKIES)
        ======================================================== -->
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
           Description="Optional. Username for HTTP-basic-auth on the WebUI. Leave EMPTY together with the password for no login. Set both fields to enable login (recommended outside trusted LANs)."
