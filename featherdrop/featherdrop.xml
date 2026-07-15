@@ -90,6 +90,46 @@
     Required="false"
     Mask="false">0</Config>
   <Config
+    Name="Max Expiry"
+    Target="MAX_EXPIRY"
+    Default="|1h|6h|1d|7d|30d|never"
+    Mode=""
+    Description="Optional. Longest expiry an uploader may pick. Empty = no cap. With a cap set, longer options (incl. 'never') disappear from the UI and the server rejects them; the Default Expiry is clamped to the cap."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Storage Quota (bytes)"
+    Target="STORAGE_QUOTA"
+    Default="0"
+    Mode=""
+    Description="Optional. Maximum TOTAL bytes of stored shares. 0 = unlimited. Uploads that would exceed the quota are rejected before any byte lands. Example: 53687091200 = 50 GB."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">0</Config>
+  <Config
+    Name="Rate Limit"
+    Target="RATE_LIMIT"
+    Default="true|false"
+    Mode=""
+    Description="Built-in per-IP rate limiting on uploads and download/password attempts (HTTP 429). Leave on unless you run your own limiter in a reverse proxy."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">true</Config>
+  <Config
+    Name="Trust Proxy"
+    Target="TRUST_PROXY"
+    Default="false|true"
+    Mode=""
+    Description="Set true ONLY when featherdrop runs behind a reverse proxy: rate limits then use the client address from X-Forwarded-For. Never enable on a directly reachable instance."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">false</Config>
+  <Config
     Name="Custom App Name"
     Target="APP_NAME"
     Default=""
