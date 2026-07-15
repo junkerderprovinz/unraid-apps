@@ -55,7 +55,7 @@ Your own private WeTransfer — feather-light, login-free, end-to-end encrypted 
 <a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **BombVault**<br>
-Backup and full disaster recovery for Docker containers, VMs and the flash USB. One-click backup and automatic re-install, powered by restic.
+Backup and full disaster recovery for Docker containers, VMs, the flash USB and any folders you point it at. One-click backup, restore from another BombVault server, and automatic re-install, powered by restic.
 
 <br clear="all">
 
