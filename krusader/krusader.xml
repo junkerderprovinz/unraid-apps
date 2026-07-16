@@ -23,7 +23,7 @@ What's pre-configured:&#xD;
 &#xD;
 Notes:&#xD;
 • The /storage volume defaults to /mnt – this gives Krusader access to all shares (/mnt/user) and individual disks (/mnt/disk*).&#xD;
-• WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). HTTPS is required for clipboard support in the browser. HTTP 3000 is also exposed as a fallback.&#xD;
+• WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). The Selkies web client requires a secure connection, so open the WebUI directly ONLY over HTTPS (3001). Port 3000 (HTTP) is for a reverse proxy that terminates TLS in front of the container — opening it directly in a browser shows a "requires a secure connection (HTTPS)" error and will not load.&#xD;
 • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 • Auth: leave "WebUI Username" and "Password" EMPTY to run without login. Set both to enable HTTP-basic auth on the WebUI. Recommended whenever the container is reachable from anything beyond your LAN.&#xD;
 &#xD;
@@ -43,7 +43,7 @@ Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
 
   <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
-          Description="HTTP port of the Selkies WebUI. Optional fallback — the WebUI defaults to HTTPS (3001) because browsers only allow seamless clipboard over HTTPS."
+          Description="HTTP port of the Selkies WebUI. For a reverse proxy that terminates TLS in front of the container — NOT for direct browser access. The Selkies web client requires a secure context, so opening http://IP:3000 directly shows a 'requires a secure connection (HTTPS)' error. For direct access use the HTTPS port 3001."
           Type="Port" Display="always" Required="false" Mask="false">3000</Config>
 
   <!-- ========================================================
