@@ -69,6 +69,11 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
           Description="true (default) = JDownloader keeps updating itself. false = frozen appliance: disables JD's periodic self-update checks. WARNING: the same update channel delivers the hoster plugins, which go stale within weeks - downloads may start failing. The first install always uses the updater."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
+  <Config Name="In-container browser for captchas (JD_ENABLE_BROWSER)" Target="JD_ENABLE_BROWSER"
+          Default="false|true" Mode=""
+          Description="false (default) = no browser runs. Set true to enable JDownloader's 'solve captcha in browser' flow: reCAPTCHA/hCaptcha/Turnstile open in a bundled Firefox (with uBlock Origin) on the web desktop and are solved with one click, from the container's own IP (tokens are IP-bound). The Firefox profile persists in /config/.config/mozilla. Only enable it if a hoster you use needs browser captchas - classic image captchas are auto-solved either way, and enabling it runs a full browser (more resources + attack surface)."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
   <!-- ========================================================
        WEBUI AUTH (SELKIES)
        ======================================================== -->
