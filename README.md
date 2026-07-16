@@ -134,3 +134,8 @@ Containers link to their dedicated repository's README; template (upstream-image
 
 **Plugins** (ShipLog, SmokeSignal) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg`
+
+
+## Support
+
+Everything here is free and open-source. The own-image apps are self-hosted and private by design — no accounts, no telemetry, nothing leaves your server. None of it pays my server bill or the hours that go into it, so if one of these saves you time, money, or a headache, you can [buy me a coffee](https://buymeacoffee.com/junkerderprovinz). Thanks for stopping by.
