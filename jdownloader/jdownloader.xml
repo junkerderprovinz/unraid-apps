@@ -60,9 +60,14 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
        UI PREFERENCES
        ======================================================== -->
   <Config Name="Theme (JD_THEME)" Target="JD_THEME"
-          Default="Dark|Light" Mode=""
-          Description="Dark = monochrome Carbon #161616, Light = JD's light theme."
+          Default="Dark|Light|jd-highlighter" Mode=""
+          Description="Dark = monochrome Carbon #161616, Light = JD's light theme, jd-highlighter = borderless, freely-accented dark (pick the accent with JD_ACCENT below)."
           Type="Variable" Display="always" Required="false" Mask="false">Dark</Config>
+
+  <Config Name="Accent (JD_ACCENT)" Target="JD_ACCENT"
+          Default="#ffee00" Mode=""
+          Description="Accent colour for the jd-highlighter theme (any hex, e.g. #ffee00). Only applies when Theme is set to jd-highlighter. The accent lights up checkmarks, toggles, focus, the download progress bar and primary buttons; large fills stay neutral so text stays readable at any hue. Button/progress text is auto-contrasted (dark on a light accent, light on a dark accent)."
+          Type="Variable" Display="advanced" Required="false" Mask="false">#ffee00</Config>
 
   <Config Name="Self-Update (JD_SELFUPDATE)" Target="JD_SELFUPDATE"
           Default="true|false" Mode=""
