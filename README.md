@@ -7,14 +7,14 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#templates"><img src="https://img.shields.io/badge/Templates-12-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#templates"><img src="https://img.shields.io/badge/Templates-13-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Matrix, featherdrop, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal). One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Stellarium, Matrix, featherdrop, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal). One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -43,6 +43,14 @@ JDownloader 2 with a complete, sleek dark UI out of the box, on a KasmVNC web de
 
 **PrusaSlicer**<br>
 The 3D-printing slicer, in your browser on a fast Selkies web desktop — no VNC client, no local install (amd64 + arm64).
+
+<br clear="all">
+
+<img src=".github/readme-icons/stellarium.png" width="84" align="left" alt="Stellarium">
+<a href="https://github.com/junkerderprovinz/stellarium#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Stellarium**<br>
+The open-source planetarium, in your browser on a fast Selkies web desktop — pan the sky, zoom into a nebula, scrub through time. No VNC client, no local install (amd64 + arm64).
 
 <br clear="all">
 
