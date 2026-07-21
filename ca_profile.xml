@@ -3,7 +3,7 @@
   <Profile>
     junkerderprovinz Unraid templates. Community Applications templates for
     junkerderprovinz's self-hosted apps: own-image containers (BombVault,
-    featherdrop, JDownloader, Krusader, Matrix), upstream-image wrappers
+    featherdrop, JDownloader, Krusader, PrusaSlicer, Matrix), upstream-image wrappers
     (OpenHands, Standard Notes Server, Standard Notes Web UI, n8n), and the
     ShipLog and SmokeSignal plugins. Each app folder has its own template, icon
     and README; images and full source live in their per-app repositories.
