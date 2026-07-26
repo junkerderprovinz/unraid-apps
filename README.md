@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Stellarium, Matrix, featherdrop, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal, BombVault Dashboard). One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Stellarium, Matrix, featherdrop, BombVault) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal, BombVault Widget). One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -141,11 +141,11 @@ Pre-reboot health check — a single **GO / CAUTION / NO-GO** verdict before you
 
 <br clear="all">
 
-<img src=".github/readme-icons/bombvaultdash.png" width="84" align="left" alt="BombVault Dashboard">
-<a href="https://github.com/junkerderprovinz/bombvault-dashboard#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<img src=".github/readme-icons/bombvaultwidget.png" width="84" align="left" alt="BombVault Widget">
+<a href="https://github.com/junkerderprovinz/bombvault-widget#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-**BombVault Dashboard**<br>
-BombVault's live backup log as a real, native tile on the Unraid dashboard — every backup, restore, verify, prune, off-site run and drill as it happens, plus the next scheduled run. Read-only; the widget token stays server-side. Requires BombVault 6.9.0+.
+**BombVault Widget**<br>
+BombVault's activity widget as a real, native tile on the Unraid dashboard — every backup, restore, verify, prune, off-site run and drill as it happens, plus the next scheduled run. Read-only; the widget token stays server-side. Requires BombVault 6.9.0+.
 
 <br clear="all">
 
@@ -159,7 +159,7 @@ To add a single template by hand, paste its raw `*.xml` URL into **Add Container
 
 Containers link to their dedicated repository's README; template (upstream-image) apps keep their README in their folder here.
 
-**Plugins** (ShipLog, SmokeSignal, BombVault Dashboard) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
+**Plugins** (ShipLog, SmokeSignal, BombVault Widget) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg`
 
 

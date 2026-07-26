@@ -15,7 +15,7 @@ mode, ``<slug>-dark.png`` = white-ring logo for dark mode), rendered from each r
 masters (``.github/assets/<slug>-{dunkel,hell}.svg``), NOT white tiles. Do not add them to
 APPS or this script would overwrite those pairs with white tiles.
 
-The plugin BombVault Dashboard (``bombvaultdash``) IS generated here for now: it still
+The plugin BombVault Widget (``bombvaultwidget``) IS generated here for now: it still
 reuses BombVault's icon (no dunkel/hell plugin masters yet), so a white tile matching the
 BombVault card is the honest rendering. Once its own double-ring masters land, move it to
 the flipping-pair scheme above and drop it from APPS.
@@ -30,7 +30,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 # README-card icons to generate (Krusader's CA icon doubles as the radius reference).
 # ShipLog + SmokeSignal are intentionally excluded — see the docstring (flipping <picture> pairs).
-APPS = ["bombvault", "bombvaultdash", "featherdrop", "jdownloader", "krusader", "matrix",
+APPS = ["bombvault", "bombvaultwidget", "featherdrop", "jdownloader", "krusader", "matrix",
         "openhands", "n8n", "prusaslicer", "stellarium", "standardnotes-server",
         "standardnotes-webui"]
 # logos to crop and centre with a small white margin (Standard Notes)
