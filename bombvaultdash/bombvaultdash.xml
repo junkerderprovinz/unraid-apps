@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>True</Plugin>
+  <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/bombvault-dashboard/main/plugin/bombvaultdash.plg</PluginURL>
+  <PluginAuthor>Junker der Provinz</PluginAuthor>
+  <Beta>False</Beta>
+  <Category>Backup: Tools: System:</Category>
+  <Name>BombVault Dashboard</Name>
+  <Overview>BombVault's live backup log as a real, native tile on the Unraid dashboard.&#xD;
+&#xD;
+Every backup, restore, verify, prune, off-site replication and drill scrolls by as it happens - plus the next scheduled run - in the same dark terminal-style log as BombVault's own embeddable widget. The tile behaves like a built-in one: hide it, move it between columns, collapse it.&#xD;
+&#xD;
+Requires BombVault 6.9.0 or newer on your network and a widget token (BombVault -&gt; Settings -&gt; System -&gt; Dashboard widget). Read-only by construction: a same-origin proxy on the Unraid webgui calls exactly one BombVault endpoint, and the token never reaches the browser. Alternatively, BombVault's settings page installs this plugin for you with one click.</Overview>
+  <Support>https://github.com/junkerderprovinz/bombvault-dashboard/issues</Support>
+  <Project>https://github.com/junkerderprovinz/bombvault-dashboard</Project>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/bombvault-dashboard/main/.github/assets/icon.png?v=1</Icon>
+  <DonateText>Buy me a coffee</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+</Containers>
