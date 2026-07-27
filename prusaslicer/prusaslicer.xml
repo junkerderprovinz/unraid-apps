@@ -8,7 +8,7 @@
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/prusaslicer/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/prusaslicer/issues</Support>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://www.prusa3d.com/prusaslicer/</Project>
   <Overview>
 PrusaSlicer — the FDM/SLA 3D-printing slicer from Prusa Research — on a Selkies web desktop. Slice in your browser: no VNC client, no local install. LinuxServer ship OrcaSlicer and Cura on Selkies but no PrusaSlicer; the only other browser images are years-old, abandoned noVNC builds. This is a maintained, modern Selkies (WebRTC) build for amd64 and arm64.&#xD;

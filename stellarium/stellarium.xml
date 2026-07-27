@@ -8,7 +8,7 @@
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/stellarium/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/stellarium/issues</Support>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://stellarium.org/</Project>
   <Overview>
 Stellarium — the free, open-source desktop planetarium — on a Selkies web desktop. Explore a photorealistic real-time sky in your browser: no VNC client, no local install. There is no maintained browser-desktop build of the actual Stellarium application ("Stellarium Web" is a separate, much lighter reimplementation), so this fills a genuine gap: a modern Selkies (WebRTC) build of the real thing for amd64 and arm64.&#xD;
