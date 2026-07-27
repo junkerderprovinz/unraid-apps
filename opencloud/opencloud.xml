@@ -8,7 +8,7 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/opencloud/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/opencloud/issues</Support>
+  <Support>https://forums.unraid.net/topic/200022-support-junkerderprovinz-opencloud/</Support>
   <Project>https://opencloud.eu</Project>
   <Overview>
 OpenCloud - a modern, self-hosted file sync and share platform (a lightweight OpenCloud/ownCloud-family server) - packaged as a genuine one-click Unraid app. The official OpenCloud image has no PUID/PGID support and needs a manual init step, so a fresh install normally fails with "permission denied". This wrapper fixes that: it runs the one-time init for you, heals the appdata permissions and runs as your chosen PUID/PGID (99/100 = nobody/users by default).&#xD;
