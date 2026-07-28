@@ -92,7 +92,7 @@
   <Config
     Name="Max Expiry"
     Target="MAX_EXPIRY"
-    Default="|1h|6h|1d|7d|30d|never"
+    Default="never|1h|6h|1d|7d|30d"
     Mode=""
     Description="Optional. Longest expiry an uploader may pick. Empty = no cap. With a cap set, longer options (incl. 'never') disappear from the UI and the server rejects them; the Default Expiry is clamped to the cap."
     Type="Variable"

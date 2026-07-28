@@ -117,8 +117,8 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
        volume even when blobs go to S3 (see Overview).
        ======================================================== -->
   <Config Name="S3 storage driver" Target="STORAGE_USERS_DRIVER"
-          Default="|decomposeds3" Mode=""
-          Description="Blank (default) = normal local storage. Select 'decomposeds3' to store file blobs in an S3 bucket - then fill the five S3 fields below. Only the blobs go to S3; the metadata tree stays on the local Data volume and must be backed up."
+          Default="" Mode=""
+          Description="Blank (default) = normal local storage. Type 'decomposeds3' to store file blobs in an S3 bucket - then fill the five S3 fields below. Only the blobs go to S3; the metadata tree stays on the local Data volume and must be backed up."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
   <Config Name="S3 endpoint" Target="STORAGE_USERS_DECOMPOSEDS3_ENDPOINT"
