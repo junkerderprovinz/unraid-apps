@@ -94,11 +94,11 @@
     Target="MAX_EXPIRY"
     Default="never|1h|6h|1d|7d|30d"
     Mode=""
-    Description="Optional. Longest expiry an uploader may pick. Empty = no cap. With a cap set, longer options (incl. 'never') disappear from the UI and the server rejects them; the Default Expiry is clamped to the cap."
+    Description="Longest expiry an uploader may pick. 'never' (default) = no cap. Pick a shorter value to cap it; longer options (incl. 'never') then disappear from the UI and the server rejects them, and the Default Expiry is clamped to the cap."
     Type="Variable"
     Display="always"
     Required="false"
-    Mask="false"></Config>
+    Mask="false">never</Config>
   <Config
     Name="Storage Quota (bytes)"
     Target="STORAGE_QUOTA"
