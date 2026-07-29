@@ -109,4 +109,8 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
           Description="Permission mask for newly created files."
           Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
 
+  <Config Name="UI Scale (JD_UI_SCALE)" Target="JD_UI_SCALE" Default="" Mode=""
+          Description="Optional HiDPI scaling for the whole JDownloader UI (e.g. 1.5 or 2). Leave empty for 1x. On a streamed Selkies desktop, zooming the browser upscales the video stream and blurs the text; setting JD_UI_SCALE instead renders the UI larger at full pixel density, so text stays crisp at the desktop's native resolution with the browser at 100%. Restart the container after changing it."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
 </Container>
