@@ -75,9 +75,9 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
   <Config Name="In-container browser for captchas (JD_ENABLE_BROWSER)" Target="JD_ENABLE_BROWSER"
-          Default="false|true" Mode=""
-          Description="false (default) = no browser runs. Set true to enable JDownloader's 'solve captcha in browser' flow: reCAPTCHA/hCaptcha/Turnstile open in a bundled Firefox (with uBlock Origin) on the web desktop and are solved with one click, from the container's own IP (tokens are IP-bound). The Firefox profile persists in /config/.config/mozilla. Only enable it if a hoster you use needs browser captchas - classic image captchas are auto-solved either way, and enabling it runs a full browser (more resources + attack surface)."
-          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+          Default="auto|true|false" Mode=""
+          Description="auto (default) = remembers your last choice, so an enabled browser survives container updates (recreates). Set true to enable JDownloader's 'solve captcha in browser' flow: reCAPTCHA/hCaptcha/Turnstile open in a bundled Firefox (with uBlock Origin) on the web desktop and are solved with one click, from the container's own IP (tokens are IP-bound). The Firefox profile persists in /config/.config/mozilla. Set false to force it off. Only enable it if a hoster you use needs browser captchas - classic image captchas are auto-solved either way, and enabling it runs a full browser (more resources + attack surface)."
+          Type="Variable" Display="advanced" Required="false" Mask="false">auto</Config>
 
   <!-- ========================================================
        WEBUI AUTH (SELKIES)
