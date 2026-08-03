@@ -25,13 +25,15 @@ Getting started:&#xD;
 &#x2022; Open the WebUI at https://[IP]:9200 and accept the self-signed certificate once.&#xD;
 &#xD;
 Notes:&#xD;
+&#x2022; Public URL: Unraid does NOT auto-fill the "Public URL" field. Set it to https://YOUR-SERVER-IP:9200 (your Unraid LAN IP), or your external https URL behind a reverse proxy. Leaving the placeholder lets the container guess its own IP so it still starts, but client logins only work reliably once it is correct.&#xD;
+&#x2022; Storage driver: keep it on 'posix' (the default). A blank driver or the unsupported 'local' driver makes files show up but stay greyed out (not openable/downloadable). The Data folder must sit on a filesystem with extended-attribute support - the Unraid array and cache/pool disks have it; if files stay greyed out on an exotic share, move Data to a normal appdata/cache-backed path.&#xD;
 &#x2022; Use a FRESH, empty Data folder. Do NOT point Data at an old OpenCloud/oCIS data directory: the on-disk layout differs between versions and the storage backends (local vs S3) are not interchangeable, so the server crash-loops (symptom in the log: search 'cannot open index, metadata missing'). There is no in-place migration between storage backends - to keep old files, start fresh and re-upload them.&#xD;
 &#x2022; Rolling channel: change the Repository tag from ':production' to ':rolling' to track the newest OpenCloud builds. Keep your appdata backed up before switching.&#xD;
 &#x2022; Reverse proxy: if you terminate TLS in front of OpenCloud, set "OpenCloud terminates TLS" to 'false' (advanced) and set the Public URL to your external https URL (e.g. https://cloud.example.com). Then "Allow self-signed TLS" can be 'false'. Your proxy must connect to the container over plain HTTP on port 9200 (not HTTPS) once "OpenCloud terminates TLS" is 'false'.&#xD;
 &#x2022; PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 &#xD;
 S3 object storage (optional, advanced):&#xD;
-&#x2022; OpenCloud can store file BLOBS in any S3-compatible bucket (MinIO, AWS, Backblaze B2, Wasabi). Set "S3 storage driver" to 'decomposeds3' and fill the S3 endpoint / region / access key / secret key / bucket fields. Leave the driver blank for normal local storage.&#xD;
+&#x2022; OpenCloud can store file BLOBS in any S3-compatible bucket (MinIO, AWS, Backblaze B2, Wasabi). Set the "Storage driver" to 'decomposeds3' and fill the S3 endpoint / region / access key / secret key / bucket fields. Keep the driver on 'posix' (the default) for normal local storage - do NOT leave it blank.&#xD;
 &#x2022; IMPORTANT: only the file blobs go to S3. The file-tree METADATA always stays on the local Data volume - so that volume is required even with S3 and MUST be backed up. Losing it orphans your S3 objects (they are opaque IDs with no folder structure).&#xD;
 &#x2022; OpenCloud does NOT use a database (no MySQL/Postgres) - do not look for one. State lives in the local metadata tree plus an embedded message bus.&#xD;
 &#xD;
@@ -76,9 +78,9 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
           Description="Password for the built-in 'admin' user. REQUIRED. Applied on the first start (during init). Choose a strong value - this is the login for your whole cloud."
           Type="Variable" Display="always" Required="true" Mask="true"/>
 
-  <Config Name="Public URL" Target="OC_URL" Default="https://[IP]:[PORT:9200]" Mode=""
-          Description="The URL clients use to reach OpenCloud. For a plain Unraid install leave the default (your server IP on port 9200). Behind a reverse proxy, set this to your external https URL, e.g. https://cloud.example.com."
-          Type="Variable" Display="always" Required="true" Mask="false">https://[IP]:[PORT:9200]</Config>
+  <Config Name="Public URL" Target="OC_URL" Default="https://YOUR-SERVER-IP:9200" Mode=""
+          Description="REQUIRED. The URL clients use to reach OpenCloud, and the login (OIDC) issuer. Unraid does NOT auto-fill this: replace YOUR-SERVER-IP with your Unraid server's LAN IP, e.g. https://192.168.1.10:9200 (keep the https:// and the :9200 port). Behind a reverse proxy set your external https URL instead, e.g. https://cloud.example.com. Must be https. If you leave the placeholder, the container falls back to its own IP so it still boots, but client logins may not work until you set the real address."
+          Type="Variable" Display="always" Required="true" Mask="false">https://YOUR-SERVER-IP:9200</Config>
 
   <Config Name="Allow self-signed TLS" Target="OC_INSECURE"
           Default="true|false" Mode=""
@@ -116,10 +118,10 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
        normal local storage. Metadata always stays on the Data
        volume even when blobs go to S3 (see Overview).
        ======================================================== -->
-  <Config Name="S3 storage driver" Target="STORAGE_USERS_DRIVER"
-          Default="" Mode=""
-          Description="Blank (default) = normal local storage. Type 'decomposeds3' to store file blobs in an S3 bucket - then fill the five S3 fields below. Only the blobs go to S3; the metadata tree stays on the local Data volume and must be backed up."
-          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="Storage driver" Target="STORAGE_USERS_DRIVER"
+          Default="posix|decomposeds3" Mode=""
+          Description="How OpenCloud stores your files. Keep 'posix' (the default) for a normal local install - files live on the Data volume. Choose 'decomposeds3' ONLY to keep file blobs in an S3 bucket (then fill the five S3 fields below); even then the metadata tree stays on the local Data volume and must be backed up. Do NOT leave this blank and never type 'local' - both break file access (files appear but are greyed out and cannot be opened or downloaded). The driver is fixed at first start; to change it, start with a fresh Data folder."
+          Type="Variable" Display="advanced" Required="true" Mask="false">posix</Config>
 
   <Config Name="S3 endpoint" Target="STORAGE_USERS_DECOMPOSEDS3_ENDPOINT"
           Default="" Mode=""
