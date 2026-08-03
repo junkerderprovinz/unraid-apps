@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Euro-Office</Name>
+  <Beta>false</Beta>
+  <Repository>ghcr.io/euro-office/documentserver:latest</Repository>
+  <Registry>https://github.com/euro-office/documentserver/pkgs/container/documentserver</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/euro-office/documentserver</ReadMe>
+  <Support>https://forums.unraid.net/topic/200022-support-junkerderprovinz-opencloud/</Support>
+  <Project>https://github.com/euro-office/documentserver</Project>
+  <Overview>
+Euro Office Document Server - a sovereign, European document server for browser-based editing of text documents, spreadsheets and presentations. It is a maintained fork of the OnlyOffice Document Server, so it speaks the same WOPI and OnlyOffice APIs and plugs straight into OpenCloud (and Nextcloud/ownCloud). Use it to edit .docx / .xlsx / .pptx and .odt / .ods / .odp files right in your browser, without any desktop office suite.&#xD;
+&#xD;
+This is NOT a standalone app - it is the EDITOR back-end for a file server. You point your cloud (e.g. the OpenCloud container) at this document server and edit files stored in that cloud. On its own it only serves an internal welcome page.&#xD;
+&#xD;
+How it fits together (with OpenCloud):&#xD;
+&#x2022; Install this container. Set a JWT secret below and remember it.&#xD;
+&#x2022; In the OpenCloud template set "Web office suite" = euro-office, "Office document server URL" = http://[THIS-SERVER-IP]:9900 (the port you map below), and "Office WOPI secret" = the SAME value as the JWT secret here. The two secrets MUST match.&#xD;
+&#x2022; Open a document in OpenCloud - it now opens in Euro Office. OpenCloud uses Euro Office for Microsoft formats by default and Collabora for ODF, but Euro Office edits both.&#xD;
+&#xD;
+First start:&#xD;
+&#x2022; The document server bundles its own database and converter and takes a minute or two to come up on the very first start. Wait until http://[IP]:9900/hosting/discovery returns XML before opening a document from your cloud.&#xD;
+&#xD;
+Security / reverse proxy:&#xD;
+&#x2022; Keep "JWT enabled" = true (the default). The JWT secret signs every request between your cloud and the editor - never leave it blank.&#xD;
+&#x2022; The container serves plain HTTP on the mapped port. For access over the internet put it behind a reverse proxy that terminates TLS (e.g. https://office.example.com) and use that https URL in OpenCloud.&#xD;
+&#x2022; If your cloud uses a self-signed certificate, set "Allow self-signed upstream" = true so the editor can fetch documents from it.&#xD;
+&#xD;
+About Euro Office:&#xD;
+&#x2022; Euro Office is an open, sovereignty-focused document server developed in Europe as an OnlyOffice-compatible fork. Because it is API-compatible, any guide for "OnlyOffice Document Server + OpenCloud/Nextcloud" applies here as well.&#xD;
+&#xD;
+Project: https://github.com/euro-office/documentserver&#xD;
+This is an independent, community-maintained Unraid packaging and is not affiliated with the Euro Office project.&#xD;
+  </Overview>
+  <Category>Productivity: Cloud:</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/euro-office.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=1</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+
+  <!-- ========================================================
+       PORTS
+       ======================================================== -->
+  <Config Name="WebUI Port" Target="80" Default="9900" Mode="tcp"
+          Description="HTTP port the document server listens on. This is the address your cloud (OpenCloud) talks to and the URL that must return XML at /hosting/discovery. Behind a reverse proxy, point the proxy at this port."
+          Type="Port" Display="always" Required="true" Mask="false">9900</Config>
+
+  <!-- ========================================================
+       CORE SETTINGS
+       ======================================================== -->
+  <Config Name="JWT secret" Target="JWT_SECRET" Default="" Mode=""
+          Description="Shared secret that signs every request between your cloud and this editor. REQUIRED. Pick a long random string. It MUST be identical to the 'Office WOPI secret' you set in the OpenCloud template. Keep it secret."
+          Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Enable WOPI" Target="WOPI_ENABLED" Default="true|false" Mode=""
+          Description="Turns on the WOPI protocol that OpenCloud uses to open and save documents. Keep 'true' - with 'false' OpenCloud cannot use this editor."
+          Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+
+  <!-- ========================================================
+       ADVANCED
+       ======================================================== -->
+  <Config Name="Enable JWT" Target="JWT_ENABLED" Default="true|false" Mode=""
+          Description="Require the signed JWT on every request. Keep 'true' for security. Only set 'false' for isolated testing on a trusted LAN."
+          Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+
+  <Config Name="Allow self-signed upstream" Target="USE_UNAUTHORIZED_STORAGE" Default="false|true" Mode=""
+          Description="Set 'true' when your cloud (OpenCloud) serves a self-signed certificate, so the editor can fetch and save documents from it. Leave 'false' when the cloud has a valid certificate or you talk to it over plain http."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <!-- ========================================================
+       PERSISTENCE (optional) - the editor works statelessly for
+       WOPI, but mounting these keeps its cache/DB across restarts
+       and speeds up subsequent boots. Safe to omit for pure
+       WOPI use with OpenCloud.
+       ======================================================== -->
+  <Config Name="Data" Target="/var/www/onlyoffice/Data" Default="/mnt/user/appdata/euro-office/data" Mode="rw"
+          Description="Optional. Persistent document-server data (keys, fonts cache, forgotten files). Recommended for a permanent install; can be omitted for a purely stateless WOPI backend."
+          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/data</Config>
+
+  <Config Name="Logs" Target="/var/log/onlyoffice" Default="/mnt/user/appdata/euro-office/logs" Mode="rw"
+          Description="Optional. Document-server logs, handy for troubleshooting."
+          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/logs</Config>
+
+  <Config Name="Database" Target="/var/lib/postgresql" Default="/mnt/user/appdata/euro-office/db" Mode="rw"
+          Description="Optional. The bundled PostgreSQL data directory. Mount it to keep the internal database across restarts; without it the DB is re-initialised on every boot (slower start, no data loss for WOPI use)."
+          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/db</Config>
+
+</Container>

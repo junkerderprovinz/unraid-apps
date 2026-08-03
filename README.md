@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Stellarium, Matrix, featherdrop, BombVault, OpenCloud) and <b>upstream-image</b> wrappers (OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal, BombVault Widget). One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers — both <b>own-image</b> apps (Krusader, JDownloader, PrusaSlicer, Stellarium, Matrix, featherdrop, BombVault, OpenCloud) and <b>upstream-image</b> wrappers (Euro Office, OpenHands, Standard Notes, n8n), plus <b>plugins</b> (ShipLog, SmokeSignal, BombVault Widget). One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -89,6 +89,14 @@ One-click OpenCloud file sync &amp; share for Unraid — a thin wrapper over the
 ## Templates
 
 *Templates for third-party upstream images (no custom build) — full docs in each app's folder below.*
+
+<img src=".github/readme-icons/euro-office.png" width="84" align="left" alt="Euro Office">
+<a href="euro-office/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Euro Office**<br>
+Sovereign European document server (an OnlyOffice-compatible fork) for browser editing of Office and OpenDocument files. Wires into OpenCloud over WOPI; reverse-proxy friendly.
+
+<br clear="all">
 
 <img src=".github/readme-icons/openhands.png" width="84" align="left" alt="OpenHands">
 <a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
