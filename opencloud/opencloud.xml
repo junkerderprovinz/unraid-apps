@@ -148,4 +148,24 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
           Description="Name of the S3 bucket to store blobs in. Create it FIRST - the container does not. MinIO: console -&gt; Buckets -&gt; Create Bucket. AWS/B2/Wasabi: create a bucket in the provider console. Enter that exact name here."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
+  <!-- ========================================================
+       WEB OFFICE (optional) - browser document editing via a
+       SEPARATE Collabora / OnlyOffice document-server container.
+       Leave "Web office suite" = off for no office. See README.
+       ======================================================== -->
+  <Config Name="Web office suite" Target="OFFICE"
+          Default="off|collabora|onlyoffice" Mode=""
+          Description="Browser document editing. 'off' (default) = none. 'collabora' = Collabora Online (CODE); 'onlyoffice' = OnlyOffice / Euro Office Document Server. The editor itself ALWAYS runs as a SEPARATE container that you install and point to below - this only turns on OpenCloud's built-in WOPI service and wires it up. See the README for the document-server setup and reverse-proxy notes."
+          Type="Variable" Display="advanced" Required="false" Mask="false">off</Config>
+
+  <Config Name="Office document server URL" Target="OFFICE_SERVER_URL"
+          Default="" Mode=""
+          Description="Browser-reachable URL of your Collabora / OnlyOffice document-server container, e.g. https://collabora.example.com (or http://192.168.1.10:9980 on a plain LAN). Only used when 'Web office suite' is not 'off'."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Office WOPI secret" Target="OFFICE_WOPI_SECRET"
+          Default="" Mode=""
+          Description="A shared secret used to sign the WOPI tokens between OpenCloud and the document server. Pick any long random string; leave blank to use OpenCloud's default. Only used when 'Web office suite' is not 'off'."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
 </Container>
