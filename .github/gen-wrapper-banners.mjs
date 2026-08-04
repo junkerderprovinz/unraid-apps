@@ -95,7 +95,7 @@ const THEMES = [
 ];
 
 const W = 1600, H = 500;
-const LOGO_H = 300, LOGO_X = 165, GAP_LOGO_TEXT = 70, RIGHT_PAD = 120, GAP_NAME_CLAIM = 8;
+const LOGO_H = 400, LOGO_X = 165, GAP_LOGO_TEXT = 70, RIGHT_PAD = 120, GAP_NAME_CLAIM = 8;
 
 function emit(dir, name, svg, bg) {
   writeFileSync(join(dir, `${name}.svg`), svg);
@@ -175,8 +175,15 @@ for (const app of RUN) {
   const nameBaseline = Math.round(top + nameAsc);
   const claimBaseline = Math.round(nameBaseline + nameDesc + GAP_NAME_CLAIM + claimAsc);
 
-  const namePath = nameFnt.getPath(app.name, textX, nameBaseline, nameSize).toPathData(2);
-  const claimPath = lato.getPath(app.claim, textX, claimBaseline, claimSize).toPathData(2);
+  // Render text as ONE <path> PER GLYPH, not a single merged path: resvg's tessellator
+  // can silently abort a merged multi-subpath path partway through for certain
+  // glyph/coordinate combinations (it dropped the tail of the euro-office claim),
+  // and per-glyph paths sidestep that entirely.
+  const glyphD = (f, text, x, baseline, size) =>
+    f.getPaths(text, x, baseline, size).map((p) => p.toPathData(2)).filter(Boolean);
+  const nameD = glyphD(nameFnt, app.name, textX, nameBaseline, nameSize);
+  const claimD = glyphD(lato, app.claim, textX, claimBaseline, claimSize);
+  const paths = (ds, fill) => ds.map((d) => `<path d="${d}" fill="${fill}"/>`).join("");
 
   for (const t of THEMES) {
     let logo = inner;
@@ -187,8 +194,8 @@ for (const app of RUN) {
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${app.name}">
   <rect width="${W}" height="${H}" fill="${t.bg}"/>
   <g transform="translate(${logoX},${logoY}) scale(${logoScale.toFixed(4)})">${logo}</g>
-  <path d="${namePath}" fill="${t.name}"/>
-  <path d="${claimPath}" fill="${t.claim}"/>
+  ${paths(nameD, t.name)}
+  ${paths(claimD, t.claim)}
 </svg>
 `;
     emit(dir, `banner${t.suf}`, svg, t.bg);
