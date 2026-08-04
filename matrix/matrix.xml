@@ -154,6 +154,10 @@
           Description="Only relevant when Delegated Auth is true. Self-service signup through the auth service's own web UI. Registration through Synapse is impossible under delegated auth, so this replaces Enable Registration."
           Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
 
+  <Config Name="Auth: migrate accounts (ONE WAY)" Target="AUTH_MIGRATE" Default="false|true"
+          Description="Only relevant when Delegated Auth is true, and only needed once. true = migrate your existing Synapse accounts into the auth service on the next start, before Synapse comes up. BACK UP YOUR DATABASE FIRST: this cannot be undone once anyone has signed in afterwards. Users keep their sessions and are not signed out. It refuses to run if the pre-flight check fails, and it never runs twice. You can leave it on true afterwards, it is a no-op once done."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
   <Config Name="Auth: QR code login" Target="AUTH_QR_LOGIN" Default="true|false"
           Description="Only relevant when Delegated Auth is true. Enables MSC4108 so Element offers 'Link new device' with a QR code. Leave on unless you have a reason not to."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
