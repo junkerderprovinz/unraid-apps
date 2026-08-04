@@ -41,7 +41,7 @@ Your own private WeTransfer: feather-light, login-free, end-to-end encrypted fil
 
 ## Images
 
-*My own container images that package a third-party app on a ready-to-use web desktop — full docs in each app's own repository.*
+*My own custom image builds of third-party apps — full docs in each app's own repository.*
 
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
 <a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
@@ -56,6 +56,22 @@ JDownloader 2 with a complete, sleek dark UI out of the box, on a fast Selkies w
 
 **Krusader**<br>
 Twin-pane KDE file manager with a native dark theme on a fast Selkies web desktop, with Kate, krename and RAR built in.
+
+<br clear="all">
+
+<img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
+<a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Matrix**<br>
+All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and Synapse-Admin, with optional TURN over TLS.
+
+<br clear="all">
+
+<img src=".github/readme-icons/opencloud.png" width="84" align="left" alt="OpenCloud">
+<a href="https://github.com/junkerderprovinz/opencloud#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**OpenCloud**<br>
+One-click OpenCloud file sync &amp; share: auto-runs init, heals appdata permissions and honours PUID/PGID.
 
 <br clear="all">
 
@@ -88,27 +104,11 @@ Sovereign, OnlyOffice-compatible document server for browser editing of Office a
 
 <br clear="all">
 
-<img src=".github/readme-icons/matrix.png" width="84" align="left" alt="Matrix">
-<a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
-
-**Matrix**<br>
-All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and Synapse-Admin, with optional TURN over TLS.
-
-<br clear="all">
-
 <img src=".github/readme-icons/n8n.png" width="84" align="left" alt="n8n">
 <a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **n8n**<br>
 Workflow automation connecting 400+ apps and APIs, on PostgreSQL by default, with every option exposed in the Unraid template form.
-
-<br clear="all">
-
-<img src=".github/readme-icons/opencloud.png" width="84" align="left" alt="OpenCloud">
-<a href="https://github.com/junkerderprovinz/opencloud#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
-
-**OpenCloud**<br>
-One-click OpenCloud file sync &amp; share: a thin wrapper that auto-runs init, heals appdata permissions and honours PUID/PGID.
 
 <br clear="all">
 
