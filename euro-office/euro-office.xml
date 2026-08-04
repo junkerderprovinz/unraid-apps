@@ -37,7 +37,7 @@ This is an independent, community-maintained Unraid packaging and is not affilia
   <Category>Productivity: Cloud:</Category>
   <WebUI>http://[IP]:[PORT:80]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/euro-office.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=1</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=2</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
   <!-- ========================================================
