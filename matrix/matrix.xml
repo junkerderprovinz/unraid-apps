@@ -82,6 +82,10 @@
           Description="Prometheus metrics at /_synapse/metrics. Bind to a private network only."
           Type="Port" Display="advanced" Required="false" Mask="false">9090</Config>
 
+  <Config Name="Auth Service (MAS)" Target="8090" Default="8090" Mode="tcp"
+          Description="Matrix Authentication Service. Only listens when Delegated Auth is set to true. Needs its own reverse-proxy host (e.g. auth.yourdomain.tld) with a certificate."
+          Type="Port" Display="advanced" Required="false" Mask="false">8090</Config>
+
   <!-- =========================================================
        VOLUME
        ========================================================= -->
@@ -113,6 +117,46 @@
   <Config Name="Enable Registration" Target="ENABLE_REGISTRATION" Default="false|true"
           Description="false = accounts created by the admin only (recommended). true = open self-service signup WITHOUT verification (shows Element's Create Account button) — only enable behind a CAPTCHA or on a trusted network, or you will get spam signups."
           Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+
+  <!-- =========================================================
+       DELEGATED AUTH / QR CODE LOGIN (opt-in, off by default)
+
+       Leaving these untouched keeps the container behaving exactly as it did
+       before this feature existed. Everything here is Required="false" on
+       purpose: adding a required field would break Apply for existing users.
+       ========================================================= -->
+
+  <Config Name="Delegated Auth (QR login)" Target="AUTH_ENABLED" Default="false|true"
+          Description="false = normal Synapse logins (default, unchanged). true = start Matrix Authentication Service and delegate authentication to it, which is what makes QR code device linking possible. Switching this on is a one-way trip for existing accounts: they stay in Synapse until you run 'mas-cli syn2mas migrate', and after that only a database restore gets you back. Read the README section 'Delegated auth' first. It also needs its own reverse-proxy host and breaks encrypted bridges."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="Auth Public URL" Target="AUTH_PUBLIC_BASE" Default=""
+          Description="Required when Delegated Auth is true. Public https URL of the auth service, e.g. https://auth.yourdomain.tld/ — point a second reverse-proxy host at this container's port 8090. Must be https: the auth service rejects plain-http redirect URLs and Element's sign-in then fails."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Auth Database Name" Target="AUTH_POSTGRES_DB" Default=""
+          Description="Required when Delegated Auth is true. Name of a SEPARATE, EMPTY PostgreSQL database for the auth service — it cannot share Synapse's. Create it with: CREATE DATABASE mas TEMPLATE template0 ENCODING 'UTF8' LC_COLLATE 'C' LC_CTYPE 'C';"
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Auth DB Host" Target="AUTH_POSTGRES_HOST" Default=""
+          Description="Optional. Leave empty to reuse the PostgreSQL host above."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Auth DB User" Target="AUTH_POSTGRES_USER" Default=""
+          Description="Optional. Leave empty to reuse the PostgreSQL user above."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Auth DB Password" Target="AUTH_POSTGRES_PASSWORD" Default=""
+          Description="Optional. Leave empty to reuse the PostgreSQL password above."
+          Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="Auth: allow registration" Target="AUTH_ALLOW_REGISTRATION" Default="false|true"
+          Description="Only relevant when Delegated Auth is true. Self-service signup through the auth service's own web UI. Registration through Synapse is impossible under delegated auth, so this replaces Enable Registration."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="Auth: QR code login" Target="AUTH_QR_LOGIN" Default="true|false"
+          Description="Only relevant when Delegated Auth is true. Enables MSC4108 so Element offers 'Link new device' with a QR code. Leave on unless you have a reason not to."
+          Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
   <Config Name="TURN Domain" Target="TURN_DOMAIN" Default=""
           Description="Optional. Public hostname clients reach TURN (voice/video) at. Leave empty to use SERVER_NAME; set a dedicated subdomain (e.g. turn.yourdomain.tld) to route TURN around a reverse proxy."
