@@ -26,8 +26,7 @@ Unraid <b>Community Applications</b> templates for all of junkerderprovinz's con
 <a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **BombVault**<br>
-Backup and full disaster recovery for Docker containers, VMs, the flash USB and any folders you point it at, with
-one-click backup, restore from another BombVault server and automatic re-install, all powered by restic.
+Backup and full disaster recovery for containers, VMs and the flash, powered by restic, with one-click backup and cross-server restore.
 
 <br clear="all">
 
@@ -35,8 +34,7 @@ one-click backup, restore from another BombVault server and automatic re-install
 <a href="https://github.com/junkerderprovinz/featherdrop#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **featherdrop**<br>
-Your own private WeTransfer: feather-light, login-free, end-to-end encrypted self-hosted file sharing where you
-drop a file, set an expiry and share a link that quietly deletes itself once it is no longer needed.
+Your own private WeTransfer: feather-light, login-free, end-to-end encrypted file sharing with self-expiring share links.
 
 <br clear="all">
 
@@ -49,8 +47,7 @@ drop a file, set an expiry and share a link that quietly deletes itself once it 
 <a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **JDownloader**<br>
-JDownloader 2 with a complete, sleek dark UI out of the box, running on a fast Selkies web desktop straight in
-your browser, so there is no VNC client to install and nothing to set up locally (amd64 + arm64).
+JDownloader 2 with a complete, sleek dark UI out of the box, on a fast Selkies web desktop in your browser — no VNC client, no install.
 
 <br clear="all">
 
@@ -58,8 +55,7 @@ your browser, so there is no VNC client to install and nothing to set up locally
 <a href="https://github.com/junkerderprovinz/krusader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Krusader**<br>
-The twin-pane KDE file manager with a native dark theme on a fast Selkies web desktop, with Kate, krename and
-RAR support built in, all in your browser with no VNC client and nothing to install locally.
+Twin-pane KDE file manager with a native dark theme on a fast Selkies web desktop, with Kate, krename and RAR built in.
 
 <br clear="all">
 
@@ -67,8 +63,7 @@ RAR support built in, all in your browser with no VNC client and nothing to inst
 <a href="https://github.com/junkerderprovinz/prusaslicer#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **PrusaSlicer**<br>
-The PrusaSlicer 3D-printing slicer running in your browser on a fast Selkies web desktop, so you can slice,
-preview and export G-code with no VNC client and no local install at all (amd64 + arm64).
+The PrusaSlicer 3D-printing slicer in your browser on a fast Selkies web desktop — slice and export G-code, no VNC client (amd64 + arm64).
 
 <br clear="all">
 
@@ -76,8 +71,7 @@ preview and export G-code with no VNC client and no local install at all (amd64 
 <a href="https://github.com/junkerderprovinz/stellarium#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Stellarium**<br>
-The open-source Stellarium planetarium running in your browser on a fast Selkies web desktop, where you can pan
-the sky, zoom into a nebula and scrub through time, with no VNC client and no local install (amd64 + arm64).
+The Stellarium planetarium in your browser on a fast Selkies web desktop — pan the sky, zoom a nebula, scrub through time, no VNC client.
 
 <br clear="all">
 
@@ -90,8 +84,7 @@ the sky, zoom into a nebula and scrub through time, with no VNC client and no lo
 <a href="euro-office/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Euro Office**<br>
-Sovereign European document server (an OnlyOffice-compatible fork) for browser editing of Office and
-OpenDocument files, which wires into OpenCloud over WOPI and sits happily behind a reverse proxy.
+Sovereign, OnlyOffice-compatible document server for browser editing of Office and OpenDocument files, wired into OpenCloud over WOPI.
 
 <br clear="all">
 
@@ -99,8 +92,7 @@ OpenDocument files, which wires into OpenCloud over WOPI and sits happily behind
 <a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Matrix**<br>
-An all-in-one Matrix homeserver in a single container: Synapse, coturn, Element Web and Synapse-Admin together,
-with optional TURN over TLS, so federation and voice/video calls work out of the box.
+All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and Synapse-Admin, with optional TURN over TLS.
 
 <br clear="all">
 
@@ -108,8 +100,7 @@ with optional TURN over TLS, so federation and voice/video calls work out of the
 <a href="n8n/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **n8n**<br>
-Workflow automation that connects 400+ apps and APIs, running on PostgreSQL by default, with every option
-exposed directly in the Unraid template form so there is no compose file to edit by hand.
+Workflow automation connecting 400+ apps and APIs, on PostgreSQL by default, with every option exposed in the Unraid template form.
 
 <br clear="all">
 
@@ -117,8 +108,7 @@ exposed directly in the Unraid template form so there is no compose file to edit
 <a href="https://github.com/junkerderprovinz/opencloud#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **OpenCloud**<br>
-One-click OpenCloud file sync &amp; share: a thin wrapper over the official image that auto-runs init, heals
-appdata permissions and honours PUID/PGID, with production and rolling channels (amd64 + arm64).
+One-click OpenCloud file sync &amp; share: a thin wrapper that auto-runs init, heals appdata permissions and honours PUID/PGID.
 
 <br clear="all">
 
@@ -126,8 +116,7 @@ appdata permissions and honours PUID/PGID, with production and rolling channels 
 <a href="openhands/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **OpenHands**<br>
-Open-source AI software-development agent, pre-wired for a local Ollama model so it can read, write and run
-code on your own box, with no cloud account and no API keys required to get started.
+Open-source AI software-development agent, pre-wired for a local Ollama model, so it reads, writes and runs code with no cloud account.
 
 <br clear="all">
 
@@ -135,8 +124,7 @@ code on your own box, with no cloud account and no API keys required to get star
 <a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Standard Notes Server**<br>
-Self-hosted Standard Notes sync server (external MariaDB + Redis) for end-to-end encrypted notes, including an
-optional LocalStack template for S3-compatible file storage of your attachments.
+Self-hosted Standard Notes sync server (external MariaDB + Redis), with an optional LocalStack template for S3-compatible storage.
 
 <br clear="all">
 
@@ -144,8 +132,7 @@ optional LocalStack template for S3-compatible file storage of your attachments.
 <a href="standardnotes-webui/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Standard Notes Web UI**<br>
-The official Standard Notes web client, self-hosted next to your own sync server, so your end-to-end encrypted
-notes stay in your browser with no third-party servers ever involved.
+The official Standard Notes web client, self-hosted next to your own sync server for end-to-end encrypted notes in the browser.
 
 <br clear="all">
 
@@ -158,8 +145,7 @@ notes stay in your browser with no third-party servers ever involved.
 <a href="https://github.com/junkerderprovinz/bombvault-widget#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **BombVault Widget**<br>
-BombVault's activity log as a real, native tile on the Unraid dashboard, showing every backup, restore, verify,
-prune, off-site run and drill live plus the next scheduled run. Read-only; requires BombVault 6.9.0+.
+BombVault's activity log as a real, native tile on the Unraid dashboard — every backup, restore, prune and drill live. Requires 6.9.0+.
 
 <br clear="all">
 
@@ -170,8 +156,7 @@ prune, off-site run and drill live plus the next scheduled run. Read-only; requi
 <a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **ShipLog**<br>
-An update advisor in Unraid's Docker tab: a per-container bubble showing what changes and how risky it is before
-you update, with optional SemVer-gated auto-update plus Ollama summaries and Matrix alerts.
+Update advisor in Unraid's Docker tab showing what changes and how risky before you update, with optional SemVer-gated auto-update.
 
 <br clear="all">
 
@@ -182,8 +167,7 @@ you update, with optional SemVer-gated auto-update plus Ollama summaries and Mat
 <a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **SmokeSignal**<br>
-A pre-reboot health check that returns one clear GO / CAUTION / NO-GO verdict before you reboot, so you never
-reboot into a known landmine. Advisory only: it never changes anything on your server by itself.
+A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict before you reboot, so you never reboot into a landmine.
 
 <br clear="all">
 
