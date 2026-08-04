@@ -108,7 +108,9 @@ function emit(dir, name, svg, bg) {
 // theme-flip canvas with the cheeky claim below.
 function reuseBanner(app) {
   const dir = join(ROOT, app.slug, "assets");
-  let src = readFileSync(join(dir, "banner.svg"), "utf8");
+  // read the untouched official artwork from logo-src.svg so re-runs never
+  // reprocess the generated banner (output != source)
+  let src = readFileSync(join(dir, "logo-src.svg"), "utf8");
   const vb = src.match(/viewBox="([\d.\-]+)\s+([\d.\-]+)\s+([\d.]+)\s+([\d.]+)"/);
   const sw = parseFloat(vb[3]), sh = parseFloat(vb[4]);
   let inner = src.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
@@ -131,10 +133,10 @@ function reuseBanner(app) {
   const claimDesc = -lato.descender * sc(lato, claimSize);
   const groupH = artH + GAP + claimAsc + claimDesc;
   const top = H / 2 - groupH / 2;
-  const tx = W / 2 - (bb.x * k) - artW / 2;      // centre visible content
+  const tx = SIDE - bb.x * k;                     // left-anchor visible content (krusader reference)
   const ty = top - bb.y * k;
   const claimBaseline = Math.round(top + artH + GAP + claimAsc);
-  const claimPath = lato.getPath(app.claim, (W - lato.getAdvanceWidth(app.claim, claimSize)) / 2, claimBaseline, claimSize).toPathData(2);
+  const claimPath = lato.getPath(app.claim, SIDE, claimBaseline, claimSize).toPathData(2);
 
   for (const t of THEMES) {
     let art = inner;
