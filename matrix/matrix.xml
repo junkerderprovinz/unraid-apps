@@ -11,8 +11,14 @@
   <Support>https://forums.unraid.net/topic/198818-support-junkerderprovinz-matrix-aio/</Support>
   <Project>https://matrix.org</Project>
   <Overview>
-    All-in-one Matrix homeserver for Unraid: Synapse + coturn + Element Web (/element/) + Synapse-Admin (/admin/).
+    All-in-one Matrix homeserver for Unraid: Synapse + coturn + Element Web (/element/) + Ketesa admin UI (/admin/).
     Plug-and-play — just fill in SERVER_NAME and Postgres connection, everything else is generated automatically.
+
+    OPTIONAL, OFF BY DEFAULT: delegated authentication via Matrix Authentication Service, which is what
+    makes QR code device linking ("Link new device" in Element) possible. Leave the Delegated Auth field
+    alone and the container behaves exactly as before. Enabling it needs a second empty Postgres database
+    and a second reverse-proxy host with HTTPS, and it changes how your users sign in — read the README
+    section "Delegated Auth and QR Code Login" first.
 
     PREREQUISITES (before starting the container):
 

@@ -63,7 +63,7 @@ Twin-pane KDE file manager with a native dark theme on a fast Selkies web deskto
 <a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Matrix**<br>
-All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and Synapse-Admin, with optional TURN over TLS.
+All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and the Ketesa admin UI, with optional TURN over TLS and opt-in QR code device linking.
 
 <br clear="all">
 
