@@ -28,7 +28,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const APPS = [
   {
     slug: "euro-office", name: "Euro Office", nameFont: "bree",
-    claim: "Sovereign office, no cloud strings attached.",
+    claim: "Docs, sheets and slides, served not surveilled.",
   },
   // reuse: keep the app's official logo + wordmark artwork verbatim from the
   // existing banner.svg (bg/border rects stripped); logoDark = literal colour
@@ -95,7 +95,7 @@ const THEMES = [
 ];
 
 const W = 1600, H = 500;
-const LOGO_H = 300, LOGO_X = 165, GAP_LOGO_TEXT = 70, RIGHT_PAD = 120, GAP_NAME_CLAIM = 22;
+const LOGO_H = 300, LOGO_X = 165, GAP_LOGO_TEXT = 70, RIGHT_PAD = 120, GAP_NAME_CLAIM = 8;
 
 function emit(dir, name, svg, bg) {
   writeFileSync(join(dir, `${name}.svg`), svg);
