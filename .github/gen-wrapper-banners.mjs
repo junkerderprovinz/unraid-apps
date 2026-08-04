@@ -30,6 +30,22 @@ const APPS = [
     slug: "euro-office", name: "Euro Office", nameFont: "bree",
     claim: "Sovereign office, no cloud strings attached.",
   },
+  // reuse: keep the app's official logo + wordmark artwork verbatim from the
+  // existing banner.svg (bg/border rects stripped); logoDark = literal colour
+  // swaps applied ONLY to the dark banner (near-black ink -> light).
+  {
+    slug: "openhands", reuse: true, claim: "Your tireless junior dev, self-hosted.",
+    logoDark: { '"black"': '"#e6edf3"' },
+  },
+  {
+    slug: "n8n", reuse: true, claim: "Wire up everything, babysit nothing.",
+  },
+  {
+    slug: "standardnotes-server", reuse: true, claim: "Notes even we can't read.",
+  },
+  {
+    slug: "standardnotes-webui", reuse: true, claim: "Notes even we can't read.",
+  },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter(a => ONLY.includes(a.slug)) : APPS;
@@ -87,7 +103,56 @@ function emit(dir, name, svg, bg) {
   writeFileSync(join(dir, `${name}.png`), png);
 }
 
+// Reuse an app's existing official logo+wordmark artwork: strip the background /
+// border rects, measure the tight content bbox, then centre it on a 1600x500
+// theme-flip canvas with the cheeky claim below.
+function reuseBanner(app) {
+  const dir = join(ROOT, app.slug, "assets");
+  let src = readFileSync(join(dir, "banner.svg"), "utf8");
+  const vb = src.match(/viewBox="([\d.\-]+)\s+([\d.\-]+)\s+([\d.]+)\s+([\d.]+)"/);
+  const sw = parseFloat(vb[3]), sh = parseFloat(vb[4]);
+  let inner = src.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+  // drop background + any border rects (never draw border lines)
+  inner = inner.replace(/<rect\b[^>]*\bfill="#[fF]{6}"[^>]*\/>/g, "");
+  inner = inner.replace(/<rect\b[^>]*\bstroke="[^"]*"[^>]*\/>/g, "");
+
+  // tight content bbox in source-viewBox coords
+  const probe = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${sw} ${sh}" width="${sw}" height="${sh}">${inner}</svg>`;
+  const bb = new Resvg(probe, { fitTo: { mode: "original" } }).getBBox();
+  if (!bb) throw new Error("no bbox for " + app.slug);
+
+  const targetH = 210, GAP = 34, SIDE = 150;
+  let k = targetH / bb.height;
+  if (bb.width * k > W - 2 * SIDE) k = (W - 2 * SIDE) / bb.width;
+  const artW = bb.width * k, artH = bb.height * k;
+
+  const claimSize = fitSize(lato, app.claim, W - 2 * SIDE, 46);
+  const claimAsc = lato.ascender * sc(lato, claimSize);
+  const claimDesc = -lato.descender * sc(lato, claimSize);
+  const groupH = artH + GAP + claimAsc + claimDesc;
+  const top = H / 2 - groupH / 2;
+  const tx = W / 2 - (bb.x * k) - artW / 2;      // centre visible content
+  const ty = top - bb.y * k;
+  const claimBaseline = Math.round(top + artH + GAP + claimAsc);
+  const claimPath = lato.getPath(app.claim, (W - lato.getAdvanceWidth(app.claim, claimSize)) / 2, claimBaseline, claimSize).toPathData(2);
+
+  for (const t of THEMES) {
+    let art = inner;
+    if (t.dark && app.logoDark) for (const [from, to] of Object.entries(app.logoDark)) art = art.split(from).join(to);
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${app.slug}">
+  <rect width="${W}" height="${H}" fill="${t.bg}"/>
+  <g transform="translate(${tx.toFixed(2)},${ty.toFixed(2)}) scale(${k.toFixed(5)})">${art}</g>
+  <path d="${claimPath}" fill="${t.claim}"/>
+</svg>
+`;
+    emit(dir, `banner${t.suf}`, svg, t.bg);
+  }
+  console.log(`${app.slug}: reuse banner + dark (bbox ${bb.width.toFixed(0)}x${bb.height.toFixed(0)} -> ${artW.toFixed(0)}x${artH.toFixed(0)}, claim ${claimSize}px)`);
+}
+
 for (const app of RUN) {
+  if (app.reuse) { reuseBanner(app); continue; }
   const dir = join(ROOT, app.slug, "assets");
   const { inner, vw, vh } = embedIcon(join(ROOT, app.slug, "icon.svg"), app.slug);
   const logoScale = LOGO_H / vh, logoW = vw * logoScale;
