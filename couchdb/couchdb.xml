@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>couchdb</Name>
+  <Repository>couchdb:latest</Repository>
+  <Registry>https://hub.docker.com/_/couchdb</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://couchdb.apache.org</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/couchdb/README.md</ReadMe>
+  <Overview>
+    Apache CouchDB is a document database that speaks HTTP and stores JSON. It is the sync&#xD;
+    backend behind Obsidian LiveSync and many offline-first apps. This is a plug-and-play&#xD;
+    Unraid Community Applications template that wraps the official couchdb image (3.x),&#xD;
+    fixed so your data and settings actually survive a container recreate or update.&#xD;
+    &#xD;
+    WHY THIS TEMPLATE EXISTS: the old community CouchDB template maps the 1.x data path&#xD;
+    (/usr/local/var/lib/couchdb). On the current 3.x image the real data lives in&#xD;
+    /opt/couchdb/data and the config in /opt/couchdb/etc/local.d - if those are not mapped,&#xD;
+    your databases sit in an anonymous Docker volume and CORS resets on every recreate.&#xD;
+    This template maps both to appdata, so nothing is lost.&#xD;
+    &#xD;
+    FIRST-RUN SETUP (two quick steps, see the README):&#xD;
+    1. Set an Admin User + Admin Password below (CouchDB 3.x will not start without an admin).&#xD;
+    2. After it starts, finish the single-node setup so the system databases are created -&#xD;
+       run once on the Unraid console (replace IP / user / pass):&#xD;
+       curl -X POST -u admin:PASS http://SERVER_IP:5984/_cluster_setup -H "Content-Type: application/json" -d '{"action":"enable_single_node","bind_address":"0.0.0.0","username":"admin","password":"PASS","port":5984,"singlenode":true}'&#xD;
+    &#xD;
+    OBSIDIAN LIVESYNC / BROWSER APPS need CORS. The image regenerates docker.ini from the&#xD;
+    admin env on every start, so CORS set in Fauxton is wiped on recreate. Instead drop a&#xD;
+    persistent file at appdata/couchdb/local.d/10-cors.ini (full contents in the README) -&#xD;
+    it is preserved forever. Then browse to http://SERVER_IP:5984/_utils/ (Fauxton).&#xD;
+    &#xD;
+    Detailed README (setup, CORS file, backup, reverse proxy): https://github.com/junkerderprovinz/unraid-apps/blob/main/couchdb/README.md
+  </Overview>
+  <Category>Database:</Category>
+  <WebUI>http://[IP]:[PORT:5984]/_utils/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/couchdb.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=1</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Set an Admin User and Admin Password below (CouchDB 3.x will not start without one). After first start, run the single-node setup so the _users / _replicator / _global_changes system databases are created - see the README. For Obsidian LiveSync or any browser client, add appdata/couchdb/local.d/10-cors.ini (contents in the README) to enable CORS persistently.</Requires>
+
+  <Config Name="WebUI / API Port" Target="5984" Default="5984" Mode="tcp" Description="CouchDB HTTP API and the Fauxton web UI (reachable at /_utils/). This is the only port a single-node instance needs." Type="Port" Display="always" Required="true" Mask="false">5984</Config>
+
+  <Config Name="Data (databases)" Target="/opt/couchdb/data" Default="/mnt/user/appdata/couchdb/data" Mode="rw" Description="Where CouchDB 3.x stores every database (the .couch files). This MUST be mapped - if it is not, your databases live in an anonymous Docker volume and are lost on the next recreate or image update." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/couchdb/data</Config>
+
+  <Config Name="Config (local.d)" Target="/opt/couchdb/etc/local.d" Default="/mnt/user/appdata/couchdb/local.d" Mode="rw" Description="Persistent config drop-in directory. The image regenerates docker.ini here from the admin user/password on every start, but any OTHER .ini you add - e.g. 10-cors.ini for Obsidian LiveSync - is preserved across restarts AND recreates. Map this or config changes are lost." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/couchdb/local.d</Config>
+
+  <Config Name="Admin User" Target="COUCHDB_USER" Default="admin" Mode="" Description="Server admin username, created on first start. CouchDB 3.x refuses to run without an admin ('admin party' is disabled). Only used on the very first start - change it later in Fauxton, not here." Type="Variable" Display="always" Required="true" Mask="false">admin</Config>
+
+  <Config Name="Admin Password" Target="COUCHDB_PASSWORD" Default="" Mode="" Description="Password for the admin user. Use a strong one - CouchDB is a database, keep it on your LAN or behind a reverse proxy, never exposed raw to the internet." Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Cookie Secret (COUCHDB_SECRET)" Target="COUCHDB_SECRET" Default="" Mode="" Description="Optional. A fixed secret for signing session/proxy-auth cookies. Leave empty for a single node (one is generated). Set a stable value (openssl rand -hex 32) if you use proxy auth or plan to cluster. Masked." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+</Container>

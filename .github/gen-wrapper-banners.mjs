@@ -41,6 +41,10 @@ const APPS = [
     slug: "n8n", reuse: true, claim: "Wire up everything, babysit nothing.",
   },
   {
+    slug: "couchdb", reuse: true, claim: "Relax. Your data syncs itself.",
+    logoDark: { '"#444444"': '"#e6edf3"', '"#777777"': '"#9aa4ad"' },
+  },
+  {
     slug: "standardnotes-server", reuse: true, claim: "Notes even we can't read.",
   },
   {
