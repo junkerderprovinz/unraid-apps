@@ -41,7 +41,7 @@ const APPS = [
     slug: "n8n", reuse: true, claim: "Wire up everything, babysit nothing.",
   },
   {
-    slug: "couchdb", reuse: true, claim: "Relax. Your data syncs itself.",
+    slug: "couchdb", reuse: true, claim: "Sit back, your data syncs itself.",
     logoDark: { '"#444444"': '"#e6edf3"', '"#777777"': '"#9aa4ad"' },
   },
   {
