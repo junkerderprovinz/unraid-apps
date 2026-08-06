@@ -1,15 +1,15 @@
 /**
  * Feed wrapper banners to the GitHub style guide (the krusader layout):
  *   logo (the app MARK) LEFT, largest ink ~400px, ink-left x=165, ink-vcentre y=250;
- *   the NAME to its right (the official wordmark artwork where the app has one, else the
- *   house font Bree Serif) at the standard size; ONE Lato claim (grey, 44) below the name;
- *   name+claim group vertically centred on H/2. 1600x500 theme-flip pair.
+ *   the NAME to its right (official wordmark where the app has one, else Bree Serif) at a
+ *   UNIFORM cap-height and a UNIFORM colour (foreground, brand colour NOT used for text);
+ *   ONE Lato claim (grey, 44) below the name; name+claim group vcentred on H/2. Theme-flip.
  *
- * MARK  = each app's icon.svg (white background stripped -> transparent).
- * NAME  = official wordmark lifted from assets/logo-src.svg where one exists
- *         (couchdb, openhands, standardnotes), else Bree Serif text. Long names auto-fit
- *         to keep a ~120px right margin.
- * CLAIM = Lato, grey, target 44 (fitClaim steps down only to dodge a NaN-glyph size).
+ * Uniform size: every name is scaled so its CAPITALS are TARGET_CAP px tall (wordmarks by
+ * their first capital glyph, fonts by the font cap-height) so "CouchDB" and "n8n" read the
+ * same size. Long names auto-fit down on width (keeping ~120px right margin).
+ * Uniform colour: the NAME is always foreground (#1f2328 / #e6edf3); only the logo keeps
+ * its brand colour.
  *
  * Text is rendered at the ORIGIN and positioned with a <g transform> so opentype.js never
  * emits NaN control points at large coordinates. Deps (global): opentype.js, @resvg/resvg-js.
@@ -28,22 +28,15 @@ const opentype = require(`${groot}/opentype.js`);
 const { Resvg } = require(`${groot}/@resvg/resvg-js`);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-// name: {wordmark:true} lifts the official wordmark from logo-src; {text:"..."} = Bree Serif.
-// nameLight/nameDark: wordmark/text ink colour per theme (brand colour kept where the app has one).
+const NAME_FG_LIGHT = "#1f2328", NAME_FG_DARK = "#e6edf3";
 const APPS = [
-  { slug: "couchdb", name: { wordmark: true }, nameLight: "#1f2328", nameDark: "#e6edf3",
-    claim: "Relax. Your data syncs itself." },
-  { slug: "openhands", name: { wordmark: true }, nameLight: "#0b0b0b", nameDark: "#e6edf3",
-    markFromLogoSrc: true, markDark: { 'stroke="black"': 'stroke="#e6edf3"' },
+  { slug: "couchdb", name: { wordmark: true }, claim: "Relax. Your data syncs itself." },
+  { slug: "openhands", name: { wordmark: true }, markFromLogoSrc: true, markDark: { 'stroke="black"': 'stroke="#e6edf3"' },
     claim: "Your tireless junior dev, self-hosted." },
-  { slug: "standardnotes-server", name: { wordmark: true }, nameLight: "#1C6EE0", nameDark: "#4d94ff",
-    claim: "Notes even we can't read." },
-  { slug: "standardnotes-webui", name: { wordmark: true }, nameLight: "#1C6EE0", nameDark: "#4d94ff",
-    claim: "Notes even we can't read." },
-  { slug: "n8n", name: { text: "n8n" }, nameLight: "#1f2328", nameDark: "#e6edf3",
-    claim: "Wire up everything, babysit nothing." },
-  { slug: "euro-office", name: { text: "Euro Office" }, nameLight: "#1f2328", nameDark: "#e6edf3",
-    claim: "Docs, sheets and slides, served not surveilled." },
+  { slug: "standardnotes-server", name: { wordmark: true }, claim: "Notes even we can't read." },
+  { slug: "standardnotes-webui", name: { wordmark: true }, claim: "Notes even we can't read." },
+  { slug: "n8n", name: { text: "n8n" }, claim: "Wire up everything, babysit nothing." },
+  { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
@@ -57,16 +50,17 @@ async function font(file, url) {
 const bree = await font("jdp-BreeSerif-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/breeserif/BreeSerif-Regular.ttf");
 const lato = await font("jdp-Lato-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf");
 const sc = (f, s) => s / f.unitsPerEm;
+const bbox = (svg) => new Resvg(svg, { fitTo: { mode: "original" } }).getBBox();
 function fitClaim(text, maxW, cap) {
   let size = Math.min(cap, Math.floor((100 * maxW) / lato.getAdvanceWidth(text, 100)));
   for (; size > 10; size--) if (!lato.getPath(text, 0, 0, size).toPathData(2).includes("NaN")) return size;
   return 10;
 }
 
-const W = 1600, H = 500, LOGO_INK = 400, LOGO_X = 165, GAP_LOGO_TEXT = 70, GAP_NAME_CLAIM = 16;
-const NAME_SIZE = 132, WORDMARK_H = 132, CLAIM_CAP = 44, RIGHT_PAD = 120;
+const W = 1600, H = 500, LOGO_INK = 400, LOGO_X = 165, GAP_LOGO_TEXT = 70, GAP_NAME_CLAIM = 16, CLAIM_CAP = 44, RIGHT_PAD = 120;
+const TARGET_CAP = 110;   // uniform capital-letter height for every name (short names fit at this cap)
+const breeCapRatio = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><path d="${bree.getPath("H", 0, 300, 200).toPathData(2)}" fill="#000"/></svg>`).height / 200;
 
-const bbox = (svg) => new Resvg(svg, { fitTo: { mode: "original" } }).getBBox();
 const stripBg = (s) => s
   .replace(/<rect\b[^>]*\bfill="#(?:fff|ffffff|FFF|FFFFFF)"[^>]*\/?>(?:<\/rect>)?/g, "")
   .replace(/<rect\b[^>]*\bfill="white"[^>]*\/?>(?:<\/rect>)?/g, "");
@@ -75,13 +69,9 @@ const vbOf = (s) => { const m = s.match(/viewBox="([\d.\-]+)\s+([\d.\-]+)\s+([\d
 
 function markOf(app) {
   const slug = app.slug;
-  // openhands icon.svg is a black-hands variant; take the brand (yellow) hands from
-  // logo-src instead = every path that is NOT a fill="black" wordmark letter.
   if (app.markFromLogoSrc && slug === "openhands") {
     const src = readFileSync(join(ROOT, slug, "assets", "logo-src.svg"), "utf8");
     const hands = [...src.matchAll(/<path\b[^>]*\/>/g)].map((m) => m[0]).filter((p) => !/\bfill="black"/.test(p)).join("");
-    // the outline paths carry no fill and rely on the source's parent fill="none";
-    // wrap so they stay stroke-only (unfilled) instead of defaulting to black.
     return { content: `<g fill="none">${hands}</g>`, vb: { x: 0, y: 0, w: 195, h: 30 } };
   }
   const cand = [join(ROOT, slug, "icon.svg"), join(ROOT, slug, "assets", "icon.svg")];
@@ -91,28 +81,32 @@ function markOf(app) {
   return { content: stripBg(inner(s)), vb: vbOf(s) };
 }
 
-// official wordmark lifted from logo-src.svg (COLOR placeholder recoloured per theme)
+// official wordmark lifted from logo-src.svg. capContent = the first CAPITAL glyph
+// (or the whole wordmark for couchdb, whose letters are one merged path with no descender)
+// so every name can be scaled to a uniform cap-height. COLOR is recoloured per theme.
 function wordmarkOf(slug) {
   const src = readFileSync(join(ROOT, slug, "assets", "logo-src.svg"), "utf8");
   if (slug === "couchdb") {
     const d = src.match(/<path\s+d="([^"]+)"\s+fill="#444444"/i)[1];
-    return { content: `<path d="${d}" fill="COLOR"/>`, vb: { x: 0, y: 0, w: 512, h: 132 } };
+    const c = `<path d="${d}" fill="COLOR"/>`;
+    return { content: c, capContent: c, vb: { x: 0, y: 0, w: 512, h: 132 } };
   }
   if (slug === "openhands") {
-    const in1 = inner(src.replace(/^[\s\S]*?(<svg[^>]*viewBox="0 0 195 30"[^>]*>)/, "$1"));
-    const letters = [...in1.matchAll(/<path\b[^>]*\bfill="black"[^>]*\/>/g)].map((m) => m[0].replace(/fill="black"/, 'fill="COLOR"')).join("");
-    return { content: letters, vb: { x: 0, y: 0, w: 195, h: 30 } };
+    const letters = [...src.matchAll(/<path\b[^>]*\bfill="black"[^>]*\/>/g)].map((m) => m[0].replace(/fill="black"/, 'fill="COLOR"'));
+    return { content: letters.join(""), capContent: letters[0], vb: { x: 0, y: 0, w: 195, h: 30 } };
   }
   if (slug.startsWith("standardnotes")) {
-    const gs = [...src.matchAll(/<g\b[\s\S]*?<\/g>/g)].map((m) => m[0]);
-    return { content: gs[1].replace(/fill="#1C6EE0"/gi, 'fill="COLOR"'), vb: { x: 0, y: 0, w: 1200, h: 360 } };
+    const g = [...src.matchAll(/<g\b[\s\S]*?<\/g>/g)].map((m) => m[0])[1].replace(/fill="#1C6EE0"/gi, 'fill="COLOR"');
+    const first = g.match(/<path\b[^>]*\/>/)[0];
+    const gopen = g.match(/^<g\b[^>]*>/)[0];
+    return { content: g, capContent: `${gopen}${first}</g>`, vb: { x: 0, y: 0, w: 1200, h: 360 } };
   }
   throw new Error("no wordmark extractor for " + slug);
 }
 
 const THEMES = [
-  { suf: "", bg: "#ffffff", claim: "#5a5d5e", dark: false },
-  { suf: "-dark", bg: "#0d1117", claim: "#9aa4ad", dark: true },
+  { suf: "", bg: "#ffffff", name: NAME_FG_LIGHT, claim: "#5a5d5e", dark: false },
+  { suf: "-dark", bg: "#0d1117", name: NAME_FG_DARK, claim: "#9aa4ad", dark: true },
 ];
 function emit(dir, name, svg, bg) {
   writeFileSync(join(dir, `${name}.svg`), svg);
@@ -123,7 +117,6 @@ for (const app of RUN) {
   const dir = join(ROOT, app.slug, "assets");
   const mark = markOf(app);
 
-  // mark: largest ink -> LOGO_INK, ink-left at LOGO_X, ink-vcentre at H/2
   const mb = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mark.vb.x} ${mark.vb.y} ${mark.vb.w} ${mark.vb.h}">${mark.content}</svg>`);
   const sM = LOGO_INK / Math.max(mb.width, mb.height);
   const markW = mb.width * sM, markH = mb.height * sM;
@@ -131,28 +124,27 @@ for (const app of RUN) {
   const textX = LOGO_X + markW + GAP_LOGO_TEXT;
   const maxNameW = W - textX - RIGHT_PAD;
 
-  // name: wordmark artwork (ink height WORDMARK_H, width-capped) OR Bree Serif text (size-fit)
+  // NAME: scale so capitals == TARGET_CAP, then width-fit (long names shrink)
   let nameH, nameW, placeName;
   if (app.name.wordmark) {
     const wm = wordmarkOf(app.slug);
     const wb = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${wm.vb.x} ${wm.vb.y} ${wm.vb.w} ${wm.vb.h}">${wm.content.replace(/COLOR/g, "#000")}</svg>`);
-    let sN = WORDMARK_H / wb.height;
+    const capB = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${wm.vb.x} ${wm.vb.y} ${wm.vb.w} ${wm.vb.h}">${wm.capContent.replace(/COLOR/g, "#000")}</svg>`);
+    let sN = TARGET_CAP / capB.height;
     if (wb.width * sN > maxNameW) sN = maxNameW / wb.width;
     nameH = wb.height * sN; nameW = wb.width * sN;
     placeName = (color, nameTop) => `<g transform="translate(${(textX - wb.x * sN).toFixed(2)},${(nameTop - wb.y * sN).toFixed(2)}) scale(${sN.toFixed(5)})">${wm.content.replace(/COLOR/g, color)}</g>`;
   } else {
-    let ns = NAME_SIZE;
+    let ns = TARGET_CAP / breeCapRatio;                 // Bree size for cap-height == TARGET_CAP
     const adv = bree.getAdvanceWidth(app.name.text, ns);
-    if (adv > maxNameW) ns = Math.floor(ns * maxNameW / adv);
-    const cb = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 600"><path d="${bree.getPath(app.name.text, 0, 400, ns).toPathData(2)}" fill="#000"/></svg>`);
+    if (adv > maxNameW) ns = ns * maxNameW / adv;
+    const cb = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5000 800"><path d="${bree.getPath(app.name.text, 0, 500, ns).toPathData(2)}" fill="#000"/></svg>`);
     nameH = cb.height; nameW = cb.width;
-    // render the name at the origin baseline, translate into place (NaN-safe)
     const d = bree.getPath(app.name.text, 0, 0, ns).toPathData(2);
-    const inkTopAtOrigin = cb.y - 400; // cb measured with baseline at y=400
-    placeName = (color, nameTop) => `<g transform="translate(${textX.toFixed(2)},${(nameTop - inkTopAtOrigin).toFixed(2)})"><path d="${d}" fill="${color}"/></g>`;
+    const inkTop = cb.y - 500;                           // cb measured with baseline at y=500
+    placeName = (color, nameTop) => `<g transform="translate(${textX.toFixed(2)},${(nameTop - inkTop).toFixed(2)})"><path d="${d}" fill="${color}"/></g>`;
   }
 
-  // claim (rendered at origin, translated) + vertical centring of the name/claim group
   const claimSize = fitClaim(app.claim, maxNameW, CLAIM_CAP);
   const claimAsc = lato.ascender * sc(lato, claimSize), claimDesc = -lato.descender * sc(lato, claimSize);
   const groupH = nameH + GAP_NAME_CLAIM + claimAsc + claimDesc;
@@ -167,11 +159,11 @@ for (const app of RUN) {
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${app.slug}">
   <rect width="${W}" height="${H}" fill="${t.bg}"/>
   <g transform="translate(${markTX.toFixed(2)},${markTY.toFixed(2)}) scale(${sM.toFixed(5)})">${markContent}</g>
-  ${placeName(t.dark ? app.nameDark : app.nameLight, top)}
+  ${placeName(t.name, top)}
   <g transform="translate(${textX.toFixed(2)},${claimBaseline})"><path d="${claimD}" fill="${t.claim}"/></g>
 </svg>
 `;
     emit(dir, `banner${t.suf}`, svg, t.bg);
   }
-  console.log(`${app.slug}: mark->${markW.toFixed(0)}x${markH.toFixed(0)} | name ${nameW.toFixed(0)}x${nameH.toFixed(0)} @${textX.toFixed(0)} | claim ${claimSize} | rmargin ${(W - textX - nameW).toFixed(0)}`);
+  console.log(`${app.slug}: name ${nameW.toFixed(0)}x${nameH.toFixed(0)} @${textX.toFixed(0)} | claim ${claimSize} | rmargin ${(W - textX - nameW).toFixed(0)}`);
 }
