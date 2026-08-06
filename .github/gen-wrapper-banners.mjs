@@ -41,11 +41,6 @@ const APPS = [
     slug: "n8n", reuse: true, claim: "Wire up everything, babysit nothing.",
   },
   {
-    slug: "couchdb", reuse: true, claim: "Relax. Your data syncs itself.",
-    stripFills: ["#777777"], targetH: 140,
-    logoDark: { '"#444444"': '"#e6edf3"' },
-  },
-  {
     slug: "standardnotes-server", reuse: true, claim: "Notes even we can't read.",
   },
   {
@@ -122,16 +117,13 @@ function reuseBanner(app) {
   // drop background + any border rects (never draw border lines)
   inner = inner.replace(/<rect\b[^>]*\bfill="#[fF]{6}"[^>]*\/>/g, "");
   inner = inner.replace(/<rect\b[^>]*\bstroke="[^"]*"[^>]*\/>/g, "");
-  // optionally drop specific fills from the official artwork (e.g. a baked tagline)
-  if (app.stripFills) for (const f of app.stripFills)
-    inner = inner.replace(new RegExp(`<path\\b[^>]*\\bfill="${f}"[^>]*>\\s*</path>`, "g"), "");
 
   // tight content bbox in source-viewBox coords
   const probe = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${sw} ${sh}" width="${sw}" height="${sh}">${inner}</svg>`;
   const bb = new Resvg(probe, { fitTo: { mode: "original" } }).getBBox();
   if (!bb) throw new Error("no bbox for " + app.slug);
 
-  const targetH = app.targetH || 210, GAP = 34, SIDE = 150;
+  const targetH = 210, GAP = 34, SIDE = 150;
   let k = targetH / bb.height;
   if (bb.width * k > W - 2 * SIDE) k = (W - 2 * SIDE) / bb.width;
   const artW = bb.width * k, artH = bb.height * k;
