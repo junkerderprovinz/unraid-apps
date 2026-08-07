@@ -68,7 +68,7 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/opencloud/config</Config>
 
   <Config Name="Data" Target="/var/lib/opencloud" Default="/mnt/user/appdata/opencloud/data" Mode="rw"
-          Description="Persistent OpenCloud data: user files/blobs, the search index and the internal message bus (nats). With an S3 backend this still holds the file-tree metadata, so it is always required. This grows with your stored files - point it at a share with enough space."
+          Description="Persistent OpenCloud data: file-tree metadata, the search index, the internal NATS message bus and transient upload staging (plus the file blobs, unless you use an S3/decomposeds3 backend). IMPORTANT: this volume is fsync-heavy, so keep it on a FAST SSD/NVMe pool. The default appdata path is fine only if your appdata is cache-backed (the usual Unraid setup); do NOT point it at the array or a slow /mnt/user share, or large-folder syncs from the desktop client will stall and abort (upstream issue #3027). With decomposeds3/S3 only this small metadata volume needs to be fast; the file blobs go to your S3 bucket, so this stays small and does not grow with file size (only with file count)."
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/opencloud/data</Config>
 
   <!-- ========================================================
