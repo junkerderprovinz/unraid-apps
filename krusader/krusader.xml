@@ -74,6 +74,11 @@ Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
           Description="Color scheme. 'dark' = Dark Mode, 'light' = Breeze."
           Type="Variable" Display="always" Required="false" Mask="false">dark</Config>
 
+  <Config Name="Keyboard Layout (KEYBOARD_LAYOUT)" Target="KEYBOARD_LAYOUT"
+          Default="us|de|gb|fr|es|it|pt|nl|se|no|dk|fi|pl|cz|hu|ru|jp" Mode=""
+          Description="X keyboard layout loaded at session start (setxkbmap). Binds Shift so pasted UPPERCASE text keeps its case in the web desktop, and gives the correct symbols for your layout. Default 'us' suits most users."
+          Type="Variable" Display="advanced" Required="false" Mask="false">us</Config>
+
   <!-- ========================================================
        WEBUI AUTH (SELKIES)
        ======================================================== -->
