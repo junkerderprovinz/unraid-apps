@@ -20,7 +20,7 @@ Modes per app:
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged (jdp: "logo viel groesser + CI colours").
 
-ShipLog + SmokeSignal are excluded (theme-flipping <picture> pairs from their own
+ShipLog + FireSquire are excluded (theme-flipping <picture> pairs from their own
 SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
 """
 import os

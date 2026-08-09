@@ -169,13 +169,13 @@ Update advisor in Unraid's Docker tab showing what changes and how risky before 
 <br clear="all">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/smokesignal-dark.png">
-  <img src=".github/readme-icons/smokesignal.png" width="84" align="left" alt="SmokeSignal">
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/firesquire-dark.png">
+  <img src=".github/readme-icons/firesquire.png" width="84" align="left" alt="FireSquire">
 </picture>
-<a href="https://github.com/junkerderprovinz/smokesignal#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/firesquire#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-**SmokeSignal**<br>
-A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict before you reboot, so you never reboot into a landmine.
+**FireSquire**<br>
+A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict before you reboot, so you never reboot into a landmine. Formerly named SmokeSignal.
 
 <br clear="all">
 
@@ -189,8 +189,8 @@ To add a single template by hand, paste its raw `*.xml` URL into **Add Container
 
 Apps and Images link to their dedicated repository's README; Wrappers keep their README in their folder here.
 
-**Plugins** (BombVault Widget, ShipLog, SmokeSignal) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
-`https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg`
+**Plugins** (BombVault Widget, ShipLog, FireSquire) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
+`https://raw.githubusercontent.com/junkerderprovinz/firesquire/main/plugin/firesquire.plg`
 
 
 ## Support

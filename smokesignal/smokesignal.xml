@@ -5,17 +5,15 @@
   <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
   <Category>Tools: System:</Category>
-  <Name>SmokeSignal</Name>
-  <Overview>Catches the smoke before the reboot catches fire.&#xD;
+  <Name>SmokeSignal (renamed to FireSquire)</Name>
+  <Overview>This plugin has been renamed to FireSquire.&#xD;
 &#xD;
-SmokeSignal checks, BEFORE you reboot, whether your server will come back up clean - and gives one verdict: GO / CAUTION / NO-GO, with the exact findings. Advisory only: it reads the host and reports, it never changes anything.&#xD;
+Same pre-reboot GO / CAUTION / NO-GO advisory, same read-only engine, new medieval-flavored name to match the rest of the house. If you have SmokeSignal installed, uninstall it and install FireSquire instead - search for FireSquire in the Apps tab, or see https://github.com/junkerderprovinz/firesquire&#xD;
 &#xD;
-It catches the reboot landmines that are detectable from the running system: an unclean array or a disabled/invalid disk, a parity/sync/rebuild/clear or mover in progress, a container mounting a host runtime directory or a stuck docker.img/libvirt.img loop, a non-writable flash, low free space, recent kernel/IO errors, running VMs, stopped core services, and SMART health (status + attributes + temperature).&#xD;
-&#xD;
-Adds a button next to Reboot on the Main tab. Follows your Unraid light/dark theme and language (English + German, English fallback).</Overview>
+This entry receives no further updates beyond this notice.</Overview>
   <Support>https://forums.unraid.net/topic/199508-support-junkerderprovinz-smokesignal/</Support>
-  <Project>https://github.com/junkerderprovinz/smokesignal</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/.github/assets/icon.png?v=7</Icon>
+  <Project>https://github.com/junkerderprovinz/firesquire</Project>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/firesquire/main/.github/assets/icon.png?v=1</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>

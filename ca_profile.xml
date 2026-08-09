@@ -5,7 +5,7 @@
     junkerderprovinz's self-hosted apps: own-image containers (BombVault,
     featherdrop, JDownloader, Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud), upstream-image wrappers
     (CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n), and the
-    ShipLog and SmokeSignal plugins. Each app folder has its own template, icon
+    ShipLog and FireSquire plugins. Each app folder has its own template, icon
     and README; images and full source live in their per-app repositories.
     Maintained by junkerderprovinz; support via the per-app Unraid forum threads.
   </Profile>
