@@ -4,7 +4,7 @@
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/bombvault-widget/main/plugin/bombvaultwidget.plg</PluginURL>
   <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
-  <Category>Backup: Tools: System:</Category>
+  <Category>Backup: Tools:System</Category>
   <Name>BombVault Widget</Name>
   <Overview>BombVault's activity widget as a real, native tile on the Unraid dashboard.&#xD;
 &#xD;

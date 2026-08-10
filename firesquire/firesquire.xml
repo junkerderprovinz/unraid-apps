@@ -4,7 +4,7 @@
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/firesquire/main/plugin/firesquire.plg</PluginURL>
   <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
-  <Category>Tools: System:</Category>
+  <Category>Tools:System</Category>
   <Name>FireSquire</Name>
   <Overview>Reads the beacon before your reboot catches fire.&#xD;
 &#xD;

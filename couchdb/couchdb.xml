@@ -35,7 +35,7 @@
     &#xD;
     Detailed README (setup, CORS file, backup, reverse proxy): https://github.com/junkerderprovinz/unraid-apps/blob/main/couchdb/README.md
   </Overview>
-  <Category>Database:</Category>
+  <Category>Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:5984]/_utils/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/couchdb.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2</Icon>

@@ -47,7 +47,7 @@ How to get the S3 bucket + keys:&#xD;
 Source on GitHub: https://github.com/junkerderprovinz/opencloud&#xD;
 This is an independent, community-maintained packaging of OpenCloud and is not affiliated with OpenCloud GmbH.&#xD;
   </Overview>
-  <Category>Cloud: Network:FileSharing:</Category>
+  <Category>Cloud: Network:Other</Category>
   <WebUI>https://[IP]:[PORT:9200]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/opencloud.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/icon.png?v=2</Icon>

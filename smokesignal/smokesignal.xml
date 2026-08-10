@@ -4,7 +4,7 @@
   <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/smokesignal/main/plugin/smokesignal.plg</PluginURL>
   <PluginAuthor>Junker der Provinz</PluginAuthor>
   <Beta>False</Beta>
-  <Category>Tools: System:</Category>
+  <Category>Tools:System</Category>
   <Name>SmokeSignal (renamed to FireSquire)</Name>
   <Overview>This plugin has been renamed to FireSquire.&#xD;
 &#xD;

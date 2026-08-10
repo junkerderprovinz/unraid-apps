@@ -11,7 +11,7 @@
   <Project>https://github.com/OpenHands/OpenHands</Project>
   <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/openhands/README.md</ReadMe>
   <Overview>OpenHands is an open-source AI-driven development agent. It writes, reviews, and tests code. Important: Requires access to the Docker socket to spin up isolated execution environments. Pre-configured for local Ollama use.&#xD;&#xD;Detailed README (full setup &amp; options): https://github.com/junkerderprovinz/unraid-apps/blob/main/openhands/README.md</Overview>
-  <Category>Tools: Utilities: Productivity: Development:</Category>
+  <Category>Tools:Utilities Productivity: AI:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/openhands.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/icon.png</Icon>
