@@ -38,7 +38,7 @@
   <Category>Database:</Category>
   <WebUI>http://[IP]:[PORT:5984]/_utils/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/couchdb.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=1</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2</Icon>
   <ExtraParams/>
   <PostArgs/>
   <CPUset/>
