@@ -175,7 +175,7 @@ Update advisor in Unraid's Docker tab showing what changes and how risky before 
 <a href="https://github.com/junkerderprovinz/firesquire#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **FireSquire**<br>
-A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict before you reboot, so you never reboot into a landmine. Formerly named SmokeSignal.
+A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict before you reboot, so you never reboot into a landmine.
 
 <br clear="all">
 
