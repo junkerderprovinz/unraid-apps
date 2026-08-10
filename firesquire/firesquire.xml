@@ -8,7 +8,7 @@
   <Name>FireSquire</Name>
   <Overview>Reads the beacon before your reboot catches fire.&#xD;
 &#xD;
-FireSquire checks, BEFORE you reboot, whether your server will come back up clean - and gives one verdict: GO / CAUTION / NO-GO, with the exact findings. Advisory only: it reads the host and reports, it never changes anything. Formerly named SmokeSignal.&#xD;
+FireSquire checks, BEFORE you reboot, whether your server will come back up clean - and gives one verdict: GO / CAUTION / NO-GO, with the exact findings. Advisory only: it reads the host and reports, it never changes anything.&#xD;
 &#xD;
 It catches the reboot landmines that are detectable from the running system: an unclean array or a disabled/invalid disk, a parity/sync/rebuild/clear or mover in progress, a container mounting a host runtime directory or a stuck docker.img/libvirt.img loop, a non-writable flash, low free space, recent kernel/IO errors, running VMs, stopped core services, and SMART health (status + attributes + temperature).&#xD;
 &#xD;
