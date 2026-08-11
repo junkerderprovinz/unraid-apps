@@ -175,13 +175,18 @@ formats by default and Collabora for OpenDocument, but Euro Office edits both.
 
 | Port | Purpose |  | Volume (optional) | Purpose |
 |---|---|---|---|---|
-| `80` → `9900` | Document server HTTP / WOPI |  | `/var/www/onlyoffice/Data` | Keys, fonts cache, forgotten files |
-|  |  |  | `/var/log/onlyoffice` | Server logs |
-|  |  |  | `/var/lib/postgresql` | Bundled database |
+| `80` → `9900` | Document server HTTP / WOPI |  | `/var/www/euro-office/Data` | Keys, fonts cache, forgotten files |
+|  |  |  | `/var/log/euro-office` | Server logs |
+|  |  |  | `/var/lib/postgresql` | Bundled database, **leave unmounted**, see below |
 
-The volumes are **optional**: for a pure WOPI back-end the editor is effectively
-stateless (your documents live in OpenCloud). Mount them to persist the internal
-cache and database across restarts and speed up subsequent boots.
+`Data` and `Logs` are optional: for a pure WOPI back-end the editor is
+effectively stateless (your documents live in OpenCloud), mount them only to
+persist the internal cache and logs across restarts. **`Database` is different
+and defaults to unmounted on purpose:** the image ships with an
+already-initialised database baked in, and mounting a fresh empty folder over
+it hides that database, the container then fails to start (see
+[Troubleshooting](#7-troubleshooting)). Leave it blank unless the folder
+already contains a working euro-office Postgres data directory.
 
 <br>
 
@@ -214,7 +219,15 @@ specific version, set an explicit tag in the template's *Repository* field
 <details>
 <summary><b>First start is slow / high CPU right after boot</b></summary>
 
-- Normal. The bundled database initialises and the converter warms up on the first start. It settles once `/hosting/discovery` returns XML. Mount the optional **Database** volume to skip the DB re-init on later restarts.
+- Normal. The bundled database and converter warm up on the first start. It settles once `/hosting/discovery` returns XML, usually within a minute or two.
+</details>
+
+<details>
+<summary><b>Container loops "PostgreSQL ... is not accessible or does not exist" and never starts</b></summary>
+
+- The **Database** field (Advanced View) has a path in it. The image ships with an already-initialised database baked in; mounting a fresh empty folder over `/var/lib/postgresql` hides it, and the entrypoint has no way to initialise a database in an empty volume (upstream bug, no fix yet: [euro-office/documentserver#299](https://github.com/euro-office/documentserver/issues/299)).
+- Fix: open the container's **Edit** page, switch on Advanced View, clear the **Database** field completely, then **Apply**. The container starts normally within a minute using the bundled database, which simply resets on the next recreate, fine for WOPI use with OpenCloud.
+- Only fill in **Database** if that folder already contains a working euro-office Postgres data directory (for example one copied out of a running container first).
 </details>
 
 <br>
