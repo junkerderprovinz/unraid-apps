@@ -176,17 +176,22 @@ formats by default and Collabora for OpenDocument, but Euro Office edits both.
 | Port | Purpose |  | Volume (optional) | Purpose |
 |---|---|---|---|---|
 | `80` → `9900` | Document server HTTP / WOPI |  | `/var/www/euro-office/Data` | Keys, fonts cache, forgotten files |
-|  |  |  | `/var/log/euro-office` | Server logs |
+|  |  |  | `/var/log/euro-office` | Server logs, **leave unmounted**, see below |
 |  |  |  | `/var/lib/postgresql` | Bundled database, **leave unmounted**, see below |
 
-`Data` and `Logs` are optional: for a pure WOPI back-end the editor is
-effectively stateless (your documents live in OpenCloud), mount them only to
-persist the internal cache and logs across restarts. **`Database` is different
-and defaults to unmounted on purpose:** the image ships with an
-already-initialised database baked in, and mounting a fresh empty folder over
-it hides that database, the container then fails to start (see
-[Troubleshooting](#7-troubleshooting)). Leave it blank unless the folder
-already contains a working euro-office Postgres data directory.
+`Data` is optional: for a pure WOPI back-end the editor is effectively stateless
+(your documents live in OpenCloud), mount it only to persist the internal cache
+across restarts. It is empty inside the image, so a bind mount there hides
+nothing.
+
+**`Logs` and `Database` are different and default to unmounted on purpose.** The
+image ships both directories pre-built, and a bind mount from an empty host
+folder hides what is inside them, which stops the container from starting: over
+`/var/log/euro-office` it hides the log tree nginx writes to, over
+`/var/lib/postgresql` it hides the already-initialised database (see
+[Troubleshooting](#7-troubleshooting) for both). Leave them blank unless the
+folder already holds a copy of what the image put there. Clearing `Logs` costs
+you nothing, the Unraid log button still shows everything the server prints.
 
 <br>
 
@@ -228,6 +233,15 @@ specific version, set an explicit tag in the template's *Repository* field
 - The **Database** field (Advanced View) has a path in it. The image ships with an already-initialised database baked in; mounting a fresh empty folder over `/var/lib/postgresql` hides it, and the entrypoint has no way to initialise a database in an empty volume (upstream bug, no fix yet: [euro-office/documentserver#299](https://github.com/euro-office/documentserver/issues/299)).
 - Fix: open the container's **Edit** page, switch on Advanced View, clear the **Database** field completely, then **Apply**. The container starts normally within a minute using the bundled database, which simply resets on the next recreate, fine for WOPI use with OpenCloud.
 - Only fill in **Database** if that folder already contains a working euro-office Postgres data directory (for example one copied out of a running container first).
+</details>
+
+<details>
+<summary><b>Container loops "Starting nginx nginx ...fail!" on a fresh install</b></summary>
+
+- The **Logs** field (Advanced View) has a path in it. The image builds its log tree at `/var/log/euro-office/documentserver` (that is where `nginx.error.log` and one folder per service live), and the entrypoint never recreates it. Mounting a fresh empty folder over `/var/log/euro-office` hides the whole tree, so nginx aborts with `open() "/var/log/euro-office/documentserver/nginx.error.log" failed (2: No such file or directory)`. The entrypoint runs under `set -e`, so that one failure ends the boot and `--restart=unless-stopped` starts the same failure over again.
+- Fix: open the container's **Edit** page, switch on Advanced View, clear the **Logs** field completely, then **Apply**. The container comes up within a minute and `/hosting/discovery` starts answering.
+- You do not lose the logs: the Unraid log button on the container shows everything the server prints either way.
+- Only fill in **Logs** if that folder already contains the log tree copied out of a running container first.
 </details>
 
 <br>
