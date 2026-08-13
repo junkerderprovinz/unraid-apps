@@ -22,7 +22,7 @@ How it fits together (with OpenCloud):&#xD;
 &#xD;
 First start:&#xD;
 &#x2022; The document server bundles its own database and converter and takes a minute or two to come up on the very first start. Wait until http://[IP]:9900/hosting/discovery returns XML before opening a document from your cloud.&#xD;
-&#x2022; Leave the "Database" field under Advanced View BLANK. It is not required, and mounting a fresh empty folder there makes the container fail to start with a repeating "PostgreSQL ... is not accessible or does not exist" error (see Troubleshooting below).&#xD;
+&#x2022; Leave the "Database" and "Logs" fields under Advanced View BLANK. Neither is required, and mounting a fresh empty folder over either one hides a directory the image ships pre-built, which stops the container from starting (see Troubleshooting below).&#xD;
 &#xD;
 Security / reverse proxy:&#xD;
 &#x2022; Keep "JWT enabled" = true (the default). The JWT secret signs every request between your cloud and the editor - never leave it blank.&#xD;
@@ -31,6 +31,10 @@ Security / reverse proxy:&#xD;
 &#xD;
 Troubleshooting - container loops "PostgreSQL ... is not accessible or does not exist":&#xD;
 &#x2022; Your "Database" field under Advanced View has a path in it. Open the container's Edit page, switch on Advanced View, clear the "Database" field completely, then Apply. The bundled, already-initialised database takes over and the container starts normally within a minute.&#xD;
+&#xD;
+Troubleshooting - container loops "Starting nginx nginx ...fail!":&#xD;
+&#x2022; Your "Logs" field under Advanced View has a path in it. The image keeps its log tree at /var/log/euro-office/documentserver, so mounting an empty folder over /var/log/euro-office hides it, nginx cannot open its error log there, and the entrypoint aborts before the editor comes up. Open the container's Edit page, switch on Advanced View, clear the "Logs" field completely, then Apply.&#xD;
+&#x2022; The logs are not lost by clearing the field - the Unraid log button on the container still shows everything the server prints.&#xD;
 &#xD;
 About Euro Office:&#xD;
 &#x2022; Euro Office is an open, sovereignty-focused document server developed in Europe as an OnlyOffice-compatible fork. Because it is API-compatible, any guide for "OnlyOffice Document Server + OpenCloud/Nextcloud" applies here as well.&#xD;
@@ -75,18 +79,22 @@ This is an independent, community-maintained Unraid packaging and is not affilia
 
   <!-- ========================================================
        PERSISTENCE (optional) - the editor works statelessly for
-       WOPI, but mounting Data/Logs keeps its cache across restarts
-       and speeds up subsequent boots. Safe to omit for pure
-       WOPI use with OpenCloud. Database is different, see its own
-       Description below - do NOT give it a default mount here.
+       WOPI, but mounting Data keeps its cache across restarts and
+       speeds up subsequent boots. Safe to omit for pure WOPI use
+       with OpenCloud. Data is empty in the image, so a bind mount
+       there hides nothing. Logs and Database are different: the
+       image ships both directories pre-built and a bind mount over
+       an empty host folder hides them, which stops the container
+       from starting - see their own Descriptions below and do NOT
+       give either one a default mount here.
        ======================================================== -->
   <Config Name="Data" Target="/var/www/euro-office/Data" Default="/mnt/user/appdata/euro-office/data" Mode="rw"
           Description="Optional. Persistent document-server data (keys, fonts cache, forgotten files). Recommended for a permanent install; can be omitted for a purely stateless WOPI backend."
           Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/data</Config>
 
-  <Config Name="Logs" Target="/var/log/euro-office" Default="/mnt/user/appdata/euro-office/logs" Mode="rw"
-          Description="Optional. Document-server logs, handy for troubleshooting."
-          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/logs</Config>
+  <Config Name="Logs" Target="/var/log/euro-office" Default="" Mode="rw"
+          Description="Leave BLANK for a normal install. The image builds its log tree at /var/log/euro-office/documentserver (nginx.error.log plus one folder per service). Mounting an EMPTY folder over /var/log/euro-office hides that tree, nginx then cannot open its error log and fails with 'Starting nginx nginx ...fail!', and because the entrypoint stops on that error the container crash-loops on every boot. You lose nothing by leaving this blank: the Unraid log button still shows everything the server prints. Only set a path here if it already contains the log tree copied out of a running container first."
+          Type="Path" Display="advanced" Required="false" Mask="false"></Config>
 
   <Config Name="Database" Target="/var/lib/postgresql" Default="" Mode="rw"
           Description="Leave BLANK for a normal install. The image ships with an already-initialised database baked in; mounting an EMPTY folder here hides that database and the container fails to start with 'PostgreSQL ... is not accessible or does not exist' on every boot (an upstream bug: the entrypoint cannot initialise a database in a fresh empty volume - see euro-office/documentserver#299). Without this mount the DB simply resets on container recreate, which is fine for WOPI use with OpenCloud. Only set a path here if it already contains a working euro-office Postgres data directory copied out of a running container first."
