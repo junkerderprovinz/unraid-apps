@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>seaweedfs</Name>
+  <Repository>chrislusf/seaweedfs:latest</Repository>
+  <Registry>https://hub.docker.com/r/chrislusf/seaweedfs</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://github.com/seaweedfs/seaweedfs</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/seaweedfs/README.md</ReadMe>
+  <Overview>
+    SeaweedFS is a fast, S3-API-compatible object store - a genuinely maintained, actively&#xD;
+    developed alternative now that MinIO's open-source Community Edition has been archived&#xD;
+    (Apr 2026) and its Docker images stopped receiving security updates in Sep 2025. This is&#xD;
+    a plug-and-play Unraid Community Applications template wrapping the OFFICIAL&#xD;
+    chrislusf/seaweedfs image.&#xD;
+    &#xD;
+    Runs the "mini" single-process mode by default: master, volume, filer, S3 API and admin&#xD;
+    UI all in one container, all data under one persistent /data mount. This is SeaweedFS's&#xD;
+    own documented single-node setup, not a cut-down mode - the same binary scales out to a&#xD;
+    real cluster later by adding volume servers elsewhere if you ever need that.&#xD;
+    &#xD;
+    S3 CLIENTS (rclone, mc, aws-cli, restic, most S3 SDKs) point at&#xD;
+    http://SERVER_IP:8333 with the access key / secret key set below - no other setup needed,&#xD;
+    a bucket is pre-created if you set one.&#xD;
+    &#xD;
+    SECURITY: leaving the Access Key / Secret Key EMPTY starts S3 in unauthenticated&#xD;
+    "Allow All" mode - fine for a quick local test, not for anything holding real data. Set&#xD;
+    both before pointing anything real at this.&#xD;
+    &#xD;
+    File ownership inside /data is handled automatically by the image's own entrypoint (fixed&#xD;
+    internal user, chowned on start) - there is no PUID/PGID to set.&#xD;
+  </Overview>
+  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:23646]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/seaweedfs.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Set an Access Key + Secret Key below before storing anything real - without them the S3 API runs unauthenticated. See the README for client setup (rclone, mc, restic, ...) and how to move from MinIO.</Requires>
+
+  <Config Name="S3 API Port" Target="8333" Default="8333" Mode="tcp" Description="The S3-compatible endpoint every client (rclone, mc, aws-cli, restic, ...) connects to. This is the port that matters functionally." Type="Port" Display="always" Required="true" Mask="false">8333</Config>
+
+  <Config Name="Admin UI Port" Target="23646" Default="23646" Mode="tcp" Description="Browser-based cluster admin UI (buckets, volumes, topology). This is what WebUI opens." Type="Port" Display="always" Required="true" Mask="false">23646</Config>
+
+  <Config Name="Master UI Port" Target="9333" Default="9333" Mode="tcp" Description="Master node status page (volume/cluster health). Optional to expose, useful for monitoring." Type="Port" Display="advanced" Required="false" Mask="false">9333</Config>
+
+  <Config Name="Filer UI Port" Target="8888" Default="8888" Mode="tcp" Description="Browsable file-listing UI over the same data, in filer terms rather than S3 buckets. Optional." Type="Port" Display="advanced" Required="false" Mask="false">8888</Config>
+
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/seaweedfs/data" Mode="rw" Description="Where every volume, filer metadata and admin config lives - this MUST be mapped or everything is lost on recreate. The image's entrypoint fixes ownership automatically on start (no PUID/PGID needed)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/seaweedfs/data</Config>
+
+  <Config Name="Access Key" Target="AWS_ACCESS_KEY_ID" Default="" Mode="" Description="S3 access key. Leave BOTH this and Secret Key empty only for a throwaway local test - S3 then runs unauthenticated ('Allow All'). Set both before storing real data." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Secret Key" Target="AWS_SECRET_ACCESS_KEY" Default="" Mode="" Description="S3 secret key, paired with Access Key above. Use a real generated secret (e.g. openssl rand -hex 24), not a short password - this is what protects your data over the network." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="Pre-create Bucket" Target="S3_BUCKET" Default="" Mode="" Description="Optional. Name of a bucket to create automatically on first start (comma-separated for more than one, e.g. backups,media). Leave empty to create buckets yourself later via any S3 client." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+</Container>
