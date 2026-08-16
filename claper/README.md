@@ -23,6 +23,10 @@ option is exposed in the template form.
 <br>
 
 <p align="center">
+Maintained solo, in whatever spare time there is. Questions via the <a href="https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/">support thread</a>, bugs, ideas and feature requests via <a href="https://github.com/junkerderprovinz/unraid-apps/issues">GitHub issues</a>. If it's useful to you, a coffee is always welcome.
+</p>
+
+<p align="center">
   <a href="https://buymeacoffee.com/junkerderprovinz">
     <img src="assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
   </a>
@@ -42,6 +46,7 @@ option is exposed in the template form.
 8. [Updating](#8-updating)
 9. [Troubleshooting](#9-troubleshooting)
 10. [License](#10-license)
+11. [Support this project](#11-support-this-project)
 
 <br>
 
@@ -165,3 +170,17 @@ container, pull the new `:latest`, start it again — migrations run automatical
 This template is MIT-licensed (see [`../LICENSE`](../LICENSE)). Claper itself is licensed
 AGPL-3.0 by [ClaperCo](https://github.com/ClaperCo/Claper) — this is an independent,
 community-maintained Unraid packaging and is not affiliated with the Claper project.
+
+<br>
+
+## 11. Support this project
+
+Questions? Check the [support thread](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/). Bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues).
+
+This is a one-person project. I put a lot of time and effort into building and maintaining it, in whatever free time I have. If it's helped you, I'd genuinely appreciate the support: you're welcome to buy me a coffee.
+
+<p align="center">
+  <a href="https://buymeacoffee.com/junkerderprovinz">
+    <img src="assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
+  </a>
+</p>
