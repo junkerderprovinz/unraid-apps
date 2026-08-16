@@ -74,7 +74,17 @@ def flood_outer_transparent(im, tol=32):
     im = im.convert("RGBA")
     w, h = im.size
     px = im.load()
+    # The (0,0) corner is transparent on any icon with rounded corners (the
+    # corner cutout), which used to make this pick up a bogus (0,0,0,0)
+    # "background colour" and flood-fill nothing. Walk in from the corner
+    # along the diagonal until an opaque pixel is found instead.
     bg = px[0, 0]
+    if bg[3] == 0:
+        for i in range(1, min(w, h)):
+            c = px[i, i]
+            if c[3] > 0:
+                bg = c
+                break
 
     def match(c):
         return c[3] > 0 and abs(c[0] - bg[0]) <= tol and abs(c[1] - bg[1]) <= tol and abs(c[2] - bg[2]) <= tol
