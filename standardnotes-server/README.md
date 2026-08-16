@@ -28,6 +28,10 @@ bundled databases, no surprises.
 <br>
 
 <p align="center">
+Maintained solo, in whatever spare time there is. Questions via the <a href="https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/">support thread</a>, bugs, ideas and feature requests via <a href="https://github.com/junkerderprovinz/unraid-apps/issues">GitHub issues</a>. If it's useful to you, a coffee is always welcome.
+</p>
+
+<p align="center">
   <a href="https://buymeacoffee.com/junkerderprovinz">
     <img src="assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
   </a>
@@ -1189,7 +1193,9 @@ xmllint --noout templates/*.xml
 
 ## 13. Support this project
 
-If this template saves you a setup hassle or a debug night, consider buying me a coffee:
+Questions? Check the [support thread](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/). Bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues).
+
+This is a one-person project. I put a lot of time and effort into building and maintaining it, in whatever free time I have. If it's helped you, I'd genuinely appreciate the support: you're welcome to buy me a coffee.
 
 <p align="center">
   <a href="https://buymeacoffee.com/junkerderprovinz">
