@@ -43,6 +43,14 @@ Your own private WeTransfer: feather-light, login-free, end-to-end encrypted fil
 
 *My own custom image builds of third-party apps — full docs in each app's own repository.*
 
+<img src=".github/readme-icons/garage.png" width="84" align="left" alt="Garage">
+<a href="https://github.com/junkerderprovinz/garage#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Garage**<br>
+Garage's S3-compatible object store plus its web admin panel, bundled into one container — no manual CLI setup, single-node layout and S3 keys created automatically.
+
+<br clear="all">
+
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
 <a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
