@@ -28,6 +28,7 @@ S3-API-compatible object store, actively maintained (weekly releases), wrapping 
 5. [Coming from MinIO](#5-coming-from-minio)
 6. [Configuration](#6-configuration)
 7. [Backup](#7-backup)
+8. [Support this project](#8-support-this-project)
 
 ## 1. Why this instead of MinIO?
 
@@ -109,6 +110,14 @@ Point whatever was using the old endpoint (backup tools, apps, scripts) at the n
 
 Everything lives under the single Data mount (`/mnt/user/appdata/seaweedfs/data` by default) - back that up the same way you back up any other appdata folder (e.g. with a container-aware backup tool). There's no separate database or config store to remember.
 
----
+## 8. Support this project
 
 Questions, bugs, ideas? **[Unraid support thread →](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/)** (or open a [GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues)).
+
+If this template saves you a setup hassle, consider buying me a coffee:
+
+<p align="center">
+  <a href="https://buymeacoffee.com/junkerderprovinz">
+    <img src="assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
+  </a>
+</p>
