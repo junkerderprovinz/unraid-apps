@@ -128,6 +128,14 @@ Open-source AI software-development agent, pre-wired for a local Ollama model, s
 
 <br clear="all">
 
+<img src=".github/readme-icons/seaweedfs.png" width="84" align="left" alt="SeaweedFS">
+<a href="seaweedfs/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**SeaweedFS**<br>
+Fast, S3-API-compatible object store on the official image, the actively-maintained alternative now that MinIO's open edition is done.
+
+<br clear="all">
+
 <img src=".github/readme-icons/standardnotes-server.png" width="84" align="left" alt="Standard Notes Server">
 <a href="standardnotes-server/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 

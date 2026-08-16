@@ -30,7 +30,7 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium"}
+TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs"}
 FILL = {"bombvault", "bombvaultwidget", "standardnotes-server", "standardnotes-webui"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb"}
 ALL = sorted(TILE | FILL | KEEP)
