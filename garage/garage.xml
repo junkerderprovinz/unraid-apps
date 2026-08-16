@@ -27,7 +27,7 @@ IMPORTANT: map BOTH the Data and Config volumes. Config holds the generated gara
   <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:3909]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/garage.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=2</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=3</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs/>
   <CPUset/>
