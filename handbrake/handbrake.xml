@@ -8,7 +8,7 @@
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/handbrake/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/handbrake/issues</Support>
+  <Support>https://forums.unraid.net/topic/200252-support-junkerderprovinz-handbrake/</Support>
   <Project>https://handbrake.fr</Project>
   <Overview>
 The full HandBrake video transcoder GUI in your browser – built on Selkies for a smooth, hardware-accelerated web desktop. Dark by default, using HandBrake's own native GTK dark mode (not a repaint). GPU-accelerated transcoding on NVIDIA, Intel and AMD – the most complete HandBrake container available for Unraid.&#xD;
