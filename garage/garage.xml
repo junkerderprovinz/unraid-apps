@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Garage</Name>
+  <Beta>false</Beta>
+  <Repository>junkerderprovinz/garage:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/garage</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/garage/blob/main/README.md</ReadMe>
+  <Support>https://github.com/junkerderprovinz/garage/issues</Support>
+  <Project>https://git.deuxfleurs.fr/Deuxfleurs/garage</Project>
+  <Overview>
+Garage is a lightweight, S3-API-compatible object store built for small, self-hosted deployments - Rust, Apache-2.0, actively developed. This template bundles the official Garage server AND its web admin panel (garage-webui, also official/unmodified) into ONE container, running single-node mode.&#xD;
+&#xD;
+Why one container: Garage's own Community Applications listings are split across three separate templates from another maintainer (the core server in two network variants, plus the admin panel as its own separate install). This template combines the core server and the admin panel - both official, unmodified upstream binaries - into one install.&#xD;
+&#xD;
+Zero manual CLI setup:&#xD;
+• Single-node cluster layout is created automatically at startup (Garage's own --single-node flag, v2.3.0+) - the manual "garage layout assign / apply" steps a bare install normally needs are not required here.&#xD;
+• An S3 access key, secret key and bucket are pre-seeded from the fields below on first boot - no second CLI step to create them either.&#xD;
+• garage-webui runs alongside it and talks to Garage's admin API over localhost - buckets, keys and cluster health are all browsable in the browser, no terminal needed.&#xD;
+&#xD;
+First start: watch the container log for "GARAGE IS READY" - first boot generates the config, this takes a few seconds.&#xD;
+&#xD;
+IMPORTANT: map BOTH the Data and Config volumes. Config holds the generated garage.toml (RPC secret, admin token) - losing it regenerates those secrets on next boot and breaks the admin panel's session.&#xD;
+  </Overview>
+  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:3909]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/garage.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Set an Access Key + Secret Key below before storing anything real. See the README for client setup (rclone, restic, ...).</Requires>
+
+  <Config Name="S3 API Port" Target="3900" Default="3900" Mode="tcp" Description="The S3-compatible endpoint every client (rclone, restic, aws-cli, ...) connects to. This is the port that matters functionally." Type="Port" Display="always" Required="true" Mask="false">3900</Config>
+
+  <Config Name="Admin Panel Port" Target="3909" Default="3909" Mode="tcp" Description="Browser-based admin panel (garage-webui): buckets, keys, cluster health. This is what WebUI opens." Type="Port" Display="always" Required="true" Mask="false">3909</Config>
+
+  <Config Name="S3 Website Port" Target="3902" Default="3902" Mode="tcp" Description="Optional. Static-site hosting straight from a bucket (Garage's s3_web feature)." Type="Port" Display="advanced" Required="false" Mask="false">3902</Config>
+
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/garage/data" Mode="rw" Description="Object data and metadata. This MUST be mapped or everything is lost on recreate." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/garage/data</Config>
+
+  <Config Name="Config" Target="/config" Default="/mnt/user/appdata/garage/config" Mode="rw" Description="Generated garage.toml (RPC secret, admin token). This MUST be mapped - losing it regenerates your RPC/admin secrets on next boot and breaks the admin panel's session." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/garage/config</Config>
+
+  <Config Name="Access Key" Target="ACCESS_KEY" Default="" Mode="" Description="S3 access key, pre-seeded on first boot. Required to write anything real - leaving this and Secret Key empty means no bucket/key gets created automatically." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Secret Key" Target="SECRET_KEY" Default="" Mode="" Description="S3 secret key, paired with Access Key above. Use a real generated secret (e.g. openssl rand -hex 24), not a short password." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="Bucket" Target="BUCKET" Default="" Mode="" Description="Optional. Name of a bucket to create automatically on first boot (e.g. backups). Leave empty to create buckets later via the admin panel or any S3 client." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="DB Engine" Target="DB_ENGINE" Default="sqlite|lmdb" Mode="" Description="Garage's metadata engine. 'sqlite' (default) is the safer choice; 'lmdb' is faster but less tolerant of an unclean shutdown." Type="Variable" Display="advanced" Required="false" Mask="false">sqlite</Config>
+
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the processes run as. Default 99 = 'nobody' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the processes run as. Default 100 = 'users' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+
+</Container>
