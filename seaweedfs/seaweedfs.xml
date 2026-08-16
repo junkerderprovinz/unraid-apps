@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>seaweedfs</Name>
+  <Name>SeaweedFS</Name>
   <Repository>chrislusf/seaweedfs:latest</Repository>
   <Registry>https://hub.docker.com/r/chrislusf/seaweedfs</Registry>
   <Network>bridge</Network>

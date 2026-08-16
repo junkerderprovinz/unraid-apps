@@ -1,8 +1,7 @@
-<p align="center">
-  <img src="icon.png" alt="SeaweedFS" width="160">
-</p>
-
-<h1 align="center">SeaweedFS for Unraid</h1>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+  <img src="assets/banner.png" alt="SeaweedFS" width="100%">
+</picture>
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;

@@ -37,6 +37,7 @@ const APPS = [
   { slug: "standardnotes-webui", name: { wordmark: true }, claim: "Notes even we can't read." },
   { slug: "n8n", name: { text: "n8n" }, claim: "Wire up everything, babysit nothing." },
   { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
+  { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
