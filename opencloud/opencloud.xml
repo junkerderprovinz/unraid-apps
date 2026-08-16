@@ -33,12 +33,13 @@ Notes:&#xD;
 &#x2022; PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 &#xD;
 S3 object storage (optional, advanced):&#xD;
-&#x2022; OpenCloud can store file BLOBS in any S3-compatible bucket. Recommended self-hosted option: SeaweedFS (https://github.com/junkerderprovinz/unraid-apps/tree/main/seaweedfs), a genuine, actively-maintained S3-compatible store. AWS, Backblaze B2 and Wasabi also work. Set the "Storage driver" to 'decomposeds3' and fill the S3 endpoint / region / access key / secret key / bucket fields. Keep the driver on 'posix' (the default) for normal local storage - do NOT leave it blank.&#xD;
+&#x2022; OpenCloud can store file BLOBS in any S3-compatible bucket. Two genuine, actively-maintained self-hosted options: SeaweedFS (https://github.com/junkerderprovinz/unraid-apps/tree/main/seaweedfs, recommended for a single node) and Garage (https://github.com/junkerderprovinz/garage, built for multi-node clusters, runs single-node here too). AWS, Backblaze B2 and Wasabi also work. Set the "Storage driver" to 'decomposeds3' and fill the S3 endpoint / region / access key / secret key / bucket fields. Keep the driver on 'posix' (the default) for normal local storage - do NOT leave it blank.&#xD;
 &#x2022; IMPORTANT: only the file blobs go to S3. The file-tree METADATA always stays on the local Data volume - so that volume is required even with S3 and MUST be backed up. Losing it orphans your S3 objects (they are opaque IDs with no folder structure).&#xD;
 &#x2022; OpenCloud does NOT use a database (no MySQL/Postgres) - do not look for one. State lives in the local metadata tree plus an embedded message bus.&#xD;
 &#xD;
-How to get the S3 bucket + keys:&#xD;
-&#x2022; SeaweedFS (self-hosted, recommended): in that template, set an Access Key and Secret Key (see its README's Security note) and optionally a Pre-create Bucket name - those become your access key, secret key and bucket directly, no separate service-account step. Endpoint is its S3 port, http://SEAWEEDFS-IP:8333, region 'default'.&#xD;
+How to get the S3 bucket and keys:&#xD;
+&#x2022; SeaweedFS (self-hosted): in that template, set an Access Key and Secret Key (see its README's Security note) and optionally a Pre-create Bucket name - those become your access key, secret key and bucket directly, no separate service-account step. Endpoint is its S3 port, http://SEAWEEDFS-IP:8333, region 'default'.&#xD;
+&#x2022; Garage (self-hosted): in that template, set an Access Key and Secret Key (and optionally a Bucket) - pre-seeded on first boot, no separate CLI step. Endpoint is its S3 API port, http://GARAGE-IP:3900, region 'garage'.&#xD;
 &#x2022; AWS S3 / Backblaze B2 / Wasabi: create a bucket in the provider console, then create an access key (AWS: IAM access key; B2/Wasabi: an application/API key). Use the provider's https endpoint and the bucket's region.&#xD;
 &#x2022; If uploads fail with a checksum error on a non-AWS endpoint, add STORAGE_USERS_DECOMPOSEDS3_PUT_OBJECT_DISABLE_CONTENT_SHA256=true as an extra variable.&#xD;
 &#xD;
@@ -123,27 +124,27 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
 
   <Config Name="S3 endpoint" Target="STORAGE_USERS_DECOMPOSEDS3_ENDPOINT"
           Default="" Mode=""
-          Description="S3 API endpoint URL. Self-hosted SeaweedFS: the internal http URL on its S3 port 8333, e.g. http://192.168.1.10:8333. AWS/B2/Wasabi: their https endpoint. Only used when the driver above is 'decomposeds3'."
+          Description="S3 API endpoint URL. Self-hosted SeaweedFS: the internal http URL on its S3 port 8333, e.g. http://192.168.1.10:8333. Self-hosted Garage: its S3 API port 3900, e.g. http://192.168.1.10:3900. AWS/B2/Wasabi: their https endpoint. Only used when the driver above is 'decomposeds3'."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
   <Config Name="S3 region" Target="STORAGE_USERS_DECOMPOSEDS3_REGION"
-          Default="default|us-east-1|us-east-2|us-west-1|us-west-2|eu-central-1|eu-west-1|eu-west-2|eu-north-1|ap-southeast-1|ap-southeast-2|ap-northeast-1|ca-central-1|sa-east-1" Mode=""
-          Description="Bucket region. Use 'default' for self-hosted SeaweedFS, or your provider's region (e.g. eu-central-1) for AWS/B2/Wasabi. Only used with the 'decomposeds3' driver."
+          Default="default|garage|us-east-1|us-east-2|us-west-1|us-west-2|eu-central-1|eu-west-1|eu-west-2|eu-north-1|ap-southeast-1|ap-southeast-2|ap-northeast-1|ca-central-1|sa-east-1" Mode=""
+          Description="Bucket region. Use 'default' for self-hosted SeaweedFS, 'garage' for self-hosted Garage (its default region), or your provider's region (e.g. eu-central-1) for AWS/B2/Wasabi. Only used with the 'decomposeds3' driver."
           Type="Variable" Display="advanced" Required="false" Mask="false">default</Config>
 
   <Config Name="S3 access key" Target="STORAGE_USERS_DECOMPOSEDS3_ACCESS_KEY"
           Default="" Mode=""
-          Description="Access key ID for the bucket. Self-hosted SeaweedFS: the Access Key you set on that container's template directly. AWS: an IAM access key; B2/Wasabi: an application/API key."
+          Description="Access key ID for the bucket. Self-hosted SeaweedFS/Garage: the Access Key you set on that container's template directly. AWS: an IAM access key; B2/Wasabi: an application/API key."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
   <Config Name="S3 secret key" Target="STORAGE_USERS_DECOMPOSEDS3_SECRET_KEY"
           Default="" Mode=""
-          Description="The secret that pairs with the access key. Self-hosted SeaweedFS: the Secret Key you set on that container's template directly. Stored masked."
+          Description="The secret that pairs with the access key. Self-hosted SeaweedFS/Garage: the Secret Key you set on that container's template directly. Stored masked."
           Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
 
   <Config Name="S3 bucket" Target="STORAGE_USERS_DECOMPOSEDS3_BUCKET"
           Default="" Mode=""
-          Description="Name of the S3 bucket to store blobs in. Create it FIRST - the container does not. SeaweedFS: use its own 'Pre-create Bucket' template field, or create one with any S3 tool. AWS/B2/Wasabi: create a bucket in the provider console. Enter that exact name here."
+          Description="Name of the S3 bucket to store blobs in. Create it FIRST - the container does not. SeaweedFS: use its own 'Pre-create Bucket' template field. Garage: use its own 'Bucket' template field. Either way, or with any S3 tool. AWS/B2/Wasabi: create a bucket in the provider console. Enter that exact name here."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
   <!-- ========================================================
