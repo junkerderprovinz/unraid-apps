@@ -34,7 +34,7 @@ IMPORTANT: map BOTH the Data and Config volumes. Config holds the generated gara
   <DateInstalled/>
   <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
-  <Requires>Set an Access Key + Secret Key below before storing anything real. See the README for client setup (rclone, restic, ...).</Requires>
+  <Requires>Set an Access Key and Secret Key below before storing anything real. See the README for client setup (rclone, restic, ...).</Requires>
 
   <Config Name="S3 API Port" Target="3900" Default="3900" Mode="tcp" Description="The S3-compatible endpoint every client (rclone, restic, aws-cli, ...) connects to. This is the port that matters functionally." Type="Port" Display="always" Required="true" Mask="false">3900</Config>
 
