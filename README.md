@@ -104,6 +104,14 @@ Garage's S3-compatible object store plus its web admin panel, bundled into one c
 
 *Thin templates over a third-party upstream image (no custom build) — full docs in each app's folder below.*
 
+<img src=".github/readme-icons/claper.png" width="84" align="left" alt="Claper">
+<a href="claper/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Claper**<br>
+Open-source, self-hosted Mentimeter/Slido alternative: live polls, Q&amp;A and quizzes alongside your slides, audience joins from their own device, no app install.
+
+<br clear="all">
+
 <img src=".github/readme-icons/couchdb.png" width="84" align="left" alt="CouchDB">
 <a href="couchdb/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 

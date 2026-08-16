@@ -38,6 +38,7 @@ const APPS = [
   { slug: "n8n", name: { text: "n8n" }, claim: "Wire up everything, babysit nothing." },
   { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
   { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
+  { slug: "claper", name: { text: "Claper" }, claim: "Live polls, quizzes and Q&A, no clapping required." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
