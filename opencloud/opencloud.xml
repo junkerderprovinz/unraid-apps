@@ -2,7 +2,7 @@
 <Container version="2">
   <Name>OpenCloud</Name>
   <Beta>false</Beta>
-  <Repository>junkerderprovinz/opencloud:production</Repository>
+  <Repository>junkerderprovinz/opencloud:latest</Repository>
   <Registry>https://hub.docker.com/r/junkerderprovinz/opencloud</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
@@ -17,7 +17,7 @@ What's pre-configured:&#xD;
 &#x2022; One-click: auto-runs 'opencloud init' on first boot, then the server - nothing to do on the console.&#xD;
 &#x2022; Permission heal: root-created appdata folders are handed to your PUID/PGID automatically.&#xD;
 &#x2022; Serves HTTPS itself on port 9200 (self-signed by default) - no reverse proxy required.&#xD;
-&#x2022; Two channels via the Repository tag: :production (default, stable) and :rolling (newest features).&#xD;
+&#x2022; Two channels via the Repository tag: :latest (default, stable/production) and :rolling (newest features). Both track OpenCloud's own upstream release automatically, no manual version bump needed.&#xD;
 &#xD;
 Getting started:&#xD;
 &#x2022; Set an Admin Password below - it is applied on the first start. Log in as user "admin".&#xD;
@@ -28,7 +28,7 @@ Notes:&#xD;
 &#x2022; Public URL: Unraid does NOT auto-fill the "Public URL" field. Set it to https://YOUR-SERVER-IP:9200 (your Unraid LAN IP), or your external https URL behind a reverse proxy. Leaving the placeholder lets the container guess its own IP so it still starts, but client logins only work reliably once it is correct.&#xD;
 &#x2022; Storage driver: keep it on 'posix' (the default). A blank driver or the unsupported 'local' driver makes files show up but stay greyed out (not openable/downloadable). The Data folder must sit on a filesystem with extended-attribute support - the Unraid array and cache/pool disks have it; if files stay greyed out on an exotic share, move Data to a normal appdata/cache-backed path.&#xD;
 &#x2022; Use a FRESH, empty Data folder. Do NOT point Data at an old OpenCloud/oCIS data directory: the on-disk layout differs between versions and the storage backends (local vs S3) are not interchangeable, so the server crash-loops (symptom in the log: search 'cannot open index, metadata missing'). There is no in-place migration between storage backends - to keep old files, start fresh and re-upload them.&#xD;
-&#x2022; Rolling channel: change the Repository tag from ':production' to ':rolling' to track the newest OpenCloud builds. Keep your appdata backed up before switching.&#xD;
+&#x2022; Rolling channel: change the Repository tag from ':latest' to ':rolling' to track the newest OpenCloud builds. Keep your appdata backed up before switching.&#xD;
 &#x2022; Reverse proxy: if you terminate TLS in front of OpenCloud, set "OpenCloud terminates TLS" to 'false' (advanced) and set the Public URL to your external https URL (e.g. https://cloud.example.com). Then "Allow self-signed TLS" can be 'false'. Your proxy must connect to the container over plain HTTP on port 9200 (not HTTPS) once "OpenCloud terminates TLS" is 'false'.&#xD;
 &#x2022; PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 &#xD;
