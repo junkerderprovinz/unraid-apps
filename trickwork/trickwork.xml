@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>trickwork</Name>
-  <Repository>junkerderprovinz/trickwork:latest</Repository>
-  <Registry>https://hub.docker.com/r/junkerderprovinz/trickwork</Registry>
+  <Repository>ghcr.io/junkerderprovinz/trickwork:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/trickwork/pkgs/container/trickwork</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
