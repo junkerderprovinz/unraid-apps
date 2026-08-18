@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>ascii-supergenerator</Name>
-  <Repository>junkerderprovinz/ascii-supergenerator:latest</Repository>
-  <Registry>https://hub.docker.com/r/junkerderprovinz/ascii-supergenerator</Registry>
+  <Name>trickwork</Name>
+  <Repository>junkerderprovinz/trickwork:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/trickwork</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/junkerderprovinz/ascii-supergenerator/issues</Support>
-  <Project>https://github.com/junkerderprovinz/ascii-supergenerator</Project>
+  <Support>https://github.com/junkerderprovinz/trickwork/issues</Support>
+  <Project>https://github.com/junkerderprovinz/trickwork</Project>
   <Overview>Turns images into proportional-font-aware ASCII art, with a live interactive preview and TXT / XHTML / RTF / PNG export. Stateless - no volumes required.</Overview>
   <Category>Tools:</Category>
   <WebUI>http://[IP]:[PORT:3210]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/ascii-supergenerator/ascii-supergenerator.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/ascii-supergenerator/icon.png?v=1</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/trickwork.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/icon.png?v=1</Icon>
   <ExtraParams>--restart unless-stopped</ExtraParams>
   <Config Name="WebUI Port" Target="3210" Default="3210" Mode="tcp" Description="Port for the web UI" Type="Port" Display="always" Required="true" Mask="false">3210</Config>
 </Container>
