@@ -2,16 +2,18 @@
 <Container version="2">
   <Name>Euro-Office</Name>
   <Beta>false</Beta>
-  <Repository>ghcr.io/euro-office/documentserver:latest</Repository>
-  <Registry>https://github.com/euro-office/documentserver/pkgs/container/documentserver</Registry>
+  <Repository>ghcr.io/junkerderprovinz/euro-office:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/euro-office/pkgs/container/euro-office</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <ReadMe>https://github.com/euro-office/documentserver</ReadMe>
+  <ReadMe>https://github.com/junkerderprovinz/euro-office/blob/main/README.md</ReadMe>
   <Support>https://forums.unraid.net/topic/200022-support-junkerderprovinz-opencloud/</Support>
   <Project>https://github.com/euro-office/documentserver</Project>
   <Overview>
 Euro Office Document Server - a sovereign, European document server for browser-based editing of text documents, spreadsheets and presentations. It is a maintained fork of the OnlyOffice Document Server, so it speaks the same WOPI and OnlyOffice APIs and plugs straight into OpenCloud (and Nextcloud/ownCloud). Use it to edit .docx / .xlsx / .pptx and .odt / .ods / .odp files right in your browser, without any desktop office suite.&#xD;
+&#xD;
+This is a thin wrapper (github.com/junkerderprovinz/euro-office) around the official image that fixes a real upstream bug: the vendor's own build skips handing ownership of the Data folder to the user its services actually run as, so on a fresh bind-mounted volume - exactly what Unraid creates - the admin panel and parts of document handling fail with a permission error. This wrapper heals that automatically; nothing else about the upstream image is changed.&#xD;
 &#xD;
 This is NOT a standalone app - it is the EDITOR back-end for a file server. You point your cloud (e.g. the OpenCloud container) at this document server and edit files stored in that cloud. On its own it only serves an internal welcome page.&#xD;
 &#xD;
