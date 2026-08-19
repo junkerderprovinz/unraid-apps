@@ -164,8 +164,8 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
 
   <Config Name="Office WOPI secret" Target="OFFICE_WOPI_SECRET"
           Default="" Mode=""
-          Description="A shared secret used to sign the WOPI tokens. Pick any long random string. For OnlyOffice and Euro Office this MUST match the document server's JWT secret (its JWT_SECRET / EURO_OFFICE_JWT_SECRET). For Collabora it is not required. Only used when 'Web office suite' is not 'off'."
-          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+          Description="A shared secret used to sign the WOPI tokens. Pick any long random string. REQUIRED for OnlyOffice and Euro Office and MUST be identical to the document server's own JWT secret field (JWT_SECRET / EURO_OFFICE_JWT_SECRET) - if it is left blank, documents open in read-only preview or fail with 'document security token is not correctly formed'. Not required for Collabora. Only used when 'Web office suite' is not 'off'."
+          Type="Variable" Display="always" Required="false" Mask="true"></Config>
 
   <!-- ========================================================
        FULL-TEXT SEARCH (optional) - search INSIDE file contents
