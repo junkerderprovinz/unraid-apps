@@ -20,6 +20,7 @@ This is NOT a standalone app - it is the EDITOR back-end for a file server. You 
 How it fits together (with OpenCloud):&#xD;
 &#x2022; Install this container. Set a JWT secret below and remember it.&#xD;
 &#x2022; In the OpenCloud template set "Web office suite" = euro-office, "Office document server URL" = http://[THIS-SERVER-IP]:9900 (the port you map below), and "Office WOPI secret" = the SAME value as the JWT secret here. The two secrets MUST match.&#xD;
+&#x2022; If you reach OpenCloud over https, that http:// editor URL will NOT work - the browser blocks it as mixed content. Configure the TLS fields under Advanced View and use https://[THIS-SERVER-IP]:9943 instead. See "HTTPS / mixed content" below.&#xD;
 &#x2022; Open a document in OpenCloud - it now opens in Euro Office. OpenCloud uses Euro Office for Microsoft formats by default and Collabora for ODF, but Euro Office edits both.&#xD;
 &#xD;
 First start:&#xD;
@@ -28,7 +29,8 @@ First start:&#xD;
 &#xD;
 Security / reverse proxy:&#xD;
 &#x2022; Keep "JWT enabled" = true (the default). The JWT secret signs every request between your cloud and the editor - never leave it blank.&#xD;
-&#x2022; The container serves plain HTTP on the mapped port. For access over the internet put it behind a reverse proxy that terminates TLS (e.g. https://office.example.com) and use that https URL in OpenCloud.&#xD;
+&#x2022; By default the container serves plain HTTP on the mapped port. There are two ways to get TLS. Either put it behind a reverse proxy that terminates TLS (e.g. https://office.example.com) and use that https URL in OpenCloud, or let the document server terminate TLS itself with the "TLS certificate" and "TLS private key" fields under Advanced View - no proxy needed, which is the simpler route on a LAN.&#xD;
+&#x2022; Whichever route you pick: if your cloud is on https, the editor MUST be on https too. See "HTTPS / mixed content" below for the full four-step setup.&#xD;
 &#x2022; If your cloud uses a self-signed certificate, set "Allow self-signed upstream" = true so the editor can fetch documents from it.&#xD;
 &#xD;
 Troubleshooting - container loops "PostgreSQL ... is not accessible or does not exist":&#xD;
@@ -37,6 +39,16 @@ Troubleshooting - container loops "PostgreSQL ... is not accessible or does not 
 Troubleshooting - container loops "Starting nginx nginx ...fail!":&#xD;
 &#x2022; Your "Logs" field under Advanced View has a path in it. The image keeps its log tree at /var/log/euro-office/documentserver, so mounting an empty folder over /var/log/euro-office hides it, nginx cannot open its error log there, and the entrypoint aborts before the editor comes up. Open the container's Edit page, switch on Advanced View, clear the "Logs" field completely, then Apply.&#xD;
 &#x2022; The logs are not lost by clearing the field - the Unraid log button on the container still shows everything the server prints.&#xD;
+&#xD;
+HTTPS / mixed content - documents never open, the editor area stays blank, or the browser says "this content is blocked, contact the site owner":&#xD;
+&#x2022; This is a browser security rule, NOT a bug in either app. If OpenCloud is served over https and Euro Office over plain http, the browser refuses to load the http editor inside the https page. It never sends the request, so NEITHER service logs anything - the OpenCloud log and the Euro Office log both look perfectly healthy. Only the browser's developer console shows it, as a "Mixed Content" line.&#xD;
+&#x2022; The fix is to let Euro Office serve HTTPS itself. Switch on Advanced View on this container's Edit page and do all four steps - step 3 is the one people miss.&#xD;
+&#x2022; 1. Put a certificate and its private key into the Certificates folder (default /mnt/user/appdata/euro-office/certs). A self-signed pair is fine on a LAN; on the Unraid console run: openssl req -x509 -newkey rsa:2048 -nodes -keyout /mnt/user/appdata/euro-office/certs/key.pem -out /mnt/user/appdata/euro-office/certs/cert.pem -days 3650 -subj "/CN=YOUR-SERVER-IP". The key MUST stay unencrypted, which is exactly what -nodes does - passphrase-protected keys are not supported. Unraid's own combined *_unraid_bundle.pem works too: copy it in and point BOTH fields at that one file.&#xD;
+&#x2022; 2. Set "TLS certificate" = /certs/cert.pem and "TLS private key" = /certs/key.pem. Both must be filled in and both files must really exist, or TLS is skipped SILENTLY and the server stays on plain http with no warning anywhere.&#xD;
+&#x2022; 3. Map the "HTTPS Port" (default 9943). This is NOT optional. Once a certificate is configured the editor listens on container port 443, and the plain HTTP port stops serving the editor - it becomes a redirect that drops the port number, so http://[IP]:9900 bounces you to https://[IP], which on Unraid is the Unraid WebUI, not Euro Office.&#xD;
+&#x2022; 4. In OpenCloud set "Office document server URL" = https://[THIS-SERVER-IP]:9943. With a self-signed certificate, open https://[IP]:9943/hosting/discovery once in the same browser and accept the certificate, otherwise the browser blocks the editor again - this time for an untrusted certificate rather than for mixed content.&#xD;
+&#x2022; Check it worked: the container log MUST contain the line "SSL enabled with cert=". If that line is missing, TLS did not come up and the server is still on plain http - one of the two paths is wrong or points at a file that does not exist INSIDE the container (the path you enter is the /certs/... path, not the /mnt/user/... path).&#xD;
+&#x2022; The WebUI button on this container stays on http://[IP]:9900. That is correct for the default HTTP install and cannot switch itself. After enabling TLS, edit the WebUI field on the container's Edit page to https://[IP]:[PORT:443]/ if you want the button to work.&#xD;
 &#xD;
 About Euro Office:&#xD;
 &#x2022; Euro Office is an open, sovereignty-focused document server developed in Europe as an OnlyOffice-compatible fork. Because it is API-compatible, any guide for "OnlyOffice Document Server + OpenCloud/Nextcloud" applies here as well.&#xD;
@@ -101,5 +113,41 @@ This is an independent, community-maintained Unraid packaging and is not affilia
   <Config Name="Database" Target="/var/lib/postgresql" Default="" Mode="rw"
           Description="Leave BLANK for a normal install. The image ships with an already-initialised database baked in; mounting an EMPTY folder here hides that database and the container fails to start with 'PostgreSQL ... is not accessible or does not exist' on every boot (an upstream bug: the entrypoint cannot initialise a database in a fresh empty volume - see euro-office/documentserver#299). Without this mount the DB simply resets on container recreate, which is fine for WOPI use with OpenCloud. Only set a path here if it already contains a working euro-office Postgres data directory copied out of a running container first."
           Type="Path" Display="advanced" Required="false" Mask="false"></Config>
+
+  <!-- ========================================================
+       HTTPS (optional) - the document server can terminate TLS
+       itself, no reverse proxy needed. REQUIRED when your cloud
+       runs on https: a browser silently blocks an http editor
+       embedded in an https page as mixed content, and nothing
+       shows up in either service's log. Leave all of this alone
+       for a plain-http LAN setup. IMPORTANT: as soon as a
+       certificate is configured the editor moves to container
+       port 443 (HTTPS Port below) and the plain WebUI Port
+       above only answers with a redirect that loses the port
+       number - so map the HTTPS port as well and point
+       OpenCloud at the https URL. Both TLS paths must be filled
+       in and both files must exist inside the container, or the
+       whole thing is skipped silently. See the Overview section
+       "HTTPS / mixed content" for the full walkthrough.
+       ======================================================== -->
+  <Config Name="HTTPS Port" Target="443" Default="9943" Mode="tcp"
+          Description="Only used once you fill in 'TLS certificate' and 'TLS private key' below. From that moment the document server serves the editor over https on THIS port, and the plain 'WebUI Port' above stops serving the editor entirely - it turns into a redirect that drops the port number, so http://[IP]:9900 bounces to https://[IP], which on an Unraid box is the Unraid WebUI. Point OpenCloud's 'Office document server URL' at https://[THIS-SERVER-IP]:9943 in that case. Without TLS this mapping is harmless: nothing listens on container port 443, so you can leave it as it is or remove it."
+          Type="Port" Display="advanced" Required="false" Mask="false">9943</Config>
+
+  <Config Name="Certificates" Target="/certs" Default="/mnt/user/appdata/euro-office/certs" Mode="ro"
+          Description="Optional. Folder holding the TLS certificate and private key used by the two fields below. Leave it as it is if you are not using TLS - an empty folder here changes nothing, because /certs is not a directory the image ships. Drop cert.pem and key.pem into /mnt/user/appdata/euro-office/certs on the server, then set the two fields below to /certs/cert.pem and /certs/key.pem. Mounted READ-ONLY: the server only ever reads them. Do NOT put certificates in the Data folder instead - this wrapper re-asserts ownership of that whole tree to the container's internal 'ds' user for the first 30 seconds of every boot, so your certificate files would get their host-side ownership rewritten on each start."
+          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/certs</Config>
+
+  <Config Name="TLS certificate" Target="SSL_CERTIFICATE_PATH" Default="" Mode=""
+          Description="Leave BLANK for plain HTTP (the default). Fill this in to let the document server serve HTTPS itself, which is REQUIRED when your cloud runs on https - otherwise the browser silently blocks the editor as mixed content and shows only 'this content is blocked, contact the site owner', with nothing in either service's log. Put the certificate in the 'Certificates' folder above and enter its IN-CONTAINER path here, e.g. /certs/cert.pem (not the /mnt/user/... path). A self-signed certificate is fine on a LAN. If you use Unraid's own combined *_unraid_bundle.pem, which holds the certificate and the key in ONE file, point this field AND 'TLS private key' at that same file. IMPORTANT: this and 'TLS private key' must BOTH be set and both files must exist, or TLS is skipped SILENTLY and the server stays on plain http. Also map the 'HTTPS Port' above - the editor moves to port 443 once TLS is on. After Apply, check the container log for the line 'SSL enabled with cert=': if it is missing, one of the two paths is wrong."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="TLS private key" Target="SSL_KEY_PATH" Default="" Mode=""
+          Description="Leave BLANK for plain HTTP (the default). IN-CONTAINER path to the private key belonging to 'TLS certificate' above, e.g. /certs/key.pem. The key must NOT be passphrase-protected - encrypted keys are not supported by the document server, so generate it with openssl's '-nodes' option. With Unraid's combined *_unraid_bundle.pem, enter that same file path in both fields. Both this and 'TLS certificate' must be filled in and both files must exist, or TLS is skipped SILENTLY and the server stays on plain http."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Send HSTS header" Target="ONLYOFFICE_HTTPS_HSTS_ENABLED" Default="true|false" Mode=""
+          Description="Only has any effect once TLS is configured above. 'true' (the default) tells browsers to remember to use https for this host for a year. Set 'false' if this container shares a hostname with other services you still reach over plain http, e.g. unraid.example.com - the browser stores that rule per HOSTNAME and ignores the port, so it would force https on your Unraid WebUI and everything else on that name too. It does nothing at all when you reach the editor by IP address or with a self-signed certificate, because browsers ignore HSTS in both of those cases."
+          Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
 </Container>
