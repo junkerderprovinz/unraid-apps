@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>TrickWork</Name>
+  <Repository>ghcr.io/junkerderprovinz/trickwork:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/trickwork/pkgs/container/trickwork</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/trickwork/issues</Support>
+  <Project>https://github.com/junkerderprovinz/trickwork</Project>
+  <ReadMe>https://github.com/junkerderprovinz/trickwork/blob/main/README.md</ReadMe>
+  <Overview>TrickWork turns your images into proportional-font-aware ASCII art - a rebuild of the abandoned ASCII Gen 2, with a live interactive preview and TXT/XHTML/RTF/PNG export. Characters are picked by how much visual "ink" they actually cover at your chosen font, not just by brightness, so proportional (non-monospace) fonts render correctly instead of looking stretched or squashed. Nine of ASCII Gen 2's own original character ramps are built in, weighting mechanic included: repeat a character in the ramp and it claims proportionally more of the brightness range, exactly like the original. Fully stateless - no database, no accounts, nothing to configure beyond the port.</Overview>
+  <Category>Tools: MediaApp:Photos</Category>
+  <WebUI>http://[IP]:[PORT:3210]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/trickwork.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/icon.png</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Config
+    Name="WebUI Port"
+    Target="3210"
+    Default="3210"
+    Mode="tcp"
+    Description="Port the TrickWork web interface listens on."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">3210</Config>
+  <Config
+    Name="Port (PORT)"
+    Target="PORT"
+    Default="3210"
+    Mode=""
+    Description="Container-internal port the app listens on. Must match the WebUI Port above. Advanced - leave as 3210."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">3210</Config>
+</Container>
