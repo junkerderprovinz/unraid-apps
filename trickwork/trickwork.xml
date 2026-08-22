@@ -13,7 +13,7 @@
   <Category>Tools: MediaApp:Photos</Category>
   <WebUI>http://[IP]:[PORT:3210]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/trickwork.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/trickwork/icon.png?v=2</Icon>
   <ExtraParams>--restart unless-stopped</ExtraParams>
   <DateInstalled/>
   <DonateText>If this template helps you, consider buying me a coffee.</DonateText>

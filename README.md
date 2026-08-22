@@ -42,7 +42,7 @@ Your own private WeTransfer: feather-light, login-free, end-to-end encrypted fil
 <a href="https://github.com/junkerderprovinz/trickwork#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **TrickWork**<br>
-Turns images into proportional-font-aware ASCII art, with a live interactive preview and TXT/XHTML/RTF/PNG export - a rebuild of the abandoned ASCII Gen 2, characters picked by real ink coverage instead of brightness alone.
+Turns images into proportional-font-aware ASCII art - a rebuild of ASCII Gen 2, picking characters by real ink coverage, not brightness.
 
 <br clear="all">
 
