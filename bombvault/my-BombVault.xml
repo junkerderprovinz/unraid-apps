@@ -14,7 +14,7 @@
 
 One-click backup and full disaster recovery for your Docker containers, VMs, the flash USB and any folders you point it at, powered by restic.
 
-The restore is the star: a backed-up container or VM reappears in the Docker or VM tab exactly as before, with no reinstall and no reconfiguration. Incremental, deduplicated and always encrypted, with off-site repos (including immutable, ransomware-resistant append-only copies with tamper verification), retention, file-level restore, restore from another BombVault server, live restore progress and cancel, integrity checks and off-site DR drills, scheduling and pre/post-backup hooks, all configured in the WebUI.
+The restore is the star: a backed-up container or VM reappears in the Docker or VM tab exactly as before, with no reinstall and no reconfiguration. Incremental, deduplicated and always encrypted, with off-site repos (including immutable, ransomware-resistant append-only copies with tamper verification), retention, file-level restore, restore from another BombVault server, live restore progress and cancel, integrity checks and off-site DR drills, scheduling and pre/post-backup hooks, all configured in the WebUI. A single "Backup Everything" pass covers containers, VMs, flash, folders and BombVault's own config in one run, so one ping afterwards tells you the whole server is protected.
 
 Full documentation: https://junkerderprovinz.github.io/bombvault/</Overview>
   <Category>Backup:</Category>
@@ -125,6 +125,16 @@ Full documentation: https://junkerderprovinz.github.io/bombvault/</Overview>
     Display="advanced"
     Required="false"
     Mask="false">BombVault</Config>
+  <Config
+    Name="BACKUP_MAX_HOURS"
+    Target="BACKUP_MAX_HOURS"
+    Default=""
+    Mode=""
+    Description="Maximum wall-clock hours a single backup run may hold its domain lock before it is force-cancelled (a guard so a wedged run cannot block the domain forever). Leave empty for the 48h default. Raise it for very large or slow cloud backups (a run cancelled at the cap fails with 'context deadline exceeded'). Set 0 to disable the cap entirely."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
   <Config
     Name="VM Backup: Host"
     Target="LIBVIRT_HOST"
