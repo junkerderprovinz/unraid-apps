@@ -213,6 +213,10 @@ Source on GitHub: https://github.com/junkerderprovinz/handbrake&#xD;
           Description="Device glob the container is granted group access to for optical-drive ripping, e.g. /dev/sr*. Also pass the device itself under Extra Parameters, e.g. --device /dev/sr0. Unverified: no optical drive was available to test a rip end to end."
           Type="Variable" Display="advanced" Required="false" Mask="false">/dev/sr*</Config>
 
+  <Config Name="Build libdvdcss for encrypted DVDs (INSTALL_LIBDVDCSS)" Target="INSTALL_LIBDVDCSS" Default="false|true" Mode=""
+          Description="false (default) leaves the container as it is: a commercially encrypted DVD ends at 'No Title Found' because no decryption library is present. true makes the container download the libdvdcss source from VideoLAN's own mirror on its first start, check it against a pinned checksum and compile it here. The library is never shipped inside the image. The first start with it takes about 15 seconds and needs internet; the result is cached under /config so later starts take about a second. Whether decrypting a disc you own is lawful depends on where you live, which is why this is off by default."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
   <!-- ========================================================
        WEBUI AUTH (SELKIES)
        ======================================================== -->
