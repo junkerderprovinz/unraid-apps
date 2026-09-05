@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Excalidraw</Name>
+  <Beta>false</Beta>
+  <Repository>junkerderprovinz/excalidraw:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/excalidraw</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/excalidraw/blob/main/README.md</ReadMe>
+  <Support>https://github.com/junkerderprovinz/excalidraw/issues</Support>
+  <Project>https://excalidraw.com</Project>
+  <Overview>
+Excalidraw is a virtual whiteboard for sketches that look hand-drawn. This is a self-hosted build of it that keeps to itself: shared links, live collaboration, the session scene, the fonts and the icons all come from your own server, and the browser never contacts anyone else.&#xD;
+&#xD;
+What that means in practice:&#xD;
+• Shared links are stored in this container, not on json.excalidraw.com&#xD;
+• A live session keeps its scene here, not in Google Firestore&#xD;
+• Pasted images stay here, not in Firebase Storage&#xD;
+• The collaboration socket is this container, not oss-collab.excalidraw.com&#xD;
+• Fonts are served from the image, and the analytics script is gone&#xD;
+• Everything is encrypted in your browser before it is stored, with the key in the part of the link after the # — which browsers never send to a server. The container holds bytes it cannot read&#xD;
+&#xD;
+Two features would still talk to Excalidraw's servers, so they are switches rather than a decision made for you, and both are OFF by default: the shape library and the text-to-diagram feature. Off means the request never leaves your server.&#xD;
+&#xD;
+Notes:&#xD;
+• Use the HTTPS port. Live collaboration needs crypto.subtle, which browsers only provide over HTTPS, so on the plain HTTP port the "start session" button fails with a cryptography error. The container generates a self-signed certificate on first start and keeps it in /config, so your browser only has to be told once.&#xD;
+• The HTTP port is there for a reverse proxy that terminates TLS, and for the single-user case where no session is ever started.&#xD;
+• Behind a reverse proxy: allow WebSocket upgrades on /socket.io/ and a body size of 64 MB, otherwise collaboration cannot connect and drawings with images are refused.&#xD;
+• /config holds the drawings database and the certificate. Back it up and you have backed up everything.&#xD;
+  </Overview>
+  <Category>Productivity: Tools:Utilities</Category>
+  <WebUI>https://[IP]:[PORT:443]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/excalidraw.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+
+  <!-- ========================================================
+       PORTS
+       ======================================================== -->
+  <Config Name="WebUI Port (HTTPS)" Target="443" Default="8443" Mode="tcp"
+          Description="The port to open in your browser. HTTPS is required for live collaboration, because browsers only provide the cryptography it needs over a secure connection. The certificate is self-signed and generated on first start — accept it once."
+          Type="Port" Display="always" Required="true" Mask="false">8443</Config>
+
+  <Config Name="WebUI Port (HTTP)" Target="80" Default="8080" Mode="tcp"
+          Description="For a reverse proxy that terminates TLS in front of the container, or for solo drawing where no session is ever started. Live collaboration does NOT work over this port when opened directly in a browser."
+          Type="Port" Display="always" Required="false" Mask="false">8080</Config>
+
+  <!-- ========================================================
+       PATHS
+       ======================================================== -->
+  <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/excalidraw" Mode="rw"
+          Description="Holds the drawings database (shared links, live sessions, pasted images) and the self-signed certificate. This is the only thing worth backing up."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/excalidraw</Config>
+
+  <!-- ========================================================
+       VARIABLES
+       ======================================================== -->
+  <Config Name="Shape library" Target="ENABLE_LIBRARY" Default="false" Mode=""
+          Description="Set to true to allow the shape library to load from libraries.excalidraw.com. That is a public catalogue of drawings other people published, so nothing of yours is sent, but your browser does contact Excalidraw's server. Left false, the library button reports an error and nothing leaves your network."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Text to diagram" Target="ENABLE_AI" Default="false" Mode=""
+          Description="Set to true to allow the text-to-diagram feature, which sends what you typed to Excalidraw's AI service. Left false, the feature reports an error and your text stays here."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Time zone" Target="TZ" Default="Europe/Berlin" Mode=""
+          Description="Time zone used for the container log."
+          Type="Variable" Display="advanced" Required="false" Mask="false">Europe/Berlin</Config>
+
+  <DonateText>If this is useful to you, a coffee is always welcome.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+</Container>

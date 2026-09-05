@@ -31,7 +31,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork"}
-FILL = {"bombvault", "bombvaultwidget", "standardnotes-server", "standardnotes-webui"}
+FILL = {"bombvault", "bombvaultwidget", "standardnotes-server", "standardnotes-webui", "excalidraw"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake"}
 ALL = sorted(TILE | FILL | KEEP)
 

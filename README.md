@@ -107,6 +107,14 @@ Garage's S3-compatible object store plus its web admin panel, bundled into one c
 
 <br clear="all">
 
+<img src=".github/readme-icons/excalidraw.png" width="84" align="left" alt="Excalidraw">
+<a href="https://github.com/junkerderprovinz/excalidraw#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Excalidraw**<br>
+The hand-drawn whiteboard, built so it keeps to itself — shared links, live collaboration, the session scene and even the fonts all come from your own server.
+
+<br clear="all">
+
 <img src=".github/readme-icons/handbrake.png" width="84" align="left" alt="HandBrake">
 <a href="https://github.com/junkerderprovinz/handbrake#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
