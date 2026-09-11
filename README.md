@@ -243,4 +243,12 @@ Apps and Images link to their dedicated repository's README; Wrappers keep their
 
 ## Support
 
-Everything here is free and open-source. The own-image apps are self-hosted and private by design — no accounts, no telemetry, nothing leaves your server. None of it pays my server bill or the hours that go into it, so if one of these saves you time, money, or a headache, you can [buy me a coffee](https://buymeacoffee.com/junkerderprovinz). Thanks for stopping by.
+Everything here is free and open-source. The own-image apps are self-hosted and private by design: no accounts, no telemetry, nothing leaves your server. None of it pays my server bill or the hours that go into it, so if one of these saves you time, money, or a headache, a little support genuinely helps. Thanks for stopping by.
+
+<p align="center">
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/button-buy-me-a-coffee-live.svg" alt="Buy me a coffee" width="160"></a>
+  &nbsp;
+  <a href="https://paypal.me/hallelujadesign"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/button-paypal-live.svg" alt="PayPal" width="160"></a>
+  &nbsp;
+  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/button-crypto-live.svg" alt="Donate with crypto" width="160"></a>
+</p>
