@@ -105,6 +105,11 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
           Description="'true' (default) = OpenCloud serves HTTPS itself on 9200 (self-signed) - correct for a direct Unraid install. Set 'false' when a reverse proxy terminates TLS in front of the container; then also set the Public URL to your external https URL and 'Allow self-signed TLS' to 'false'."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
+  <Config Name="App tokens (WebDAV clients)" Target="PROXY_ENABLE_APP_AUTH"
+          Default="false|true" Mode=""
+          Description="'true' lets a WebDAV client sign in with a username and an APP TOKEN, created under Account -&amp;gt; App tokens in the web interface. rclone, phone sync apps and anything else that cannot do the browser sign-in need this; without it every such request is refused with 401 before the token is even read, which looks exactly like a wrong token. It does NOT enable the account password for WebDAV - that is the separate PROXY_ENABLE_BASIC_AUTH, which stays off. A token can be revoked on its own, without changing the account password."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
   <Config Name="User ID" Target="PUID" Default="99" Mode=""
           Description="User-ID OpenCloud runs as. Default 99 (nobody on Unraid). The wrapper heals appdata ownership to match on start."
           Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
