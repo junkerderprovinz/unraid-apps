@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>VersityGW</Name>
+  <Repository>versity/versitygw:latest</Repository>
+  <Registry>https://hub.docker.com/r/versity/versitygw</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://github.com/versity/versitygw</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/versitygw/README.md</ReadMe>
+  <Overview>Puts an S3 API in front of a folder you already have. Point it at a share and every file in it is an S3 object, readable over S3 and over SMB or NFS at the same time - no import, no second copy, no migration. Unlike an object store such as Garage or SeaweedFS, this one brings no storage of its own: your array stays the storage, and the bucket is a directory.&#xD;&#xD;Buckets are the top-level folders under the mapped path, objects are the files inside them. Ships an optional web interface for browsing and for managing accounts.&#xD;&#xD;Detailed README (setup, credentials, what works and what does not): https://github.com/junkerderprovinz/unraid-apps/blob/main/versitygw/README.md</Overview>
+  <Category>Backup: Cloud: Network:Other Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:7071]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/versitygw/versitygw.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/versitygw/icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Nothing beyond a folder to serve. Pick the access and secret key yourself before the first start - they are the root S3 credentials and the container will not start without them.</Requires>
+  <Config Name="S3 API" Target="7070" Default="7070" Mode="tcp" Description="The S3 endpoint. Point your S3 client, backup tool or app at http://&lt;tower-ip&gt;:7070" Type="Port" Display="always" Required="true" Mask="false">7070</Config>
+  <Config Name="Web Interface" Target="7071" Default="7071" Mode="tcp" Description="Optional browser interface for buckets and accounts. Leave the variable 'Web Interface Address' empty to switch it off, then this port does nothing." Type="Port" Display="always" Required="false" Mask="false">7071</Config>
+  <Config Name="Admin API" Target="7080" Default="7080" Mode="tcp" Description="Account administration endpoint. The web interface needs it; an S3-only setup does not." Type="Port" Display="advanced" Required="false" Mask="false">7080</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/" Mode="rw" Description="The folder served as S3. Its top-level subfolders become buckets, the files inside them become objects. Map an existing share to expose what is already there, or a new one to start empty." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/</Config>
+  <Config Name="Accounts" Target="/config" Default="/mnt/user/appdata/versitygw" Mode="rw" Description="Where the built-in account store keeps its users. Without this, every account except the root user is gone after a restart." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/versitygw</Config>
+  <Config Name="Backend" Target="VGW_BACKEND" Default="posix" Mode="" Description="Which storage the gateway puts S3 in front of. 'posix' is the one that means 'the folder above'. Leave it alone unless you know you want s3, azure or scoutfs." Type="Variable" Display="advanced" Required="true" Mask="false">posix</Config>
+  <Config Name="Served Path" Target="VGW_BACKEND_ARG" Default="/data" Mode="" Description="The path inside the container that the posix backend serves. Must match the container side of the Data mapping above." Type="Variable" Display="advanced" Required="true" Mask="false">/data</Config>
+  <Config Name="Root Access Key" Target="ROOT_ACCESS_KEY" Default="" Mode="" Description="The root S3 access key, your choice. This is the user name half of the S3 credentials." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Root Secret Key" Target="ROOT_SECRET_KEY" Default="" Mode="" Description="The root S3 secret key, your choice. Treat it as a password: anything holding it has full access to every bucket." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="S3 Address" Target="VGW_PORT" Default=":7070" Mode="" Description="Listen address for the S3 API inside the container. Change only together with the S3 API port above." Type="Variable" Display="advanced" Required="true" Mask="false">:7070</Config>
+  <Config Name="Web Interface Address" Target="VGW_WEBUI_PORT" Default=":7071" Mode="" Description="Listen address for the web interface. Empty switches the interface off entirely." Type="Variable" Display="advanced" Required="false" Mask="false">:7071</Config>
+  <Config Name="Admin Address" Target="VGW_ADMIN_PORT" Default=":7080" Mode="" Description="Listen address for the admin API. Empty switches it off; the web interface then cannot manage accounts." Type="Variable" Display="advanced" Required="false" Mask="false">:7080</Config>
+  <Config Name="Plain HTTP For Web Interface" Target="VGW_WEBUI_NO_TLS" Default="true" Mode="" Description="Serve the web interface over plain HTTP. Right for a LAN without a certificate; set to false once you put a reverse proxy with TLS in front." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Account Store" Target="VGW_IAM_DIR" Default="/config" Mode="" Description="Directory for the built-in account store. Must match the container side of the Accounts mapping." Type="Variable" Display="advanced" Required="true" Mask="false">/config</Config>
+  <Config Name="Region" Target="VGW_REGION" Default="us-east-1" Mode="" Description="The S3 region string the gateway answers with. Many clients insist on one; the value itself does not matter as long as client and gateway agree." Type="Variable" Display="advanced" Required="false" Mask="false">us-east-1</Config>
+  <Config Name="Health Path" Target="VGW_HEALTH" Default="/_health" Mode="" Description="A GET on this path answers without credentials, so a monitor or a reverse proxy can check the gateway is alive." Type="Variable" Display="advanced" Required="false" Mask="false">/_health</Config>
+</Container>

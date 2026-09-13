@@ -200,6 +200,14 @@ The official Standard Notes web client, self-hosted next to your own sync server
 
 <br clear="all">
 
+<img src=".github/readme-icons/versitygw.png" width="84" align="left" alt="VersityGW">
+<a href="versitygw/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**VersityGW**<br>
+An S3 API in front of a share you already have: top-level folders become buckets, and every file stays readable over SMB and NFS at the same time.
+
+<br clear="all">
+
 
 ## Plugins
 
