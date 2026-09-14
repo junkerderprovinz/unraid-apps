@@ -16,6 +16,8 @@ Krusader file manager with native Dark Mode – built on Selkies for a smooth, h
 What's pre-configured:&#xD;
 • Dark Mode theme for Krusader, Kate and KDE&#xD;
 • Kate as Krusader's external editor&#xD;
+• Kompare for "File → Compare by Content" (side-by-side diff)&#xD;
+• Closing Krusader in the browser starts a fresh one instead of a black screen&#xD;
 • RAR support: right-click → "Extract RAR here" / "to subfolder"&#xD;
 • 7z, ZIP, TAR, GZ, BZ2, XZ, LHA, ARJ, ACE, RPM, CPIO&#xD;
 • Selectable UI language: 33 languages incl. German, English, French, Spanish, Italian, Portuguese (PT/BR), Dutch, Catalan, Basque, Irish, Danish, Swedish, Norwegian, Finnish, Icelandic, Polish, Czech, Slovak, Hungarian, Romanian, Slovenian, Croatian, Serbian, Bulgarian, Ukrainian, Russian, Greek, Turkish, Hebrew, Arabic, Japanese, Korean, Chinese (CN/TW)&#xD;
@@ -25,6 +27,7 @@ Notes:&#xD;
 • The /storage volume defaults to /mnt – this gives Krusader access to all shares (/mnt/user) and individual disks (/mnt/disk*).&#xD;
 • WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). The Selkies web client requires a secure connection, so open the WebUI directly ONLY over HTTPS (3001). Port 3000 (HTTP) is for a reverse proxy that terminates TLS in front of the container — opening it directly in a browser shows a "requires a secure connection (HTTPS)" error and will not load.&#xD;
 • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
+• Memory: the container idles around 250 MB. Most of a web desktop's RAM is the X framebuffer, which is allocated for the MAX_RES value, so lower that if you want it smaller and never use a large browser window.&#xD;
 • Auth: leave "WebUI Username" and "Password" EMPTY to run without login. Set both to enable HTTP-basic auth on the WebUI. Recommended whenever the container is reachable from anything beyond your LAN.&#xD;
 &#xD;
 Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
@@ -73,6 +76,11 @@ Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
           Default="dark|light" Mode=""
           Description="Color scheme. 'dark' = Dark Mode, 'light' = Breeze."
           Type="Variable" Display="always" Required="false" Mask="false">dark</Config>
+
+  <Config Name="Max Screen Size / RAM (MAX_RES)" Target="MAX_RES"
+          Default="5120x2880|3840x2160|2560x1440|1920x1080|7680x4320" Mode=""
+          Description="Largest virtual screen the container allocates, and the single biggest factor in its memory use: the X server reserves the whole framebuffer up front, about 4 bytes per pixel, regardless of your browser window size. The default 5120x2880 needs ~120 MB and covers every 4K/5K display and ultrawide (the base image's own 15360x8640 default would take 530 MB). Pick a larger value only if your browser window is bigger than the cap — above it the picture is scaled to the window, not cut off."
+          Type="Variable" Display="always" Required="false" Mask="false">5120x2880</Config>
 
   <Config Name="Keyboard Layout (KEYBOARD_LAYOUT)" Target="KEYBOARD_LAYOUT"
           Default="us|de|gb|fr|es|it|pt|nl|se|no|dk|fi|pl|cz|hu|ru|jp" Mode=""
