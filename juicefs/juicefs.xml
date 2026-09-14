@@ -26,7 +26,7 @@ BACKUP: back up the Config and Data folders together, from the same point in tim
 &#xD;
 First start: watch the container log for "JUICEFS IS READY".&#xD;
   </Overview>
-  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <Category>Backup: Cloud: Network:Web Tools:Utilities</Category>
   <WebUI/>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/juicefs.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png</Icon>
@@ -44,29 +44,31 @@ First start: watch the container log for "JUICEFS IS READY".&#xD;
 
   <Config Name="Data" Target="/data" Default="/mnt/user/appdata/juicefs/data" Mode="rw" Description="The object store, when the default local backend is used. Not browsable: JuiceFS stores files as chunks under its own layout." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicefs/data</Config>
 
+  <Config Name="Cache" Target="/cache" Default="/mnt/user/appdata/juicefs/cache" Mode="rw" Description="The local read cache. Optional, but worth mapping: unmapped it lives in the container's own layer, and the cache grows to whatever free space allows." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/juicefs/cache</Config>
+
   <Config Name="Access Key" Target="S3_ROOT_USER" Default="juicefs" Mode="" Description="The access key your S3 clients use to connect to this container." Type="Variable" Display="always" Required="false" Mask="false">juicefs</Config>
 
-  <Config Name="Secret Key" Target="S3_ROOT_PASSWORD" Default="" Mode="" Description="The secret key your S3 clients use. Leave empty and one is generated on first boot and stored in /config/.s3_root_password. Use a real generated secret (e.g. openssl rand -hex 24), not a short password." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Secret Key" Target="S3_ROOT_PASSWORD" Default="" Mode="" Description="The secret key your S3 clients use. At least 8 characters: anything shorter is refused at startup with one clear line in the log. Leave empty and one is generated on first boot and stored in /config/.s3_root_password. Use a real generated secret (e.g. openssl rand -hex 24), not a short password." Type="Variable" Display="always" Required="false" Mask="true"/>
 
   <Config Name="Metadata URL" Target="META_URL" Default="sqlite3:///config/juicefs.db" Mode="" Description="Where the metadata lives. The default is a SQLite file in Config: one server, no extra container, and a backup of Config captures it. For several machines writing at once, put a Redis or Postgres URL here instead, for example redis://:password@192.168.20.10:6379/1 or postgres://user:password@192.168.20.10:5432/juicefs?sslmode=disable. This is read every start, but the file system is only created once." Type="Variable" Display="always" Required="false" Mask="false">sqlite3:///config/juicefs.db</Config>
 
-  <Config Name="Storage Backend" Target="STORAGE" Default="file" Mode="" Description="Where the file contents go. 'file' means the Data folder above. Every backend JuiceFS supports works here too, e.g. s3, minio, b2." Type="Variable" Display="advanced" Required="false" Mask="false">file</Config>
+  <Config Name="Storage Backend" Target="STORAGE" Default="file" Mode="" Description="Where the file contents go. 'file' means the Data folder above. Every backend JuiceFS supports works here too, e.g. s3, minio, b2. READ ONLY WHEN THE FILE SYSTEM IS CREATED: changing it later has no effect on an existing volume." Type="Variable" Display="advanced" Required="false" Mask="false">file</Config>
 
-  <Config Name="Bucket" Target="BUCKET" Default="/data/" Mode="" Description="The path or URL of the object store. With the 'file' backend this is a path inside the container, so leave it at /data/ unless you know why you are changing it." Type="Variable" Display="advanced" Required="false" Mask="false">/data/</Config>
+  <Config Name="Bucket" Target="BUCKET" Default="/data/" Mode="" Description="The path or URL of the object store. With the 'file' backend this is a path inside the container, so leave it at /data/ unless you know why you are changing it. READ ONLY WHEN THE FILE SYSTEM IS CREATED." Type="Variable" Display="advanced" Required="false" Mask="false">/data/</Config>
 
   <Config Name="Volume Name" Target="VOLUME_NAME" Default="juicefs" Mode="" Description="The name of the file system. Set once, when it is created; changing it later has no effect on an existing volume." Type="Variable" Display="advanced" Required="false" Mask="false">juicefs</Config>
 
   <Config Name="Allow Several Buckets" Target="MULTI_BUCKETS" Default="true" Mode="" Description="Whether S3 clients can create buckets. Leave this on unless you know why you are turning it off: with it off, the whole file system is a single bucket named after the volume and creating one is refused, which is the first thing most backup clients do." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
-  <Config Name="Object Store Access Key" Target="ACCESS_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the access key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Object Store Access Key" Target="ACCESS_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the access key of the remote object store. READ ONLY WHEN THE FILE SYSTEM IS CREATED." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
-  <Config Name="Object Store Secret Key" Target="SECRET_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the secret key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="Object Store Secret Key" Target="SECRET_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the secret key of the remote object store. READ ONLY WHEN THE FILE SYSTEM IS CREATED." Type="Variable" Display="advanced" Required="false" Mask="true"/>
 
   <Config Name="Trash Days" Target="TRASH_DAYS" Default="" Mode="" Description="How many days deleted files stay recoverable. Applied when the file system is created, so it has no effect on an existing volume. Leave empty for the JuiceFS default." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
-  <Config Name="Cache Size" Target="CACHE_SIZE" Default="" Mode="" Description="Local cache limit in MiB. Leave empty for the JuiceFS default." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Cache Size" Target="CACHE_SIZE" Default="" Mode="" Description="Local read cache limit in MiB. Leave empty for the JuiceFS default." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
-  <Config Name="Cache Directory" Target="CACHE_DIR" Default="" Mode="" Description="Where the local cache goes. Leave empty for the JuiceFS default. Point it at a mapped fast disk if you want the cache off the array." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Cache Directory" Target="CACHE_DIR" Default="" Mode="" Description="Where the local read cache goes. Leave empty to use /cache inside the container. Point it at a mapped fast disk if you want the cache on specific storage." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
   <Config Name="Extra Arguments" Target="EXTRA_ARGS" Default="" Mode="" Description="Passed to 'juicefs gateway' as is, for anything not covered by the fields above." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 

@@ -39,7 +39,10 @@ const APPS = [
   { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
   { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
   { slug: "claper", name: { text: "Claper" }, claim: "Live polls, quizzes and Q&A, no clapping required." },
-  { slug: "versitygw", name: { text: "VersityGW" }, claim: "Buckets on top, files still files." },
+  // Die Marke ist fast schwarz (#191B2A). Auf dem dunklen Grund (#0d1117) war sie
+  // praktisch unsichtbar, also wird sie dort auf die helle Textfarbe umgefaerbt.
+  { slug: "versitygw", name: { text: "VersityGW" }, markDark: { 'fill="#191B2A"': 'fill="#e6edf3"' },
+    claim: "Buckets on top, files still files." },
   { slug: "rustfs", name: { text: "RustFS" }, claim: "Object storage, forged not rusted." },
 ];
 const ONLY = process.argv.slice(2);

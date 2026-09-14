@@ -2,12 +2,15 @@
 <CommunityApplications>
   <Profile>
     junkerderprovinz Unraid templates. Community Applications templates for
-    junkerderprovinz's self-hosted apps: own-image containers (BombVault,
-    featherdrop, TrickWork, JDownloader, Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud, HandBrake, StrawKnight), upstream-image wrappers
-    (CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n), and the
-    ShipLog and FireSquire plugins. Each app folder has its own template, icon
-    and README; images and full source live in their per-app repositories.
-    Maintained by junkerderprovinz; support via the per-app Unraid forum threads.
+    junkerderprovinz's self-hosted apps, in four groups. Own software: BombVault,
+    featherdrop and TrickWork. Own image builds of third-party apps: JDownloader,
+    Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud, HandBrake, StrawKnight,
+    Excalidraw, Euro Office, Garage and JuiceFS. Thin wrappers over an upstream
+    image: CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n,
+    Claper, SeaweedFS, VersityGW and RustFS. Plugins: BombVault Widget, ShipLog
+    and FireSquire. Each app folder has its own template, icon and README; images
+    and full source live in their per-app repositories. Maintained by
+    junkerderprovinz; support via the per-app Unraid forum threads.
   </Profile>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/avatar.svg</Icon>
   <WebPage>https://github.com/junkerderprovinz/unraid-apps</WebPage>

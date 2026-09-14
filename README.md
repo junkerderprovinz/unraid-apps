@@ -7,14 +7,14 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#apps"><img src="https://img.shields.io/badge/Templates-19-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#apps"><img src="https://img.shields.io/badge/Templates-28-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
 
 <p align="center">
-Unraid <b>Community Applications</b> templates for all of junkerderprovinz's containers and plugins, grouped like the profile: <b>Apps</b> (my own software), <b>Images</b> (my own image builds of third-party apps), <b>Wrappers</b> (thin templates over an upstream image) and <b>Plugins</b>. One repository, one CA feed; each app's image and full source live in its own per-app repository.
+Unraid <b>Community Applications</b> templates for junkerderprovinz's containers and most of the plugins, grouped like the profile: <b>Apps</b> (my own software), <b>Images</b> (my own image builds of third-party apps), <b>Wrappers</b> (thin templates over an upstream image) and <b>Plugins</b>. One repository, one CA feed; each app's image and full source live in its own per-app repository.
 </p>
 
 
@@ -107,6 +107,22 @@ Garage's S3-compatible object store plus its web admin panel, bundled into one c
 
 <br clear="all">
 
+<img src=".github/readme-icons/juicefs.png" width="84" align="left" alt="JuiceFS">
+<a href="https://github.com/junkerderprovinz/juicefs#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**JuiceFS**<br>
+The JuiceFS S3 gateway, with the file system created on first boot instead of by hand in a console. Metadata in a database, contents in an object store, both set from one field each.
+
+<br clear="all">
+
+<img src=".github/readme-icons/euro-office.png" width="84" align="left" alt="Euro Office">
+<a href="euro-office/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Euro Office**<br>
+Sovereign, OnlyOffice-compatible document server for browser editing of Office and OpenDocument files, wired into OpenCloud over WOPI.
+
+<br clear="all">
+
 <img src=".github/readme-icons/excalidraw.png" width="84" align="left" alt="Excalidraw">
 <a href="https://github.com/junkerderprovinz/excalidraw#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
@@ -149,14 +165,6 @@ Open-source, self-hosted Mentimeter/Slido alternative: live polls, Q&amp;A and q
 
 **CouchDB**<br>
 The HTTP/JSON document database behind Obsidian LiveSync, on the official 3.x image with data, config and CORS mapped so they survive a recreate or update.
-
-<br clear="all">
-
-<img src=".github/readme-icons/euro-office.png" width="84" align="left" alt="Euro Office">
-<a href="euro-office/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
-
-**Euro Office**<br>
-Sovereign, OnlyOffice-compatible document server for browser editing of Office and OpenDocument files, wired into OpenCloud over WOPI.
 
 <br clear="all">
 
@@ -205,14 +213,6 @@ The official Standard Notes web client, self-hosted next to your own sync server
 
 **VersityGW**<br>
 An S3 API in front of a share you already have: top-level folders become buckets, and every file stays readable over SMB and NFS at the same time.
-
-<br clear="all">
-
-<img src=".github/readme-icons/juicefs.png" width="84" align="left" alt="JuiceFS">
-<a href="https://github.com/junkerderprovinz/juicefs#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
-
-**JuiceFS**<br>
-The JuiceFS S3 gateway, with the file system created on first boot instead of by hand in a console. Metadata in a database, contents in an object store, both set from one field each.
 
 <br clear="all">
 

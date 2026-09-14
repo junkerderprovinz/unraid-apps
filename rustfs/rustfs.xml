@@ -15,13 +15,13 @@ RustFS is an S3-compatible object store written in Rust, Apache-2.0, and one of 
 &#xD;
 THIS IS A PRE-RELEASE. Every version RustFS has published so far is a release candidate; there has never been a stable 1.0. Do not put data here that exists nowhere else.&#xD;
 &#xD;
-Why this template exists: started as it comes, the container does not run on Unraid at all. It runs as its own built-in user id 10001, so on a share owned by nobody:users it cannot write and dies at startup with "Permission denied". This template runs it as 99:100 instead, which fixes it. It also makes the credentials proper fields, because the image otherwise falls back to a built-in default account and says so twice in its own log.&#xD;
+Why this template exists: started as it comes, the container does not run on Unraid at all. It runs as its own built-in user id 10001, so on a share owned by nobody:users it cannot write and dies at startup with "Permission denied". This template runs it as 99:100 instead, which fixes it. It also makes the credentials required fields, because without them the image falls back to a built-in default account and says so twice in its own log.&#xD;
 &#xD;
 Ports: 9000 is the S3 endpoint every client connects to. 9001 is the built-in web console.&#xD;
 &#xD;
-First start: the log ends with the server listening. If you see "Permission denied", the Data folder is not writable by 99:100.&#xD;
+First start: the log runs to a handful of warnings and then goes quiet, which is what a working start looks like here. There is no "server is listening" line. If you see "Permission denied" instead, the Data folder is not writable by 99:100, or the Logs folder is mapped and is not.&#xD;
   </Overview>
-  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <Category>Backup: Cloud: Network:Web Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:9001]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/rustfs.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png</Icon>
@@ -31,7 +31,7 @@ First start: the log ends with the server listening. If you see "Permission deni
   <DateInstalled/>
   <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
-  <Requires>Set an Access Key and Secret Key below. Left empty, RustFS falls back to a built-in default account that is the same in every copy of the image. This is a pre-release: keep a second copy of anything you store here.</Requires>
+  <Requires>Set an Access Key and Secret Key below. Left empty the container stops at startup, and removed entirely RustFS falls back to a built-in default account that is the same in every copy of the image. This is a pre-release: keep a second copy of anything you store here.</Requires>
 
   <Config Name="S3 API Port" Target="9000" Default="9000" Mode="tcp" Description="The S3 endpoint every client (rclone, restic, aws-cli, ...) connects to." Type="Port" Display="always" Required="true" Mask="false">9000</Config>
 
@@ -39,9 +39,9 @@ First start: the log ends with the server listening. If you see "Permission deni
 
   <Config Name="Data" Target="/data" Default="/mnt/user/appdata/rustfs/data" Mode="rw" Description="Where the objects live. Must be writable by 99:100, which is what this template runs the container as." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/rustfs/data</Config>
 
-  <Config Name="Logs" Target="/logs" Default="/mnt/user/appdata/rustfs/logs" Mode="rw" Description="Log directory. Without it, RustFS falls back to writing its log to standard output, which still works but leaves nothing on disk." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/rustfs/logs</Config>
+  <Config Name="Logs" Target="/logs" Default="" Mode="rw" Description="Optional, and deliberately empty by default. Mapped, RustFS writes its log to a file there and the container log keeps only three lines, so Unraid's log view shows you almost nothing. Unmapped, everything goes to the container log where you can read it." Type="Path" Display="advanced" Required="false" Mask="false"/>
 
-  <Config Name="Access Key" Target="RUSTFS_ACCESS_KEY" Default="" Mode="" Description="The access key your S3 clients use. Leave it empty and RustFS uses its built-in default account, which is identical in every copy of the image." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Access Key" Target="RUSTFS_ACCESS_KEY" Default="" Mode="" Description="The access key your S3 clients use. Required: left empty, the container stops at startup with 'RUSTFS_ACCESS_KEY must not be empty'. Removing the field entirely is worse, because then RustFS uses its built-in default account, identical in every copy of the image." Type="Variable" Display="always" Required="true" Mask="false"/>
 
   <Config Name="Secret Key" Target="RUSTFS_SECRET_KEY" Default="" Mode="" Description="The secret key, paired with the access key above. Use a real generated secret (e.g. openssl rand -hex 24), not a short password." Type="Variable" Display="always" Required="true" Mask="true"/>
 

@@ -33,7 +33,7 @@
     File ownership inside /data is handled automatically by the image's own entrypoint (fixed&#xD;
     internal user, chowned on start) - there is no PUID/PGID to set.&#xD;
   </Overview>
-  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <Category>Backup: Cloud: Network:Web Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:23646]</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/seaweedfs.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png?v=2</Icon>

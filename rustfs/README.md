@@ -8,7 +8,7 @@
   <a href="https://github.com/rustfs/rustfs"><img src="https://img.shields.io/badge/Upstream-RustFS-0066ff?style=for-the-badge&logo=rust&logoColor=white" alt="Upstream RustFS" height="36"></a>&nbsp;
   <a href="https://hub.docker.com/r/rustfs/rustfs"><img src="https://img.shields.io/badge/Image-rustfs%2Frustfs-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Image" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
-  <a href="../LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-yellow?style=for-the-badge&logo=apache&logoColor=white" alt="License" height="36"></a>
+  <a href="../LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
 
 <p align="center">
@@ -57,7 +57,8 @@ to non-default values for production deployments
 ```
 
 Here they are required fields, so you cannot start it by accident with the account everyone
-else has.
+else has. Left empty the container stops and says so; only removing the fields entirely
+brings the default account back.
 
 <br>
 
@@ -67,8 +68,9 @@ Install the template from Community Applications, set an access key and a secret
 start it. The Data folder has to be writable by `99:100`, which is the default for anything
 under `/mnt/user/appdata`.
 
-The log ends with the server listening on both ports. If you see `Permission denied`, the
-Data folder is not writable by `99:100`.
+A working start runs to a handful of warnings and then goes quiet. There is no "server
+is listening" line, so do not wait for one. If you see `Permission denied` instead, the
+Data folder is not writable by `99:100`, or you mapped the Logs folder and that one is not.
 
 <br>
 
@@ -99,18 +101,22 @@ Port 9001 is the built-in web console, which is what the WebUI button opens.
 
 | Variable | Default | What it does |
 | --- | --- | --- |
-| `RUSTFS_ACCESS_KEY` | none | The access key your S3 clients use. Required here. |
-| `RUSTFS_SECRET_KEY` | none | The secret key. Required here. |
+| `RUSTFS_ACCESS_KEY` | none | The access key your S3 clients use. Required: left empty, the container stops with `RUSTFS_ACCESS_KEY must not be empty`. |
+| `RUSTFS_SECRET_KEY` | none | The secret key. Required, same as above. |
 | `RUSTFS_CONSOLE_CORS_ALLOWED_ORIGINS` | `*` | Which origins the web console accepts. The image ships with any. |
 | `RUSTFS_OBS_LOGGER_LEVEL` | `warn` | error, warn, info, debug or trace. |
 
 The template also sets `--user 99:100` as an extra parameter. Do not remove it.
 
+The Logs folder is deliberately left unmapped. Map it and RustFS writes its log to a
+file there, which leaves only three lines in the container log and makes Unraid's log
+view close to useless.
+
 <br>
 
 ## 5. How it compares to the other object stores here
 
-There are four now, and they solve different problems:
+There are five now, and they solve different problems:
 
 **RustFS** is a plain S3 object store. Objects go in, objects come out, and the folder it
 writes to is its own business. Closest in spirit to MinIO, and the reason people are
@@ -119,6 +125,9 @@ looking at it.
 **[Garage](https://github.com/junkerderprovinz/garage)** is also a plain object store, but
 it comes with a web admin panel in the same container and has a stable release behind it.
 If you want an object store today and do not need RustFS specifically, this is the one.
+
+**[SeaweedFS](../seaweedfs/README.md)** is the other established one here, built for many
+small files and with a long track record.
 
 **[VersityGW](../versitygw/README.md)** is not a store at all, it is a gateway: it puts an
 S3 API in front of a share you already have, and every file stays readable over SMB and NFS
