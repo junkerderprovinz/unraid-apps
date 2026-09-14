@@ -216,6 +216,14 @@ The JuiceFS S3 gateway, with the file system created on first boot instead of by
 
 <br clear="all">
 
+<img src=".github/readme-icons/rustfs.png" width="84" align="left" alt="RustFS">
+<a href="rustfs/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**RustFS**<br>
+An S3 object store written in Rust, one of the alternatives people turned to when MinIO's open edition stopped moving. Started as it comes it does not run on Unraid at all, so the template fixes the two things that stop it. Pre-release: every version so far is a release candidate.
+
+<br clear="all">
+
 
 ## Plugins
 

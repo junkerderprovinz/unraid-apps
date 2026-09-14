@@ -40,6 +40,7 @@ const APPS = [
   { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
   { slug: "claper", name: { text: "Claper" }, claim: "Live polls, quizzes and Q&A, no clapping required." },
   { slug: "versitygw", name: { text: "VersityGW" }, claim: "Buckets on top, files still files." },
+  { slug: "rustfs", name: { text: "RustFS" }, claim: "Object storage, forged not rusted." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
