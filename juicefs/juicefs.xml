@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>JuiceFS</Name>
+  <Beta>false</Beta>
+  <Repository>ghcr.io/junkerderprovinz/juicefs:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/juicefs/pkgs/container/juicefs</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/juicefs/blob/main/README.md</ReadMe>
+  <Support>https://github.com/junkerderprovinz/juicefs/issues</Support>
+  <Project>https://github.com/juicedata/juicefs</Project>
+  <Overview>
+JuiceFS keeps file metadata in a database and file contents in an object store. This template runs its S3 gateway, so anything on your server that speaks S3 can talk to it. The official binary, unmodified, verified against the upstream SHA256 at build time.&#xD;
+&#xD;
+Why this template exists: upstream publishes no image meant to be installed as a container. Their Docker volume plugin is not a container at all and cannot be installed from a template, and their juicedata/mount image expects you to write the whole command line yourself, with the file system created by hand in a console first. Here every setting is a field below, and the file system is created on first boot.&#xD;
+&#xD;
+No manual CLI setup:&#xD;
+• The file system is created the first time the container starts. On every later start it finds the existing one and leaves it alone, because formatting twice would orphan every object already stored.&#xD;
+• Leave the Secret Key empty and one is generated for you and written to /config/.s3_root_password. The container log points you at it.&#xD;
+• Defaults are a SQLite file in /config and a plain directory in /data, so a fresh install needs no second container and no external database.&#xD;
+&#xD;
+READ THIS BEFORE YOU INSTALL: JuiceFS splits files into chunks, so the Data folder is NOT browsable. You will see JuiceFS's own layout there, not your file names. Everything goes in and comes out through the S3 gateway. If you want an S3 API in front of a share you can still read normally in a file browser, install VersityGW instead.&#xD;
+&#xD;
+BACKUP: back up the Config and Data folders together, from the same point in time if you can. The chunks in Data are unreadable without the database in Config. A backup of only Data is not a backup.&#xD;
+&#xD;
+First start: watch the container log for "JUICEFS IS READY".&#xD;
+  </Overview>
+  <Category>Backup:Cloud Network:Web Tools:Utilities</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/juicefs.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Map both Config and Data, and back them up together. The chunks in Data cannot be read without the database in Config.</Requires>
+
+  <Config Name="S3 Gateway Port" Target="9000" Default="9000" Mode="tcp" Description="The S3 endpoint every client (rclone, restic, aws-cli, ...) connects to." Type="Port" Display="always" Required="true" Mask="false">9000</Config>
+
+  <Config Name="Config" Target="/config" Default="/mnt/user/appdata/juicefs/config" Mode="rw" Description="Holds the metadata database when the default SQLite engine is used, and the generated secret key. This MUST be mapped. Lose it and the objects in Data become unreadable, because nothing says which chunks made up which file." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicefs/config</Config>
+
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/juicefs/data" Mode="rw" Description="The object store, when the default local backend is used. Not browsable: JuiceFS stores files as chunks under its own layout." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/juicefs/data</Config>
+
+  <Config Name="Access Key" Target="S3_ROOT_USER" Default="juicefs" Mode="" Description="The access key your S3 clients use to connect to this container." Type="Variable" Display="always" Required="false" Mask="false">juicefs</Config>
+
+  <Config Name="Secret Key" Target="S3_ROOT_PASSWORD" Default="" Mode="" Description="The secret key your S3 clients use. Leave empty and one is generated on first boot and stored in /config/.s3_root_password. Use a real generated secret (e.g. openssl rand -hex 24), not a short password." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="Metadata URL" Target="META_URL" Default="sqlite3:///config/juicefs.db" Mode="" Description="Where the metadata lives. The default is a SQLite file in Config: one server, no extra container, and a backup of Config captures it. For several machines writing at once, put a Redis or Postgres URL here instead, for example redis://:password@192.168.20.10:6379/1 or postgres://user:password@192.168.20.10:5432/juicefs?sslmode=disable. This is read every start, but the file system is only created once." Type="Variable" Display="always" Required="false" Mask="false">sqlite3:///config/juicefs.db</Config>
+
+  <Config Name="Storage Backend" Target="STORAGE" Default="file" Mode="" Description="Where the file contents go. 'file' means the Data folder above. Every backend JuiceFS supports works here too, e.g. s3, minio, b2." Type="Variable" Display="advanced" Required="false" Mask="false">file</Config>
+
+  <Config Name="Bucket" Target="BUCKET" Default="/data/" Mode="" Description="The path or URL of the object store. With the 'file' backend this is a path inside the container, so leave it at /data/ unless you know why you are changing it." Type="Variable" Display="advanced" Required="false" Mask="false">/data/</Config>
+
+  <Config Name="Volume Name" Target="VOLUME_NAME" Default="juicefs" Mode="" Description="The name of the file system. Set once, when it is created; changing it later has no effect on an existing volume." Type="Variable" Display="advanced" Required="false" Mask="false">juicefs</Config>
+
+  <Config Name="Object Store Access Key" Target="ACCESS_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the access key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Object Store Secret Key" Target="SECRET_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the secret key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="Trash Days" Target="TRASH_DAYS" Default="" Mode="" Description="How many days deleted files stay recoverable. Applied when the file system is created, so it has no effect on an existing volume. Leave empty for the JuiceFS default." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Cache Size" Target="CACHE_SIZE" Default="" Mode="" Description="Local cache limit in MiB. Leave empty for the JuiceFS default." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Cache Directory" Target="CACHE_DIR" Default="" Mode="" Description="Where the local cache goes. Leave empty for the JuiceFS default. Point it at a mapped fast disk if you want the cache off the array." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Extra Arguments" Target="EXTRA_ARGS" Default="" Mode="" Description="Passed to 'juicefs gateway' as is, for anything not covered by the fields above." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the gateway runs as. Default 99 = 'nobody' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the gateway runs as. Default 100 = 'users' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+
+</Container>

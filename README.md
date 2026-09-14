@@ -208,6 +208,14 @@ An S3 API in front of a share you already have: top-level folders become buckets
 
 <br clear="all">
 
+<img src=".github/readme-icons/juicefs.png" width="84" align="left" alt="JuiceFS">
+<a href="https://github.com/junkerderprovinz/juicefs#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**JuiceFS**<br>
+The JuiceFS S3 gateway, with the file system created on first boot instead of by hand in a console. Metadata in a database, contents in an object store, both set from one field each.
+
+<br clear="all">
+
 
 ## Plugins
 
