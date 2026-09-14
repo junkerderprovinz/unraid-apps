@@ -18,8 +18,9 @@ settings it needs to run here at all.
 </p>
 
 <p align="center">
-<b>This is a pre-release.</b> Every version RustFS has published is a release candidate, and
-there has never been a stable 1.0. Do not put data here that exists nowhere else.
+<b>This is a pre-release.</b> RustFS has published a hundred releases and not one of them is
+stable: alphas, betas and release candidates only. Do not put data here that exists nowhere
+else.
 </p>
 
 <br>

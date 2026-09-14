@@ -13,7 +13,7 @@
   <Overview>
 RustFS is an S3-compatible object store written in Rust, Apache-2.0, and one of the alternatives people have been looking at since MinIO's open edition stopped moving. This template runs the official image with the two settings it needs on Unraid.&#xD;
 &#xD;
-THIS IS A PRE-RELEASE. Every version RustFS has published so far is a release candidate; there has never been a stable 1.0. Do not put data here that exists nowhere else.&#xD;
+THIS IS A PRE-RELEASE. RustFS has published a hundred releases and not one of them is stable: alphas, betas and release candidates only. Do not put data here that exists nowhere else.&#xD;
 &#xD;
 Why this template exists: started as it comes, the container does not run on Unraid at all. It runs as its own built-in user id 10001, so on a share owned by nobody:users it cannot write and dies at startup with "Permission denied". This template runs it as 99:100 instead, which fixes it. It also makes the credentials required fields, because without them the image falls back to a built-in default account and says so twice in its own log.&#xD;
 &#xD;
