@@ -39,6 +39,7 @@ const APPS = [
   { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
   { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
   { slug: "claper", name: { text: "Claper" }, claim: "Live polls, quizzes and Q&A, no clapping required." },
+  { slug: "versitygw", name: { text: "VersityGW" }, claim: "Buckets on top, files still files." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
