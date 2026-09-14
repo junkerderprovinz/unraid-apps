@@ -56,6 +56,8 @@ First start: watch the container log for "JUICEFS IS READY".&#xD;
 
   <Config Name="Volume Name" Target="VOLUME_NAME" Default="juicefs" Mode="" Description="The name of the file system. Set once, when it is created; changing it later has no effect on an existing volume." Type="Variable" Display="advanced" Required="false" Mask="false">juicefs</Config>
 
+  <Config Name="Allow Several Buckets" Target="MULTI_BUCKETS" Default="true" Mode="" Description="Whether S3 clients can create buckets. Leave this on unless you know why you are turning it off: with it off, the whole file system is a single bucket named after the volume and creating one is refused, which is the first thing most backup clients do." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+
   <Config Name="Object Store Access Key" Target="ACCESS_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the access key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
   <Config Name="Object Store Secret Key" Target="SECRET_KEY" Default="" Mode="" Description="Only needed if Storage Backend is not 'file': the secret key of the remote object store." Type="Variable" Display="advanced" Required="false" Mask="true"/>
