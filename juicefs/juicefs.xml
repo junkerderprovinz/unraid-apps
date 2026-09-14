@@ -2,8 +2,8 @@
 <Container version="2">
   <Name>JuiceFS</Name>
   <Beta>false</Beta>
-  <Repository>ghcr.io/junkerderprovinz/juicefs:latest</Repository>
-  <Registry>https://github.com/junkerderprovinz/juicefs/pkgs/container/juicefs</Registry>
+  <Repository>junkerderprovinz/juicefs:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/juicefs</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
