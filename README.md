@@ -116,7 +116,7 @@ The JuiceFS S3 gateway, with the file system created on first boot instead of by
 <br clear="all">
 
 <img src=".github/readme-icons/euro-office.png" width="84" align="left" alt="Euro Office">
-<a href="euro-office/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/euro-office#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Euro Office**<br>
 Sovereign, OnlyOffice-compatible document server for browser editing of Office and OpenDocument files, wired into OpenCloud over WOPI.
