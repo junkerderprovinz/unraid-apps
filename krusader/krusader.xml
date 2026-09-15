@@ -27,7 +27,7 @@ Notes:&#xD;
 • The /storage volume defaults to /mnt – this gives Krusader access to all shares (/mnt/user) and individual disks (/mnt/disk*).&#xD;
 • WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). The Selkies web client requires a secure connection, so open the WebUI directly ONLY over HTTPS (3001). Port 3000 (HTTP) is for a reverse proxy that terminates TLS in front of the container — opening it directly in a browser shows a "requires a secure connection (HTTPS)" error and will not load.&#xD;
 • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
-• Memory: the container idles around 250 MB. Most of a web desktop's RAM is the X framebuffer, which is allocated for the MAX_RES value, so lower that if you want it smaller and never use a large browser window.&#xD;
+• Memory: most of a web desktop's RAM is the X framebuffer, allocated up front for the screen size you pick above. At the full size that is around 565 MB for the X server alone; at 1440p it is around 75 MB. Pick a smaller screen if you want the RAM back and never use a browser window larger than that.&#xD;
 • Auth: leave "WebUI Username" and "Password" EMPTY to run without login. Set both to enable HTTP-basic auth on the WebUI. Recommended whenever the container is reachable from anything beyond your LAN.&#xD;
 &#xD;
 Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
@@ -78,9 +78,9 @@ Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
           Type="Variable" Display="always" Required="false" Mask="false">dark</Config>
 
   <Config Name="Screen Size (MAX_RES)" Target="MAX_RES"
-          Default="15360x8640 (full, ~530 MB)|7680x4320 (8K, ~133 MB)|5120x2880 (5K, ~120 MB)|3840x2160 (4K, ~93 MB)|3440x1440 (ultrawide, ~40 MB)|2560x1440 (1440p, ~30 MB)|1920x1080 (1080p, ~17 MB)" Mode=""
-          Description="Largest virtual screen the container can serve, and the single biggest factor in its memory use: the X server reserves the whole framebuffer up front, about 4 bytes per pixel, no matter how big your browser window is. The full 15360x8640 is the default and keeps every resolution available; picking a smaller one trades that headroom for RAM (measured values in brackets). Your browser window can be any size up to this; above it the picture is scaled to the window rather than cut off. To enter a size that is not listed, use the field below instead."
-          Type="Variable" Display="always" Required="false" Mask="false">15360x8640 (full, ~530 MB)</Config>
+          Default="15360x8640 (full, ~565 MB)|7680x4320 (8K, ~185 MB)|5120x2880 (5K, ~115 MB)|3840x2160 (4K, ~90 MB)|3440x1440 (ultrawide, ~80 MB)|2560x1440 (1440p, ~75 MB)|1920x1080 (1080p, ~65 MB)" Mode=""
+          Description="Largest virtual screen the container can serve, and the single biggest factor in its memory use: the X server reserves the whole framebuffer up front, about 4 bytes per pixel, no matter how big your browser window is. The full 15360x8640 is the default and keeps every resolution available; picking a smaller one trades that headroom for RAM (the bracketed figures are the measured X server memory for each; the application itself comes on top). Your browser window can be any size up to this; above it the picture is scaled to the window rather than cut off. To enter a size that is not listed, use the field below instead."
+          Type="Variable" Display="always" Required="false" Mask="false">15360x8640 (full, ~565 MB)</Config>
 
   <Config Name="Screen Size, custom (MAX_RES_CUSTOM)" Target="MAX_RES_CUSTOM"
           Default="" Mode=""
