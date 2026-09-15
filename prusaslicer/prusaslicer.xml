@@ -57,6 +57,19 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user</Config>
 
   <!-- ========================================================
+       SCREEN SIZE (drives the container's memory use)
+       ======================================================== -->
+  <Config Name="Screen Size (MAX_RES)" Target="MAX_RES"
+          Default="15360x8640 (full, ~530 MB)|7680x4320 (8K, ~133 MB)|5120x2880 (5K, ~120 MB)|3840x2160 (4K, ~93 MB)|3440x1440 (ultrawide, ~40 MB)|2560x1440 (1440p, ~30 MB)|1920x1080 (1080p, ~17 MB)" Mode=""
+          Description="Largest virtual screen the container can serve, and the single biggest factor in its memory use: the X server reserves the whole framebuffer up front, about 4 bytes per pixel, no matter how big your browser window is. The full 15360x8640 is the default and keeps every resolution available; picking a smaller one trades that headroom for RAM (measured values in brackets). Your browser window can be any size up to this; above it the picture is scaled to the window rather than cut off. To enter a size that is not listed, use the field below instead."
+          Type="Variable" Display="always" Required="false" Mask="false">15360x8640 (full, ~530 MB)</Config>
+
+  <Config Name="Screen Size, custom (MAX_RES_CUSTOM)" Target="MAX_RES_CUSTOM"
+          Default="" Mode=""
+          Description="Optional. Your own screen size as WIDTHxHEIGHT, for example 3440x1440 or 6016x3384. When this field has a value it overrides the dropdown above, so you are not limited to the presets. Leave it empty to use the dropdown. A value that is not a WIDTHxHEIGHT pair is ignored with a note in the container log, so a typo cannot stop the container from starting."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <!-- ========================================================
        WEBUI AUTH (SELKIES)
        ======================================================== -->
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
