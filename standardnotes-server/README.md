@@ -56,7 +56,8 @@ Maintained solo, in whatever spare time there is. Questions via the <a href="htt
 10. [Updating](#10-updating)
 11. [Troubleshooting](#11-troubleshooting)
 12. [Contributing / License](#12-contributing--license)
-13. [Support this project](#13-support-this-project)
+13. [How AI is used here](#13-how-ai-is-used-here)
+14. [Support this project](#14-support-this-project)
 
 <br>
 
@@ -1193,7 +1194,15 @@ xmllint --noout templates/*.xml
 
 <br>
 
-## 13. Support this project
+## 13. How AI is used here
+
+One knight builds this, and AI is one of the tools I work with, the same way I work with an editor or a compiler. It helps me write code and documentation and it checks my work, and that saves me a good many evenings. It does not make the decisions, though. I read and understand everything before it ships, and if something here breaks, that is on me and not on the tool.
+
+You do not have to take my word for it. The code is open and every release note is written by hand. The issue tracker shows how problems actually get handled, including the ones I got wrong the first time. If you find something that is not right, open an issue and I will look at it.
+
+<br>
+
+## 14. Support this project
 
 Questions? Check the [support thread](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/). Bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues).
 

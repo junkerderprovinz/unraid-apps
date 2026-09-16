@@ -32,7 +32,8 @@ else.
 3. [Connecting a client](#3-connecting-a-client)
 4. [Configuration](#4-configuration)
 5. [How it compares to the other object stores here](#5-how-it-compares-to-the-other-object-stores-here)
-6. [Support this project](#6-support-this-project)
+6. [How AI is used here](#6-how-ai-is-used-here)
+7. [Support this project](#7-support-this-project)
 
 <br>
 
@@ -140,7 +141,15 @@ exchange for a file system that several machines can share.
 
 <br>
 
-## 6. Support this project
+## 6. How AI is used here
+
+One knight builds this, and AI is one of the tools I work with, the same way I work with an editor or a compiler. It helps me write code and documentation and it checks my work, and that saves me a good many evenings. It does not make the decisions, though. I read and understand everything before it ships, and if something here breaks, that is on me and not on the tool.
+
+You do not have to take my word for it. The code is open and every release note is written by hand. The issue tracker shows how problems actually get handled, including the ones I got wrong the first time. If you find something that is not right, open an issue and I will look at it.
+
+<br>
+
+## 7. Support this project
 
 Questions, bugs, ideas? **[GitHub issues →](https://github.com/junkerderprovinz/unraid-apps/issues)**.
 
