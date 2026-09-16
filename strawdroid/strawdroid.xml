@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>StrawKnight</Name>
-  <Repository>ghcr.io/junkerderprovinz/strawknight:latest</Repository>
-  <Registry>https://github.com/junkerderprovinz/strawknight/pkgs/container/strawknight</Registry>
+  <Name>StrawDroid</Name>
+  <Repository>ghcr.io/junkerderprovinz/strawdroid:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/strawdroid/pkgs/container/strawdroid</Registry>
   <Network>br0.20</Network>
   <MyIP/>
   <MyMAC/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support>https://forums.unraid.net/topic/200577-support-junkerderprovinz-strawknight/</Support>
-  <Project>https://github.com/junkerderprovinz/strawknight</Project>
-  <ReadMe>https://github.com/junkerderprovinz/strawknight/blob/main/README.md</ReadMe>
+  <Support>https://forums.unraid.net/topic/200577-support-junkerderprovinz-strawdroid/</Support>
+  <Project>https://github.com/junkerderprovinz/strawdroid</Project>
+  <ReadMe>https://github.com/junkerderprovinz/strawdroid/blob/main/README.md</ReadMe>
   <Overview>&#13;
-    A straw knight is the practice dummy: built in the shape of the real thing&#13;
-    so somebody can strike at it without anybody getting hurt. This one runs the&#13;
-    REAL Android emulator - the same AVD Android Studio starts - on a Selkies&#13;
-    desktop, so an app under development can be installed, driven and broken&#13;
-    without an APK ever touching a phone.&#13;
+    A straw droid is a practice dummy shaped like an Android phone: built like&#13;
+    the real thing so somebody can strike at it without anybody getting hurt.&#13;
+    This one runs the REAL Android emulator - the same AVD Android Studio&#13;
+    starts - on a Selkies desktop, so an app under development can be&#13;
+    installed, driven and broken without an APK ever touching a phone.&#13;
     &#13;
     NOT Android-in-a-container (ReDroid, Waydroid). Those run the Android&#13;
     userspace directly on the host kernel: no battery, no motion sensor, no&#13;
@@ -50,10 +50,10 @@
     and holds its memory whether anybody is testing or not - measured idle, with&#13;
     no app installed, about 6 GB. Start it when it is needed and stop it after.&#13;
   </Overview>
-  <Category>Tools: Development:</Category>
+  <Category>Tools:Utilities</Category>
   <WebUI>https://[IP]:[PORT:3001]/</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/strawknight/strawknight.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/strawknight/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/strawdroid/strawdroid.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/strawdroid/icon.png</Icon>
   <ExtraParams>--restart=no --device=/dev/kvm --shm-size=2gb --cpus="4" --memory="8g"</ExtraParams>
   <PostArgs/>
   <CPUset/>
@@ -63,13 +63,13 @@
   <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp" Description="The desktop the emulator draws on, over WebRTC. Self-signed certificate - accept it once. HTTPS is the default because browsers only allow seamless clipboard over HTTPS." Type="Port" Display="always" Required="true" Mask="false">3001</Config>
   <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp" Description="Optional fallback. The WebUI defaults to HTTPS on 3001." Type="Port" Display="always" Required="false" Mask="false">3000</Config>
   <Config Name="ADB Port" Target="5555" Default="5555" Mode="tcp" Description="Reached from a development machine with: adb connect &lt;container-ip&gt;:5555 . The emulator's own adb binds to loopback, so a forwarder inside the container hands this port to it; without that the port would appear open and never complete a handshake." Type="Port" Display="always" Required="true" Mask="false">5555</Config>
-  <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/strawknight" Mode="rw" Description="The AVD itself, plus installed apps, granted permissions and anything a test wrote. The ONLY persistent mount by design. Without it every restart is a factory reset, which also throws away the folder permission an app was granted through the SAF picker - one of the things being tested." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/strawknight</Config>
+  <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/strawdroid" Mode="rw" Description="The AVD itself, plus installed apps, granted permissions and anything a test wrote. The ONLY persistent mount by design. Without it every restart is a factory reset, which also throws away the folder permission an app was granted through the SAF picker - one of the things being tested." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/strawdroid</Config>
   <Config Name="Share for APKs and test files (/share)" Target="/share" Default="/mnt/user/download" Mode="ro" Description="Read-only. Drop an APK into this share from anywhere on the network and it appears ON THE DEVICE under Download/share, where the stock Files app and the SAF picker both find it - so it can be installed by tapping it on the phone, without a terminal. Mirrored rather than mounted, because an emulated phone is a virtual machine and a host directory is not reachable from inside it by any mount; the mirror compares sizes and timestamps and only sends what differs. From the container's terminal instead: sk list to see them, sk install &lt;name&gt;.apk to put one on the device, sk push &lt;file&gt; for test files. Read-only on purpose: this rig runs unfinished code, which has no business writing to a share full of everything else." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/download</Config>
   <Config Name="Emulator rendering (EMULATOR_GPU)" Target="EMULATOR_GPU" Default="swiftshader_indirect" Mode="" Description="How the emulator draws. swiftshader_indirect works everywhere, including with no GPU wired in at all. 'host' is faster and is what makes scrolling read honestly, but it needs the nvidia runtime and /dev/dri - set it once the GPU is confirmed." Type="Variable" Display="always" Required="true" Mask="false">swiftshader_indirect</Config>
   <Config Name="Device profile (EMULATOR_DEVICE)" Target="EMULATOR_DEVICE" Default="pixel_6" Mode="" Description="Which device the emulator pretends to be. Decides screen size and density, which is what a layout is actually judged against. Read on FIRST boot only: the AVD is created once and then kept, so changing this later needs the AVD removed from /config/.android/avd." Type="Variable" Display="always" Required="true" Mask="false">pixel_6</Config>
   <Config Name="Emulated RAM in MB (EMULATOR_RAM)" Target="EMULATOR_RAM" Default="2048" Mode="" Description="Memory given to the emulated phone. Read on FIRST boot only, same as the device profile. Below about 1536 Android 14 boots badly or not at all." Type="Variable" Display="advanced" Required="false" Mask="false">2048</Config>
   <Config Name="Extra emulator arguments (EMULATOR_EXTRA_ARGS)" Target="EMULATOR_EXTRA_ARGS" Default="" Mode="" Description="Passed to the emulator verbatim, for the occasional one-off (-writable-system, -dns-server, -netdelay). Empty is the ordinary case." Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="AVD name (AVD_NAME)" Target="AVD_NAME" Default="strawknight" Mode="" Description="The name of the virtual device inside /config. Changing it creates a SECOND device rather than renaming the first, which is a way to keep two side by side." Type="Variable" Display="advanced" Required="false" Mask="false">strawknight</Config>
+  <Config Name="AVD name (AVD_NAME)" Target="AVD_NAME" Default="strawdroid" Mode="" Description="The name of the virtual device inside /config. Changing it creates a SECOND device rather than renaming the first, which is a way to keep two side by side." Type="Variable" Display="advanced" Required="false" Mask="false">strawdroid</Config>
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode="" Description="Optional. Leave EMPTY together with the password for no login. Set both to enable login." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="WebUI Password" Target="PASSWORD" Default="" Mode="" Description="Optional. Leave EMPTY together with the username for no login." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Keyboard Layout (KEYBOARD_LAYOUT)" Target="KEYBOARD_LAYOUT" Default="us" Mode="" Description="X11 keyboard layout for the streamed desktop (us, de, ...). Typing into the emulator is half of what this rig is for." Type="Variable" Display="always" Required="false" Mask="false">us</Config>

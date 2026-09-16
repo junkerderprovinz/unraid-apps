@@ -139,10 +139,10 @@ HandBrake's full GUI on a fast Selkies web desktop, GPU-accelerated on NVIDIA, I
 
 <br clear="all">
 
-<img src=".github/readme-icons/strawknight.png" width="84" align="left" alt="StrawKnight">
-<a href="https://github.com/junkerderprovinz/strawknight#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<img src=".github/readme-icons/strawdroid.png" width="84" align="left" alt="StrawDroid">
+<a href="https://github.com/junkerderprovinz/strawdroid#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
-**StrawKnight**<br>
+**StrawDroid**<br>
 The real Android emulator on a Selkies web desktop, reached over adb like a phone on a cable, where Doze and background limits actually fire.
 
 <br clear="all">
