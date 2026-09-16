@@ -2,7 +2,11 @@
 """Generate the README-only card icons from each app's CA icon.
 
 Shown ONLY in the root README cards (NOT the Community Applications icons at
-``<app>/icon.png``). Convention (jdp 2026-08-04): NO baked white background and
+``<app>/icon.png``). The tiles exist so the README list looks uniform; the CA
+icon is the opposite (jdp 2026-09-16): the bare logo on transparent, with no
+background baked in. The only exceptions are a logo that IS a full-bleed brand
+tile upstream, and a near-black mark (matrix, versitygw) that would vanish on
+Unraid's dark UI without one. Convention (jdp 2026-08-04): NO baked white background and
 NO light corners. Each logo either keeps its own brand tile (full-bleed colour)
 or sits transparent, filling the icon, with transparent rounded corners.
 
@@ -14,6 +18,8 @@ Modes per app:
               standardnotes-*): flood-fill the OUTER background to transparent
               (inner white, e.g. inside the Standard Notes frame, is kept), crop
               to the logo and scale it to fill the tile - no white left over.
+              excalidraw is already transparent in its CA icon, so the flood-fill
+              finds nothing and only the crop-and-scale part applies.
   KEEP      - matrix, n8n, openhands, jdownloader, prusaslicer: colourful/dark
               marks that still read best on a clean white tile (no light-corner
               problem) - left on a white rounded tile.

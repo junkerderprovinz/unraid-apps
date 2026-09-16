@@ -32,7 +32,7 @@ Notes:&#xD;
   <Category>Productivity: Tools:Utilities</Category>
   <WebUI>https://[IP]:[PORT:443]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/excalidraw.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/icon.png?v=2</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
   <!-- ========================================================
