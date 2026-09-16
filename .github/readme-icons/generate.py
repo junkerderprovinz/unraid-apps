@@ -4,9 +4,10 @@
 Shown ONLY in the root README cards (NOT the Community Applications icons at
 ``<app>/icon.png``). The tiles exist so the README list looks uniform; the CA
 icon is the opposite (jdp 2026-09-16): the bare logo on transparent, with no
-background baked in. The only exceptions are a logo that IS a full-bleed brand
-tile upstream, and a near-black mark (matrix, versitygw) that would vanish on
-Unraid's dark UI without one. Convention (jdp 2026-08-04): NO baked white background and
+background baked in. The exceptions are a logo that IS a full-bleed brand tile
+upstream, and the CA icons jdp kept on a white tile by name: matrix and versitygw
+because those marks are near-black and would vanish on Unraid's dark UI, plus
+prusaslicer and n8n. Convention (jdp 2026-08-04): NO baked white background and
 NO light corners. Each logo either keeps its own brand tile (full-bleed colour)
 or sits transparent, filling the icon, with transparent rounded corners.
 

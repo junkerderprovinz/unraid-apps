@@ -31,7 +31,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
   <Category>Tools: Productivity:</Category>
   <WebUI>https://[IP]:[PORT:3001]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/prusaslicer/prusaslicer.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/prusaslicer/icon.png?v=2</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/prusaslicer/icon.png?v=3</Icon>
   <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
 
   <!-- ========================================================
