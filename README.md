@@ -71,7 +71,7 @@ Twin-pane KDE file manager with a native dark theme on a fast Selkies web deskto
 <a href="https://github.com/junkerderprovinz/matrix#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Matrix**<br>
-All-in-one Matrix homeserver in one container: Synapse, coturn, Element Web and the Ketesa admin UI, with optional TURN over TLS and opt-in QR code device linking.
+A complete Matrix homeserver in one container: Synapse, coturn, Element Web and the Ketesa admin UI, with optional TURN over TLS.
 
 <br clear="all">
 
@@ -103,7 +103,7 @@ The Stellarium planetarium in your browser on a fast Selkies web desktop — pan
 <a href="https://github.com/junkerderprovinz/garage#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Garage**<br>
-Garage's S3-compatible object store plus its web admin panel, bundled into one container — no manual CLI setup, single-node layout and S3 keys created automatically.
+Garage's S3-compatible object store and its web admin panel in one container, with the single-node layout and S3 keys created automatically.
 
 <br clear="all">
 
@@ -111,7 +111,7 @@ Garage's S3-compatible object store plus its web admin panel, bundled into one c
 <a href="https://github.com/junkerderprovinz/juicefs#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **JuiceFS**<br>
-The JuiceFS S3 gateway, with the file system created on first boot instead of by hand in a console. Metadata in a database, contents in an object store, both set from one field each.
+The JuiceFS S3 gateway, with the file system created on first boot. Metadata goes to a database, file contents to an object store.
 
 <br clear="all">
 
@@ -135,7 +135,7 @@ The hand-drawn whiteboard, built so it keeps to itself — shared links, live co
 <a href="https://github.com/junkerderprovinz/handbrake#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **HandBrake**<br>
-HandBrake's full transcoder GUI on a fast Selkies web desktop — GPU-accelerated on NVIDIA, Intel and AMD, with an automated watch-folder converter, no VNC client.
+HandBrake's full GUI on a fast Selkies web desktop, GPU-accelerated on NVIDIA, Intel and AMD, with a watch folder that converts on its own.
 
 <br clear="all">
 
@@ -143,7 +143,7 @@ HandBrake's full transcoder GUI on a fast Selkies web desktop — GPU-accelerate
 <a href="https://github.com/junkerderprovinz/strawknight#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **StrawKnight**<br>
-The real Android emulator on a fast Selkies web desktop, reached over adb like a phone on a cable — for testing an app where Doze and background limits actually fire.
+The real Android emulator on a Selkies web desktop, reached over adb like a phone on a cable, where Doze and background limits actually fire.
 
 <br clear="all">
 
@@ -220,7 +220,7 @@ An S3 API in front of a share you already have: top-level folders become buckets
 <a href="rustfs/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **RustFS**<br>
-An S3 object store written in Rust, one of the alternatives people turned to when MinIO's open edition stopped moving. Started as it comes it does not run on Unraid at all, so the template fixes the two things that stop it. Pre-release: every version so far is a release candidate.
+An S3 object store in Rust, with the two fixes it needs to run on Unraid at all. Pre-release: every version so far is a release candidate.
 
 <br clear="all">
 
