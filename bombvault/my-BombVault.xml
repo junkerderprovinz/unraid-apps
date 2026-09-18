@@ -79,8 +79,8 @@ Full documentation: https://junkerderprovinz.github.io/bombvault/</Overview>
     Name="Host Data"
     Target="/host/user"
     Default="/mnt"
-    Mode="rw,rslave"
-    Description="Your Unraid storage root /mnt — covers the user share AND cache/pool mounts, so any container's appdata (wherever it lives) is reachable. Backup SOURCES (container appdata) and DESTINATIONS both live here; pick the exact subpaths in the WebUI under Settings. Read for backup, written on restore. Mounted rslave (Read/Write - Slave) so a remote backup share that mounts AFTER the container starts (e.g. /mnt/remotes at boot) still becomes visible without restarting BombVault."
+    Mode="rw,slave"
+    Description="Your Unraid storage root /mnt, which covers the user share and the cache and pool mounts, so any container's appdata is reachable wherever it lives. Backup sources and destinations both live here; pick the exact subpaths in the WebUI under Settings. Read for backup, written on restore. Read/Write - Slave, so a share or disk that mounts after the container starts (e.g. /mnt/remotes at boot) becomes visible without restarting BombVault."
     Type="Path"
     Display="always"
     Required="true"
@@ -118,13 +118,13 @@ Full documentation: https://junkerderprovinz.github.io/bombvault/</Overview>
   <Config
     Name="BOMBVAULT_SELF_CONTAINER"
     Target="BOMBVAULT_SELF_CONTAINER"
-    Default="BombVault"
+    Default=""
     Mode=""
-    Description="The name of THIS container, so BombVault never backs up (and thus stops) itself. Defaults to BombVault and normally needs no change — this value is used directly. The container hostname is pinned to 'bombvault' (for stable restic repo locks), so if you CLEAR this variable or run with host networking, set it to the exact container name (hostname-based auto-detection no longer applies)."
+    Description="The name of this container, so BombVault never backs up and stops itself. Leave it empty and BombVault finds its own container."
     Type="Variable"
     Display="advanced"
     Required="false"
-    Mask="false">BombVault</Config>
+    Mask="false"></Config>
   <Config
     Name="BACKUP_MAX_HOURS"
     Target="BACKUP_MAX_HOURS"
