@@ -34,9 +34,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/prusaslicer/icon.png?v=3</Icon>
   <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
 
-  <!-- ========================================================
-       PORTS
-       ======================================================== -->
+  <!-- Ports -->
   <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
           Description="HTTPS port of the Selkies WebUI (self-signed cert). This is the default WebUI — HTTPS is required for clipboard support in the browser. Accept the self-signed certificate once."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
@@ -45,9 +43,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
           Description="HTTP port of the Selkies WebUI. For a reverse proxy that terminates TLS in front of the container — NOT for direct browser access. The Selkies web client requires a secure context, so opening http://IP:3000 directly shows a 'requires a secure connection (HTTPS)' error. For direct access use the HTTPS port 3001."
           Type="Port" Display="always" Required="false" Mask="false">3000</Config>
 
-  <!-- ========================================================
-       PATHS
-       ======================================================== -->
+  <!-- Paths -->
   <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/prusaslicer" Mode="rw"
           Description="Persistent PrusaSlicer configuration: printer, filament and print profiles, history and preferences."
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/prusaslicer</Config>
@@ -56,9 +52,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
           Description="Where you keep your STL/3MF models and where sliced G-code is saved. Default /mnt/user gives access to all shares. Import models and export G-code under /storage inside PrusaSlicer's file dialogs."
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user</Config>
 
-  <!-- ========================================================
-       SCREEN SIZE (drives the container's memory use)
-       ======================================================== -->
+  <!-- Screen size (drives the container's memory use) -->
   <Config Name="Screen Size (MAX_RES)" Target="MAX_RES"
           Default="15360x8640 (full, ~565 MB)|7680x4320 (8K, ~185 MB)|5120x2880 (5K, ~115 MB)|3840x2160 (4K, ~90 MB)|3440x1440 (ultrawide, ~80 MB)|2560x1440 (1440p, ~75 MB)|1920x1080 (1080p, ~65 MB)" Mode=""
           Description="Largest virtual screen the container can serve, and the single biggest factor in its memory use: the X server reserves the whole framebuffer up front, about 4 bytes per pixel, no matter how big your browser window is. The full 15360x8640 is the default and keeps every resolution available; picking a smaller one trades that headroom for RAM (the bracketed figures are the measured X server memory for each; the application itself comes on top). Pick a size at least as big as your largest browser window in physical pixels: a 1600x1000 window on a laptop set to 200 % needs 3200x2000. A bigger window does not get a bigger desktop; it shows the desktop in its top-left corner and the rest stays black. To enter a size that is not listed, use the field below instead."
@@ -69,9 +63,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
           Description="Optional. Your own screen size as WIDTHxHEIGHT, for example 3440x1440 or 6016x3384. When this field has a value it overrides the dropdown above, so you are not limited to the presets. Leave it empty to use the dropdown. A value that is not a WIDTHxHEIGHT pair is ignored with a note in the container log, so a typo cannot stop the container from starting."
           Type="Variable" Display="always" Required="false" Mask="false"/>
 
-  <!-- ========================================================
-       WEBUI AUTH (SELKIES)
-       ======================================================== -->
+  <!-- WebUI auth (Selkies) -->
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
           Description="Optional. Username for HTTP-basic-auth on the WebUI. Leave EMPTY together with the password for no login. Set both fields to enable login (recommended outside trusted LANs)."
           Type="Variable" Display="always" Required="false" Mask="false"/>
@@ -80,9 +72,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
           Description="Optional. Password for HTTP-basic-auth on the WebUI. Leave EMPTY together with the username for no login. STRONGLY recommended whenever the container is reachable from outside your LAN."
           Type="Variable" Display="always" Required="false" Mask="true"/>
 
-  <!-- ========================================================
-       ADVANCED ENV VARIABLES
-       ======================================================== -->
+  <!-- Advanced env variables -->
   <Config Name="Timezone (TZ)" Target="TZ" Default="Europe/Vienna" Mode=""
           Description="Container timezone (affects log timestamps and file mtimes). Use this instead of a /etc/localtime bind-mount — the LSIO base image manages /etc/localtime internally via TZ."
           Type="Variable" Display="always" Required="false" Mask="false">Europe/Vienna</Config>

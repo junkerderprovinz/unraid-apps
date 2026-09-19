@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Generate the README-only card icons from each app's CA icon.
 
-Shown ONLY in the root README cards (NOT the Community Applications icons at
+Shown only in the root README cards (not the Community Applications icons at
 ``<app>/icon.png``). The tiles exist so the README list looks uniform; the CA
-icon is the opposite (jdp 2026-09-16): the bare logo on transparent, with no
-background baked in. The exceptions are a logo that IS a full-bleed brand tile
-upstream, and the CA icons jdp kept on a white tile by name: matrix and versitygw
-because those marks are near-black and would vanish on Unraid's dark UI, plus
-prusaslicer and n8n. Convention (jdp 2026-08-04): NO baked white background and
-NO light corners. Each logo either keeps its own brand tile (full-bleed colour)
+icon is the opposite: the bare logo on transparent, with no background baked
+in. The exceptions are a logo that is a full-bleed brand tile upstream, and the
+CA icons kept on a white tile by name: matrix and versitygw because those marks
+are near-black and would vanish on Unraid's dark UI, plus prusaslicer and n8n.
+No light corners: each logo either keeps its own brand tile (full-bleed colour)
 or sits transparent, filling the icon, with transparent rounded corners.
 
 Modes per app:
@@ -16,16 +15,16 @@ Modes per app:
               featherdrop, opencloud, stellarium): keep it, just guarantee
               transparent rounded corners (no white peeking at the corners).
   FILL      - a logo mark on a removable background (bombvault, bombvaultwidget,
-              standardnotes-*): flood-fill the OUTER background to transparent
+              standardnotes-*): flood-fill the outer background to transparent
               (inner white, e.g. inside the Standard Notes frame, is kept), crop
-              to the logo and scale it to fill the tile - no white left over.
+              to the logo and scale it to fill the tile, so no white is left over.
               excalidraw is already transparent in its CA icon, so the flood-fill
               finds nothing and only the crop-and-scale part applies.
   KEEP      - matrix, n8n, openhands, jdownloader, prusaslicer: colourful/dark
               marks that still read best on a clean white tile (no light-corner
-              problem) - left on a white rounded tile.
+              problem), left on a white rounded tile.
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
-              lavender logo enlarged (jdp: "logo viel groesser + CI colours").
+              lavender logo enlarged, in the OpenCloud brand colours.
 
 ShipLog + FireSquire are excluded (theme-flipping <picture> pairs from their own
 SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
@@ -82,9 +81,9 @@ def flood_outer_transparent(im, tol=32):
     w, h = im.size
     px = im.load()
     # The (0,0) corner is transparent on any icon with rounded corners (the
-    # corner cutout), which used to make this pick up a bogus (0,0,0,0)
-    # "background colour" and flood-fill nothing. Walk in from the corner
-    # along the diagonal until an opaque pixel is found instead.
+    # corner cutout), so it would yield a bogus (0,0,0,0) "background colour"
+    # and flood-fill nothing. Walk in from the corner along the diagonal until
+    # an opaque pixel is found instead.
     bg = px[0, 0]
     if bg[3] == 0:
         for i in range(1, min(w, h)):
@@ -140,7 +139,7 @@ def build_opencloud(size, ratio):
     src = Image.open(os.path.join(ROOT, "opencloud", "icon.png")).convert("RGBA")
     logo = autocrop(flood_outer_transparent(src))     # lavender mark on transparent
     tile = Image.new("RGBA", (size, size), OC_PETROL)
-    mark = fit_center(logo, size, 0.74)               # much bigger than the ~0.55 original
+    mark = fit_center(logo, size, 0.74)               # much bigger than in the CA icon (~0.55)
     tile = Image.alpha_composite(tile, mark)
     return rounded(tile, ratio)
 
@@ -158,7 +157,7 @@ def main():
         elif app in FILL:
             logo = autocrop(flood_outer_transparent(src))        # drop outer bg, keep inner
             out = rounded(fit_center(logo, size, FILL_FRAC), ratio)
-        else:  # KEEP - clean white rounded tile
+        else:  # KEEP: clean white rounded tile
             canvas = Image.new("RGBA", src.size, (255, 255, 255, 255))
             canvas = Image.alpha_composite(canvas, src)
             out = rounded(canvas, ratio)

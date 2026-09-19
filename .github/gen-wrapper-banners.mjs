@@ -1,17 +1,18 @@
 /**
  * Feed wrapper banners to the GitHub style guide (the krusader layout):
- *   logo (the app MARK) LEFT, largest ink ~400px, ink-left x=165, ink-vcentre y=250;
- *   the NAME to its right (official wordmark where the app has one, else Bree Serif) at a
- *   UNIFORM cap-height and a UNIFORM colour (foreground, brand colour NOT used for text);
- *   ONE Lato claim (grey, 44) below the name; name+claim group vcentred on H/2. Theme-flip.
+ *   logo (the app mark) on the left, largest ink ~400px, ink-left x=165, ink-vcentre y=250;
+ *   the name to its right (official wordmark where the app has one, else Bree Serif) at a
+ *   uniform cap-height and a uniform colour (foreground; the brand colour is not used for
+ *   text); one Lato claim (grey, 44) below the name; name+claim group vcentred on H/2.
+ *   Theme-flip.
  *
- * Uniform size: every name is scaled so its CAPITALS are TARGET_CAP px tall (wordmarks by
+ * Uniform size: every name is scaled so its capitals are TARGET_CAP px tall (wordmarks by
  * their first capital glyph, fonts by the font cap-height) so "CouchDB" and "n8n" read the
  * same size. Long names auto-fit down on width (keeping ~120px right margin).
- * Uniform colour: the NAME is always foreground (#1f2328 / #e6edf3); only the logo keeps
+ * Uniform colour: the name is always foreground (#1f2328 / #e6edf3); only the logo keeps
  * its brand colour.
  *
- * Text is rendered at the ORIGIN and positioned with a <g transform> so opentype.js never
+ * Text is rendered at the origin and positioned with a <g transform> so opentype.js never
  * emits NaN control points at large coordinates. Deps (global): opentype.js, @resvg/resvg-js.
  * Run: node .github/gen-wrapper-banners.mjs [slug...]
  */
@@ -39,8 +40,8 @@ const APPS = [
   { slug: "euro-office", name: { text: "Euro Office" }, claim: "Docs, sheets and slides, served not surveilled." },
   { slug: "seaweedfs", name: { text: "SeaweedFS" }, claim: "Storage that keeps floating when others sink." },
   { slug: "claper", name: { text: "Claper" }, claim: "Live polls, quizzes and Q&A, no clapping required." },
-  // Die Marke ist fast schwarz (#191B2A). Auf dem dunklen Grund (#0d1117) war sie
-  // praktisch unsichtbar, also wird sie dort auf die helle Textfarbe umgefaerbt.
+  // The mark is nearly black (#191B2A) and all but vanishes on the dark ground
+  // (#0d1117), so it is recoloured to the light text colour there.
   { slug: "versitygw", name: { text: "VersityGW" }, markDark: { 'fill="#191B2A"': 'fill="#e6edf3"' },
     claim: "Buckets on top, files still files." },
   { slug: "rustfs", name: { text: "RustFS" }, claim: "Object storage, forged not rusted." },
@@ -88,7 +89,7 @@ function markOf(app) {
   return { content: stripBg(inner(s)), vb: vbOf(s) };
 }
 
-// official wordmark lifted from logo-src.svg. capContent = the first CAPITAL glyph
+// Official wordmark lifted from logo-src.svg. capContent = the first capital glyph
 // (or the whole wordmark for couchdb, whose letters are one merged path with no descender)
 // so every name can be scaled to a uniform cap-height. COLOR is recoloured per theme.
 function wordmarkOf(slug) {
@@ -131,7 +132,7 @@ for (const app of RUN) {
   const textX = LOGO_X + markW + GAP_LOGO_TEXT;
   const maxNameW = W - textX - RIGHT_PAD;
 
-  // NAME: scale so capitals == TARGET_CAP, then width-fit (long names shrink)
+  // Name: scale so capitals == TARGET_CAP, then width-fit (long names shrink)
   let nameH, nameW, placeName;
   if (app.name.wordmark) {
     const wm = wordmarkOf(app.slug);

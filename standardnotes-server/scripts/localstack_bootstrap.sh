@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# localstack_bootstrap.sh — provision the SNS topics and SQS queues that the
-# official standardnotes/server image expects on startup.
+# Provisions the SNS topics and SQS queues that the official
+# standardnotes/server image expects on startup.
 #
 # Source: copied verbatim from upstream Standard Notes server,
 #   https://raw.githubusercontent.com/standardnotes/server/main/docker/localstack_bootstrap.sh
@@ -14,8 +14,8 @@
 # Mount this file at /etc/localstack/init/ready.d/localstack_bootstrap.sh inside
 # the LocalStack container so it runs once LocalStack is ready. Without it,
 # LocalStack is reachable but has no topics/queues, and standardnotes/server's
-# workers loop on "SQSError: ... NonExistentQueue" / repeated retries — which
-# is a known precursor to sync instability and duplicate notes.
+# workers loop on "SQSError: ... NonExistentQueue" / repeated retries, a known
+# precursor to sync instability and duplicate notes.
 
 set -euo pipefail
 

@@ -72,9 +72,7 @@
   <DonateLink/>
   <Requires>A separately running Standard Notes backend (standardnotes/server) reachable over HTTPS via your reverse proxy. See the companion folder https://github.com/junkerderprovinz/unraid-apps/tree/main/standardnotes-server in this template repo for the matching backend template.</Requires>
 
-  <!-- ========================================================
-       PORT  — host 3001 to avoid the backend's :3000
-       ======================================================== -->
+  <!-- Port: host 3001 to avoid the backend's :3000 -->
   <Config Name="WebUI Port" Target="80" Default="3001" Mode="tcp"
           Description="Host port for the Standard Notes web client (container listens on 80). Default 3001 — the backend uses 3000 on the same Unraid host, so the WebUI takes a different port. If you give this container its own custom IP on br0/macvlan, the host port is unused and you can leave it at the default; your reverse proxy forwards directly to the container IP on port 80. Always put the web app behind an HTTPS reverse proxy — opening it over plain http://[ip]:[port]/ breaks account creation (crypto.subtle is undefined)."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>

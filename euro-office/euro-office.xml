@@ -62,16 +62,12 @@ This is an independent, community-maintained Unraid packaging and is not affilia
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
-  <!-- ========================================================
-       PORTS
-       ======================================================== -->
+  <!-- Ports -->
   <Config Name="WebUI Port" Target="80" Default="9900" Mode="tcp"
           Description="HTTP port the document server listens on. This is the address your cloud (OpenCloud) talks to and the URL that must return XML at /hosting/discovery. Behind a reverse proxy, point the proxy at this port."
           Type="Port" Display="always" Required="true" Mask="false">9900</Config>
 
-  <!-- ========================================================
-       CORE SETTINGS
-       ======================================================== -->
+  <!-- Core settings -->
   <Config Name="JWT secret" Target="JWT_SECRET" Default="" Mode=""
           Description="Shared secret that signs every request between your cloud and this editor. REQUIRED. Pick a long random string. It MUST be identical to the 'Office WOPI secret' you set in the OpenCloud template. Keep it secret."
           Type="Variable" Display="always" Required="true" Mask="true"/>
@@ -80,9 +76,7 @@ This is an independent, community-maintained Unraid packaging and is not affilia
           Description="Turns on the WOPI protocol that OpenCloud uses to open and save documents. Keep 'true' - with 'false' OpenCloud cannot use this editor."
           Type="Variable" Display="always" Required="true" Mask="false">true</Config>
 
-  <!-- ========================================================
-       ADVANCED
-       ======================================================== -->
+  <!-- Advanced -->
   <Config Name="Enable JWT" Target="JWT_ENABLED" Default="true|false" Mode=""
           Description="Require the signed JWT on every request. Keep 'true' for security. Only set 'false' for isolated testing on a trusted LAN."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
@@ -91,17 +85,15 @@ This is an independent, community-maintained Unraid packaging and is not affilia
           Description="Set 'true' when your cloud (OpenCloud) serves a self-signed certificate, so the editor can fetch and save documents from it. Leave 'false' when the cloud has a valid certificate or you talk to it over plain http."
           Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
 
-  <!-- ========================================================
-       PERSISTENCE (optional) - the editor works statelessly for
+  <!-- Persistence (optional). The editor works statelessly for
        WOPI, but mounting Data keeps its cache across restarts and
        speeds up subsequent boots. Safe to omit for pure WOPI use
        with OpenCloud. Data is empty in the image, so a bind mount
        there hides nothing. Logs and Database are different: the
        image ships both directories pre-built and a bind mount over
        an empty host folder hides them, which stops the container
-       from starting - see their own Descriptions below and do NOT
-       give either one a default mount here.
-       ======================================================== -->
+       from starting (see their own Descriptions below), so neither
+       gets a default mount here. -->
   <Config Name="Data" Target="/var/www/euro-office/Data" Default="/mnt/user/appdata/euro-office/data" Mode="rw"
           Description="Optional. Persistent document-server data (keys, fonts cache, forgotten files). Recommended for a permanent install; can be omitted for a purely stateless WOPI backend."
           Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/euro-office/data</Config>
@@ -114,22 +106,20 @@ This is an independent, community-maintained Unraid packaging and is not affilia
           Description="Leave BLANK for a normal install. The image ships with an already-initialised database baked in; mounting an EMPTY folder here hides that database and the container fails to start with 'PostgreSQL ... is not accessible or does not exist' on every boot (an upstream bug: the entrypoint cannot initialise a database in a fresh empty volume - see euro-office/documentserver#299). Without this mount the DB simply resets on container recreate, which is fine for WOPI use with OpenCloud. Only set a path here if it already contains a working euro-office Postgres data directory copied out of a running container first."
           Type="Path" Display="advanced" Required="false" Mask="false"></Config>
 
-  <!-- ========================================================
-       HTTPS (optional) - the document server can terminate TLS
-       itself, no reverse proxy needed. REQUIRED when your cloud
+  <!-- HTTPS (optional). The document server can terminate TLS
+       itself, no reverse proxy needed. Required when your cloud
        runs on https: a browser silently blocks an http editor
        embedded in an https page as mixed content, and nothing
        shows up in either service's log. Leave all of this alone
-       for a plain-http LAN setup. IMPORTANT: as soon as a
-       certificate is configured the editor moves to container
-       port 443 (HTTPS Port below) and the plain WebUI Port
-       above only answers with a redirect that loses the port
-       number - so map the HTTPS port as well and point
-       OpenCloud at the https URL. Both TLS paths must be filled
-       in and both files must exist inside the container, or the
-       whole thing is skipped silently. See the Overview section
-       "HTTPS / mixed content" for the full walkthrough.
-       ======================================================== -->
+       for a plain-http LAN setup. As soon as a certificate is
+       configured the editor moves to container port 443 (HTTPS
+       Port below) and the plain WebUI Port above only answers
+       with a redirect that loses the port number, so map the
+       HTTPS port as well and point OpenCloud at the https URL.
+       Both TLS paths must be filled in and both files must exist
+       inside the container, or the whole thing is skipped
+       silently. See the Overview section "HTTPS / mixed content"
+       for the full walkthrough. -->
   <Config Name="HTTPS Port" Target="443" Default="9943" Mode="tcp"
           Description="Only used once you fill in 'TLS certificate' and 'TLS private key' below. From that moment the document server serves the editor over https on THIS port, and the plain 'WebUI Port' above stops serving the editor entirely - it turns into a redirect that drops the port number, so http://[IP]:9900 bounces to https://[IP], which on an Unraid box is the Unraid WebUI. Point OpenCloud's 'Office document server URL' at https://[THIS-SERVER-IP]:9943 in that case. Without TLS this mapping is harmless: nothing listens on container port 443, so you can leave it as it is or remove it."
           Type="Port" Display="advanced" Required="false" Mask="false">9943</Config>

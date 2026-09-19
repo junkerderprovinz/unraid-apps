@@ -35,9 +35,7 @@ Notes:&#xD;
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/icon.png?v=2</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
-  <!-- ========================================================
-       PORTS
-       ======================================================== -->
+  <!-- Ports -->
   <Config Name="WebUI Port (HTTPS)" Target="443" Default="8443" Mode="tcp"
           Description="The port to open in your browser. HTTPS is required for live collaboration, because browsers only provide the cryptography it needs over a secure connection. The certificate is self-signed and generated on first start — accept it once."
           Type="Port" Display="always" Required="true" Mask="false">8443</Config>
@@ -46,16 +44,12 @@ Notes:&#xD;
           Description="For a reverse proxy that terminates TLS in front of the container, or for solo drawing where no session is ever started. Live collaboration does NOT work over this port when opened directly in a browser."
           Type="Port" Display="always" Required="false" Mask="false">8080</Config>
 
-  <!-- ========================================================
-       PATHS
-       ======================================================== -->
+  <!-- Paths -->
   <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/excalidraw" Mode="rw"
           Description="Holds the drawings database (shared links, live sessions, pasted images) and the self-signed certificate. This is the only thing worth backing up."
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/excalidraw</Config>
 
-  <!-- ========================================================
-       VARIABLES
-       ======================================================== -->
+  <!-- Variables -->
   <Config Name="Shape library" Target="ENABLE_LIBRARY" Default="false" Mode=""
           Description="Set to true to allow the shape library to load from libraries.excalidraw.com. That is a public catalogue of drawings other people published, so nothing of yours is sent, but your browser does contact Excalidraw's server. Left false, the library button reports an error and nothing leaves your network."
           Type="Variable" Display="always" Required="false" Mask="false">false</Config>

@@ -74,18 +74,14 @@
   <DonateLink/>
   <Requires>A separately running MariaDB container, a Redis container, and the StandardNotes-LocalStack companion. The server resolves the hostname "localstack" at port 4566 for SNS / SQS. On br0 / macvlan / VLAN / static-IP installs, give LocalStack a fixed IP on the same VLAN and APPEND `--add-host=localstack:&lt;LocalStack-IP&gt;` to Extra Parameters. See the project README.</Requires>
 
-  <!-- ========================================================
-       PORTS
-       ======================================================== -->
+  <!-- Ports -->
   <Config Name="API / Gateway Port" Target="3000" Default="3000" Mode="tcp"
           Description="HTTP port of the Standard Notes API gateway. Put behind a reverse proxy with HTTPS. Do not expose directly to the public internet."
           Type="Port" Display="always" Required="true" Mask="false">3000</Config>
 
   <!-- Files Server Port is defined further below, directly under Public Files Server URL. -->
 
-  <!-- ========================================================
-       PATHS
-       ======================================================== -->
+  <!-- Paths -->
   <Config Name="Logs Path" Target="/var/lib/server/logs"
           Default="/mnt/user/appdata/standardnotes/logs" Mode="rw"
           Description="Persistent server logs."
@@ -97,9 +93,7 @@
           Description="Persistent storage for encrypted file uploads."
           Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/standardnotes/uploads</Config>
 
-  <!-- ========================================================
-       DATABASE (must be supplied by a separate MariaDB container)
-       ======================================================== -->
+  <!-- Database (supplied by a separate MariaDB container) -->
   <Config Name="MariaDB Host" Target="DB_HOST" Default="192.168.1.10" Mode=""
           Description="IP address of your MariaDB container. 192.168.1.10 is a placeholder — replace it with your MariaDB container's IP."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
@@ -124,9 +118,7 @@
           Description="Leave at 'mysql'. Internal TypeORM driver value used to talk to MariaDB. Do not change."
           Type="Variable" Display="advanced" Required="true" Mask="false">mysql</Config>
 
-  <!-- ========================================================
-       CACHE (must be supplied by a separate Redis container)
-       ======================================================== -->
+  <!-- Cache (supplied by a separate Redis container) -->
   <Config Name="Redis Host" Target="REDIS_HOST" Default="192.168.1.10" Mode=""
           Description="IP address of your Redis container. 192.168.1.10 is a placeholder — replace it with your Redis container's IP."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
@@ -139,9 +131,7 @@
           Description="Cache backend. Leave at 'redis'."
           Type="Variable" Display="advanced" Required="true" Mask="false">redis</Config>
 
-  <!-- ========================================================
-       SECRETS  - generate with `openssl rand -hex 32`
-       ======================================================== -->
+  <!-- Secrets: generate with `openssl rand -hex 32` -->
   <Config Name="JWT Secret" Target="AUTH_JWT_SECRET" Default="" Mode=""
           Description="Required. 32-byte hex secret. Generate with: openssl rand -hex 32. Changing this invalidates all existing sessions."
           Type="Variable" Display="always" Required="true" Mask="true"/>
@@ -156,9 +146,7 @@
           Description="Required. 32-byte hex secret. Generate with: openssl rand -hex 32. Signs short-lived upload/download tokens for the files server."
           Type="Variable" Display="always" Required="true" Mask="true"/>
 
-  <!-- ========================================================
-       PUBLIC URLs / COOKIES (visible - needed for client setup)
-       ======================================================== -->
+  <!-- Public URLs / cookies (visible, needed for client setup) -->
   <Config Name="Public Files Server URL"
           Target="PUBLIC_FILES_SERVER_URL" Default="" Mode=""
           Description="Optional. Full HTTPS URL of the files server. Includes the https:// scheme. Example: https://files.standardnotesserver.mydomain.tld. Set only if you reverse-proxy the files server on its own subdomain. Leave empty to skip attachments; note creation, editing, and sync work without it."
