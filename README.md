@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
-    <img src=".github/assets/banner.png" alt="Unraid Docker Templates — one feed to rule them all" width="100%">
+    <img src=".github/assets/banner.png" alt="Unraid Docker Templates: one feed to rule them all" width="100%">
   </picture>
 </p>
 
@@ -20,7 +20,7 @@ Unraid <b>Community Applications</b> templates for junkerderprovinz's containers
 
 ## Apps
 
-*My own software, built and published by junkerderprovinz — full docs live in each app's own repository.*
+*My own software, built and published by junkerderprovinz. Full docs live in each app's own repository.*
 
 <img src=".github/readme-icons/bombvault.png" width="84" align="left" alt="BombVault">
 <a href="https://github.com/junkerderprovinz/bombvault#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
@@ -49,13 +49,13 @@ Turns images into proportional-font-aware ASCII art - a rebuild of ASCII Gen 2, 
 
 ## Images
 
-*My own custom image builds of third-party apps — full docs in each app's own repository.*
+*My own custom image builds of third-party apps. Full docs in each app's own repository.*
 
 <img src=".github/readme-icons/jdownloader.png" width="84" align="left" alt="JDownloader">
 <a href="https://github.com/junkerderprovinz/jdownloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **JDownloader**<br>
-JDownloader 2 with a complete, sleek dark UI out of the box, on a fast Selkies web desktop in your browser — no VNC client, no install.
+JDownloader 2 with a complete, sleek dark UI out of the box, on a fast Selkies web desktop in your browser. No VNC client, no install.
 
 <br clear="all">
 
@@ -87,7 +87,7 @@ One-click OpenCloud file sync &amp; share: auto-runs init, heals appdata permiss
 <a href="https://github.com/junkerderprovinz/prusaslicer#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **PrusaSlicer**<br>
-The PrusaSlicer 3D-printing slicer in your browser on a fast Selkies web desktop — slice and export G-code, no VNC client (amd64 + arm64).
+The PrusaSlicer 3D-printing slicer in your browser on a fast Selkies web desktop: slice and export G-code, no VNC client (amd64 + arm64).
 
 <br clear="all">
 
@@ -95,7 +95,7 @@ The PrusaSlicer 3D-printing slicer in your browser on a fast Selkies web desktop
 <a href="https://github.com/junkerderprovinz/stellarium#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Stellarium**<br>
-The Stellarium planetarium in your browser on a fast Selkies web desktop — pan the sky, zoom a nebula, scrub through time, no VNC client.
+The Stellarium planetarium in your browser on a fast Selkies web desktop: pan the sky, zoom a nebula, scrub through time, no VNC client.
 
 <br clear="all">
 
@@ -127,7 +127,7 @@ Sovereign, OnlyOffice-compatible document server for browser editing of Office a
 <a href="https://github.com/junkerderprovinz/excalidraw#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **Excalidraw**<br>
-The hand-drawn whiteboard, built so it keeps to itself — shared links, live collaboration, the session scene and even the fonts all come from your own server.
+The hand-drawn whiteboard, built so it keeps to itself: shared links, live collaboration, the session scene and even the fonts all come from your own server.
 
 <br clear="all">
 
@@ -150,7 +150,7 @@ The real Android emulator on a Selkies web desktop, reached over adb like a phon
 
 ## Wrappers
 
-*Thin templates over a third-party upstream image (no custom build) — full docs in each app's folder below.*
+*Thin templates over a third-party upstream image (no custom build). Full docs in each app's folder below.*
 
 <img src=".github/readme-icons/claper.png" width="84" align="left" alt="Claper">
 <a href="claper/README.md"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
@@ -227,13 +227,13 @@ An S3 object store in Rust, with the two fixes it needs to run on Unraid at all.
 
 ## Plugins
 
-*Unraid **plugins** (not containers) — listed on CA, installed from the Plugins tab via a `.plg` URL.*
+*Unraid **plugins** (not containers), listed on CA, installed from the Plugins tab via a `.plg` URL.*
 
 <img src=".github/readme-icons/bombvaultwidget.png" width="84" align="left" alt="BombVault Widget">
 <a href="https://github.com/junkerderprovinz/bombvault-widget#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **BombVault Widget**<br>
-BombVault's activity log as a real, native tile on the Unraid dashboard — every backup, restore, prune and drill live. Requires 6.9.0+.
+BombVault's activity log as a real, native tile on the Unraid dashboard: every backup, restore, prune and drill live. Requires 6.9.0+.
 
 <br clear="all">
 
@@ -262,14 +262,14 @@ A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict befor
 
 ## Install
 
-On Unraid: open **Apps** (Community Applications) and search for the app name — these templates are published from this repository.
+On Unraid: open **Apps** (Community Applications) and search for the app name. These templates are published from this repository.
 
 To add a single template by hand, paste its raw `*.xml` URL into **Add Container → Template**, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/openhands.xml`
 
 Apps and Images link to their dedicated repository's README; Wrappers keep their README in their folder here.
 
-**Plugins** (BombVault Widget, ShipLog, FireSquire) are published from this repository too — CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
+**Plugins** (BombVault Widget, ShipLog, FireSquire) are published from this repository too. CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/firesquire/main/plugin/firesquire.plg`
 
 

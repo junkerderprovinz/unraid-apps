@@ -95,7 +95,7 @@
 
   <!-- Database (supplied by a separate MariaDB container) -->
   <Config Name="MariaDB Host" Target="DB_HOST" Default="192.168.1.10" Mode=""
-          Description="IP address of your MariaDB container. 192.168.1.10 is a placeholder — replace it with your MariaDB container's IP."
+          Description="IP address of your MariaDB container. 192.168.1.10 is a placeholder, so replace it with your MariaDB container's IP."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
 
   <Config Name="MariaDB Port" Target="DB_PORT" Default="3306" Mode=""
@@ -120,7 +120,7 @@
 
   <!-- Cache (supplied by a separate Redis container) -->
   <Config Name="Redis Host" Target="REDIS_HOST" Default="192.168.1.10" Mode=""
-          Description="IP address of your Redis container. 192.168.1.10 is a placeholder — replace it with your Redis container's IP."
+          Description="IP address of your Redis container. 192.168.1.10 is a placeholder, so replace it with your Redis container's IP."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
 
   <Config Name="Redis Port" Target="REDIS_PORT" Default="6379" Mode=""

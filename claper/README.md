@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-A plug-and-play Unraid Community Applications template for <b>Claper</b> — the open-source,
+A plug-and-play Unraid Community Applications template for <b>Claper</b>, the open-source,
 self-hosted Mentimeter/Slido alternative. Wraps the official
 <code>ghcr.io/claperco/claper</code> image: run live polls, Q&amp;A and quizzes alongside
 your slides, your audience joins from their own phone or laptop, no app install. Every
@@ -57,7 +57,7 @@ Maintained solo, in whatever spare time there is. Questions via the <a href="htt
 
 An **Unraid Community Applications template** for [Claper](https://claper.co)
 ([source](https://github.com/ClaperCo/Claper)). It deploys the official
-[`ghcr.io/claperco/claper`](https://github.com/ClaperCo/Claper/pkgs/container/claper) image —
+[`ghcr.io/claperco/claper`](https://github.com/ClaperCo/Claper/pkgs/container/claper) image,
 an open-source (AGPL-3.0) tool for running live polls, Q&A and quizzes alongside a
 presentation. The audience joins from a link or QR code on their own device; no app to
 install, no account required to participate.
@@ -68,10 +68,10 @@ install, no account required to participate.
 
 - **Live polls, quizzes and Q&A** during a presentation, results update in real time
 - **Slide upload** (PDF/PPTX/images) with a join link and QR code generated per event
-- **Self-hosted, AGPL-3.0** — your events and responses stay on your own server
+- **Self-hosted, AGPL-3.0**: your events and responses stay on your own server
 - Optional self-registration for presenter accounts (toggle in the template)
 - Multi-language UI (English, French, Spanish, Italian, German by default)
-- Multi-arch upstream image — amd64 + arm64
+- Multi-arch upstream image: amd64 + arm64
 
 <br>
 
@@ -93,7 +93,7 @@ Then build the **Database URL** field from those values:
 postgres://claper:change-me@192.168.1.10:5432/claper
 ```
 
-Migrations run automatically on container start — no manual step needed.
+Migrations run automatically on container start, with no manual step needed.
 
 <br>
 
@@ -102,10 +102,10 @@ Migrations run automatically on container start — no manual step needed.
 1. Install from Community Applications, or add this template's URL directly:
    `https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/claper.xml`
 2. Fill in **Database URL** (see section 3).
-3. Set **Secret Key Base** — generate one on the Unraid console: `openssl rand -base64 48`.
+3. Set **Secret Key Base**. Generate one on the Unraid console: `openssl rand -base64 48`.
 4. Set **Base URL** to your server's real address or reverse-proxy domain.
 5. Start the container, open the WebUI, log in with the seeded admin account
-   `admin@claper.co` / `claper` — **change that password immediately.**
+   `admin@claper.co` / `claper`, and **change that password immediately.**
 
 <br>
 
@@ -123,7 +123,7 @@ Migrations run automatically on container start — no manual step needed.
 | Languages | `LANGUAGES` | `en,fr,es,it,de` | Advanced. UI languages to offer. |
 
 Claper also supports SMTP/Postmark mail, OIDC login, and S3-compatible storage instead of
-the local Uploads path — none of these are exposed as template fields (advanced, rarely
+the local Uploads path. None of these are exposed as template fields (advanced, rarely
 needed for a home install); set them as extra container variables if you need them. See
 [Claper's own configuration docs](https://docs.claper.co/self-hosting/configuration.html)
 for the full variable list.
@@ -133,7 +133,7 @@ for the full variable list.
 ## 6. Reverse proxy & HTTPS
 
 Claper works fine on plain LAN HTTP. For access from outside your network, put it behind a
-reverse proxy with HTTPS and set **Base URL** to the public `https://` address — this is
+reverse proxy with HTTPS and set **Base URL** to the public `https://` address, which is
 what gets embedded in join links and QR codes shown to your audience.
 
 <br>
@@ -141,7 +141,7 @@ what gets embedded in join links and QR codes shown to your audience.
 ## 7. Backup & restore
 
 Back up two things: the **Uploads** volume (presentation files) and the **PostgreSQL
-database** (everything else — accounts, events, poll/quiz results). Restoring both
+database** (everything else: accounts, events, poll/quiz results). Restoring both
 together restores a working instance; restoring only one leaves uploads and database
 references out of sync.
 
@@ -150,20 +150,20 @@ references out of sync.
 ## 8. Updating
 
 Community Applications shows an update badge when a new image is available. Stop the
-container, pull the new `:latest`, start it again — migrations run automatically.
+container, pull the new `:latest`, start it again; migrations run automatically.
 
 <br>
 
 ## 9. Troubleshooting
 
-- **Container won't start, log mentions `SECRET_KEY_BASE`** — the field is empty or under
+- **Container won't start, log mentions `SECRET_KEY_BASE`**: the field is empty or under
   32 bytes. Generate a real one: `openssl rand -base64 48`.
-- **Container won't start, log mentions `BASE_URL`** — the value must start with `http://`
+- **Container won't start, log mentions `BASE_URL`**: the value must start with `http://`
   or `https://` (a bare hostname is rejected).
-- **Can't reach the database** — check `DATABASE_URL`'s host/port are reachable from this
+- **Can't reach the database**: check `DATABASE_URL`'s host/port are reachable from this
   container (same Docker network or a routable IP), and that the database/user from
   section 3 actually exist.
-- **Forgot the admin password** — reset it directly in Postgres, or drop and let it reseed
+- **Forgot the admin password**: reset it directly in Postgres, or drop and let it reseed
   on a fresh database (loses all data).
 
 <br>
@@ -171,7 +171,7 @@ container, pull the new `:latest`, start it again — migrations run automatical
 ## 10. License
 
 This template is MIT-licensed (see [`../LICENSE`](../LICENSE)). Claper itself is licensed
-AGPL-3.0 by [ClaperCo](https://github.com/ClaperCo/Claper) — this is an independent,
+AGPL-3.0 by [ClaperCo](https://github.com/ClaperCo/Claper). This is an independent,
 community-maintained Unraid packaging and is not affiliated with the Claper project.
 
 <br>

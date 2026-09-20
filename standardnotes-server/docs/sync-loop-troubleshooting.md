@@ -18,7 +18,7 @@ Read that section first.
 Run these in order. Do **not** keep editing notes between steps.
 
 1. **Stop every connected client immediately.** Sign out of web UI,
-   desktop, and mobile (don't just close — sign out, so background sync
+   desktop, and mobile (don't just close them, sign out, so background sync
    stops). Disconnect any browser tab still open against the sync
    server.
 2. **Stop the `StandardNotes-Server` container.** Unraid → Docker →
@@ -41,7 +41,7 @@ Run these in order. Do **not** keep editing notes between steps.
 
     Expected: `Redis TCP connected`. A timeout means a firewall /
     VLAN / `br0` routing problem between the server container and
-    the Redis host — fix that first. Also tail the server log for
+    the Redis host, so fix that first. Also tail the server log for
     `ECONNREFUSED` / connection-timeout lines:
     `docker logs StandardNotes-Server | grep -E "ECONNREFUSED|redis"`.
 
@@ -55,11 +55,11 @@ Run these in order. Do **not** keep editing notes between steps.
       redis:7-alpine redis-cli -h 192.168.x.x -p 6379 ping
     ```
 
-    `redis:7-alpine` here is **not** a second Redis server — it is
+    `redis:7-alpine` here is **not** a second Redis server. It is
     only a way to get the `redis-cli` binary. On `br0` / macvlan /
     VLAN / static-IP setups the default `docker run` lands on the
     **default bridge**, which usually cannot route to a VLAN
-    container — so `--rm redis:7-alpine redis-cli ping` will time
+    container, so `--rm redis:7-alpine redis-cli ping` will time
     out even when Redis is healthy. Always pass `--network` (or
     `--ip` on the same `br0` / macvlan network as Redis), or skip
     this client test entirely and trust the in-container `node -e`
@@ -85,7 +85,7 @@ Run these in order. Do **not** keep editing notes between steps.
     you see it, fix LocalStack reachability *before* reconnecting
     any client.
 
-    **TCP-reachable is not enough — the SNS / SQS resources must
+    **TCP-reachable is not enough: the SNS / SQS resources must
     also exist.** LocalStack starts empty; `standardnotes/server`
     workers expect a fixed set of topics and queues created by
     upstream's `docker/localstack_bootstrap.sh` (this repo ships it
@@ -106,7 +106,7 @@ Run these in order. Do **not** keep editing notes between steps.
     `files-local-queue`, `revisions-server-local-queue`,
     `analytics-local-queue`, `scheduler-local-queue` and the matching
     topics). Empty `Queues: []` / `Topics: []` means the bootstrap
-    never ran — fix in place with the *Emergency bootstrap* recipe in
+    never ran. Fix it in place with the *Emergency bootstrap* recipe in
     [§ 2a-bis](#2a-bis-localstack-bootstrap-snssqs-queues-missing) below.
 
     > 📌 **Static IP / `br0` / macvlan / VLAN.** Docker's embedded
@@ -134,12 +134,12 @@ Run these in order. Do **not** keep editing notes between steps.
    - `COOKIE_DOMAIN` = `standardnotesserver.mydomain.tld` ✅ (no
      protocol, no slash)
    - Wrong: `COOKIE_DOMAIN=https://standardnotesserver.mydomain.tld` ❌
-     (this is a URL — the server emits cookies for the literal string
+     (this is a URL, and the server emits cookies for the literal string
      `https://...` and no browser will accept them)
    - Custom Sync Server (in client) = `https://standardnotesserver.mydomain.tld` ✅
      (full HTTPS URL, with scheme)
 7. **If the test/throwaway account has duplicated:** delete the test
-   account, or drop and recreate the database before continuing — do
+   account, or drop and recreate the database before continuing. Do
    not bring the server back up against a corrupted account, or the
    first reconnecting client will reproduce the cascade. Recipe:
    - `mysqldump` → snapshot first (see § 7 below).
@@ -148,7 +148,7 @@ Run these in order. Do **not** keep editing notes between steps.
    - Recreate the test account fresh and re-run § 1 *Test plan*.
 
 After the emergency stop, work through the rest of this document
-(§§ 2–6) to identify the root cause before bringing the server back
+(§§ 2-6) to identify the root cause before bringing the server back
 up.
 
 ---
@@ -157,13 +157,13 @@ up.
 
 | Source | What it says | Status |
 |---|---|---|
-| [Standard Notes — *How do I clear duplicates?*](https://standardnotes.com/help/33/how-do-i-clear-duplicates) | Duplicates are **app-side conflict resolution**. The server cannot decrypt or merge notes, so the client duplicates conflicting copies to avoid silent data loss. | Current, official |
-| [Forum #3635 — self-hosted session loop](https://github.com/standardnotes/forum/issues/3635) | `No cookies provided for cookie-based session token` + `/v1/items` loop traced to `COOKIE_DOMAIN` / HTTPS / reverse-proxy cookie handling and an unstable image tag. Pinning a known-good tag mitigated. | Current |
+| [Standard Notes: *How do I clear duplicates?*](https://standardnotes.com/help/33/how-do-i-clear-duplicates) | Duplicates are **app-side conflict resolution**. The server cannot decrypt or merge notes, so the client duplicates conflicting copies to avoid silent data loss. | Current, official |
+| [Forum #3635, self-hosted session loop](https://github.com/standardnotes/forum/issues/3635) | `No cookies provided for cookie-based session token` + `/v1/items` loop traced to `COOKIE_DOMAIN` / HTTPS / reverse-proxy cookie handling and an unstable image tag. Pinning a known-good tag mitigated. | Current |
 | [Legacy `standardnotes/syncing-server` #102](https://github.com/standardnotes/syncing-server/issues/102) | Stable web app + `dev`/`latest` syncing-server caused `Syncing: 0/1` and duplicate cascades. Fixed by pinning a stable tag. | **Historical / legacy.** That repo is archived; the current backend image is `standardnotes/server`. The class of failure (unstable tag vs. stable client) is still possible. |
 
 ---
 
-## 1. Test plan — *before* you migrate any real notes
+## 1. Test plan, *before* you migrate any real notes
 
 Do this on a brand-new account, not on your real one.
 
@@ -172,7 +172,7 @@ Do this on a brand-new account, not on your real one.
 - [ ] **Create one note.** Type a few words, save, wait 30 seconds.
 - [ ] Refresh / reopen the client. Confirm the note exists **once**.
 - [ ] Repeat with a second note, then a third. Watch the server log
-      while you do — there should be no `ECONNREFUSED`, no
+      while you do. There should be no `ECONNREFUSED`, no
       `No cookies provided …`, no `duplicate_of` cascade.
 - [ ] Only **after** the throwaway account has round-tripped cleanly
       for several notes: connect a second client (mobile/desktop),
@@ -192,7 +192,7 @@ document before continuing.
 
 Standard Notes uses Redis for cache, queues, and rate-limiting. If
 Redis is unreachable, sync de-duplication and session state get
-inconsistent — a known precursor to duplicate cascades.
+inconsistent, a known precursor to duplicate cascades.
 
 - [ ] In the Unraid template, **Redis Host** is set to the **IP
       address** of your Redis container (e.g. `192.168.x.x`).
@@ -201,7 +201,7 @@ inconsistent — a known precursor to duplicate cascades.
 - [ ] `REDIS_PORT=6379` (or whatever your Redis container actually
       listens on).
 - [ ] **The `StandardNotes-Server` container itself** can reach the
-      Redis IP/port — this is the authoritative test on `br0` /
+      Redis IP/port. This is the authoritative test on `br0` /
       macvlan / VLAN / static-IP installs, because it runs in the
       same network namespace the server actually talks to Redis from:
 
@@ -224,7 +224,7 @@ inconsistent — a known precursor to duplicate cascades.
     ```
 
 - [ ] *(Optional)* CLI ping via a **disposable `redis-cli` client
-      container** — useful only if you already have the network path
+      container**, useful only if you already have the network path
       sorted. `redis:7-alpine` is **not a second Redis server**; it's
       just a one-shot way to get the `redis-cli` binary:
 
@@ -235,7 +235,7 @@ inconsistent — a known precursor to duplicate cascades.
 
     On `br0` / macvlan / VLAN / static-IP setups the default `docker
     run` lands on the **default bridge**, which usually cannot route
-    to a VLAN container — so the bare `docker run --rm redis:7-alpine
+    to a VLAN container, so the bare `docker run --rm redis:7-alpine
     redis-cli ping` form (without `--network`) is not a definitive
     test for those setups and will time out even when Redis is
     healthy. The in-container `node -e` probe above is the
@@ -244,7 +244,7 @@ inconsistent — a known precursor to duplicate cascades.
 - [ ] **Expected failure mode if wrong:** the server log emits
       `ECONNREFUSED` (port closed) or connection timeouts (firewall /
       routing) against your Redis host on every sync request. The
-      client appears to "save" notes but the server never confirms —
+      client appears to "save" notes but the server never confirms,
       clients re-send, and conflict logic on the app side can begin
       duplicating.
 
@@ -286,12 +286,12 @@ worker logs **must not** show `ENOTFOUND localstack`.
       on `br0` / macvlan / `br0.<vlan>` with a static IP bypass that
       DNS. Two working fixes:
 
-      - **User-defined Docker network + alias `localstack`** — put
+      - **User-defined Docker network + alias `localstack`**: put
         both containers on the same custom bridge and either name
         the LocalStack container `localstack` or assign it the
         network alias `localstack` (Unraid: Advanced → Network
         alias).
-      - **`br0` / macvlan / VLAN / static-IP install** — install /
+      - **`br0` / macvlan / VLAN / static-IP install**: install /
         start `StandardNotes-LocalStack` on the **same VLAN** as
         `StandardNotes-Server` and assign it a **fixed IP**
         (e.g. `192.168.x.x`). Then, in `StandardNotes-Server`'s
@@ -321,10 +321,10 @@ worker logs **must not** show `ENOTFOUND localstack`.
 ## 2a-bis. LocalStack bootstrap (SNS/SQS queues missing)
 
 Distinct failure from § 2a. Here `getent hosts localstack` resolves
-and `localstack:4566` accepts TCP — but `sqs list-queues` /
+and `localstack:4566` accepts TCP, but `sqs list-queues` /
 `sns list-topics` come back **empty**. `standardnotes/server`'s
 workers then loop on missing-queue errors (no `ENOTFOUND` line in
-that case — symptom is account creation hanging and the first note
+that case; the symptom is account creation hanging and the first note
 duplicating infinitely on the client).
 
 LocalStack starts empty. The upstream
@@ -382,7 +382,7 @@ Bootstrap Script* Path mapping.
       `localstack:4566` succeeds; `getent hosts localstack` returns a
       valid IP; **but** account creation hangs in the client and the
       first note replicates without bound. `files-worker.log` does
-      *not* show `ENOTFOUND` — instead it shows repeated SQS errors
+      *not* show `ENOTFOUND`. Instead it shows repeated SQS errors
       against non-existent queue names. This is the case to suspect
       whenever § 2a passes but duplication persists.
 
@@ -400,7 +400,7 @@ A half-migrated database is a known cause of strange sync behaviour.
 - [ ] Database `standard_notes_db` exists with `ALL PRIVILEGES`
       granted to `std_notes_user@'%'`.
 - [ ] Watch the **first start** of the server container. The log
-      should show schema migrations running for ~20–60 seconds, then
+      should show schema migrations running for 20 to 60 seconds, then
       "API gateway listening on port 3000" (or similar).
 - [ ] **Do not log a real client in until migrations have finished
       cleanly.** A login during migrations can end up writing partial
@@ -418,7 +418,7 @@ class of bug ([forum #3635](https://github.com/standardnotes/forum/issues/3635))
       addition, `Secure` cookies are dropped over HTTP outside
       `localhost`, which produces the
       `No cookies provided for cookie-based session token` symptom.
-- [ ] `COOKIE_DOMAIN` is a **bare domain** — no protocol, no
+- [ ] `COOKIE_DOMAIN` is a **bare domain**: no protocol, no
       `https://`, no trailing slash, no path. The Custom Sync Server
       URL entered in the client / web app is a **separate** value and
       *is* a full HTTPS URL. Get this distinction wrong and every
@@ -442,12 +442,12 @@ class of bug ([forum #3635](https://github.com/standardnotes/forum/issues/3635))
       double-check that the proxy preserves the original
       `Host` header and sends `X-Forwarded-Proto: https`.
 - [ ] If you change `COOKIE_DOMAIN` later, **all clients have to log
-      in again** — old session cookies become invalid.
+      in again**, because old session cookies become invalid.
 - [ ] **Expected failure mode if wrong:** server log fills with
       `No cookies provided for cookie-based session token` and the
       client retries `/v1/items` repeatedly (often visible as
       `Syncing: 0/1` in the client status bar).
-- [ ] **Files server port — forward to host port `3125`, not
+- [ ] **Files server port: forward to host port `3125`, not
       `3104`.** The internal upstream files service listens on
       `3104` *inside* the container; the published host port is
       `3125` (per upstream `docker-compose.example.yml`,
@@ -459,7 +459,7 @@ class of bug ([forum #3635](https://github.com/standardnotes/forum/issues/3635))
 
 ---
 
-## 5. Image tag — pinning a known-good tag
+## 5. Image tag: pinning a known-good tag
 
 - [ ] By default the Unraid template uses
       `standardnotes/server:latest`. This is fine for first-time
@@ -467,7 +467,7 @@ class of bug ([forum #3635](https://github.com/standardnotes/forum/issues/3635))
 - [ ] If `latest` is **currently regressing** session or sync (forum
       #3635 was an example), pin a known-good release tag in the
       Unraid template's *Repository* field, e.g.
-      `standardnotes/server:1.32.0` — replace with whatever
+      `standardnotes/server:1.32.0`, to be replaced with whatever
       `standardnotes/server` tag you have last verified. (Unraid's
       `<Repository>` field is the single place to set the tag; it does
       not do env-var interpolation, so there is no separate tag variable.)
@@ -500,13 +500,13 @@ docker logs -f StandardNotes-Server
 | `No cookies provided for cookie-based session token` | `COOKIE_DOMAIN` mismatch, missing HTTPS, or proxy stripping cookies. See § 4. |
 | `ECONNREFUSED` against your Redis host | Redis container is down, on a different network, or the host/port is wrong. See § 2. |
 | Redis connection timeouts (`Operation timed out`) against your Redis host | Firewall / VLAN / `br0` routing problem between the Docker network and the Redis host. See § 2. |
-| `SQSError: SQS receive message failed: getaddrinfo ENOTFOUND localstack` (in `/var/lib/server/logs/files-worker.log`) | LocalStack missing, or the hostname `localstack` does not resolve from `StandardNotes-Server`. LocalStack is required, not optional — see § 2a. |
-| Repeated SQS errors referencing `*-local-queue` but **no** `ENOTFOUND` line; account creation hangs; first note duplicates infinitely | LocalStack is reachable but **empty** — the `localstack_bootstrap.sh` init script never ran. See § 2a-bis. |
+| `SQSError: SQS receive message failed: getaddrinfo ENOTFOUND localstack` (in `/var/lib/server/logs/files-worker.log`) | LocalStack missing, or the hostname `localstack` does not resolve from `StandardNotes-Server`. LocalStack is required, not optional; see § 2a. |
+| Repeated SQS errors referencing `*-local-queue` but **no** `ENOTFOUND` line; account creation hangs; first note duplicates infinitely | LocalStack is reachable but **empty**: the `localstack_bootstrap.sh` init script never ran. See § 2a-bis. |
 | `ECONNREFUSED` against your DB host | MariaDB is down, on a different network, or credentials/host are wrong. See § 3. |
-| `/v1/items` returning 401 in a tight loop | Session not accepted by the server — almost always cookie / `COOKIE_DOMAIN` / HTTPS. See § 4. |
-| `/v1/items` returning 500 in a tight loop | Server-side error — check earlier lines for the underlying exception (DB, Redis, migrations). |
+| `/v1/items` returning 401 in a tight loop | Session not accepted by the server, almost always cookie / `COOKIE_DOMAIN` / HTTPS. See § 4. |
+| `/v1/items` returning 500 in a tight loop | Server-side error; check earlier lines for the underlying exception (DB, Redis, migrations). |
 | Repeated sync/update cascades, growing `updated_at` storm | Conflict-resolution loop. Stop clients immediately. |
-| `duplicate_of` appearing on many notes | Confirmed duplicate cascade — the client is creating conflict copies. Stop clients, see § 7. |
+| `duplicate_of` appearing on many notes | Confirmed duplicate cascade: the client is creating conflict copies. Stop clients, see § 7. |
 
 ---
 
@@ -515,7 +515,7 @@ docker logs -f StandardNotes-Server
 Triage order:
 
 1. **Stop all clients.** Sign out of mobile, desktop, and web. Don't
-   just close them — sign out so they stop attempting background
+   just close them, sign out so they stop attempting background
    sync.
 2. **Stop the server container** in the Unraid Docker tab. Leave
    MariaDB and Redis running so you can inspect state.
@@ -527,14 +527,14 @@ Triage order:
       > /mnt/user/appdata/standardnotes/dup-incident-$(date +%Y%m%d-%H%M).sql
     ```
 
-4. **Inspect the logs** (see § 6) and identify the root cause —
+4. **Inspect the logs** (see § 6) and identify the root cause,
    Redis, cookies, or image tag are by far the most common.
 5. **Fix the root cause first.** Restarting the server without
    fixing the cause will reproduce the loop.
 6. **Cleanup of duplicates** is documented by Standard Notes
    themselves: <https://standardnotes.com/help/33/how-do-i-clear-duplicates>.
    Use the official client procedure rather than touching the
-   database directly — the server cannot decrypt notes, so
+   database directly, because the server cannot decrypt notes, so
    server-side deduplication is not possible.
 7. Only after the root cause is fixed and duplicates are cleaned, log
    one client back in and verify a single new note round-trips
@@ -544,12 +544,12 @@ Triage order:
 
 ## 8. References
 
-- [Standard Notes — *How do I clear duplicates?*](https://standardnotes.com/help/33/how-do-i-clear-duplicates)
-  — official duplicate-handling docs.
-- [Forum issue #3635 — self-hosted session loop](https://github.com/standardnotes/forum/issues/3635)
-  — `COOKIE_DOMAIN` / HTTPS / image-tag root cause.
-- [Legacy `standardnotes/syncing-server` issue #102](https://github.com/standardnotes/syncing-server/issues/102)
-  — historical stable-client / dev-server mismatch causing
+- [Standard Notes: *How do I clear duplicates?*](https://standardnotes.com/help/33/how-do-i-clear-duplicates),
+  the official duplicate-handling docs.
+- [Forum issue #3635, self-hosted session loop](https://github.com/standardnotes/forum/issues/3635),
+  on the `COOKIE_DOMAIN` / HTTPS / image-tag root cause.
+- [Legacy `standardnotes/syncing-server` issue #102](https://github.com/standardnotes/syncing-server/issues/102),
+  a historical stable-client / dev-server mismatch causing
   `Syncing: 0/1` and duplicates. Archived backend; class of failure
   still relevant.
 - [Standard Notes self-hosting docs](https://standardnotes.com/help/self-hosting/getting-started)

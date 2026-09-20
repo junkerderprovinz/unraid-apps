@@ -128,7 +128,7 @@ Empty `Queues: []` / `Topics: []` means the init script never ran
 (most often because the host file was missing on first start, or the
 Path mapping was removed). Without these resources, TCP `4566` will
 still connect, but `standardnotes/server` workers loop on missing
-queues — account creation hangs and the first note can duplicate
+queues: account creation hangs and the first note can duplicate
 infinitely. To fix in place on an already-running LocalStack, see
 the *Emergency bootstrap* recipe in the
 [main README](../README.md#emergency-bootstrap-localstack-already-running-no-queues).
@@ -141,7 +141,7 @@ with `openssl rand -hex 32` (one invocation per variable).
 | Variable | What it does | If you lose it |
 |---|---|---|
 | `AUTH_JWT_SECRET` | Signs auth tokens. | All sessions invalidated; users sign in again. |
-| `AUTH_SERVER_ENCRYPTION_SERVER_KEY` | Encrypts data at rest, server-side. | **Permanent data loss** — back this up. |
+| `AUTH_SERVER_ENCRYPTION_SERVER_KEY` | Encrypts data at rest, server-side. | **Permanent data loss**, so back this up. |
 | `VALET_TOKEN_SECRET` | Signs short-lived upload/download tokens for the files server. | New uploads/downloads fail until rotated; existing data unaffected. |
 
 ## Ports
@@ -162,10 +162,10 @@ with `openssl rand -hex 32` (one invocation per variable).
 
 | Variable | Default | Notes |
 |---|---|---|
-| `PUBLIC_FILES_SERVER_URL` | *(empty)* | **Full HTTPS URL** of the files server — *includes* `https://`. Example: `https://files.standardnotesserver.mydomain.tld`. Set only when you reverse-proxy the files server on its own hostname. |
-| `COOKIE_DOMAIN` | *(empty)* | **Bare domain only** — *no* protocol, *no* `https://`, *no* trailing slash, *no* path. Example: `standardnotesserver.mydomain.tld`. Wrong: `https://standardnotesserver.mydomain.tld` (URL, not a domain). Must match the public host the reverse proxy serves over HTTPS. |
+| `PUBLIC_FILES_SERVER_URL` | *(empty)* | **Full HTTPS URL** of the files server, *including* `https://`. Example: `https://files.standardnotesserver.mydomain.tld`. Set only when you reverse-proxy the files server on its own hostname. |
+| `COOKIE_DOMAIN` | *(empty)* | **Bare domain only**: *no* protocol, *no* `https://`, *no* trailing slash, *no* path. Example: `standardnotesserver.mydomain.tld`. Wrong: `https://standardnotesserver.mydomain.tld` (URL, not a domain). Must match the public host the reverse proxy serves over HTTPS. |
 
-### `https://` placement — quick reference
+### `https://` placement, quick reference
 
 | Setting | Where it lives | Value type | Includes `https://`? | Example |
 |---|---|---|---|---|
@@ -177,8 +177,8 @@ A misplaced `https://` in `COOKIE_DOMAIN` is one of the most common
 self-host pitfalls and has been linked to the duplicate-loop class of
 bug. See [`docs/sync-loop-troubleshooting.md`](sync-loop-troubleshooting.md).
 
-For anything beyond this — disabling user registration, custom SMTP,
-extension server, payments — refer to the upstream
+For anything beyond this (disabling user registration, custom SMTP,
+extension server, payments) refer to the upstream
 [`.env.sample`](https://github.com/standardnotes/server/blob/main/.env.sample)
 and [self-hosting docs](https://standardnotes.com/help/self-hosting/getting-started).
 Add the corresponding variables as **Variable** entries to the Unraid

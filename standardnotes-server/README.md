@@ -17,7 +17,7 @@
 A clean, opinionated <b>Unraid Community Template</b> for the
 <a href="https://standardnotes.com">Standard Notes</a> self-hosted backend.
 Run your own end-to-end-encrypted notes server on Unraid in a few minutes,
-with <b>MariaDB</b> and <b>Redis</b> as separate, reusable containers — no
+with <b>MariaDB</b> and <b>Redis</b> as separate, reusable containers. No
 bundled databases, no surprises.
 </p>
 
@@ -66,8 +66,8 @@ Maintained solo, in whatever spare time there is. Questions via the <a href="htt
 > ⚠️ **Read this before you connect a real Standard Notes account.**
 > Diese Sektion bitte vor der ersten Anmeldung lesen.
 
-Self-hosted Standard Notes installations — including this Unraid
-template — can in rare configurations produce **massive note
+Self-hosted Standard Notes installations, including this Unraid
+template, can in rare configurations produce **massive note
 duplication**: a single new note replicates dozens or hundreds of
 times within seconds in the client. This is almost always a
 **configuration** problem in the surrounding stack (sync, cookies,
@@ -78,7 +78,7 @@ every additional client write makes the situation worse.
 
 - **Sync conflicts** between clients. Standard Notes' [official
   duplicate-handling docs](https://standardnotes.com/help/33/how-do-i-clear-duplicates)
-  state that the **server cannot decrypt or merge note content** — when
+  state that the **server cannot decrypt or merge note content**. When
   two clients sync conflicting versions of the same note, the app
   duplicates the conflicting copy on the client side. With several
   clients online and an unstable backend, the cascade can run away.
@@ -94,7 +94,7 @@ every additional client write makes the situation worse.
   with `SQSError: SQS receive message failed: getaddrinfo ENOTFOUND
   localstack` and background jobs fail in a loop. This destabilises
   the worker pipeline and is a known precursor to sync / duplication
-  problems — LocalStack is **not** optional in practice, see
+  problems, and LocalStack is **not** optional in practice, see
   [§ 2](#2-architecture).
 - **LocalStack reachable but uninitialised (no topics / queues).**
   Even when `localstack:4566` is connectable, LocalStack starts
@@ -121,7 +121,7 @@ every additional client write makes the situation worse.
   ```
   Both must list the `*-local-queue` / `*-local-topic` entries. An
   empty `Queues: []` / `Topics: []` means the bootstrap script did
-  not run — see [Step 2 of the Quick Start](#step-2--start-localstack-required-companion).
+  not run, see [Step 2 of the Quick Start](#step-2-start-localstack-required-companion).
 - **Bad `COOKIE_DOMAIN` / session-cookie handling behind a reverse
   proxy.** Symptoms include `No cookies provided for cookie-based
   session token` in the server log and a `/v1/items` request loop.
@@ -131,7 +131,7 @@ every additional client write makes the situation worse.
   clients require HTTPS; without it, `Secure` cookies are dropped and
   the session loop above can trigger.
 - **Wrong host or unreachable network** for `DB_HOST` / `REDIS_HOST`.
-  This template asks for IP addresses (e.g. `192.168.x.x`) — they
+  This template asks for IP addresses (e.g. `192.168.x.x`), which
   are unambiguous across Unraid's bridge / `br0` / VLAN setups. Make
   sure the IP is static (DHCP reservation or fixed) so it does not
   change on container restart.
@@ -140,11 +140,11 @@ every additional client write makes the situation worse.
   #102](https://github.com/standardnotes/syncing-server/issues/102)
   documents how mixing a stable web app with a development
   syncing-server caused `Syncing: 0/1` and duplicate cascades. That
-  repo is **archived and historical** — the current image is
-  `standardnotes/server` — but the same class of mismatch can still
+  repo is **archived and historical** (the current image is
+  `standardnotes/server`) but the same class of mismatch can still
   happen if you pin to a broken `latest`.
 
-### `https://` — where it belongs and where it does NOT
+### `https://`, where it belongs and where it does NOT
 
 A misplaced `https://` in `COOKIE_DOMAIN` is one of the most common
 self-host pitfalls and has been observed to cause the duplicate-loop
@@ -158,11 +158,11 @@ class of bug. Use this matrix:
 
 If you accidentally set `COOKIE_DOMAIN=https://standardnotesserver.mydomain.tld`,
 the server emits cookies for the literal string `https://...` which no
-browser will accept — sessions silently break, the client retries
+browser will accept. Sessions silently break, the client retries
 `/v1/items`, and conflict-resolution on the client can cascade into
 duplicates.
 
-### Emergency checklist — duplicates happening RIGHT NOW
+### Emergency checklist: duplicates happening RIGHT NOW
 
 > Stop first. Diagnose second. Edit nothing.
 
@@ -177,7 +177,7 @@ duplicates.
    duplicates.
 4. **Verify Redis is reachable from StandardNotes-Server.**
    The authoritative test runs from **inside** the
-   `StandardNotes-Server` container, using the actual Redis IP — that
+   `StandardNotes-Server` container, using the actual Redis IP, since that
    is the network namespace the server itself talks to Redis from:
 
     ```bash
@@ -191,11 +191,11 @@ duplicates.
     Replace `192.168.x.x` with your Redis container IP. Expected:
     `Redis TCP connected`. A timeout means a firewall / VLAN / `br0`
     routing problem between the server container's network and the
-    Redis host — fix it before anything else. Tail the server log for
+    Redis host, so fix it before anything else. Tail the server log for
     `ECONNREFUSED` / connection-timeout lines against that host.
 
     > 📌 You already run an **official Redis container** for the
-    > sync cache — there is no second Redis server to install. If you
+    > sync cache; there is no second Redis server to install. If you
     > also want a quick CLI ping with `redis-cli`, the
     > `redis:7-alpine` image can be launched as a **disposable client
     > container** (no persistent state, no second Redis server):
@@ -207,7 +207,7 @@ duplicates.
     >
     > On `br0` / macvlan / VLAN / static-IP setups the default
     > `docker run` lands on the **default bridge**, which usually
-    > **cannot route** to a VLAN container — so `--rm redis:7-alpine
+    > **cannot route** to a VLAN container, so `--rm redis:7-alpine
     > redis-cli ping` will time out even when Redis is healthy. Pass
     > `--network` (or `--ip` on the same `br0` / macvlan network as
     > Redis), or skip this client test entirely and trust the
@@ -226,13 +226,13 @@ duplicates.
     ```
 
     The first command must print a non-empty line. If it is empty,
-    Docker DNS cannot resolve `localstack` from the server container —
+    Docker DNS cannot resolve `localstack` from the server container,
     see the static-IP / `br0` / macvlan note below. Tail
     `/var/lib/server/logs/files-worker.log` for `SQSError: SQS receive
     message failed: getaddrinfo ENOTFOUND localstack`; if you see it,
     fix LocalStack reachability *before* reconnecting any client.
 
-    Then — **TCP-reachable is not enough**. LocalStack starts empty;
+    Then, **TCP-reachable is not enough**. LocalStack starts empty;
     the official `standardnotes/server` workers expect a fixed set of
     SNS topics and SQS queues to already exist. Verify they do:
 
@@ -248,7 +248,7 @@ duplicates.
     `files-local-queue`, `revisions-server-local-queue`,
     `analytics-local-queue`, `scheduler-local-queue` and the matching
     topics). An empty `Queues: []` / `Topics: []` means the bootstrap
-    script never ran — see *Emergency bootstrap (LocalStack already
+    script never ran, see *Emergency bootstrap (LocalStack already
     running, no queues)* below.
 
     > 📌 **Static IP / `br0` / macvlan / VLAN.** Docker's built-in
@@ -268,7 +268,7 @@ duplicates.
     >   then **append** `--add-host=localstack:<LocalStack-IP>` to
     >   StandardNotes-Server's *Extra Parameters* and restart it.
     >   `getent hosts localstack` must then return that IP.
-6. **Check `COOKIE_DOMAIN`.** Verify it is a **bare domain** —
+6. **Check `COOKIE_DOMAIN`.** Verify it is a **bare domain**:
    `standardnotesserver.mydomain.tld`, not `https://...`, not a URL,
    no trailing slash. Verify the Custom Sync Server URL in the client
    is the **full HTTPS URL** `https://standardnotesserver.mydomain.tld`.
@@ -287,7 +287,7 @@ If LocalStack is up and TCP-reachable but `sqs list-queues` /
 mounted (template was deployed before this fix, or the host file was
 missing on first start). LocalStack's `init/ready.d/` hook only fires
 **once**, so just restarting the container after fixing the mount is
-the long-term fix — but you can also bootstrap an already-running
+the long-term fix, but you can also bootstrap an already-running
 LocalStack in place, without recreating it:
 
 ```bash
@@ -313,10 +313,10 @@ docker exec StandardNotes-LocalStack \
 After this, **also** persist the fix for next time:
 
 1. Place the script at the host path the LocalStack template's
-   *LocalStack Bootstrap Script* Path mapping points at — by default
-   `/mnt/user/appdata/standardnotes/localstack_bootstrap.sh` — and
+   *LocalStack Bootstrap Script* Path mapping points at (by default
+   `/mnt/user/appdata/standardnotes/localstack_bootstrap.sh`) and
    `chmod +x` it. See
-   [Step 2 of the Quick Start](#step-2--start-localstack-required-companion)
+   [Step 2 of the Quick Start](#step-2-start-localstack-required-companion)
    for the one-liner.
 2. Restart `StandardNotes-Server` so its workers reconnect against the
    now-populated SNS / SQS.
@@ -332,13 +332,13 @@ After this, **also** persist the fix for next time:
    `standardnotes.com` (or your existing self-hosted server) **before**
    reconnecting any existing client.
 4. **If duplication starts: stop.** Stop all clients, stop the server
-   container, inspect logs and database. Do **not** keep editing —
+   container, inspect logs and database. Do **not** keep editing,
    each edit can fan out further.
 
 Full step-by-step checklist:
 [`docs/sync-loop-troubleshooting.md`](docs/sync-loop-troubleshooting.md).
 
-### Known risk — official + historical context
+### Known risk: official and historical context
 
 - **Official:** Standard Notes' help article *How do I clear
   duplicates?* states that duplicates are an **app-side conflict
@@ -353,8 +353,8 @@ Full step-by-step checklist:
   where stable web app + `dev`/`latest` syncing-server produced
   `Syncing: 0/1` plus duplicate cascades. That repo is no longer the
   current self-host backend (the current image is
-  `standardnotes/server`), but the lesson — *don't mix
-  unstable image tags with stable clients* — still applies.
+  `standardnotes/server`), but the lesson, *don't mix
+  unstable image tags with stable clients*, still applies.
 - **Self-hosted session loop:** Forum
   [issue #3635](https://github.com/standardnotes/forum/issues/3635)
   describes the `No cookies provided for cookie-based session token`
@@ -369,13 +369,13 @@ Full step-by-step checklist:
 This repository ships **Unraid Community Application templates** for the
 [official `standardnotes/server` Docker image](https://hub.docker.com/r/standardnotes/server),
 plus a **LocalStack** companion template (required companion for the
-official Standard Notes server image — see [§ 2](#2-architecture)) that
+official Standard Notes server image, see [§ 2](#2-architecture)) that
 mirrors the
 [upstream `docker-compose.example.yml`](https://github.com/standardnotes/server/blob/main/docker-compose.example.yml).
 
 What it deliberately does **not** do:
 
-- **No bundled MariaDB.** You bring your own MariaDB container —
+- **No bundled MariaDB.** You bring your own MariaDB container and
   reuse the one you already run for Nextcloud, Vaultwarden, Photoprism,
   whatever. One DB engine for all your apps.
 - **No bundled Redis.** Same logic. Reuse your existing Redis container.
@@ -390,7 +390,7 @@ What it deliberately does **not** do:
 
 What it does do:
 
-- **One Unraid template per concern** — `StandardNotes-Server` and
+- **One Unraid template per concern**: `StandardNotes-Server` and
   the required companion `StandardNotes-LocalStack` (SNS / SQS). The
   browser client lives in the companion repo as its own
   `StandardNotes-WebUI` template.
@@ -410,7 +410,7 @@ What it does do:
   [`.env.sample`](https://github.com/standardnotes/server/blob/main/.env.sample).
 - **Every secret marked `Mask="true"`** in the template, so the Unraid UI
   hides them by default.
-- **Volumes match upstream paths** — `/var/lib/server/logs` and
+- **Volumes match upstream paths**: `/var/lib/server/logs` and
   `/opt/server/packages/files/dist/uploads`.
 - **All in German/English-friendly self-hosting docs**, focused on getting
   you to a working install without surprises.
@@ -435,7 +435,7 @@ points users frequently ask about:
   Files quota, Listed, etc.) are gated by Standard Notes' own licensing
   / subscription checks, which live in the official clients and the
   upstream server. This template **does not** patch, bypass, or
-  otherwise modify those checks — it deploys the upstream image as-is.
+  otherwise modify those checks; it deploys the upstream image as-is.
   Self-hosting gives you data ownership and a free Sync server; it does
   not turn a free account into a paid one.
 - **Web UI is intentionally a separate, optional container.** If you
@@ -444,7 +444,7 @@ points users frequently ask about:
   image as its **own** Unraid container and point it at this server via
   your reverse proxy. The companion template
   [`junkerderprovinz/standardnotes-webui`](../standardnotes-webui/)
-  ships exactly that — container name `StandardNotes-WebUI`, default host
+  ships exactly that: container name `StandardNotes-WebUI`, default host
   port `3001` to avoid the backend's `:3000`. Keeping web and server
   separate mirrors upstream's own `docker-compose.example.yml`, makes
   upgrades independent, and avoids the maintenance burden of a custom
@@ -480,27 +480,26 @@ points users frequently ask about:
 
 The Standard Notes server image talks to:
 
-- **MariaDB** — schema migrations run automatically on first start.
-- **Redis** — cache, queues, rate limits.
-- **LocalStack** — **required companion** for the official
+- **MariaDB**: schema migrations run automatically on first start.
+- **Redis**: cache, queues, rate limits.
+- **LocalStack**: **required companion** for the official
   `standardnotes/server` image. Provides the SNS / SQS endpoints the
   worker process expects to reach at `localstack:4566` on every
   self-hosted setup. Without it, `files-worker.log` fills with
   `SQSError: SQS receive message failed: getaddrinfo ENOTFOUND
-  localstack` and background jobs stall — destabilising sync and
-  contributing to duplication. Earlier passes called LocalStack
-  *optional*; live installs show it is required for a stable full
-  install.
+  localstack` and background jobs stall, destabilising sync and
+  contributing to duplication. Live installs need it for a stable full
+  install, so treat it as required rather than optional.
 
 ### Why each component is required
 
 | Component | Role | What breaks if missing |
 |---|---|---|
-| **MariaDB** | Persistent store for users, items (encrypted note blobs), sessions, settings and migration metadata. | Server fails to start — no schema, no auth, no notes. |
+| **MariaDB** | Persistent store for users, items (encrypted note blobs), sessions, settings and migration metadata. | Server fails to start: no schema, no auth, no notes. |
 | **Redis** | Cache, ephemeral session state, rate-limit counters, sync deduplication state shared across worker processes. | Sessions and `/v1/items` sync state are not deduplicated correctly across requests; `ECONNREFUSED` / timeout in logs; sync loops and duplicate notes become possible. |
 | **StandardNotes-LocalStack** | Emulates AWS SNS topics and SQS queues that `standardnotes/server` workers (auth, syncing-server, files, revisions, analytics, scheduler) publish to and consume from. Bootstrap script pre-creates the exact topics / queues upstream expects. | `files-worker.log` fills with `getaddrinfo ENOTFOUND localstack`; even when TCP-reachable but **unbootstrapped**, account creation hangs and the first note duplicates infinitely. |
-| **StandardNotes-Server** | Standard Notes API gateway, sync server, auth server and files server, all in one image. End-to-end-encrypted note bodies are stored encrypted; the server cannot read them. | The whole stack — no API to talk to. |
-| **StandardNotes-WebUI** *(separate repo)* | Official `standardnotes/web` browser client. Pure static UI served on container port `80`; the sync server is configured per-browser at runtime via *Advanced options → Custom Sync Server*. | Optional — desktop / mobile apps work without it. Without it you simply have no browser client. |
+| **StandardNotes-Server** | Standard Notes API gateway, sync server, auth server and files server, all in one image. End-to-end-encrypted note bodies are stored encrypted; the server cannot read them. | The whole stack, with no API to talk to. |
+| **StandardNotes-WebUI** *(separate repo)* | Official `standardnotes/web` browser client. Pure static UI served on container port `80`; the sync server is configured per-browser at runtime via *Advanced options → Custom Sync Server*. | Optional, because desktop / mobile apps work without it. Without it you simply have no browser client. |
 
 ### Install order (mandatory)
 
@@ -516,21 +515,21 @@ inside the next container.
    [§ 5](#5-database--cache).
 3. **StandardNotes-LocalStack** (this repo, companion). Drop the
    bootstrap script on the Unraid host **before** first start so the
-   init hook runs automatically (see [§ 3 Step 2](#step-2--start-localstack-required-companion)).
+   init hook runs automatically (see [§ 3 Step 2](#step-2-start-localstack-required-companion)).
 4. **StandardNotes-Server** (this repo, main template). On
    `br0` / macvlan / VLAN / static-IP installs, append
    `--add-host=localstack:<LocalStack-IP>` to *Extra Parameters*
-   **before** starting it for the first time — Docker's embedded DNS
+   **before** starting it for the first time, because Docker's embedded DNS
    does not resolve container names across `br0` / macvlan, and
    without `--add-host` the workers cannot find `localstack`.
 5. **StandardNotes-WebUI** *(optional)* from the separate companion
    repo [`standardnotes-webui`](../standardnotes-webui/).
-   Install last — it only needs the backend's public HTTPS URL.
+   Install it last; it only needs the backend's public HTTPS URL.
 6. **Reverse-proxy hosts (NPM / SWAG / Traefik / Caddy)** for the
    backend, optional files server, and WebUI. These can be created any
    time after the corresponding container is running, but **must exist
    before** a real client (desktop, mobile, browser) is pointed at the
-   server — clients require HTTPS, and `Secure` session cookies are
+   server, because clients require HTTPS and `Secure` session cookies are
    dropped over plain HTTP. See [§ 8](#8-reverse-proxy).
 
 <br>
@@ -548,28 +547,28 @@ inside the next container.
 > [§ 0](#0-sync-loop--duplicate-notes-guardrails) and
 > [§ 11](#11-troubleshooting).
 
-### Step 0 — Pre-flight
+### Step 0: Pre-flight
 
 You will need:
 
 - An Unraid server with **Community Applications** installed.
-- A **MariaDB** container reachable from the Unraid host — see
+- A **MariaDB** container reachable from the Unraid host, see
   [§ 5](#5-database--cache).
-- A **Redis** container reachable from the Unraid host — see [§ 5](#5-database--cache).
+- A **Redis** container reachable from the Unraid host, see [§ 5](#5-database--cache).
 - A **LocalStack** container resolvable as the hostname `localstack`
-  from the server container — required companion, see
+  from the server container, a required companion, see
   [§ 2](#2-architecture).
-- Three 32-byte hex secrets — see [§ 4](#4-generating-secrets).
-- A reverse proxy with HTTPS — see [§ 8](#8-reverse-proxy).
+- Three 32-byte hex secrets, see [§ 4](#4-generating-secrets).
+- A reverse proxy with HTTPS, see [§ 8](#8-reverse-proxy).
 
-### Step 1 — Install the templates
+### Step 1: Install the templates
 
 The repository ships two templates:
 
-- `templates/standardnotes-server.xml` — the Standard Notes backend.
-- `templates/standardnotes-localstack.xml` — required companion SNS /
+- `templates/standardnotes-server.xml`, the Standard Notes backend.
+- `templates/standardnotes-localstack.xml`, the required companion SNS /
   SQS provider (must be reachable at `localstack:4566` from the
-  server container — see [§ 2](#2-architecture)).
+  server container, see [§ 2](#2-architecture)).
 
 Pull the templates into Unraid's user-template folder via the Unraid
 console / SSH:
@@ -589,11 +588,11 @@ curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-StandardNotes-Loc
 > there appear under **Docker → Add Container → Template → User
 > templates** without restarting Docker.
 
-### Step 2 — Start LocalStack (required companion)
+### Step 2: Start LocalStack (required companion)
 
 **First**, drop the bootstrap script on the Unraid host. LocalStack
 starts empty and `standardnotes/server` workers expect a fixed set
-of SNS topics and SQS queues — without them, account creation hangs
+of SNS topics and SQS queues. Without them, account creation hangs
 and notes can duplicate even though TCP `4566` connects fine.
 Upstream solves this by mounting a one-time init script into
 `/etc/localstack/init/ready.d/`; this repo ships the same script at
@@ -611,10 +610,10 @@ chmod +x /mnt/user/appdata/standardnotes/localstack_bootstrap.sh
 Then, in the Unraid Web UI: **Docker** → **Add Container** → in the
 **Template** dropdown, pick **StandardNotes-LocalStack** under
 *User templates*. Leave the *LocalStack Bootstrap Script* Path
-mapping at its default — it points at the file you just placed.
+mapping at its default; it points at the file you just placed.
 
 - **User-defined Docker network setup** (server + LocalStack on the
-  same custom bridge): no further configuration needed — give the
+  same custom bridge): no further configuration needed, just give the
   LocalStack container the network alias `localstack` (Unraid:
   Advanced → Network alias) and Docker's embedded DNS will handle
   the rest.
@@ -625,7 +624,7 @@ mapping at its default — it points at the file you just placed.
   `192.168.x.x`). Then, in `StandardNotes-Server`'s **Extra
   Parameters**, **append** `--add-host=localstack:<LocalStack-IP>`
   (substituting the IP you assigned). Docker's embedded DNS does
-  *not* resolve container names across `br0` / macvlan — `--add-host`
+  *not* resolve container names across `br0` / macvlan, so `--add-host`
   is what makes the literal name `localstack` resolve in this case.
 
 Hit **Apply**. Once LocalStack reports ready, verify the bootstrap
@@ -643,7 +642,7 @@ Expected: each command lists multiple `*-local-queue` /
 `syncing-server-local-queue`, `files-local-queue`,
 `revisions-server-local-queue`, `analytics-local-queue`,
 `scheduler-local-queue`, plus the matching topics). An empty
-`Queues: []` / `Topics: []` means the script never ran — most often
+`Queues: []` / `Topics: []` means the script never ran, most often
 because the host file was missing on first start. Fix the host
 file and either recreate the container, or use the **emergency
 bootstrap** under
@@ -670,13 +669,13 @@ populate the running container in place.
 > / VLAN / static-IP installs, `getent hosts localstack` returning
 > empty (and `getaddrinfo ENOTFOUND localstack` from the node probe)
 > means the `--add-host=localstack:<LocalStack-IP>` mapping is
-> missing from `StandardNotes-Server`'s *Extra Parameters* — add it
+> missing from `StandardNotes-Server`'s *Extra Parameters*, so add it
 > and restart the server container. See
 > [§ 11](#11-troubleshooting) and
 > [`docs/sync-loop-troubleshooting.md`](docs/sync-loop-troubleshooting.md)
 > for more.
 
-### Step 3 — Start the Standard Notes server
+### Step 3: Start the Standard Notes server
 
 **Docker** → **Add Container** → pick **StandardNotes-Server** under
 *User templates*. Fill in:
@@ -688,7 +687,7 @@ populate the running container in place.
   outputs of `openssl rand -hex 32` (see [§ 4](#4-generating-secrets)).
 
 Hit **Apply**. First start runs the schema migrations, which can take
-20–60 seconds. Watch the container log; you should eventually see the
+20 to 60 seconds. Watch the container log; you should eventually see the
 API gateway listening on port 3000.
 
 #### Example values (shape reference)
@@ -703,13 +702,13 @@ password into a public template).
 | MariaDB Host | `192.168.x.x` |
 | MariaDB Port | `3306` |
 | MariaDB User | `std_notes_user` |
-| MariaDB Password | *(your own — store in password manager)* |
+| MariaDB Password | *(your own, stored in a password manager)* |
 | MariaDB Database Name | `standard_notes_db` *(already created)* |
-| Database Driver (`DB_TYPE`) | `mysql` *(internal driver value required for MariaDB — see § 6)* |
+| Database Driver (`DB_TYPE`) | `mysql` *(internal driver value required for MariaDB, see § 6)* |
 | Redis Host | `192.168.x.x` |
 | Redis Port | `6379` |
-| Cookie Domain (`COOKIE_DOMAIN`) | `standardnotesserver.mydomain.tld` *(bare domain — no `https://`)* |
-| Public Files Server URL (`PUBLIC_FILES_SERVER_URL`) | *(optional)* `https://files.standardnotesserver.mydomain.tld` *(full HTTPS URL — includes `https://`)* — leave empty to skip attachments — see [§ 8](#8-reverse-proxy) |
+| Cookie Domain (`COOKIE_DOMAIN`) | `standardnotesserver.mydomain.tld` *(bare domain, no `https://`)* |
+| Public Files Server URL (`PUBLIC_FILES_SERVER_URL`) | *(optional)* `https://files.standardnotesserver.mydomain.tld` *(full HTTPS URL, including `https://`)*. Leave empty to skip attachments, see [§ 8](#8-reverse-proxy) |
 | Custom Sync Server *(entered in the client / web app)* | `https://standardnotesserver.mydomain.tld` *(full HTTPS URL)* |
 
 > 💡 This template asks for **IP addresses** for the MariaDB and Redis
@@ -718,7 +717,7 @@ password into a public template).
 > reassigned. Use a static / DHCP-reserved address so the IP doesn't
 > change on container restart.
 
-### Step 4 — Reverse-proxy & connect a client
+### Step 4: Reverse-proxy & connect a client
 
 Point your reverse proxy at `http://<unraid-ip>:3000`. Open the official
 [Standard Notes app](https://standardnotes.com/download) → **Advanced
@@ -751,7 +750,7 @@ matching fields in the Unraid template.
 ## 5. Database & Cache
 
 This template intentionally does **not** bundle a database or Redis. Run
-them as separate Unraid containers — that way one DB engine and one
+them as separate Unraid containers, so that one DB engine and one
 Redis serve all your self-hosted apps.
 
 ### MariaDB
@@ -776,7 +775,7 @@ Then put the resulting `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`,
 
 > ℹ️ **About `DB_TYPE=mysql`.** Standard Notes' upstream image uses the
 > TypeORM `mysql` driver string, which is the same driver used to talk
-> to MariaDB. Leave `DB_TYPE=mysql` — it is an **internal driver value
+> to MariaDB. Leave `DB_TYPE=mysql`; it is an **internal driver value
 > required for MariaDB**, not an instruction to install MySQL.
 
 ### Redis
@@ -801,7 +800,7 @@ Set the Redis Host field to the **IP address** of your Redis container
 
 ## 6. Configuration Reference
 
-### Server template — environment variables
+### Server template: environment variables
 
 | Variable | Default | Description |
 |---|---|---|
@@ -810,15 +809,15 @@ Set the Redis Host field to the **IP address** of your Redis container
 | `DB_USERNAME` | `std_notes_user` | DB user |
 | `DB_PASSWORD` | *(required)* | DB password |
 | `DB_DATABASE` | `standard_notes_db` | DB name |
-| `DB_TYPE` | `mysql` | **Internal driver value required for MariaDB.** Standard Notes / TypeORM uses the `mysql` driver string to talk to MariaDB — leave at `mysql`. |
+| `DB_TYPE` | `mysql` | **Internal driver value required for MariaDB.** Standard Notes / TypeORM uses the `mysql` driver string to talk to MariaDB, so leave it at `mysql`. |
 | `REDIS_HOST` | *(required)* | IP address of your Redis container, e.g. `192.168.x.x` |
 | `REDIS_PORT` | `6379` | Redis port |
 | `CACHE_TYPE` | `redis` | Leave at `redis` |
-| `AUTH_JWT_SECRET` | *(required)* | 32-byte hex — see [§ 4](#4-generating-secrets) |
-| `AUTH_SERVER_ENCRYPTION_SERVER_KEY` | *(required)* | 32-byte hex — see [§ 4](#4-generating-secrets) |
-| `VALET_TOKEN_SECRET` | *(required)* | 32-byte hex — see [§ 4](#4-generating-secrets) |
+| `AUTH_JWT_SECRET` | *(required)* | 32-byte hex, see [§ 4](#4-generating-secrets) |
+| `AUTH_SERVER_ENCRYPTION_SERVER_KEY` | *(required)* | 32-byte hex, see [§ 4](#4-generating-secrets) |
+| `VALET_TOKEN_SECRET` | *(required)* | 32-byte hex, see [§ 4](#4-generating-secrets) |
 | `PUBLIC_FILES_SERVER_URL` | *(empty)* | **Full HTTPS URL** of the files server (includes `https://`), e.g. `https://files.standardnotesserver.mydomain.tld`. Set only when you reverse-proxy the files server on its own subdomain. |
-| `COOKIE_DOMAIN` | *(empty)* | **Bare domain only — no protocol, no `https://`, no path.** Example: `standardnotesserver.mydomain.tld` ✅. Wrong: `https://standardnotesserver.mydomain.tld` ❌ (that's a URL — it breaks session cookies). The Custom Sync Server URL entered in clients is a separate value and *is* a full HTTPS URL: `https://standardnotesserver.mydomain.tld`. HTTPS is required for `Secure` cookies outside `localhost`. Wrong value → `No cookies provided for cookie-based session token` and a possible sync loop. See [§ 0](#0-sync-loop--duplicate-notes-guardrails). |
+| `COOKIE_DOMAIN` | *(empty)* | **Bare domain only: no protocol, no `https://`, no path.** Example: `standardnotesserver.mydomain.tld` ✅. Wrong: `https://standardnotesserver.mydomain.tld` ❌ (that's a URL, and it breaks session cookies). The Custom Sync Server URL entered in clients is a separate value and *is* a full HTTPS URL: `https://standardnotesserver.mydomain.tld`. HTTPS is required for `Secure` cookies outside `localhost`. Wrong value → `No cookies provided for cookie-based session token` and a possible sync loop. See [§ 0](#0-sync-loop--duplicate-notes-guardrails). |
 
 ### Ports & Volumes
 
@@ -839,7 +838,7 @@ included for reference / non-Unraid use.
 
 ## 7. Security
 
-- **Always** put Standard Notes behind HTTPS — never publish port 3000
+- **Always** put Standard Notes behind HTTPS, and never publish port 3000
   directly. Standard Notes itself is end-to-end encrypted, but TLS still
   matters for auth tokens and metadata.
 - **Back up your secrets** (the three `openssl rand -hex 32` outputs)
@@ -851,7 +850,7 @@ included for reference / non-Unraid use.
   want the world signing up. See the
   [official self-hosting docs](https://standardnotes.com/help/self-hosting/getting-started)
   for the relevant environment variable.
-- **Patch regularly** — `docker pull standardnotes/server:latest` and
+- **Patch regularly**: `docker pull standardnotes/server:latest` and
   recreate, see [§ 10](#10-updating).
 
 <br>
@@ -881,22 +880,22 @@ In the NPM UI, **Hosts → Proxy Hosts → Add Proxy Host**:
 - **Forward Port:** `3000`
 - **Block Common Exploits:** on
 - **Websockets Support:** on
-- **SSL** tab — request a Let's Encrypt cert, **Force SSL** on,
+- **SSL** tab: request a Let's Encrypt cert, **Force SSL** on,
   **HTTP/2 Support** on, **HSTS** on once you've confirmed the cert
   renews automatically.
 
 Then in the Standard Notes template, set:
 
 - `COOKIE_DOMAIN=standardnotesserver.mydomain.tld`
-  — **bare domain only**, no `https://`, no trailing slash.
+  is a **bare domain only**, no `https://`, no trailing slash.
 - (optional) `PUBLIC_FILES_SERVER_URL=https://files.standardnotesserver.mydomain.tld`
-  — **full HTTPS URL** (with `https://`); set only if you also create a
+  is a **full HTTPS URL** (with `https://`); set it only if you also create a
   separate proxy host for the files server (see below).
 
 In the Standard Notes desktop / mobile / web client, the **Custom Sync
 Server** field is also a full HTTPS URL: `https://standardnotesserver.mydomain.tld`.
 
-### Files server — is a second subdomain required?
+### Files server: is a second subdomain required?
 
 **Short answer:** No, a second subdomain is not strictly required, but
 for any **fully configured public** setup with attachments it is the
@@ -905,14 +904,14 @@ recommended path.
 The Standard Notes **files server** listens on container port `3104`
 internally; the upstream `docker-compose.example.yml` publishes that as
 host port `3125` (mapping `3125:3104`). Forward your reverse proxy to
-**host port 3125** — never to `3104` directly, since `3104` is the
+**host port 3125**, never to `3104` directly, since `3104` is the
 internal container port and is not exposed by this template. The
 official Docker docs expose the sync server on `:3000` and the files
 server on `:3125` and configure `PUBLIC_FILES_SERVER_URL` to a separate
-URL — that is the upstream shape. Two options:
+URL, which is the upstream shape. Two options:
 
 1. **Skip attachments (simplest).** Leave **Public Files Server URL**
-   empty. Note creation, editing, and sync all work — only attachment
+   empty. Note creation, editing, and sync all work; only attachment
    upload/download is disabled. This is the intended path for a
    minimal community-template install.
 2. **Two NPM proxy hosts / two subdomains (recommended for full
@@ -969,12 +968,12 @@ the template's *Public Files Server URL* field.
 Three things to back up, in order of importance:
 
 1. **The three secrets** (`AUTH_JWT_SECRET`,
-   `AUTH_SERVER_ENCRYPTION_SERVER_KEY`, `VALET_TOKEN_SECRET`) — store in
+   `AUTH_SERVER_ENCRYPTION_SERVER_KEY`, `VALET_TOKEN_SECRET`), stored in
    your password manager.
-2. **The database** — daily `mysqldump` of `standard_notes_db`, kept
+2. **The database**: a daily `mysqldump` of `standard_notes_db`, kept
    off-site. The Unraid plugins
    *MariaDB-Backup* / *appdata.backup* both work.
-3. **The uploads folder** — `/mnt/user/appdata/standardnotes/uploads`
+3. **The uploads folder**: `/mnt/user/appdata/standardnotes/uploads`
    (encrypted blobs from the files server).
 
 Restoring is the reverse: provision a fresh DB and Redis, paste the
@@ -993,7 +992,7 @@ docker stop StandardNotes-Server && docker rm StandardNotes-Server
 
 On Unraid: **Docker** tab → click the container → **Force Update**. Your
 appdata is untouched. Migrations, if any, run automatically on the next
-start — watch the log for errors.
+start, so watch the log for errors.
 
 <br>
 
@@ -1032,7 +1031,7 @@ start — watch the log for errors.
 - Confirm port `3125` is reachable through the reverse proxy.
 - If the files server is on a separate hostname, set
   `PUBLIC_FILES_SERVER_URL` in the template.
-- Check `VALET_TOKEN_SECRET` is set (no default — required).
+- Check `VALET_TOKEN_SECRET` is set (no default, it is required).
 </details>
 
 <details>
@@ -1041,7 +1040,7 @@ start — watch the log for errors.
 - `getaddrinfo ENOTFOUND localstack` in
   `/var/lib/server/logs/files-worker.log` means the worker cannot
   resolve the hostname `localstack`. LocalStack is the **required
-  companion** for the official `standardnotes/server` image — install
+  companion** for the official `standardnotes/server` image, so install
   / start it, and ensure DNS resolves before testing notes. Worker
   logs must not show `ENOTFOUND localstack` on a stable install.
 - Resolution test from the server container:
@@ -1061,15 +1060,15 @@ start — watch the log for errors.
   user-defined Docker network. Either put StandardNotes-Server and
   StandardNotes-LocalStack on the **same user-defined Docker
   network** and give LocalStack the network alias `localstack`, or
-  — on `br0` / macvlan / VLAN / static-IP installs — install
+  on `br0` / macvlan / VLAN / static-IP installs, install
   `StandardNotes-LocalStack` on the same VLAN with a fixed IP and
   add `--add-host=localstack:<LocalStack-IP>` to the server
   template's *Extra Parameters* (then restart the server container).
 - If you have a deliberate alternative SNS / SQS provider, configure
-  the matching upstream env vars instead — but for a default
+  the matching upstream env vars instead, but for a default
   community-template install, LocalStack is the supported path.
 
-> A files-only deployment (no notes sync — just attachments) can in
+> A files-only deployment (no notes sync, just attachments) can in
 > theory skip the queue path, but the upstream image still resolves
 > the LocalStack hostname on startup. Even there, worker logs **must
 > not** show `ENOTFOUND localstack`.
@@ -1082,12 +1081,12 @@ start — watch the log for errors.
   keep editing. See [§ 0](#0-sync-loop--duplicate-notes-guardrails).
 - Check the server log for `No cookies provided for cookie-based
   session token`, `ECONNREFUSED`, repeated `/v1/items` 401/500 calls,
-  `duplicate_of` cascades, or — in
-  `/var/lib/server/logs/files-worker.log` — `SQSError: SQS receive
+  `duplicate_of` cascades, or, in
+  `/var/lib/server/logs/files-worker.log`, `SQSError: SQS receive
   message failed: getaddrinfo ENOTFOUND localstack`.
 - Verify `REDIS_HOST` / `REDIS_PORT` point at the right **IP** and
   that the Redis container is actually reachable from the
-  StandardNotes-Server container (this is the authoritative test —
+  StandardNotes-Server container (this is the authoritative test, in the
   same network namespace the server itself uses):
 
     ```bash
@@ -1100,18 +1099,18 @@ start — watch the log for errors.
 
     A throwaway `docker run --rm redis:7-alpine redis-cli -h ... ping`
     is only useful **if** it is launched on a network that can route
-    to your Redis container — on `br0` / macvlan / VLAN / static-IP
+    to your Redis container; on `br0` / macvlan / VLAN / static-IP
     setups the default bridge usually cannot. The `redis:7-alpine`
     image is not a second Redis server; it is only a way to get a
     `redis-cli` binary on demand.
 - Verify LocalStack is running and the hostname `localstack`
   resolves from the server container (`docker exec StandardNotes-Server
-  getent hosts localstack`) — worker logs must not show `ENOTFOUND
+  getent hosts localstack`). Worker logs must not show `ENOTFOUND
   localstack`.
 - Verify `COOKIE_DOMAIN` matches your public sync host and that the
   reverse proxy serves the API over **HTTPS**.
 - Roll back to a known-good `standardnotes/server` tag if you recently
-  upgraded — pin the tag directly in the template's *Repository* field
+  upgraded, pinning the tag directly in the template's *Repository* field
   (e.g. `standardnotes/server:1.32.0`); see
   [`docs/sync-loop-troubleshooting.md`](docs/sync-loop-troubleshooting.md).
 - **Always test with a fresh throwaway account first** before pointing
@@ -1123,7 +1122,7 @@ start — watch the log for errors.
 
 - Symptom: opening the StandardNotes-Server (or LocalStack / WebUI)
   container, clicking *Edit*, and seeing all variables back at the
-  template defaults — `192.168.x.x`, blank secrets, etc. — even
+  template defaults (`192.168.x.x`, blank secrets, etc.) even
   right after a successful install.
 - Edit the **existing container**, not the template: in Unraid, go
   to *Docker* → click the container's icon → *Edit*. That loads the
@@ -1142,7 +1141,7 @@ start — watch the log for errors.
   reliably persists and re-displays each value. If you had an older
   copy of the template without inner text and edited the container
   before this fix, re-installing the container from the updated
-  template (or manually re-entering your values once) is enough —
+  template (or manually re-entering your values once) is enough, and
   no data is lost on disk.
 </details>
 
@@ -1173,7 +1172,7 @@ This wrapper repository (Unraid templates, README, banner / icon artwork,
 example env file) is MIT-licensed. The upstream `standardnotes/server`,
 LocalStack, MariaDB and Redis images retain their own upstream licenses
 (Standard Notes: AGPL-3.0; LocalStack: Apache-2.0; MariaDB: GPL-2.0;
-Redis: see upstream) — comply with those when running or redistributing
+Redis: see upstream); comply with those when running or redistributing
 the resulting stack.
 
 ```bash
@@ -1183,14 +1182,14 @@ xmllint --noout templates/*.xml
 
 ### Credits
 
-- [**Standard Notes**](https://standardnotes.com) — the actual project &
+- [**Standard Notes**](https://standardnotes.com), the actual project &
   upstream Docker images
 - [**Standard Notes server repo**](https://github.com/standardnotes/server)
-  — source of the canonical `.env.sample` and `docker-compose.example.yml`
-- [**LocalStack**](https://github.com/localstack/localstack) — SNS / SQS
+  is the source of the canonical `.env.sample` and `docker-compose.example.yml`
+- [**LocalStack**](https://github.com/localstack/localstack), the SNS / SQS
   emulation
-- [**Unraid Community Applications**](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
-  — the distribution channel
+- [**Unraid Community Applications**](https://forums.unraid.net/topic/38582-plug-in-community-applications/),
+  the distribution channel
 
 <br>
 

@@ -11,7 +11,7 @@
   <Project>https://standardnotes.com</Project>
   <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/standardnotes-webui/README.md</ReadMe>
   <Overview>
-    Standard Notes – browser web client for Unraid (community template).&#xD;
+    Standard Notes: browser web client for Unraid (community template).&#xD;
     Runs the official standardnotes/web image as a static-served web app&#xD;
     on port 80 inside the container, exposed on host port 3001 by default&#xD;
     to avoid clashing with the Standard Notes server's :3000 API gateway.&#xD;
@@ -20,7 +20,7 @@
     running Standard Notes backend (see the companion folder&#xD;
     https://github.com/junkerderprovinz/unraid-apps/tree/main/standardnotes-server&#xD;
     in this template repo, container name "StandardNotes-Server").&#xD;
-    The web client itself does not host a sync server — it is just the&#xD;
+    The web client itself does not host a sync server. It is just the&#xD;
     browser UI.&#xD;
     &#xD;
     Configuring the sync server:&#xD;
@@ -29,7 +29,7 @@
     "Advanced options" on the sign-in / sign-up screen and set&#xD;
     Custom Sync Server = https://standardnotesserver.mydomain.tld (your own&#xD;
     backend URL). The official Docker docs only document&#xD;
-    "docker run -d -p 3000:80 standardnotes/web" — no sync-server env&#xD;
+    "docker run -d -p 3000:80 standardnotes/web", and no sync-server env&#xD;
     var is exposed, so this template intentionally does not invent one.&#xD;
     &#xD;
     Recommended reverse-proxy setup (Nginx Proxy Manager):&#xD;
@@ -38,7 +38,7 @@
     Forward Port: 3001 (the host port chosen below)&#xD;
     Force SSL + Let's Encrypt + HTTP/2 ON.&#xD;
     Then in the web app, set Custom Sync Server =&#xD;
-    https://standardnotesserver.mydomain.tld (the BACKEND domain — not the&#xD;
+    https://standardnotesserver.mydomain.tld (the BACKEND domain, not the&#xD;
     web-app domain).&#xD;
     &#xD;
     Notes:&#xD;
@@ -53,7 +53,7 @@
       NOT patch, bypass, or otherwise modify those checks.&#xD;
     • Always reach the web client through your HTTPS reverse proxy.&#xD;
       The container serves plain HTTP on port 80 internally, but the&#xD;
-      browser MUST load it over HTTPS — Standard Notes uses WebCrypto&#xD;
+      browser MUST load it over HTTPS, because Standard Notes uses WebCrypto&#xD;
       (window.crypto.subtle) for account key derivation, and browsers&#xD;
       only expose it on secure contexts. Opening the web app over&#xD;
       http://[unraid-ip]:[port]/ will fail at sign-up with&#xD;
@@ -74,7 +74,7 @@
 
   <!-- Port: host 3001 to avoid the backend's :3000 -->
   <Config Name="WebUI Port" Target="80" Default="3001" Mode="tcp"
-          Description="Host port for the Standard Notes web client (container listens on 80). Default 3001 — the backend uses 3000 on the same Unraid host, so the WebUI takes a different port. If you give this container its own custom IP on br0/macvlan, the host port is unused and you can leave it at the default; your reverse proxy forwards directly to the container IP on port 80. Always put the web app behind an HTTPS reverse proxy — opening it over plain http://[ip]:[port]/ breaks account creation (crypto.subtle is undefined)."
+          Description="Host port for the Standard Notes web client (container listens on 80). Default 3001, because the backend uses 3000 on the same Unraid host, so the WebUI takes a different port. If you give this container its own custom IP on br0/macvlan, the host port is unused and you can leave it at the default; your reverse proxy forwards directly to the container IP on port 80. Always put the web app behind an HTTPS reverse proxy: opening it over plain http://[ip]:[port]/ breaks account creation (crypto.subtle is undefined)."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
 
 </Container>

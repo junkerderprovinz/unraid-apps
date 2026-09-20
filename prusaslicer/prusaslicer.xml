@@ -11,16 +11,16 @@
   <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://www.prusa3d.com/prusaslicer/</Project>
   <Overview>
-PrusaSlicer — the FDM/SLA 3D-printing slicer from Prusa Research — on a Selkies web desktop. Slice in your browser: no VNC client, no local install. LinuxServer ship OrcaSlicer and Cura on Selkies but no PrusaSlicer; the only other browser images are years-old, abandoned noVNC builds. This is a maintained, modern Selkies (WebRTC) build for amd64 and arm64.&#xD;
+PrusaSlicer, the FDM/SLA 3D-printing slicer from Prusa Research, on a Selkies web desktop. Slice in your browser: no VNC client, no local install. LinuxServer ship OrcaSlicer and Cura on Selkies but no PrusaSlicer; the only other browser images are years-old, abandoned noVNC builds. This is a maintained, modern Selkies (WebRTC) build for amd64 and arm64.&#xD;
 &#xD;
 What you get:&#xD;
-• The full PrusaSlicer desktop app, streamed over WebRTC (Selkies) so the 3D plate stays smooth to rotate, zoom and drag — the part of slicing where the old noVNC containers feel laggy.&#xD;
+• The full PrusaSlicer desktop app, streamed over WebRTC (Selkies) so the 3D plate stays smooth to rotate, zoom and drag, the part of slicing where the old noVNC containers feel laggy.&#xD;
 • Installed from Debian trixie's prusa-slicer package (PrusaSlicer no longer ships a Linux AppImage), so it tracks Debian security updates.&#xD;
 • PrusaSlicer's own Dark mode (Preferences → General); dark GTK chrome by default.&#xD;
 • Printer / filament / print profiles persist under /config.&#xD;
 &#xD;
 Notes:&#xD;
-• WebUI opens via HTTPS on port 3001 (self-signed cert — accept it once). The Selkies web client requires a secure connection, so open the WebUI directly ONLY over HTTPS (3001). Port 3000 (HTTP) is for a reverse proxy that terminates TLS in front of the container — opening it directly shows a "requires a secure connection (HTTPS)" error.&#xD;
+• WebUI opens via HTTPS on port 3001 (self-signed cert, accept it once). The Selkies web client requires a secure connection, so open the WebUI directly ONLY over HTTPS (3001). Port 3000 (HTTP) is for a reverse proxy that terminates TLS in front of the container; opening it directly shows a "requires a secure connection (HTTPS)" error.&#xD;
 • Mount your models / G-code folder to /storage (default /mnt/user) so imports and slices land on your array.&#xD;
 • PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 • Auth: leave "WebUI Username" and "Password" EMPTY to run without login. Set both to enable HTTP-basic auth on the WebUI. Recommended whenever the container is reachable beyond your LAN.&#xD;
@@ -36,11 +36,11 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
 
   <!-- Ports -->
   <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
-          Description="HTTPS port of the Selkies WebUI (self-signed cert). This is the default WebUI — HTTPS is required for clipboard support in the browser. Accept the self-signed certificate once."
+          Description="HTTPS port of the Selkies WebUI (self-signed cert). This is the default WebUI, and HTTPS is required for clipboard support in the browser. Accept the self-signed certificate once."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
 
   <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
-          Description="HTTP port of the Selkies WebUI. For a reverse proxy that terminates TLS in front of the container — NOT for direct browser access. The Selkies web client requires a secure context, so opening http://IP:3000 directly shows a 'requires a secure connection (HTTPS)' error. For direct access use the HTTPS port 3001."
+          Description="HTTP port of the Selkies WebUI. For a reverse proxy that terminates TLS in front of the container, NOT for direct browser access. The Selkies web client requires a secure context, so opening http://IP:3000 directly shows a 'requires a secure connection (HTTPS)' error. For direct access use the HTTPS port 3001."
           Type="Port" Display="always" Required="false" Mask="false">3000</Config>
 
   <!-- Paths -->
@@ -74,7 +74,7 @@ Source on GitHub: https://github.com/junkerderprovinz/prusaslicer&#xD;
 
   <!-- Advanced env variables -->
   <Config Name="Timezone (TZ)" Target="TZ" Default="Europe/Vienna" Mode=""
-          Description="Container timezone (affects log timestamps and file mtimes). Use this instead of a /etc/localtime bind-mount — the LSIO base image manages /etc/localtime internally via TZ."
+          Description="Container timezone (affects log timestamps and file mtimes). Use this instead of a /etc/localtime bind-mount, because the LSIO base image manages /etc/localtime internally via TZ."
           Type="Variable" Display="always" Required="false" Mask="false">Europe/Vienna</Config>
 
   <Config Name="User ID (PUID)" Target="PUID" Default="99" Mode=""

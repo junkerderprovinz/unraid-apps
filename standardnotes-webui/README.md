@@ -62,7 +62,7 @@ Maintained solo, in whatever spare time there is. Questions via the <a href="htt
 This repository ships a single **Unraid Community Application template**
 for the official
 [`standardnotes/web`](https://hub.docker.com/r/standardnotes/web) Docker
-image — the **browser client** for Standard Notes.
+image, the **browser client** for Standard Notes.
 
 It is the companion of the backend template repo
 [`junkerderprovinz/standardnotes-server`](../standardnotes-server/)
@@ -85,7 +85,7 @@ What you get:
 - **Reverse-proxy ready.** Pair with Nginx Proxy Manager / SWAG / Traefik
   to terminate TLS at e.g. `app.standardnotes.mydomain.tld`.
 - **Minimal env surface.** The official upstream Docker docs only document
-  `docker run -d -p 3000:80 standardnotes/web` — no sync-server env var
+  `docker run -d -p 3000:80 standardnotes/web`, with no sync-server env var
   is exposed, so this template intentionally does not invent one. Sync
   server is configured **at runtime in the browser**, see § 5.
 
@@ -94,7 +94,7 @@ What you get:
 ## 2. What it does NOT do
 
 - **Does not host a sync server.** This is *only* the browser UI. You
-  still need a running Standard Notes backend — the companion repo
+  still need a running Standard Notes backend. The companion repo
   [`standardnotes-server`](../standardnotes-server/)
   ships an Unraid template for `standardnotes/server`.
 - **Does not unlock paid / subscription Standard Notes features.**
@@ -108,13 +108,13 @@ What you get:
 - **Does not auto-configure the sync server.** The upstream image does
   not document an env var for the default sync URL, so this template
   does not set one. Users enter their backend URL via the web app's
-  *Advanced options → Custom Sync Server* on first launch — see § 5.
+  *Advanced options → Custom Sync Server* on first launch, see § 5.
 
 <br>
 
 ## 3. Quick Start on Unraid
 
-### Step 0 — Pre-flight
+### Step 0: Pre-flight
 
 You will need:
 
@@ -126,7 +126,7 @@ You will need:
 - A reverse proxy (NPM, SWAG, Traefik, Caddy) for the web app's own
   hostname, e.g. `app.standardnotes.mydomain.tld`.
 
-### Step 1 — Install the template
+### Step 1: Install the template
 
 Pull the template into Unraid's user-template folder:
 
@@ -142,16 +142,16 @@ curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-StandardNotes-Web
 > **Docker → Add Container → Template → User templates** without
 > restarting Docker.
 
-### Step 2 — Start the container
+### Step 2: Start the container
 
 In the Unraid Web UI: **Docker** → **Add Container** → in the
 **Template** dropdown, pick **StandardNotes-WebUI** under *User templates*.
 
-The only field is the **WebUI Port** (host port — default `3001`).
+The only field is the **WebUI Port** (host port, default `3001`).
 Hit **Apply**. The container starts in seconds; visit
 `http://<unraid-ip>:3001/` to confirm the web app loads.
 
-### Step 3 — Reverse-proxy and connect to your backend
+### Step 3: Reverse-proxy and connect to your backend
 
 Set up a reverse-proxy host for the web app (see § 4), then open the web
 app at your public URL and configure the sync server (§ 5).
@@ -210,7 +210,7 @@ server {
 
 > 💡 The web app's hostname (`app.standardnotes.mydomain.tld`) and the
 > backend's hostname (`standardnotesserver.mydomain.tld`) are **different
-> proxy hosts**. Don't try to share one — the web app makes
+> proxy hosts**. Don't try to share one, because the web app makes
 > cross-origin API calls to the backend, so they need their own TLS
 > certs and their own NPM / SWAG entries.
 
@@ -233,12 +233,12 @@ Sync server is configured per-user, **at runtime in the browser**:
    `https://standardnotesserver.mydomain.tld`.
 4. Sign in or create an account against your self-hosted backend.
 
-The browser remembers the custom sync URL per origin — every user of
+The browser remembers the custom sync URL per origin, so every user of
 your web app instance enters it once.
 
 > ⚠️ **Do not invent env vars.** If you find a third-party guide that
 > mentions e.g. `SYNC_SERVER_URL` or `DEFAULT_SYNC_SERVER` for
-> `standardnotes/web`, treat it skeptically — the official Docker docs
+> `standardnotes/web`, treat it skeptically: the official Docker docs
 > do not list any such variable, and adding unsupported env vars to
 > this template can silently produce a web client that points at the
 > public Standard Notes sync server instead of your backend. Update
@@ -270,7 +270,7 @@ ever regresses, e.g. `standardnotes/web:3.x.y`.
 
 - The web app is being opened over a **non-secure origin**, typically
   `http://<unraid-ip>:3001/` or another plain-HTTP URL. Browsers only
-  expose `window.crypto.subtle` (WebCrypto) on **secure contexts** —
+  expose `window.crypto.subtle` (WebCrypto) on **secure contexts**:
   HTTPS, or the `localhost` / `127.0.0.1` exceptions. Standard Notes
   uses `crypto.subtle.digest` during sign-up / sign-in to derive the
   account key, so without it, account creation throws this error.
@@ -287,7 +287,7 @@ ever regresses, e.g. `standardnotes/web:3.x.y`.
   `https://standardnotesserver.mydomain.tld`, and is entered separately
   under *Advanced options → Custom Sync Server* (see § 5).
 - Quick smoke test: open the browser devtools console at the HTTPS
-  URL and run `window.isSecureContext` — it must return `true`.
+  URL and run `window.isSecureContext`, which must return `true`.
 </details>
 
 <details>
@@ -323,7 +323,7 @@ ever regresses, e.g. `standardnotes/web:3.x.y`.
 <details>
 <summary><b>Port 3001 already in use</b></summary>
 
-- Pick another host port in the template — anything except 3000 (used
+- Pick another host port in the template, anything except 3000 (used
   by the backend's API gateway) and 3125 (used by the backend's files
   server) is fine. 8080, 8081, 4321 are common alternatives.
 </details>
@@ -339,13 +339,13 @@ ever regresses, e.g. `standardnotes/web:3.x.y`.
 ## 8. Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/standardnotes-webui-1.png" alt="Standard Notes web client — Notes view (light theme)" width="90%">
-  <br><em>Notes view served by the self-hosted web client (default light theme) — the Account menu shows the offline state with “Create free account” / “Sign in”.</em>
+  <img src="assets/screenshots/standardnotes-webui-1.png" alt="Standard Notes web client, Notes view (light theme)" width="90%">
+  <br><em>Notes view served by the self-hosted web client (default light theme). The Account menu shows the offline state with "Create free account" / "Sign in".</em>
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/standardnotes-webui-2.png" alt="Standard Notes web client — Carbon dark theme with the Appearance menu" width="90%">
-  <br><em>Appearance menu with the bundled themes (Carbon dark selected) — Default, Autobiography, Dark, Carbon, Futura, Midnight, Solarized Dark, Titanium.</em>
+  <img src="assets/screenshots/standardnotes-webui-2.png" alt="Standard Notes web client, Carbon dark theme with the Appearance menu" width="90%">
+  <br><em>Appearance menu with the bundled themes (Carbon dark selected): Default, Autobiography, Dark, Carbon, Futura, Midnight, Solarized Dark, Titanium.</em>
 </p>
 
 <br>
@@ -362,7 +362,7 @@ The companion backend repo
 [`standardnotes-server`](../standardnotes-server/)
 publishes the **two** server-side templates (`StandardNotes-Server`
 plus the Standard-Notes-specific `StandardNotes-LocalStack`
-companion). One CA submission per repo — not per template.
+companion). One CA submission per repo, not per template.
 
 Before submitting this repo at <https://ca.unraid.net/submit>:
 
@@ -390,8 +390,8 @@ do
 done
 ```
 
-A `404` here is the most common reason a CA submission is rejected —
-fix before submitting.
+A `404` here is the most common reason a CA submission is rejected, so
+fix it before submitting.
 
 <br>
 
@@ -404,7 +404,7 @@ Pull requests welcome. Issues:
 
 This wrapper repository (Unraid template, README, banner / icon artwork)
 is MIT-licensed. The upstream `standardnotes/web` image retains its own
-license (AGPL-3.0) — comply with it when running or redistributing the
+license (AGPL-3.0); comply with it when running or redistributing the
 web client.
 
 ```bash
@@ -417,12 +417,12 @@ python3 -c "import xml.etree.ElementTree as ET; \
 
 ### Credits
 
-- [**Standard Notes**](https://standardnotes.com) — the actual project &
+- [**Standard Notes**](https://standardnotes.com), the actual project &
   upstream `standardnotes/web` Docker image
-- [**`standardnotes-server`**](../standardnotes-server/)
-  — companion Unraid template for the backend
-- [**Unraid Community Applications**](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
-  — the distribution channel
+- [**`standardnotes-server`**](../standardnotes-server/),
+  the companion Unraid template for the backend
+- [**Unraid Community Applications**](https://forums.unraid.net/topic/38582-plug-in-community-applications/),
+  the distribution channel
 
 <br>
 

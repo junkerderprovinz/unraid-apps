@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-A plug-and-play Unraid Community Applications template for <b>n8n</b> — the open
+A plug-and-play Unraid Community Applications template for <b>n8n</b>, the open
 workflow-automation tool. Wraps the official <code>n8nio/n8n</code> image with
 <b>production-ready defaults</b>: PostgreSQL by default, task runners on,
 execution-history pruning, binary data on disk, telemetry off, and LAN-friendly
@@ -58,7 +58,7 @@ Maintained solo, in whatever spare time there is. Questions via the <a href="htt
 
 An **Unraid Community Applications template** for [n8n](https://n8n.io). It deploys the
 official [`n8nio/n8n`](https://hub.docker.com/r/n8nio/n8n) image with sane, production-oriented
-settings so you get a solid instance from the first Apply — PostgreSQL out of the box,
+settings so you get a solid instance from the first Apply: PostgreSQL out of the box,
 execution pruning so the database doesn't grow without bound, binary data on disk, telemetry
 disabled, and the LAN login gotcha already handled.
 
@@ -66,16 +66,16 @@ disabled, and the LAN login gotcha already handled.
 
 ## 2. Features
 
-- **PostgreSQL by default** — the database n8n recommends for anything beyond a toy instance
+- **PostgreSQL by default**: the database n8n recommends for anything beyond a toy instance
   (SQLite is still one setting away).
 - **Task runners enabled** (`N8N_RUNNERS_ENABLED=true`).
-- **Execution-history pruning** — `EXECUTIONS_DATA_PRUNE` on, 14-day retention.
+- **Execution-history pruning**: `EXECUTIONS_DATA_PRUNE` on, 14-day retention.
 - **Binary data on disk** (`N8N_DEFAULT_BINARY_DATA_MODE=filesystem`).
 - **Telemetry off** (`N8N_DIAGNOSTICS_ENABLED=false`).
-- **LAN-friendly login** — `N8N_SECURE_COOKIE=false` (flip it for HTTPS).
+- **LAN-friendly login**: `N8N_SECURE_COOKIE=false` (flip it for HTTPS).
 - **Webhook / reverse-proxy fields** ready (`WEBHOOK_URL`, `N8N_HOST`, `N8N_PROTOCOL`).
 - **Optional `/files` mount** for the Read/Write Files node.
-- **Every option visible** in the template form — no hidden "advanced" settings, and fields with
+- **Every option visible** in the template form, with no hidden "advanced" settings, and fields with
   fixed values (DB type, both timezones, the booleans, protocol) are **dropdowns**.
 
 <br>
@@ -90,7 +90,7 @@ commands below from the Unraid console.
 
 Replace `<postgres-container>`, `<database>`, `<user>` and `<password>` with your own values.
 
-Log into the PostgreSQL server's interactive shell — note **`-it`** (interactive + TTY) for a
+Log into the PostgreSQL server's interactive shell, and note **`-it`** (interactive + TTY) for a
 login session, not just `-i`:
 
 ```bash
@@ -110,7 +110,7 @@ GRANT ALL ON SCHEMA public TO <user>;
 
 ### 3b. Example (database `n8n`, user `admin`, password `password`)
 
-The exact same commands with concrete values — here the Postgres container is named `PostgreSQL`
+The exact same commands with concrete values. Here the Postgres container is named `PostgreSQL`
 (use a strong password in production):
 
 ```bash
@@ -140,7 +140,7 @@ share a custom Docker network you can use the container name as the host; otherw
 2. Do the [PostgreSQL setup](#3-postgresql-setup-do-this-first) and fill the Postgres fields.
 3. Create the AppData folder and fix [permissions](#5-permissions-important) (two commands).
 4. Pick a **Timezone** / **Generic Timezone** from the dropdowns; optionally set an **Encryption
-   Key** — generate one with `openssl rand -hex 32` and back it up.
+   Key**, generated with `openssl rand -hex 32` and backed up somewhere safe.
 5. **Apply**, wait for the pull, open the WebUI on port **5678**.
 
 <br>
@@ -149,7 +149,7 @@ share a custom Docker network you can use the container name as the host; otherw
 
 The official n8n image runs as **`node` (UID 1000)** and has **no `PUID`/`PGID`**. The AppData
 folder must **exist** and be writable by UID 1000, or n8n fails to start with `EACCES`. **Create
-the folder first, then** run the `chown` — once, on the Unraid console:
+the folder first, then** run the `chown`, once, on the Unraid console:
 
 ```bash
 mkdir -p /mnt/user/appdata/n8n/files
@@ -165,31 +165,31 @@ on Unraid.
 ## 6. Configuration
 
 Every field is shown in the template (nothing hidden under "advanced"). Fields with a fixed set of
-values are **dropdowns** — pick instead of type.
+values are **dropdowns**: pick instead of type.
 
 | Field | Variable / path | Default | Notes |
 |---|---|---|---|
 | WebUI Port | `5678` | `5678` | n8n editor port |
 | AppData | `/home/node/.n8n` | `/mnt/user/appdata/n8n` | encryption key, binary data, logs |
 | Local Files | `/files` | `/mnt/user/appdata/n8n/files` | optional, Read/Write Files node |
-| DB Type | `DB_TYPE` | `postgresdb` | **dropdown** — `postgresdb` or `sqlite` |
-| Postgres Host | `DB_POSTGRESDB_HOST` | `192.168.1.10` | placeholder IP — set your Postgres server |
+| DB Type | `DB_TYPE` | `postgresdb` | **dropdown**: `postgresdb` or `sqlite` |
+| Postgres Host | `DB_POSTGRESDB_HOST` | `192.168.1.10` | placeholder IP, set your Postgres server |
 | Postgres Port | `DB_POSTGRESDB_PORT` | `5432` | |
 | Postgres Database | `DB_POSTGRESDB_DATABASE` | `n8n` | created in step 3 |
 | Postgres User | `DB_POSTGRESDB_USER` | `n8n` | created in step 3 |
-| Postgres Password | `DB_POSTGRESDB_PASSWORD` | — | masked |
+| Postgres Password | `DB_POSTGRESDB_PASSWORD` | *(none)* | masked |
 | Encryption Key | `N8N_ENCRYPTION_KEY` | auto | `openssl rand -hex 32`, then back it up |
-| Secure Cookie | `N8N_SECURE_COOKIE` | `false` | **dropdown** — `true` behind HTTPS |
-| Timezone | `TZ` | `Europe/Vienna` | **dropdown** — full IANA list |
-| Generic Timezone | `GENERIC_TIMEZONE` | `Europe/Vienna` | **dropdown** — Schedule/Cron triggers |
+| Secure Cookie | `N8N_SECURE_COOKIE` | `false` | **dropdown**: `true` behind HTTPS |
+| Timezone | `TZ` | `Europe/Vienna` | **dropdown**: full IANA list |
+| Generic Timezone | `GENERIC_TIMEZONE` | `Europe/Vienna` | **dropdown**: Schedule/Cron triggers |
 | Task Runners | `N8N_RUNNERS_ENABLED` | `true` | **dropdown** |
 | Prune Executions | `EXECUTIONS_DATA_PRUNE` | `true` | **dropdown** |
 | Execution Max Age | `EXECUTIONS_DATA_MAX_AGE` | `336` | hours (14 days) |
-| Binary Data Mode | `N8N_DEFAULT_BINARY_DATA_MODE` | `filesystem` | **dropdown** — `filesystem` or `default` |
+| Binary Data Mode | `N8N_DEFAULT_BINARY_DATA_MODE` | `filesystem` | **dropdown**: `filesystem` or `default` |
 | Telemetry | `N8N_DIAGNOSTICS_ENABLED` | `false` | **dropdown** |
 | Webhook URL | `WEBHOOK_URL` | `https://n8n.mydomain.tld/` | replace with your domain, or clear |
 | Host | `N8N_HOST` | `n8n.mydomain.tld` | replace with your domain, or clear |
-| Protocol | `N8N_PROTOCOL` | `http` | **dropdown** — `http` or `https` |
+| Protocol | `N8N_PROTOCOL` | `http` | **dropdown**: `http` or `https` |
 
 Need a variable that isn't listed (e.g. `N8N_PROXY_HOPS`, queue mode)? Use Unraid's
 **Add another Path, Port, Variable…** to add any n8n environment variable.
@@ -199,10 +199,10 @@ Need a variable that isn't listed (e.g. `N8N_PROXY_HOPS`, queue mode)? Use Unrai
 ## 7. Reverse proxy & HTTPS
 
 Behind SWAG / Nginx Proxy Manager / Traefik (the **Host** and **Webhook URL** fields are
-pre-filled with the `n8n.mydomain.tld` placeholder — swap in your real domain):
+pre-filled with the `n8n.mydomain.tld` placeholder, so swap in your real domain):
 
 - **Host** = `n8n.mydomain.tld`, **Webhook URL** = `https://n8n.mydomain.tld/`.
-- **Secure Cookie** = `true` (dropdown — you're on HTTPS now).
+- **Secure Cookie** = `true` (dropdown, because you're on HTTPS now).
 - Keep **Protocol** = `http` (dropdown) and let the proxy terminate TLS; forward the standard
   `X-Forwarded-*` headers. If n8n sees the wrong client IP, add `N8N_PROXY_HOPS=1`.
 
@@ -212,9 +212,9 @@ pre-filled with the `n8n.mydomain.tld` placeholder — swap in your real domain)
 
 Two things hold your state:
 
-1. **The PostgreSQL database** — back it up with `pg_dump` (workflows, credentials metadata,
+1. **The PostgreSQL database**, backed up with `pg_dump` (workflows, credentials metadata,
    executions).
-2. **The AppData folder** (`/mnt/user/appdata/n8n`) — holds the **encryption key** and on-disk
+2. **The AppData folder** (`/mnt/user/appdata/n8n`), which holds the **encryption key** and on-disk
    binary data. Without the encryption key, saved credentials in the DB can't be decrypted.
    Back up both together.
 

@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-A plug-and-play Unraid Community Applications template for <b>OpenHands</b> —
+A plug-and-play Unraid Community Applications template for <b>OpenHands</b>,
 the open-source AI software-development agent. Pre-wired for <b>local
 Ollama</b> with <code>qwen2.5-coder:14b</code>, Docker-socket sandboxing,
 and <code>host.docker.internal</code> routing. Install from the Unraid
@@ -61,24 +61,24 @@ an open-source autonomous agent that can read, write, run and debug code,
 browse the web, and execute shell commands in isolated sandbox containers.
 
 This repository is **not a fork of OpenHands**. It only contains the Unraid
-Community Applications metadata — an XML template, an icon and this README —
+Community Applications metadata (an XML template, an icon and this README)
 that tells Unraid how to deploy the upstream
 [`docker.openhands.dev/openhands/openhands`](https://docker.openhands.dev/openhands/openhands)
 image in a sensible default configuration for a typical Unraid box.
 
 What this template gives you over a bare `docker run`:
 
-- **Pre-configured for Ollama** — defaults point at `ollama/qwen2.5-coder:14b`
+- **Pre-configured for Ollama**: defaults point at `ollama/qwen2.5-coder:14b`
   via `host.docker.internal`, so a local Ollama install on the Unraid host
   works out of the box, no LLM gateway needed
-- **Sandbox-ready** — the Unraid Docker socket is mounted, the right
+- **Sandbox-ready**: the Unraid Docker socket is mounted, the right
   `SANDBOX_VOLUMES` and `--add-host` flags are pre-set, so OpenHands can
   actually spawn its execution containers
-- **Persistent config** — `/.openhands` is mapped to `/mnt/user/appdata/openhands`,
+- **Persistent config**: `/.openhands` is mapped to `/mnt/user/appdata/openhands`,
   workspace files live in `/mnt/user/ai-workspace`
-- **Embedded local embeddings** — `LLM_EMBEDDING_MODEL=local` avoids
+- **Embedded local embeddings**: `LLM_EMBEDDING_MODEL=local` avoids
   surprise API calls
-- **Pinned to a known-good tag** — the template ships with the OpenHands
+- **Pinned to a known-good tag**: the template ships with the OpenHands
   image pinned to `:1.7`. New versions are surfaced as Renovate PRs so
   every bump is reviewed before users get it.
 
@@ -99,7 +99,7 @@ What this template gives you over a bare `docker run`:
   host
 - ✅ Persistent agent state in `/mnt/user/appdata/openhands`
 - ✅ Single template, no extra plugins or scripts required
-- ✅ MIT-licensed wrapper — fork and adapt freely
+- ✅ MIT-licensed wrapper, fork and adapt freely
 
 <br>
 
@@ -108,7 +108,7 @@ What this template gives you over a bare `docker run`:
 This is a plug-and-play Community Applications template. No SSH, no
 config-file editing.
 
-### Step 1 — Install from Apps
+### Step 1: Install from Apps
 
 In the Unraid Web UI:
 
@@ -119,11 +119,11 @@ In the Unraid Web UI:
 > [!NOTE]
 > If this template hasn't been accepted into the CA index yet, the search
 > won't find it. In that case, jump to [§ Manual install](#manual-install-pre-ca-listing)
-> below — a one-time `curl` puts the template into your user-templates
+> below. A one-time `curl` puts the template into your user-templates
 > folder, and it then shows up under *User templates* in the Add Container
 > dialog.
 
-### Step 2 — (Optional) make sure Ollama is reachable
+### Step 2: (Optional) make sure Ollama is reachable
 
 Defaults assume you have **Ollama** running on the Unraid host (or in
 another container reachable as `host.docker.internal:11434`) with the
@@ -136,28 +136,28 @@ ollama pull qwen2.5-coder:14b
 If you want a different model or a remote LLM, see
 [§ 6](#6-switching-to-openai--anthropic--other-llms).
 
-### Step 3 — Apply the template
+### Step 3: Apply the template
 
 The CA install opens the template form with everything pre-filled. You
 can leave every field at its default. The two you may want to tweak:
 
-- **Workspace Directory** — defaults to `/mnt/user/ai-workspace`. This is
+- **Workspace Directory**: defaults to `/mnt/user/ai-workspace`. This is
   where the agent reads and writes project files. Point it at an existing
   project share if you prefer. (If you change this, also adjust the
   **Sandbox Volumes** variable to match.)
-- **LLM Model** — defaults to `ollama/qwen2.5-coder:14b`. Change to any
+- **LLM Model**: defaults to `ollama/qwen2.5-coder:14b`. Change to any
   [LiteLLM-style](https://docs.litellm.ai/docs/providers) model string.
 
 Hit **Apply**. First start pulls the image (~3 GB) and warms up the
 embedding model.
 
-### Step 4 — Open the WebUI
+### Step 4: Open the WebUI
 
 `http://<unraid-ip>:3000/`
 
 On first launch, OpenHands will ask you to confirm the LLM settings and
 to provide a **GitHub Personal Access Token** if you want it to interact
-with GitHub repos — see [§ 5](#5-github-personal-access-token).
+with GitHub repos, see [§ 5](#5-github-personal-access-token).
 
 ### Manual install (pre-CA-listing)
 
@@ -199,10 +199,10 @@ docker run -d \
 
 | Variable | Default | Description |
 |---|---|---|
-| `LLM_API_KEY` | `ollama` | API key for the LLM backend — any non-empty value works for Ollama |
+| `LLM_API_KEY` | `ollama` | API key for the LLM backend; any non-empty value works for Ollama |
 | `LLM_MODEL` | `ollama/qwen2.5-coder:14b` | LiteLLM-style model string |
 | `LLM_BASE_URL` | `http://host.docker.internal:11434` | Endpoint of the LLM. Default reaches Ollama on the Unraid host. Leave blank for hosted providers (OpenAI/Anthropic/…) |
-| `LLM_EMBEDDING_MODEL` | `local` | Embedding model — `local` ships in the image |
+| `LLM_EMBEDDING_MODEL` | `local` | Embedding model; `local` ships in the image |
 | `SANDBOX_VOLUMES` | `/mnt/user/ai-workspace:/workspace:rw` | Host:container mount injected into every sandbox the agent spawns |
 
 ### Ports & Volumes
@@ -238,9 +238,9 @@ who want to override the tag manually can do so in the Unraid template's
 
 ## 5. GitHub Personal Access Token
 
-OpenHands can clone repos, push commits, and open PRs on your behalf — but
-**only if you give it a token**. The template does not ship a token (it
-shouldn't — tokens are personal).
+OpenHands can clone repos, push commits, and open PRs on your behalf, but
+**only if you give it a token**. The template does not ship a token, because
+tokens are personal.
 
 1. On GitHub: **Settings → Developer settings → Personal access tokens →
    Tokens (classic)** → **Generate new token**.
@@ -265,7 +265,7 @@ all that needs to change. Examples:
 | Provider | `LLM_MODEL` | `LLM_API_KEY` |
 |---|---|---|
 | **Ollama** (default) | `ollama/qwen2.5-coder:14b` | `ollama` |
-| **Ollama** — other model | `ollama/llama3.1:70b-instruct-q4_K_M` | `ollama` |
+| **Ollama**, other model | `ollama/llama3.1:70b-instruct-q4_K_M` | `ollama` |
 | **OpenAI** | `gpt-4o` | *your OpenAI key* |
 | **Anthropic** | `anthropic/claude-3-5-sonnet-20241022` | *your Anthropic key* |
 | **OpenRouter** | `openrouter/anthropic/claude-3.5-sonnet` | *your OpenRouter key* |
@@ -277,7 +277,7 @@ Edit the Unraid template's `LLM_MODEL` and `LLM_API_KEY` fields, hit
 For Ollama on a **different host** (e.g. a GPU box on your LAN), change the
 **LLM Base URL** field from the default `http://host.docker.internal:11434`
 to `http://<gpu-host>:11434`. For a **hosted provider** (OpenAI, Anthropic,
-…) clear that field — those use their own endpoints.
+…) clear that field, because those use their own endpoints.
 
 <br>
 
@@ -290,7 +290,7 @@ this repo's [Renovate](renovate.json) workflow opens a PR bumping the
 re-pulls the template.
 
 > [!TIP]
-> Tag-pin to a specific minor (e.g. `:1.7`) — OpenHands ships often and
+> Tag-pin to a specific minor (e.g. `:1.7`), because OpenHands ships often and
 > the floating `:latest` tag has shipped breaking changes in the past.
 
 <br>
@@ -307,7 +307,7 @@ re-pulls the template.
   ```
 
   Should list your Ollama models. If it times out, Ollama isn't bound on
-  the host's external interface — check `OLLAMA_HOST=0.0.0.0` in your
+  the host's external interface; check `OLLAMA_HOST=0.0.0.0` in your
   Ollama service.
 - Confirm `--add-host host.docker.internal:host-gateway` is actually
   applied: `docker inspect openhands | grep -A2 ExtraHosts`.
@@ -317,7 +317,7 @@ re-pulls the template.
 <summary><b>"Failed to create sandbox" / docker socket errors</b></summary>
 
 - Check the socket mount: `docker inspect openhands | grep docker.sock`
-- The host's `docker` group must allow access — on Unraid this is the
+- The host's `docker` group must allow access. On Unraid this is the
   default; on plain Linux you may need to run the container as a user
   in the `docker` group.
 - If you're using `rootless` Docker, the socket path differs
@@ -330,7 +330,7 @@ re-pulls the template.
 This template defaults to the **Docker-socket sandbox**, where OpenHands
 spawns a separate sandbox container and talks to it via
 `host.docker.internal`. On a **bridge** network that works. On a **custom
-VLAN / ipvlan** network it often doesn't — `host.docker.internal` routing
+VLAN / ipvlan** network it often doesn't: `host.docker.internal` routing
 between containers breaks, and tasks fail with:
 
 ```text
@@ -339,11 +339,11 @@ Sandbox server not running: http://host.docker.internal:xxxxx
 
 Two ways out:
 
-- **Easiest — keep this container on `bridge`.** The agent's sandbox
+- **Easiest: keep this container on `bridge`.** The agent's sandbox
   containers still spawn correctly; only the OpenHands container itself
   needs reliable `host.docker.internal` routing, which `bridge` gives you.
   Put a reverse proxy in front if you need it on the VLAN.
-- **Process sandbox** — run the agent as an in-container process instead
+- **Process sandbox**: run the agent as an in-container process instead
   of a sibling container, avoiding cross-container networking entirely.
   Add these variables:
 
@@ -355,11 +355,11 @@ Two ways out:
   > [!WARNING]
   > **Known bug in image `:1.7`.** Process sandbox currently fails with
   > `500: Agent Server Failed to start properly` even though the agent
-  > server actually comes up — the readiness check wrongly probes
+  > server actually comes up: the readiness check wrongly probes
   > `host.docker.internal` instead of `127.0.0.1`. Tracked upstream as
   > [issue #14499](https://github.com/OpenHands/OpenHands/issues/14499),
   > fixed by [PR #14540](https://github.com/OpenHands/OpenHands/pull/14540)
-  > (not yet released at time of writing). Until a fixed image ships,
+  > (not yet released). Until a fixed image ships,
   > prefer the `bridge` option above. Renovate will surface the fixed
   > release as an update PR automatically.
 
@@ -372,7 +372,7 @@ Two ways out:
   that's `/mnt/user/ai-workspace` on the host. The agent itself sees
   them as `/workspace`.
 - If you changed **Workspace Directory** but not `SANDBOX_VOLUMES`, the
-  two will be out of sync — the sandbox writes to a different host path.
+  two will be out of sync, and the sandbox writes to a different host path.
   Keep them aligned.
 </details>
 
@@ -381,7 +381,7 @@ Two ways out:
 
 - `qwen2.5-coder:14b` needs ~10 GB of RAM (or VRAM). Smaller alternatives:
   `qwen2.5-coder:7b`, `deepseek-coder-v2:16b-lite-instruct-q4_K_M`.
-- Each sandbox container the agent spawns also consumes RAM — set a
+- Each sandbox container the agent spawns also consumes RAM, so set a
   resource limit in the Unraid template's *Advanced View* if needed.
 
 </details>
@@ -404,11 +404,11 @@ Two ways out:
 
 - **Docker socket = root on the host.** Mounting `/var/run/docker.sock`
   gives this container full control over your Unraid Docker daemon. Treat
-  the OpenHands WebUI like a root shell — don't expose port 3000 to the
+  the OpenHands WebUI like a root shell, and don't expose port 3000 to the
   internet without auth in front of it. A reverse proxy with
   authentication (e.g. NPM + Authelia / Authentik) is the right pattern.
 - **The agent runs code.** That's the whole point. Sandbox containers
-  reduce the blast radius but don't eliminate it — keep
+  reduce the blast radius but don't eliminate it, so keep
   `/mnt/user/ai-workspace` on a share that doesn't contain anything you'd
   cry about losing.
 - **Your LLM sees your code.** If you use a hosted LLM (OpenAI,
@@ -420,17 +420,17 @@ Two ways out:
 ## 10. Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/openhands-1.jpg" alt="OpenHands — Let's Start Building home screen" width="90%">
-  <br><em>Home — 'Let's Start Building': open a repository or start from scratch.</em>
+  <img src="assets/screenshots/openhands-1.jpg" alt="OpenHands 'Let's Start Building' home screen" width="90%">
+  <br><em>Home, 'Let's Start Building': open a repository or start from scratch.</em>
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/openhands-2.jpg" alt="OpenHands — LLM settings with local Ollama endpoint" width="90%">
-  <br><em>Settings → LLM: Custom Model <code>ollama/qwen2.5-coder:14b</code> against a local Ollama at <code>http://&lt;LAN-IP&gt;:11434/v1</code> — no API key required.</em>
+  <img src="assets/screenshots/openhands-2.jpg" alt="OpenHands LLM settings with local Ollama endpoint" width="90%">
+  <br><em>Settings → LLM: Custom Model <code>ollama/qwen2.5-coder:14b</code> against a local Ollama at <code>http://&lt;LAN-IP&gt;:11434/v1</code>, no API key required.</em>
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/openhands-3.jpg" alt="OpenHands — Application language picker" width="90%">
+  <img src="assets/screenshots/openhands-3.jpg" alt="OpenHands Application language picker" width="90%">
   <br><em>Settings → Application: built-in language picker (English, 日本語, 中文, 한국어, Norsk, Arabic…).</em>
 </p>
 
@@ -442,27 +442,27 @@ Pull requests welcome. Issues:
 <https://github.com/junkerderprovinz/unraid-apps/issues>.
 
 CI runs XML validation, an Unraid CA sanity check, markdown + YAML lint
-and a link check on every PR — see [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+and a link check on every PR, see [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
-**Licensing — dual:**
+**Licensing, dual:**
 
 - This **wrapper repository** (Unraid template, README, banner/icon
   artwork) is licensed under the [MIT License](LICENSE).
 - **OpenHands itself** is developed by the OpenHands community and
-  retains its upstream license — see
+  retains its upstream license, see
   <https://github.com/OpenHands/OpenHands>. When you run, redistribute or
   rebuild the resulting container image, you must comply with **all**
   upstream licenses, not only with this wrapper's MIT license.
 
 ### Credits
 
-- [**OpenHands**](https://github.com/OpenHands/OpenHands) — the team and
+- [**OpenHands**](https://github.com/OpenHands/OpenHands), the team and
   community building the agent
-- [**Ollama**](https://ollama.com) — for making local LLMs painless
-- [**LiteLLM**](https://litellm.ai) — for unifying every LLM API on the
+- [**Ollama**](https://ollama.com), for making local LLMs painless
+- [**LiteLLM**](https://litellm.ai), for unifying every LLM API on the
   planet
-- [**Unraid Community Applications**](https://forums.unraid.net/forum/38-community-applications/)
-  — for being the best app store in self-hosting
+- [**Unraid Community Applications**](https://forums.unraid.net/forum/38-community-applications/),
+  for being the best app store in self-hosting
 
 <br>
 
