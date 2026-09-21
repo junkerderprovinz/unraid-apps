@@ -399,28 +399,38 @@ Two ways out:
 </details>
 
 <details>
-<summary><b>Sandbox fails to start with </b><code>PermissionError: [Errno 13] Permission denied: '/workspace/conversations'</code></summary>
+<summary><b>Sandbox fails to start: "Permission denied: '/workspace/conversations'"</b></summary>
 
-If the sandbox fails with:
+A task fails with
 
-    500: Sandbox failed to start within 120s
+```text
+500: Sandbox failed to start within 120s
+```
 
-and the container logs show:
+and the log of the sandbox container (`oh-agent-server-<id>`) shows
 
-    PermissionError: [Errno 13] Permission denied: '/workspace/conversations'
+```text
+PermissionError: [Errno 13] Permission denied: '/workspace/conversations'
+```
 
-the `/workspace` directory is not writable by the OpenHands user.
+The agent server in the sandbox runs as UID/GID `10001:10001` and keeps
+its conversations under `/workspace`, so the host folder mapped there has
+to be writable for that user. That fails when the folder belongs to
+someone else and doesn't let others write. A folder created on the first
+container start ends up exactly like that (owner `root`, mode `755`), so
+it happens when `/mnt/user/ai-workspace` didn't exist beforehand.
 
-The OpenHands Agent Server runs as UID/GID `10001:10001`, while the Unraid workspace may be owned by `nobody:users`.
+If only OpenHands uses the folder, hand it to that user and start the
+task again:
 
-For a workspace dedicated to OpenHands, fix the permissions with:
+```bash
+chown -R 10001:10001 /mnt/user/ai-workspace
+chmod -R u+rwX /mnt/user/ai-workspace
+```
 
-    chown -R 10001:10001 /mnt/user/ai-workspace
-    chmod -R u+rwX /mnt/user/ai-workspace
-
-Then retry starting the sandbox.
-
-> **Note:** If the workspace is shared with other containers, use an appropriate ACL/permission setup instead of changing its ownership.
+> [!NOTE]
+> If other containers or SMB users share the folder, keep its owner and
+> let everyone write instead: `chmod -R a+rwX /mnt/user/ai-workspace`.
 
 </details>
 
