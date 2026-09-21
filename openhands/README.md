@@ -398,6 +398,32 @@ Two ways out:
 
 </details>
 
+<details>
+<summary><b>Sandbox fails to start with </b><code>PermissionError: [Errno 13] Permission denied: '/workspace/conversations'</code></summary>
+
+If the sandbox fails with:
+
+    500: Sandbox failed to start within 120s
+
+and the container logs show:
+
+    PermissionError: [Errno 13] Permission denied: '/workspace/conversations'
+
+the `/workspace` directory is not writable by the OpenHands user.
+
+The OpenHands Agent Server runs as UID/GID `10001:10001`, while the Unraid workspace may be owned by `nobody:users`.
+
+For a workspace dedicated to OpenHands, fix the permissions with:
+
+    chown -R 10001:10001 /mnt/user/ai-workspace
+    chmod -R u+rwX /mnt/user/ai-workspace
+
+Then retry starting the sandbox.
+
+> **Note:** If the workspace is shared with other containers, use an appropriate ACL/permission setup instead of changing its ownership.
+
+</details>
+
 <br>
 
 ## 9. Security Notes
