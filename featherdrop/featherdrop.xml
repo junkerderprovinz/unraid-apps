@@ -10,7 +10,7 @@
   <Support>https://forums.unraid.net/topic/199203-support-junkerderprovinz-featherdrop/</Support>
   <Project>https://github.com/junkerderprovinz/featherdrop</Project>
   <ReadMe>https://github.com/junkerderprovinz/featherdrop/blob/main/README.md</ReadMe>
-  <Overview>featherdrop is a sleek, feather-light, self-hosted file sharer — your own private WeTransfer, without the accounts or size paywalls. Open the page, drop a file, set an expiry (plus an optional password or download limit), and share a short link or QR code. Files are end-to-end encrypted in your browser before upload — the server only ever stores opaque ciphertext and never sees your files, their names, or the key. Resumable uploads (tus), files on a local volume, metadata in a single SQLite file — no separate database, no accounts, no tracking. 26 languages, light/dark, and custom branding (APP_NAME/APP_LOGO/ACCENT_COLOR). Put it behind a reverse proxy and set BASE_URL so share links use your public domain.</Overview>
+  <Overview>featherdrop is a lightweight self-hosted file sharer, a private WeTransfer without accounts or size paywalls. Open the page, drop a file, set an expiry (plus an optional password or download limit), and share a short link or QR code. Files are end-to-end encrypted in your browser before upload, so the server only stores ciphertext and never sees your files, their names or the key. Uploads are resumable (tus), files sit on a local volume and the metadata lives in a single SQLite file, so there is no separate database, no account system and no tracking. The UI comes in 26 languages with light and dark mode, and you can brand it with APP_NAME, APP_LOGO and ACCENT_COLOR. Put it behind a reverse proxy and set BASE_URL so share links use your public domain.</Overview>
   <Category>Tools:Utilities Productivity:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/featherdrop/featherdrop.xml</TemplateURL>
@@ -54,7 +54,7 @@
     Target="CONFIG_DIR"
     Default="/config"
     Mode=""
-    Description="Container path the SQLite database is written to. Must match the Config Directory mount above (/config). Advanced — leave as /config."
+    Description="Container path the SQLite database is written to. Must match the Config Directory mount above (/config), so leave it as /config."
     Type="Variable"
     Display="advanced"
     Required="true"
@@ -64,7 +64,7 @@
     Target="BASE_URL"
     Default=""
     Mode=""
-    Description="Public base URL for share links behind a reverse proxy, e.g. https://featherdrop.yourdomain.tld — leave empty to use the browser address."
+    Description="Public base URL for share links behind a reverse proxy, e.g. https://featherdrop.yourdomain.tld. Leave empty to use the browser address."
     Type="Variable"
     Display="always"
     Required="false"
@@ -104,7 +104,7 @@
     Target="STORAGE_QUOTA"
     Default="0"
     Mode=""
-    Description="Optional. Maximum TOTAL bytes of stored shares. 0 = unlimited. Uploads that would exceed the quota are rejected before any byte lands. Example: 53687091200 = 50 GB."
+    Description="Optional. Maximum combined size of all stored shares, in bytes. 0 = unlimited. Uploads that would exceed the quota are rejected before any byte lands. Example: 53687091200 = 50 GB."
     Type="Variable"
     Display="always"
     Required="false"
@@ -124,7 +124,7 @@
     Target="TRUST_PROXY"
     Default="false|true"
     Mode=""
-    Description="Set true ONLY when featherdrop runs behind a reverse proxy: rate limits then use the client address from X-Forwarded-For. Never enable on a directly reachable instance."
+    Description="Set true only when featherdrop runs behind a reverse proxy: rate limits then use the client address from X-Forwarded-For. Leave it false on a directly reachable instance, because there any client could send its own X-Forwarded-For header and get around the rate limits."
     Type="Variable"
     Display="advanced"
     Required="false"
@@ -134,7 +134,7 @@
     Target="APP_NAME"
     Default=""
     Mode=""
-    Description="Optional. Rename the app — replaces the 'featherdrop' wordmark in the header and the browser tab title with your own name. Leave empty to keep 'featherdrop'."
+    Description="Optional. Renames the app by replacing the 'featherdrop' wordmark in the header and the browser tab title with your own name. Leave empty to keep 'featherdrop'."
     Type="Variable"
     Display="always"
     Required="false"

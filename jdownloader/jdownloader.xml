@@ -11,20 +11,20 @@
   <Support>https://forums.unraid.net/topic/199305-support-junkerderprovinz-jdownloader-2/</Support>
   <Project>https://jdownloader.org</Project>
   <Overview>
-JDownloader 2 with a sleek, modern dark mode GUI and full clipboard support out of the box — a complete dark interface where the download list, link grabber and settings are all dark, on a smooth, hardware-accelerated Selkies web desktop. No tweaking, no add-ons — it just looks great from the first start.&#xD;
+JDownloader 2 with a dark mode GUI and full clipboard support out of the box. The download list, link grabber and settings are all dark, and everything runs on a hardware-accelerated Selkies web desktop. It looks like this from the first start, without tweaking or add-ons.&#xD;
 &#xD;
 What's pre-configured:&#xD;
-• Full dark mode by default — JD Plain Dark (monochrome Carbon #161616) in a clean maximised kiosk window; switch to a matching Light theme, or JDownloader's own classic look, via the Theme variable.&#xD;
-• Auto-installs and self-updates JDownloader — first-run install prompts are auto-confirmed, nothing to click.&#xD;
+• Full dark mode by default: JD Plain Dark (monochrome Carbon #161616) in a maximised kiosk window. Switch to a matching Light theme, or JDownloader's own classic look, via the Theme variable.&#xD;
+• Installs and updates JDownloader by itself. The first-run install prompts are confirmed automatically, so there is nothing to click.&#xD;
 • Seamless clipboard over HTTPS: copy on your PC, paste straight into JD.&#xD;
 • Persistent config and downloads in /config and /downloads; hidden columns / layout survive a restart.&#xD;
 &#xD;
 Notes:&#xD;
-• FIRST START takes a few minutes: JDownloader installs itself and its dark theme, so the WebUI stays black until done — do NOT restart. Wait for the "JDOWNLOADER IS READY" banner in the container log, then open the WebUI.&#xD;
-• WebUI opens via HTTPS (port 3001, self-signed cert — accept once); clipboard needs HTTPS. Plain HTTP (3000) is also exposed.&#xD;
+• The first start takes a few minutes: JDownloader installs itself and its dark theme, and the WebUI stays black until that is done. Do not restart the container in the meantime, since that interrupts the install. Wait for the "JDOWNLOADER IS READY" banner in the container log, then open the WebUI.&#xD;
+• WebUI opens via HTTPS (port 3001, self-signed cert, accept it once), because the clipboard needs HTTPS. Plain HTTP (3000) is also exposed.&#xD;
 • Map /downloads to your download share. PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
-• Language: English by default — change it any time in JDownloader's own language menu (Settings, the flag icon); your choice persists across restarts.&#xD;
-• Auth: leave WebUI Username and Password EMPTY for no login.&#xD;
+• Language: English by default. Change it any time in JDownloader's own language menu (Settings, the flag icon); your choice persists across restarts.&#xD;
+• Auth: leave WebUI Username and Password empty for no login.&#xD;
 &#xD;
 Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
   </Overview>
@@ -36,11 +36,11 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
 
   <!-- Ports -->
   <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
-          Description="Plain HTTP WebUI. Browsers block seamless clipboard over HTTP — prefer HTTPS (3001)."
+          Description="Plain HTTP WebUI. Browsers block seamless clipboard over HTTP, so prefer HTTPS (3001)."
           Type="Port" Display="always" Required="false" Mask="false">3000</Config>
 
   <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
-          Description="HTTPS WebUI (self-signed TLS) — the WebUI button opens this; required for seamless clipboard."
+          Description="HTTPS WebUI (self-signed TLS). The WebUI button opens this port, and seamless clipboard needs it."
           Type="Port" Display="always" Required="true" Mask="false">3001</Config>
 
   <!-- Paths -->
@@ -65,17 +65,17 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
 
   <Config Name="Self-Update (JD_SELFUPDATE)" Target="JD_SELFUPDATE"
           Default="true|false" Mode=""
-          Description="true (default) = JDownloader keeps updating itself. false = frozen appliance: disables JD's periodic self-update checks. WARNING: the same update channel delivers the hoster plugins, which go stale within weeks - downloads may start failing. The first install always uses the updater."
+          Description="true (default) = JDownloader keeps updating itself. false = frozen appliance: disables JD's periodic self-update checks. Keep in mind that the same update channel delivers the hoster plugins, which go stale within weeks, so downloads may start failing. The first install always uses the updater."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
   <Config Name="In-container browser for captchas (JD_ENABLE_BROWSER)" Target="JD_ENABLE_BROWSER"
           Default="auto|true|false" Mode=""
-          Description="auto (default) = remembers your last choice, so an enabled browser survives container updates (recreates). Set true to enable JDownloader's 'solve captcha in browser' flow: reCAPTCHA/hCaptcha/Turnstile open in a bundled Firefox (with uBlock Origin) on the web desktop and are solved with one click, from the container's own IP (tokens are IP-bound). The Firefox profile persists in /config/.config/mozilla. Set false to force it off. Only enable it if a hoster you use needs browser captchas - classic image captchas are auto-solved either way, and enabling it runs a full browser (more resources + attack surface)."
+          Description="auto (default) = remembers your last choice, so an enabled browser survives container updates (recreates). Set true to enable JDownloader's 'solve captcha in browser' flow: reCAPTCHA/hCaptcha/Turnstile open in a bundled Firefox (with uBlock Origin) on the web desktop and are solved with one click, from the container's own IP (tokens are IP-bound). The Firefox profile persists in /config/.config/mozilla. Set false to force it off. Only enable it if a hoster you use needs browser captchas. Classic image captchas are auto-solved either way, and enabling it runs a full browser, which costs more resources and adds attack surface."
           Type="Variable" Display="advanced" Required="false" Mask="false">auto</Config>
 
   <!-- WebUI auth (Selkies) -->
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
-          Description="Optional. Username for HTTP-basic-auth. Leave EMPTY with password for no login."
+          Description="Optional. Username for HTTP-basic-auth. Leave it empty together with the password for no login."
           Type="Variable" Display="always" Required="false" Mask="false"/>
 
   <Config Name="WebUI Password" Target="PASSWORD" Default="" Mode=""
