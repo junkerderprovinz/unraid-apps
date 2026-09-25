@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>KnightLoader</Name>
+  <Repository>ghcr.io/junkerderprovinz/knightloader:latest</Repository>
+  <Registry>https://github.com/junkerderprovinz/knightloader/pkgs/container/knightloader</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/knightloader/issues</Support>
+  <Project>https://github.com/junkerderprovinz/knightloader</Project>
+  <ReadMe>https://junkerderprovinz.github.io/knightloader/</ReadMe>
+  <Overview>KnightLoader is a self-hosted download manager that puts debrid services, torrents, yt-dlp and a headless JDownloader behind one web interface. Links are staged in a collector before anything downloads, rules sort them into packages and folders, and archives are unpacked with no outside tools. The Android app, the browser extension and your other instances reach it from other networks with twelve words, without an account or a port forward.</Overview>
+  <Category>Downloaders:</Category>
+  <WebUI>http://[IP]:[PORT:8749]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/knightloader.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/icon.png</Icon>
+  <ExtraParams>--restart unless-stopped --user 99:100</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If KnightLoader has earned a place on your server, toss a coin to your knight.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires/>
+  <Config Name="WebUI Port" Target="8749" Default="8749" Mode="tcp"
+          Description="Port the web interface listens on."
+          Type="Port" Display="always" Required="true" Mask="false">8749</Config>
+  <Config Name="Appdata (/data)" Target="/data" Default="/mnt/user/appdata/knightloader" Mode="rw"
+          Description="Database, settings, the encrypted account store and the list of instances."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/knightloader</Config>
+  <Config Name="Downloads (/data/downloads)" Target="/data/downloads" Default="/mnt/user/downloads/" Mode="rw"
+          Description="Where downloads land. The download folder in Settings is /data/downloads, which is this share."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/downloads/</Config>
+  <Config Name="Watched folder (/watch)" Target="/watch" Default="/mnt/user/downloads/knightloader-watch" Mode="rw"
+          Description="A .txt link list or a JDownloader .crawljob dropped here is picked up, once the watched folder is switched on in Settings."
+          Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/downloads/knightloader-watch</Config>
+  <Config Name="Time zone (TZ)" Target="TZ" Default="Europe/Berlin" Mode=""
+          Description="Time zone for the timetable and the log."
+          Type="Variable" Display="advanced" Required="false" Mask="false">Europe/Berlin</Config>
+</Container>
