@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <!--
-  Unraid Community Applications collective support thread for junkerderprovinz's
-  simpler apps: the two Selkies web-desktop own-image apps (PrusaSlicer,
-  Stellarium) and the upstream-image templates (OpenHands, Standard Notes
-  Server/LocalStack/Web UI, n8n). Complex own-image apps (BombVault, OpenCloud,
-  JDownloader, Krusader, Matrix, featherdrop) have their own separate threads.
+  Unraid Community Applications collective support thread for the apps
+  junkerderprovinz packages rather than builds: the Selkies web desktops, the
+  own images around upstream software and the upstream-image templates. The
+  own apps (BombVault with its widget, featherdrop, ShipLog, FireSquire,
+  StrawDroid) and the bigger images (JDownloader, Krusader, Matrix, OpenCloud,
+  HandBrake) have their own threads.
   No banner: a collective thread has no single logo, and the support-thread
-  banner must always be text-free (house rule) - buttons + per-app icons instead.
+  banner must always be text-free (house rule), so buttons and per-app icons instead.
   Open standalone in a browser, or paste into the Unraid forum editor's source.
   Title: [Support] junkerderprovinz - Unraid apps
 -->
@@ -37,10 +38,10 @@
 <body>
 
 <h1>junkerderprovinz: Unraid apps</h1>
-<p class="subtitle">One support thread for my simpler apps: two browser web-desktops and a set of upstream-image templates. Post here for any of them, just say which one.</p>
+<p class="subtitle">One support thread for the apps I package rather than build: two browser web desktops, four apps in my own images and a set of upstream-image templates. Post here for any of them, just say which one.</p>
 
 <p align="center">
-  <a href="https://unraid.net/community/apps"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/support-buttons/install-on-unraid.svg" alt="Install on Unraid" width="240"></a>
+  <a href="https://ca.unraid.net/apps?q=junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/support-buttons/install-on-unraid.svg" alt="Install on Unraid" width="240"></a>
   &nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps"><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/.github/assets/support-buttons/view-on-github.svg" alt="View on GitHub" width="240"></a>
   &nbsp;
@@ -48,15 +49,16 @@
 </p>
 
 <h2>What is this?</h2>
-<p>One shared support thread for my <strong>simpler</strong> Unraid apps: the two
-<strong>web-desktop</strong> apps (a full desktop program streamed to your browser on a Selkies
-web desktop) and my <strong>upstream-image template</strong> apps (which run straight from a
-vendor Docker image, one folder per app in the
-<a href="https://github.com/junkerderprovinz/unraid-apps">unraid-apps</a> feed). My more complex
-own-image apps (<strong>BombVault, OpenCloud, JDownloader, Krusader, Matrix, featherdrop</strong>)
-have their <em>own</em> separate support threads.</p>
-<p>To install any of them: open <strong>Apps</strong> (Community Applications) on Unraid and
-search for the name below. Post here for any of these, just say <strong>which one</strong>.</p>
+<p>One shared support thread for the Unraid apps I <strong>package</strong> rather than write:
+the two <strong>web-desktop</strong> apps (a full desktop program streamed to your browser on a
+Selkies web desktop), four apps in <strong>my own images</strong> around upstream software, and my
+<strong>upstream-image templates</strong> (which run straight from a vendor Docker image, one
+folder per app in the <a href="https://github.com/junkerderprovinz/unraid-apps">unraid-apps</a>
+feed). My own apps (<strong>BombVault</strong> with its widget, <strong>featherdrop, ShipLog,
+FireSquire, StrawDroid</strong>) and the bigger images (<strong>JDownloader, Krusader, Matrix,
+OpenCloud, HandBrake</strong>) have their <em>own</em> support threads.</p>
+<p>Each section below links the app's page in Community Applications. Post here for any of these,
+just say <strong>which one</strong>.</p>
 
 <hr>
 
@@ -70,8 +72,8 @@ search for the name below. Post here for any of these, just say <strong>which on
 supports and export G-code without installing anything locally. No VNC client.</p>
 <ul>
   <li>Full PrusaSlicer desktop, streamed to the browser</li>
-  <li>Multi-arch: amd64 + arm64</li>
-  <li>Search Community Applications for <strong>PrusaSlicer</strong></li>
+  <li>Multi-arch: amd64 and arm64</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/prusaslicer-0118v4d0mxjg49">PrusaSlicer</a></li>
   <li><a href="https://github.com/junkerderprovinz/prusaslicer#readme">Repository &amp; README</a></li>
 </ul>
 
@@ -83,9 +85,70 @@ supports and export G-code without installing anything locally. No VNC client.</
 zoom into a nebula and scrub through time, all from a tab. No VNC client.</p>
 <ul>
   <li>Full Stellarium desktop, streamed to the browser</li>
-  <li>Multi-arch: amd64 + arm64</li>
-  <li>Search Community Applications for <strong>Stellarium</strong></li>
+  <li>Multi-arch: amd64 and arm64</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/stellarium-1we6aez0jcmlhj">Stellarium</a></li>
   <li><a href="https://github.com/junkerderprovinz/stellarium#readme">Repository &amp; README</a></li>
+</ul>
+
+<hr>
+
+<h3 style="font-size:1.05rem;color:#555;">Own images around upstream software</h3>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/excalidraw/icon.png" alt="Excalidraw">
+  <h2>Excalidraw</h2>
+</div>
+<p>The whiteboard for sketches that look hand-drawn, self-hosted so that it keeps to itself:
+shared links, live collaboration, pasted images, fonts and icons all come from your own
+server, and the browser never contacts anyone else.</p>
+<ul>
+  <li>Scenes are encrypted in the browser before they are stored; the key stays in the part of the link a browser never sends</li>
+  <li>The shape library and text-to-diagram would still reach Excalidraw's servers, so they are switches, off by default</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/excalidraw-12jk2zv0fttlyf">Excalidraw</a></li>
+  <li><a href="https://github.com/junkerderprovinz/excalidraw#readme">Repository &amp; README</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png" alt="Garage">
+  <h2>Garage</h2>
+</div>
+<p>A lightweight S3-compatible object store for small self-hosted setups, with its web admin
+panel in the same container. The single-node layout, an access key and a bucket are set up on
+the first start, so there is no command-line step.</p>
+<ul>
+  <li>The official Garage server and garage-webui, both unmodified</li>
+  <li>Access key, secret key and bucket come from the template fields</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/garage-17mn9vl03a3cot">Garage</a></li>
+  <li><a href="https://github.com/junkerderprovinz/garage#readme">Repository &amp; README</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png" alt="JuiceFS">
+  <h2>JuiceFS</h2>
+</div>
+<p>The JuiceFS S3 gateway as a ready-to-run container: file metadata in a database, file
+contents in an object store, and anything on your server that speaks S3 can use it. The file
+system is created on the first start and left alone on every later one.</p>
+<ul>
+  <li>The official binary, checked against the upstream SHA256 at build time</li>
+  <li>Every setting is a template field; leave the secret key empty and one is generated for you</li>
+  <li>Map Config and Data and back them up together: the data cannot be read without the database in Config</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/juicefs-14sugi10m394v9">JuiceFS</a></li>
+  <li><a href="https://github.com/junkerderprovinz/juicefs#readme">Repository &amp; README</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png" alt="Euro-Office">
+  <h2>Euro-Office</h2>
+</div>
+<p>A European document server for editing text documents, spreadsheets and presentations in
+the browser. It is a maintained fork of the OnlyOffice Document Server and works as the editor
+for OpenCloud, Nextcloud or ownCloud.</p>
+<ul>
+  <li>Not a standalone app: point your file server at it</li>
+  <li>Fixes an upstream permission bug on fresh Unraid volumes; nothing else about the official image changes</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/euro-office-01m59u11rtj6n9">Euro-Office</a></li>
+  <li><a href="https://github.com/junkerderprovinz/euro-office#readme">Repository &amp; README</a></li>
 </ul>
 
 <hr>
@@ -102,7 +165,7 @@ backend, so nothing leaves your server unless you point it at a hosted model.</p
 <ul>
   <li>Web UI agent that can edit files, run commands and browse, all sandboxed</li>
   <li>Local-first: works against a local Ollama endpoint out of the box; any OpenAI-compatible API also works</li>
-  <li>Search Community Applications for <strong>OpenHands</strong></li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/openhands-11lx1wx1yjp30t">OpenHands</a></li>
   <li>Image: <code>docker.openhands.dev/openhands/openhands:1.7</code></li>
   <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/openhands/README.md">Full README &amp; setup</a></li>
 </ul>
@@ -112,12 +175,12 @@ backend, so nothing leaves your server unless you point it at a hosted model.</p
   <h2>Standard Notes Server</h2>
 </div>
 <p>Self-hosted sync server for <strong>Standard Notes</strong>, the encrypted notes app. Keeps
-your notes on your own hardware. Uses an <strong>external MariaDB + Redis</strong> (your
+your notes on your own hardware. Uses an <strong>external MariaDB and Redis</strong> (your
 existing Unraid containers).</p>
 <ul>
   <li>End-to-end encrypted sync under your control</li>
   <li>Pairs with the LocalStack and Web UI templates below</li>
-  <li>Search Community Applications for <strong>Standard Notes Server</strong></li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/standardnotes-server-1souqtf1b2q4y7">Standard Notes Server</a></li>
   <li>Image: <code>standardnotes/server:latest</code></li>
   <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/standardnotes-server/README.md">Full README &amp; setup</a></li>
 </ul>
@@ -132,7 +195,7 @@ README).</p>
 <ul>
   <li>Provides the S3 API the Standard Notes server expects for files</li>
   <li>Only needed if you want file attachments</li>
-  <li>Search Community Applications for <strong>Standard Notes LocalStack</strong></li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/standardnotes-localstack-13rw5ft03tmlal">Standard Notes LocalStack</a></li>
   <li>Image: <code>localstack/localstack:3.0</code></li>
   <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/standardnotes-server/README.md">Full README &amp; setup</a></li>
 </ul>
@@ -145,7 +208,7 @@ README).</p>
 to your server so you are not tied to the public web app.</p>
 <ul>
   <li>Full Standard Notes editor in the browser, pointed at your own server</li>
-  <li>Search Community Applications for <strong>Standard Notes Web UI</strong></li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/standardnotes-webui-11uw5q909zo225">Standard Notes Web UI</a></li>
   <li>Image: <code>standardnotes/web:latest</code></li>
   <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/standardnotes-webui/README.md">Full README &amp; setup</a></li>
 </ul>
@@ -161,9 +224,85 @@ services into automated flows, with a visual editor. The template defaults to
   <li>Visual workflow builder; huge node/integration library</li>
   <li>PostgreSQL by default (your existing Unraid Postgres); SQLite also possible</li>
   <li>Every meaningful environment option surfaced in the template</li>
-  <li>Search Community Applications for <strong>n8n</strong></li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/n8n-0c22635190smct">n8n</a></li>
   <li>Image: <code>n8nio/n8n:latest</code></li>
   <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/n8n/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png" alt="Claper">
+  <h2>Claper</h2>
+</div>
+<p>An open-source, self-hosted alternative to Mentimeter and Slido: live polls, Q&amp;A and
+quizzes next to your slides, and the audience joins from their own phone or laptop without
+installing anything.</p>
+<ul>
+  <li>Needs a PostgreSQL database you already run, entered as one connection string</li>
+  <li>Generate a Secret Key Base once and keep it; change the seeded admin password at the first login</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/claper-0x0f5sh00a4zr1">Claper</a></li>
+  <li>Image: <code>ghcr.io/claperco/claper:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/claper/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png" alt="CouchDB">
+  <h2>CouchDB</h2>
+</div>
+<p>Apache CouchDB, the document database that speaks HTTP and stores JSON, and the sync
+backend behind Obsidian LiveSync. The template maps the 3.x data and config paths to appdata,
+so your databases and CORS settings survive an update.</p>
+<ul>
+  <li>Set an admin user and password before the first start; CouchDB 3.x will not start without one</li>
+  <li>Run the single-node setup once afterwards, the README has the command</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/couchdb-064b10p1xt53et">CouchDB</a></li>
+  <li>Image: <code>couchdb:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/couchdb/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png" alt="RustFS">
+  <h2>RustFS</h2>
+</div>
+<p>An S3-compatible object store written in Rust, one of the alternatives to MinIO's open
+edition. The template runs it as 99:100 so it can write to an Unraid share, and makes the
+access and secret key required fields.</p>
+<ul>
+  <li>Pre-release: every RustFS version so far is an alpha, beta or release candidate, so keep a second copy of anything you store here</li>
+  <li>Port 9000 is the S3 endpoint, 9001 the web console</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/rustfs-1szjfqp0ztfrjh">RustFS</a></li>
+  <li>Image: <code>rustfs/rustfs:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/rustfs/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png" alt="SeaweedFS">
+  <h2>SeaweedFS</h2>
+</div>
+<p>A fast, actively developed S3-compatible object store. The template runs its single-process
+mode: master, volume, filer, S3 API and admin UI in one container, with all data under one
+<code>/data</code> mount.</p>
+<ul>
+  <li>Set an access key and secret key before storing anything real; without them the S3 API runs unauthenticated</li>
+  <li>The README covers rclone, mc and restic, and moving over from MinIO</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/seaweedfs-0f9mbrl17bnwv1">SeaweedFS</a></li>
+  <li>Image: <code>chrislusf/seaweedfs:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/seaweedfs/README.md">Full README &amp; setup</a></li>
+</ul>
+
+<div class="app">
+  <img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/versitygw/icon.png" alt="VersityGW">
+  <h2>VersityGW</h2>
+</div>
+<p>Puts an S3 API in front of a folder you already have: every file on the share becomes an S3
+object, readable over S3 and over SMB or NFS at the same time. Nothing gets imported or
+copied.</p>
+<ul>
+  <li>Buckets are the top-level folders, objects the files inside them</li>
+  <li>Pick the access and secret key before the first start; they are the root credentials</li>
+  <li>An optional web interface for browsing and managing accounts</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/versitygw-1upkesl09vikj5">VersityGW</a></li>
+  <li>Image: <code>versity/versitygw:latest</code></li>
+  <li><a href="https://github.com/junkerderprovinz/unraid-apps/blob/main/versitygw/README.md">Full README &amp; setup</a></li>
 </ul>
 
 <hr>
@@ -171,19 +310,20 @@ services into automated flows, with a visual editor. The template defaults to
 <h2>Requirements</h2>
 <ul>
   <li>Unraid 6.10+ with the <strong>Community Applications</strong> plugin</li>
-  <li>The web-desktop apps (PrusaSlicer, Stellarium) are own images, so just install and open the WebUI</li>
+  <li>The web-desktop apps and the four own-image apps are ready to run: install and open the WebUI</li>
   <li>The template apps run <strong>upstream images</strong>: the template wires sensible Unraid defaults, paths and ports; the app itself is the vendor's</li>
-  <li>Some template apps need a <strong>database/cache you already run</strong> (Standard Notes: MariaDB + Redis; n8n: PostgreSQL). Set the connection fields in the template</li>
+  <li>Some apps need a <strong>database or cache you already run</strong> (Standard Notes: MariaDB and Redis; n8n and Claper: PostgreSQL). Set the connection fields in the template</li>
+  <li>The object stores (Garage, JuiceFS, RustFS, SeaweedFS, VersityGW) want an access key and a secret key before you store anything real</li>
   <li>For anything reachable from outside, put a <strong>reverse proxy with HTTPS</strong> in front</li>
 </ul>
 
 <h2>Posting a bug report</h2>
-<p>Tell me <strong>which app</strong> (PrusaSlicer / Stellarium / OpenHands / Standard Notes Server / LocalStack / Web UI / n8n), plus:</p>
+<p>Tell me <strong>which app</strong>, plus:</p>
 <ul>
   <li>Unraid version (Settings → System Information)</li>
   <li>Image tag (<code>latest</code> or the pinned version shown above)</li>
   <li>Output of <code>docker logs --tail 200 &lt;container&gt;</code></li>
-  <li>For the web-desktops: the browser + OS; for the template apps: which fields you changed (DB/Redis/Postgres, ports, paths, model endpoint)</li>
+  <li>For the web desktops: the browser and OS; for the other apps: which fields you changed (database, ports, paths, keys, model endpoint)</li>
 </ul>
 <p>GitHub issues with the same info are welcome too, on the respective repository linked above.</p>
 
@@ -191,15 +331,25 @@ services into automated flows, with a visual editor. The template defaults to
 <p>All credit for the apps goes to their upstream projects:
 <a href="https://www.prusa3d.com/prusaslicer/">PrusaSlicer</a>,
 <a href="https://stellarium.org">Stellarium</a>,
+<a href="https://excalidraw.com">Excalidraw</a>,
+<a href="https://garagehq.deuxfleurs.fr">Garage</a>,
+<a href="https://juicefs.com">JuiceFS</a>,
+<a href="https://github.com/euro-office/documentserver">Euro Office</a>,
 <a href="https://github.com/All-Hands-AI/OpenHands">OpenHands</a>,
 <a href="https://standardnotes.com">Standard Notes</a>,
-<a href="https://github.com/localstack/localstack">LocalStack</a> and
-<a href="https://n8n.io">n8n</a>. I only maintain the Unraid packaging/templates. If they save
-you some setup time, you can <a href="https://buymeacoffee.com/junkerderprovinz">buy me a coffee</a>.</p>
+<a href="https://github.com/localstack/localstack">LocalStack</a>,
+<a href="https://n8n.io">n8n</a>,
+<a href="https://claper.co">Claper</a>,
+<a href="https://couchdb.apache.org">Apache CouchDB</a>,
+<a href="https://github.com/rustfs/rustfs">RustFS</a>,
+<a href="https://github.com/seaweedfs/seaweedfs">SeaweedFS</a> and
+<a href="https://github.com/versity/versitygw">VersityGW</a>. I only maintain the Unraid
+packaging and templates. If they save you some setup time, you can
+<a href="https://buymeacoffee.com/junkerderprovinz">buy me a coffee</a>.</p>
 
 <hr>
 
-<p class="footnote">Self-hosted, MIT-licensed packaging. You run the containers, you own your data and the responsibility.</p>
+<p class="footnote">Self-hosted packaging, each under its repository's own licence. You run the containers, you own your data and the responsibility.</p>
 
 </body>
 </html>

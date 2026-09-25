@@ -8,7 +8,7 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/garage/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/garage/issues</Support>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://git.deuxfleurs.fr/Deuxfleurs/garage</Project>
   <Overview>
 Garage is a lightweight, S3-API-compatible object store built for small, self-hosted deployments - Rust, Apache-2.0, actively developed. This template bundles the official Garage server AND its web admin panel (garage-webui, also official/unmodified) into ONE container, running single-node mode.&#xD;

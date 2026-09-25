@@ -8,7 +8,7 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/juicefs/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/juicefs/issues</Support>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://github.com/juicedata/juicefs</Project>
   <Overview>
 JuiceFS keeps file metadata in a database and file contents in an object store. This template runs its S3 gateway, so anything on your server that speaks S3 can talk to it. The official binary, unmodified, verified against the upstream SHA256 at build time.&#xD;
