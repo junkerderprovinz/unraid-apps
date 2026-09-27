@@ -3,7 +3,7 @@
   <Profile>
     junkerderprovinz Unraid templates. Community Applications templates for
     junkerderprovinz's self-hosted apps, in four groups. Own software: BombVault,
-    featherdrop, KnightLoader and TrickWork. Own image builds of third-party apps: JDownloader,
+    featherdrop and TrickWork. Own image builds of third-party apps: JDownloader,
     Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud, HandBrake, StrawDroid,
     Excalidraw, Euro Office, Garage and JuiceFS. Thin wrappers over an upstream
     image: CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n,
