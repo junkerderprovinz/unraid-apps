@@ -42,7 +42,7 @@ Your own private WeTransfer: feather-light, login-free, end-to-end encrypted fil
 <a href="https://github.com/junkerderprovinz/knightloader#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **KnightLoader**<br>
-Self-hosted download manager: debrid services, torrents, yt-dlp and a headless JDownloader behind one web interface.
+Self-hosted download manager that puts debrid services, torrents, yt-dlp and a headless JDownloader behind one web interface.
 
 <br clear="all">
 
