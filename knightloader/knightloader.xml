@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>KnightLoader</Name>
+  <Repository>junkerderprovinz/knightloader:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/knightloader</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/knightloader/issues</Support>
+  <Project>https://github.com/junkerderprovinz/knightloader</Project>
+  <ReadMe>https://github.com/junkerderprovinz/knightloader/blob/main/README.md</ReadMe>
+  <Overview>KnightLoader is a self-hosted download manager that puts debrid services, torrents, yt-dlp and a headless JDownloader behind one web interface. Links are staged in a collector before anything downloads, rules sort them into packages and folders, and archives are unpacked with no outside tools. The Android app, the browser extension and your other instances reach it from other networks with twelve words, without an account or a port forward.
+
+The manual is at https://junkerderprovinz.github.io/knightloader/</Overview>
+  <Category>Downloaders:</Category>
+  <WebUI>http://[IP]:[PORT:8749]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/knightloader.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/icon.png</Icon>
+  <ExtraParams>--restart unless-stopped --user 99:100</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If KnightLoader has earned a place on your server, toss a coin to your knight.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires/>
+  <Config
+    Name="WebUI Port"
+    Target="8749"
+    Default="8749"
+    Mode="tcp"
+    Description="Port the web interface listens on."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">8749</Config>
+  <Config
+    Name="Appdata"
+    Target="/data"
+    Default="/mnt/user/appdata/knightloader"
+    Mode="rw"
+    Description="The database, the settings, the encrypted account store, the list of instances and the headless JDownloader KnightLoader sets up on first start."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/knightloader</Config>
+  <Config
+    Name="Downloads"
+    Target="/data/downloads"
+    Default="/mnt/user/downloads/"
+    Mode="rw"
+    Description="Where downloads land. /data/downloads is the download folder in Settings unless you change it there."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/downloads/</Config>
+  <Config
+    Name="Watched folder"
+    Target="/watch"
+    Default="/mnt/user/downloads/knightloader-watch"
+    Mode="rw"
+    Description="Drop a .txt link list, a .magnet, a JDownloader .crawljob, a .torrent, a container file or an .nzb here and KnightLoader picks it up. Point the watched folder in Settings at /watch to switch it on."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false">/mnt/user/downloads/knightloader-watch</Config>
+  <Config
+    Name="File permission mask"
+    Target="UMASK"
+    Default="000"
+    Mode=""
+    Description="Octal mask for every file and folder KnightLoader creates. With 000, downloads land as nobody:users with mode 0666 and folders with 0777, so the account you use over SMB can move, rename and delete them. Set 022 for restrictive permissions. Do not leave it empty."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">000</Config>
+</Container>
