@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/junkerderprovinz/arrowloop/issues</Support>
+  <Support>https://forums.unraid.net/topic/200733-support-junkerderprovinz-arrowloop/</Support>
   <Project>https://github.com/junkerderprovinz/arrowloop</Project>
   <ReadMe>https://github.com/junkerderprovinz/arrowloop/blob/main/README.md</ReadMe>
   <Overview>Two-way file synchronisation that shows you the plan before it moves anything.
