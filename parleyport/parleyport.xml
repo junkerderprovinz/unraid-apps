@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>ParleyPort</Name>
+  <Repository>junkerderprovinz/parleyport:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/parleyport</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/parleyport/issues</Support>
+  <Project>https://github.com/junkerderprovinz/parleyport</Project>
+  <ReadMe>https://github.com/junkerderprovinz/parleyport/blob/main/README.md</ReadMe>
+  <Overview>Your own relay for KnightLoader and BombVault.
+
+Both apps pair their instances with twelve words. Instances on the same network talk directly, but two instances on different networks, behind NAT or a firewall that lets nothing in, need a third point both can dial out to. ParleyPort is that point. It groups the connections that share a relay key and passes their messages on, sealed end to end with a key that never leaves your instances, so it cannot read what it carries.
+
+You only need it if you want your own relay. The project relay at relay.halleluja.design is the default in both apps, and an instance that is already reachable from outside can serve as the relay itself. ParleyPort is for running your own without putting a download manager or a backup tool on the open internet: a few megabytes, no accounts, no database, nothing stored.
+
+Plain mode listens on port 8760 for a reverse proxy in front, which must allow WebSocket upgrades on /relay/connect. Set a domain and map port 443 instead, and it fetches and renews its own Let's Encrypt certificate, with port 80 left closed. Then enter the address under Settings, Pairing, Relay, Own relay on every instance of the group.</Overview>
+  <Category>Network:Other Tools:Utilities</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/parleyport.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Config
+    Name="Relay Port (plain)"
+    Target="8760"
+    Default="8760"
+    Mode="tcp"
+    Description="Plain HTTP for a reverse proxy in front. Point the proxy at this port and allow WebSocket upgrades on /relay/connect. /health answers with the status and version."
+    Type="Port"
+    Display="always"
+    Required="false"
+    Mask="false">8760</Config>
+  <Config
+    Name="Relay Port (TLS)"
+    Target="443"
+    Default=""
+    Mode="tcp"
+    Description="Only with a domain set below. Enter the host port your router forwards 443 to. Leave it empty in plain mode, and keep it off 443 if the Unraid web interface already uses that port."
+    Type="Port"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Domain"
+    Target="PARLEYPORT_DOMAIN"
+    Default=""
+    Mode=""
+    Description="Your relay's domain, for example relay.example.org. With it set, ParleyPort serves TLS on 443 inside the container and gets its own Let's Encrypt certificate through port 443 alone. Several names can be given, separated by commas, to keep an old name working during a move. Leave it empty for plain mode behind a proxy."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Data"
+    Target="/var/lib/parleyport"
+    Default="/mnt/user/appdata/parleyport"
+    Mode="rw"
+    Description="Holds the certificates in domain mode, so a restart does not ask Let's Encrypt for a new one. Stays empty in plain mode."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/parleyport</Config>
+</Container>
