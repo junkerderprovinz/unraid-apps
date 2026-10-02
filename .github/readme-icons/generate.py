@@ -25,6 +25,10 @@ Modes per app:
               problem), left on a white rounded tile.
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged, in the OpenCloud brand colours.
+  APP       - the house's own apps with an app tile (arrowloop, parleyport): the card
+              shows app/<name>.png as it is, the logo on the white and grey
+              house tile, while the CA icon stays the bare logo. app/tile.mjs
+              builds a tile from a logo; parleyport.svg is the original.
 
 ShipLog + FireSquire are excluded (theme-flipping <picture> pairs from their own
 SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
@@ -36,10 +40,11 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork", "parleyport"}
-FILL = {"bombvault", "bombvaultwidget", "standardnotes-server", "standardnotes-webui", "excalidraw", "arrowloop"}
+TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork"}
+FILL = {"bombvault", "bombvaultwidget", "standardnotes-server", "standardnotes-webui", "excalidraw"}
+APP = {"arrowloop", "parleyport"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs"}
-ALL = sorted(TILE | FILL | KEEP)
+ALL = sorted(TILE | FILL | KEEP | APP)
 
 OC_PETROL = (32, 67, 79, 255)     # #20434F
 OC_LAVENDER = (226, 186, 255, 255)  # #E2BAFF
@@ -150,7 +155,9 @@ def main():
     for app in ALL:
         src = Image.open(os.path.join(ROOT, app, "icon.png")).convert("RGBA")
         size = min(src.size)
-        if app == "opencloud":
+        if app in APP:
+            out = Image.open(os.path.join(HERE, "app", app + ".png")).convert("RGBA")
+        elif app == "opencloud":
             out = build_opencloud(size, ratio)
         elif app in TILE:
             out = rounded(src.copy(), ratio)                     # keep brand tile, transparent corners
@@ -162,7 +169,7 @@ def main():
             canvas = Image.alpha_composite(canvas, src)
             out = rounded(canvas, ratio)
         out.save(os.path.join(HERE, app + ".png"))
-        print("wrote", app + ".png", f"({app in TILE and 'tile' or app in FILL and 'fill' or app=='opencloud' and 'opencloud' or 'keep'})")
+        print("wrote", app + ".png", f"({app in APP and 'app' or app in TILE and 'tile' or app in FILL and 'fill' or app == 'opencloud' and 'opencloud' or 'keep'})")
 
 
 if __name__ == "__main__":
