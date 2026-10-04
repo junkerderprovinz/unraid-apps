@@ -154,12 +154,12 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
   <Config Name="Web office suite" Target="OFFICE"
           Default="off|collabora|onlyoffice|euro-office" Mode=""
           Description="Browser document editing. 'off' (default) = none. 'collabora' = Collabora Online / CODE (port 9980); 'onlyoffice' = OnlyOffice Document Server; 'euro-office' = Euro Office, the sovereign OnlyOffice fork (image ghcr.io/euro-office/documentserver). The editor itself ALWAYS runs as a SEPARATE container that you install and point to below - this only turns on OpenCloud's built-in WOPI service and wires it up. For OnlyOffice and Euro Office the WOPI secret below MUST equal the document server's JWT secret. See the README 'Web office' section for the document-server setup and reverse-proxy notes."
-          Type="Variable" Display="advanced" Required="false" Mask="false">off</Config>
+          Type="Variable" Display="always" Required="false" Mask="false">off</Config>
 
   <Config Name="Office document server URL" Target="OFFICE_SERVER_URL"
           Default="" Mode=""
-          Description="Browser-reachable URL of your Collabora / OnlyOffice document-server container, e.g. https://collabora.example.com (or http://192.168.1.10:9980 on a plain LAN). Only used when 'Web office suite' is not 'off'."
-          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+          Description="Browser-reachable https URL of your document server, e.g. https://192.168.1.10:9943 for the Euro Office container or https://office.example.com behind a reverse proxy. It has to be https, because browsers will not show an http editor inside the https OpenCloud page. Only used when 'Web office suite' is not 'off'."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
 
   <Config Name="Office WOPI secret" Target="OFFICE_WOPI_SECRET"
           Default="" Mode=""
