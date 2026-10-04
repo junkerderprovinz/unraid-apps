@@ -13,7 +13,7 @@ Every backup, restore, verify, prune, off-site replication and drill scrolls by 
 Requires BombVault 6.9.0 or newer on your network and a widget token (BombVault -&gt; Settings -&gt; System -&gt; Dashboard widget). Read-only by construction: a same-origin proxy on the Unraid webgui calls exactly one BombVault endpoint, and the token never reaches the browser. Alternatively, BombVault's settings page installs this plugin for you with one click.</Overview>
   <Support>https://forums.unraid.net/topic/199509-support-junkerderprovinz-bombvault/</Support>
   <Project>https://github.com/junkerderprovinz/bombvault-widget</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/bombvault-widget/main/.github/assets/icon.png?v=1</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/bombvault-widget/main/.github/assets/icon.png?v=2</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>
