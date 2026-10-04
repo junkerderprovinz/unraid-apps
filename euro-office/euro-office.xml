@@ -13,16 +13,18 @@
   <Overview>
 Euro Office Document Server - a sovereign, European document server for browser-based editing of text documents, spreadsheets and presentations. It is a maintained fork of the OnlyOffice Document Server, so it speaks the same WOPI and OnlyOffice APIs and plugs straight into OpenCloud (and Nextcloud/ownCloud). Use it to edit .docx / .xlsx / .pptx and .odt / .ods / .odp files right in your browser, without any desktop office suite.&#xD;
 &#xD;
-This is a thin wrapper (github.com/junkerderprovinz/euro-office) around the official image. It fixes an upstream permission bug on the Data folder, serves https out of the box with a certificate it creates for itself, and replaces the vendor's start page with one that shows what to enter in OpenCloud.&#xD;
+This is a thin wrapper (github.com/junkerderprovinz/euro-office) around the official image. It fixes an upstream permission bug on the Data folder, lets OpenCloud show the editor under OpenCloud's own address, serves https out of the box for other clouds, and replaces the vendor's start page with one that shows what to enter in OpenCloud.&#xD;
 &#xD;
 This is not a standalone app. It is the editor behind a file server: you point your cloud (e.g. the OpenCloud container) at it and edit the files stored in that cloud. On its own it only shows its start page.&#xD;
 &#xD;
 How it fits together (with OpenCloud):&#xD;
 &#x2022; Install this container. Set a JWT secret below and remember it.&#xD;
-&#x2022; Click the WebUI button. The browser warns about the certificate once, because Euro Office made it for itself; accept the warning. The page that opens says whether the editor is ready and lists the three OpenCloud fields.&#xD;
-&#x2022; In the OpenCloud template set "Web office suite" = euro-office, "Office document server URL" = https://[THIS-SERVER-IP]:9943 and "Office WOPI secret" = the same value as the JWT secret here.&#xD;
-&#x2022; The New button in OpenCloud now offers documents, spreadsheets and presentations, and existing Office files open in Euro Office.&#xD;
-&#x2022; Every other browser or device you edit documents on has to accept the certificate once as well, by opening https://[THIS-SERVER-IP]:9943. With your own trusted certificate (see "Own certificate" below) that step goes away.&#xD;
+&#x2022; Click the WebUI button. The page that opens says whether the editor is ready and lists the three OpenCloud fields.&#xD;
+&#x2022; In the OpenCloud template set "Web office suite" = euro-office, "Office document server URL" = http://[THIS-SERVER-IP]:9900 (the address the WebUI button opened) and "Office WOPI secret" = the same value as the JWT secret here.&#xD;
+&#x2022; The New button in OpenCloud now offers documents, spreadsheets and presentations, and existing Office files open in Euro Office. OpenCloud shows the editor under its own address, so there is no certificate to accept. This needs the OpenCloud container from version 1.4.0 on.&#xD;
+&#xD;
+Nextcloud or ownCloud:&#xD;
+&#x2022; They load the editor straight from Euro Office, so give them the https address, https://[THIS-SERVER-IP]:9943 (HTTPS Port under Advanced View), and accept the certificate warning once on every device. Euro Office creates that certificate itself on the first start; "Own certificate" below avoids the warning.&#xD;
 &#xD;
 First start:&#xD;
 &#x2022; The document server bundles its own database and converter and takes a minute or two to come up on the very first start. Its start page says when it is ready.&#xD;
@@ -30,7 +32,7 @@ First start:&#xD;
 &#xD;
 Security / reverse proxy:&#xD;
 &#x2022; Keep "Enable JWT" = true (the default). The JWT secret signs every request between your cloud and the editor, so never leave it blank.&#xD;
-&#x2022; Behind a reverse proxy that terminates TLS (e.g. https://office.example.com), point the proxy at the plain http port (9900) and use the proxy's https URL in OpenCloud.&#xD;
+&#x2022; With OpenCloud, Euro Office needs no reverse proxy and no port opened to the outside: OpenCloud passes it through. Only OpenCloud has to be reachable.&#xD;
 &#x2022; "Allow self-signed upstream" is true by default because OpenCloud on Unraid serves a self-signed certificate. Set it to false only when your cloud has a valid certificate.&#xD;
 &#xD;
 Own certificate:&#xD;
@@ -45,9 +47,8 @@ Troubleshooting - container loops "Starting nginx nginx ...fail!":&#xD;
 &#x2022; The logs are not lost by clearing the field - the Unraid log button on the container still shows everything the server prints.&#xD;
 &#xD;
 Troubleshooting - documents open blank, or the browser says "this content is blocked, contact the site owner":&#xD;
-&#x2022; OpenCloud's "Office document server URL" still starts with http://. A browser refuses to load an http editor inside the https OpenCloud page, and since the request is never sent, neither container logs anything. Change it to https://[THIS-SERVER-IP]:9943; the OpenCloud log warns about this at startup.&#xD;
-&#x2022; Or this browser has not accepted the certificate yet: open https://[THIS-SERVER-IP]:9943 and accept the warning.&#xD;
-&#x2022; Or the "HTTPS Port" mapping is missing on an older install: add a port with container port 443 and host port 9943 on the Edit page.&#xD;
+&#x2022; The OpenCloud container is older than 1.4.0. Older versions let the browser load the editor straight from Euro Office, and an http address is then blocked as mixed content. Update OpenCloud, or use https://[THIS-SERVER-IP]:9943 and accept the certificate warning in every browser.&#xD;
+&#x2022; Or OpenCloud uses a proxy.yaml of your own. Then it does not pass the editor through, and its log says so at startup; use the https address as above.&#xD;
 &#xD;
 About Euro Office:&#xD;
 &#x2022; Euro Office is an open, sovereignty-focused document server developed in Europe as an OnlyOffice-compatible fork. Because it is API-compatible, any guide for "OnlyOffice Document Server + OpenCloud/Nextcloud" applies here as well.&#xD;
@@ -56,28 +57,28 @@ Project: https://github.com/euro-office/documentserver&#xD;
 This is an independent, community-maintained Unraid packaging and is not affiliated with the Euro Office project.&#xD;
   </Overview>
   <Category>Productivity: Cloud:</Category>
-  <WebUI>https://[IP]:[PORT:443]/</WebUI>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/euro-office.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
   <!-- Ports -->
-  <Config Name="HTTPS Port" Target="443" Default="9943" Mode="tcp"
-          Description="The editor's https port. In OpenCloud, set 'Office document server URL' to https://[THIS-SERVER-IP]:9943. Euro Office creates its own certificate on the first start, so open that address once in your browser and accept the warning."
-          Type="Port" Display="always" Required="true" Mask="false">9943</Config>
-
   <Config Name="WebUI Port" Target="80" Default="9900" Mode="tcp"
-          Description="Plain http port. OpenCloud runs on https, and browsers will not show an http editor inside it, so use the HTTPS Port for OpenCloud. This one is for a reverse proxy that terminates TLS itself."
+          Description="The WebUI button opens http://[IP]:9900. Its start page shows whether the editor is ready and the three OpenCloud fields to copy, with this server's address filled in."
           Type="Port" Display="always" Required="true" Mask="false">9900</Config>
 
   <!-- Core settings -->
   <Config Name="JWT secret" Target="JWT_SECRET" Default="" Mode=""
-          Description="Shared secret that signs every request between your cloud and this editor. REQUIRED. Pick a long random string. It MUST be identical to the 'Office WOPI secret' you set in the OpenCloud template. Keep it secret."
+          Description="Pick a long random string and enter the same one as 'Office WOPI secret' in OpenCloud. It signs every request between the cloud and the editor."
           Type="Variable" Display="always" Required="true" Mask="true"/>
 
   <Config Name="Enable WOPI" Target="WOPI_ENABLED" Default="true|false" Mode=""
-          Description="Turns on the WOPI protocol that OpenCloud uses to open and save documents. Keep 'true' - with 'false' OpenCloud cannot use this editor."
+          Description="Keep 'true'. OpenCloud opens and saves documents over WOPI."
           Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+
+  <Config Name="HTTPS Port" Target="443" Default="9943" Mode="tcp"
+          Description="Only for Nextcloud or ownCloud without OpenCloud in front. They load the editor straight from here, so the browser needs https; accept the certificate warning once on every device. OpenCloud does not need it."
+          Type="Port" Display="advanced" Required="false" Mask="false">9943</Config>
 
   <!-- Advanced -->
   <Config Name="Enable JWT" Target="JWT_ENABLED" Default="true|false" Mode=""
