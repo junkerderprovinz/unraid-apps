@@ -163,6 +163,14 @@ The real Android emulator on a Selkies web desktop, reached over adb like a phon
 
 <br clear="all">
 
+<img src=".github/readme-icons/seafile.png" width="84" align="left" alt="Seafile">
+<a href="https://github.com/junkerderprovinz/seafile#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Seafile**<br>
+The official Seafile server from one template, with its secrets generated on first start and MariaDB, Redis and the notification server built in on request.
+
+<br clear="all">
+
 
 ## Wrappers
 

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Seafile</Name>
+  <Beta>true</Beta>
+  <Repository>junkerderprovinz/seafile:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/seafile</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/seafile/blob/main/README.md</ReadMe>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://www.seafile.com</Project>
+  <Overview>
+Seafile is a file sync and share server with desktop and mobile clients, libraries you can encrypt on the client, and built-in wikis. This is the official Seafile image, installable from this one template.&#xD;
+&#xD;
+The official image expects MariaDB, Redis and the notification server as separate containers on a shared Docker network, plus a JWT key you generate by hand. Here the JWT key, the database password and, if you leave it empty, the admin password are generated on the first start and kept in secrets.env in the Data folder. MariaDB, Redis and the notification server can each run inside this container when you switch them on below.&#xD;
+&#xD;
+Getting started:&#xD;
+&#x2022; Set the Server hostname to the address your clients will use, such as 192.168.1.10:8000 or seafile.example.com.&#xD;
+&#x2022; Already running MariaDB? Enter its host and root password. The root password is only used once, to create the Seafile databases.&#xD;
+&#x2022; No MariaDB or Redis? Set Built-in MariaDB and Built-in Redis to true and leave their host fields empty.&#xD;
+&#x2022; The first start takes about a minute. Seafile is ready when the log says "Seahub is started". A generated admin password is printed in the log.&#xD;
+&#xD;
+This image runs Seafile 14, which upstream still calls testing, and Seafile cannot be downgraded. Back up the Data folder and the database before every update.&#xD;
+&#xD;
+Coming from another Seafile template? The Data folder has the same layout, so point Data at your old folder and copy over the database settings and the JWT key. The README explains each step.&#xD;
+&#xD;
+Source on GitHub: https://github.com/junkerderprovinz/seafile&#xD;
+This is an independent packaging of Seafile and is not affiliated with Seafile Ltd.&#xD;
+  </Overview>
+  <Category>Cloud: Productivity: Network:Other</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seafile/seafile.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seafile/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A MariaDB and a Redis server, or Built-in MariaDB and Built-in Redis set to true.</Requires>
+
+  <Config Name="WebUI Port" Target="80" Default="8000" Mode="tcp"
+          Description="Port of the Seafile web interface and of the sync clients. The Server hostname below has to name this port."
+          Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+
+  <Config Name="Data" Target="/shared" Default="/mnt/user/appdata/seafile" Mode="rw"
+          Description="All of Seafile: configuration, logs, your libraries, secrets.env and, with Built-in MariaDB, the database. Libraries can grow large, so pick a share with room for your files."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/seafile</Config>
+
+  <Config Name="Server hostname" Target="SEAFILE_SERVER_HOSTNAME" Default="" Mode=""
+          Description="The address clients use to reach Seafile, without http://. For example 192.168.1.10:8000, or seafile.example.com behind a reverse proxy. Desktop clients cannot sync when this is wrong."
+          Type="Variable" Display="always" Required="true" Mask="false"></Config>
+
+  <Config Name="Protocol" Target="SEAFILE_SERVER_PROTOCOL" Default="http|https" Mode=""
+          Description="https when a reverse proxy in front of Seafile serves TLS, http otherwise."
+          Type="Variable" Display="always" Required="false" Mask="false">http</Config>
+
+  <Config Name="Admin email" Target="INIT_SEAFILE_ADMIN_EMAIL" Default="" Mode=""
+          Description="Sign-in of the admin account created on the first start."
+          Type="Variable" Display="always" Required="true" Mask="false"></Config>
+
+  <Config Name="Admin password" Target="INIT_SEAFILE_ADMIN_PASSWORD" Default="" Mode=""
+          Description="Only read on the first start. Leave it empty to get a generated one, which the log prints and secrets.env keeps."
+          Type="Variable" Display="always" Required="false" Mask="true"></Config>
+
+  <Config Name="Built-in MariaDB" Target="BUILTIN_MARIADB" Default="false|true" Mode=""
+          Description="true runs MariaDB inside this container, with its data in the Data folder. Use it only on a new installation: an existing Seafile keeps its data in the database it already has."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Database host" Target="SEAFILE_MYSQL_DB_HOST" Default="" Mode=""
+          Description="IP or name of your MariaDB or MySQL server. Leave it empty with Built-in MariaDB."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Database root password" Target="INIT_SEAFILE_MYSQL_ROOT_PASSWORD" Default="" Mode=""
+          Description="Root password of your MariaDB, used once on the first start to create the three Seafile databases and the database user. You can clear it afterwards. Not needed with Built-in MariaDB."
+          Type="Variable" Display="always" Required="false" Mask="true"></Config>
+
+  <Config Name="Built-in Redis" Target="BUILTIN_REDIS" Default="false|true" Mode=""
+          Description="true runs Redis inside this container. Seafile only keeps a cache there, nothing is written to disk."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Redis host" Target="REDIS_HOST" Default="" Mode=""
+          Description="IP or name of your Redis server. Leave it empty with Built-in Redis."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Notification server" Target="ENABLE_NOTIFICATION_SERVER" Default="false|true" Mode=""
+          Description="true starts the notification server in this container, so the desktop and mobile clients see changes when they happen. A reverse proxy has to pass WebSocket connections for /notification."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Database port" Target="SEAFILE_MYSQL_DB_PORT" Default="3306" Mode=""
+          Description="Port of your MariaDB or MySQL server."
+          Type="Variable" Display="advanced" Required="false" Mask="false">3306</Config>
+
+  <Config Name="Database user" Target="SEAFILE_MYSQL_DB_USER" Default="seafile" Mode=""
+          Description="The user Seafile connects as. The first start creates it."
+          Type="Variable" Display="advanced" Required="false" Mask="false">seafile</Config>
+
+  <Config Name="Database password" Target="SEAFILE_MYSQL_DB_PASSWORD" Default="" Mode=""
+          Description="Password of the database user. Leave it empty on a new installation to get a generated one. When switching from another Seafile template, enter the password you used there."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="ccnet database" Target="SEAFILE_MYSQL_DB_CCNET_DB_NAME" Default="ccnet_db" Mode=""
+          Description="Name of the database for users and groups."
+          Type="Variable" Display="advanced" Required="false" Mask="false">ccnet_db</Config>
+
+  <Config Name="seafile database" Target="SEAFILE_MYSQL_DB_SEAFILE_DB_NAME" Default="seafile_db" Mode=""
+          Description="Name of the database for libraries."
+          Type="Variable" Display="advanced" Required="false" Mask="false">seafile_db</Config>
+
+  <Config Name="seahub database" Target="SEAFILE_MYSQL_DB_SEAHUB_DB_NAME" Default="seahub_db" Mode=""
+          Description="Name of the database for the web interface."
+          Type="Variable" Display="advanced" Required="false" Mask="false">seahub_db</Config>
+
+  <Config Name="Redis port" Target="REDIS_PORT" Default="6379" Mode=""
+          Description="Port of your Redis server."
+          Type="Variable" Display="advanced" Required="false" Mask="false">6379</Config>
+
+  <Config Name="Redis password" Target="REDIS_PASSWORD" Default="" Mode=""
+          Description="Only when your Redis server asks for one."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="JWT key" Target="JWT_PRIVATE_KEY" Default="" Mode=""
+          Description="Shared by Seafile and its add-ons. Leave it empty to get a generated one. When switching from another Seafile template, enter the key you used there."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="Notification server URL" Target="NOTIFICATION_SERVER_URL" Default="" Mode=""
+          Description="Only needed when clients reach the notification server under another address than Protocol://Server hostname/notification."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="SeaDoc" Target="ENABLE_SEADOC" Default="false|true" Mode=""
+          Description="true turns on the SeaDoc document editor. SeaDoc runs as a separate container (seafileltd/sdoc-server) and needs the same JWT key as Seafile."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="SeaDoc URL" Target="SEADOC_SERVER_URL" Default="" Mode=""
+          Description="Address of the SeaDoc container as the browser reaches it, for example http://192.168.1.10:7070."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+</Container>
