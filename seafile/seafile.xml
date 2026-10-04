@@ -8,7 +8,7 @@
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/seafile/blob/main/README.md</ReadMe>
-  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Support>https://forums.unraid.net/topic/200798-support-junkerderprovinz-seafile-14/</Support>
   <Project>https://www.seafile.com</Project>
   <Overview>
 Seafile is a file sync and share server with desktop and mobile clients, libraries you can encrypt on the client, and built-in wikis. This is the official Seafile image, installable from this one template.&#xD;
