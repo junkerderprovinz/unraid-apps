@@ -21,6 +21,10 @@ Getting started:&#xD;
 &#x2022; No MariaDB or Redis? Set Built-in MariaDB and Built-in Redis to true and leave their host fields empty.&#xD;
 &#x2022; The first start takes about a minute. Seafile is ready when the log says "Seahub is started". A generated admin password is printed in the log.&#xD;
 &#xD;
+Office files in the browser:&#xD;
+&#x2022; Install Euro-Office, Collabora or OnlyOffice as its own container, then set "Web office suite", "Office document server URL" and, for Euro-Office and OnlyOffice, "Office JWT secret" below. Documents then open and save inside Seafile.&#xD;
+&#x2022; Collabora also needs Seafile's address in its aliasgroup1 variable. The README has a table with the values for all three.&#xD;
+&#xD;
 This image runs Seafile 14, which upstream still calls testing, and Seafile cannot be downgraded. Back up the Data folder and the database before every update.&#xD;
 &#xD;
 Coming from another Seafile template? The Data folder has the same layout, so point Data at your old folder and copy over the database settings and the JWT key. The README explains each step.&#xD;
@@ -127,6 +131,18 @@ This is an independent packaging of Seafile and is not affiliated with Seafile L
   <Config Name="Notification server URL" Target="NOTIFICATION_SERVER_URL" Default="" Mode=""
           Description="Only needed when clients reach the notification server under another address than Protocol://Server hostname/notification."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Web office suite" Target="OFFICE" Default="off|euro-office|collabora|onlyoffice" Mode=""
+          Description="Opens Word, Excel and PowerPoint files in the browser. The editor runs as its own container, for example the Euro-Office template. Choices: off, euro-office, collabora, onlyoffice. See the README section 'Web office'."
+          Type="Variable" Display="always" Required="false" Mask="false">off</Config>
+
+  <Config Name="Office document server URL" Target="OFFICE_SERVER_URL" Default="" Mode=""
+          Description="Address of the editor as the browser reaches it, for Euro-Office the one its WebUI button opens, such as http://192.168.1.10:9900. If you open Seafile over https, this has to be https too, or the browser blocks the editor."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Office JWT secret" Target="OFFICE_JWT_SECRET" Default="" Mode=""
+          Description="The same text as the JWT secret in the Euro-Office or OnlyOffice container. Collabora does not need it."
+          Type="Variable" Display="always" Required="false" Mask="true"></Config>
 
   <Config Name="SeaDoc" Target="ENABLE_SEADOC" Default="false|true" Mode=""
           Description="true turns on the SeaDoc document editor. SeaDoc runs as a separate container (seafileltd/sdoc-server) and needs the same JWT key as Seafile."
