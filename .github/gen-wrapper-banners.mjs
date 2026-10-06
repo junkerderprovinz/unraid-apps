@@ -45,6 +45,7 @@ const APPS = [
   { slug: "versitygw", name: { text: "VersityGW" }, markDark: { 'fill="#191B2A"': 'fill="#e6edf3"' },
     claim: "Buckets on top, files still files." },
   { slug: "rustfs", name: { text: "RustFS" }, claim: "Object storage, forged not rusted." },
+  { slug: "silo", name: { wordmark: true }, claim: "Same buckets, new silo." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
@@ -108,6 +109,10 @@ function wordmarkOf(slug) {
     const first = g.match(/<path\b[^>]*\/>/)[0];
     const gopen = g.match(/^<g\b[^>]*>/)[0];
     return { content: g, capContent: `${gopen}${first}</g>`, vb: { x: 0, y: 0, w: 1200, h: 360 } };
+  }
+  if (slug === "silo") {
+    const letters = src.match(/<g id="silo-logo-word"[\s\S]*?<\/g>/)[0].match(/<path\b[^>]*\/>/g);
+    return { content: `<g fill="COLOR">${letters.join("")}</g>`, capContent: `<g fill="COLOR">${letters[0]}</g>`, vb: { x: 0, y: 0, w: 1994, h: 700 } };
   }
   throw new Error("no wordmark extractor for " + slug);
 }

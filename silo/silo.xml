@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Silo</Name>
+  <Repository>pgsty/silo:latest</Repository>
+  <Registry>https://hub.docker.com/r/pgsty/silo</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/silo/README.md</ReadMe>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://github.com/pgsty/silo</Project>
+  <Overview>
+PGSTY Silo is an S3-compatible object store: a maintained fork of the open-source MinIO server, published by Pigsty after MinIO stopped distributing its community edition. The S3 API, the MINIO_* settings and the on-disk format are unchanged; Pigsty adds security fixes and keeps the full web console. Silo is AGPL-3.0, and this template runs the official image.&#xD;
+&#xD;
+Why this template exists: started as it comes, the image prints its help text and exits, because it needs to be told to serve a folder. The template starts it as a server on /data with the console on a fixed port, runs it as 99:100 so the files it writes on your share belong to nobody:users instead of root, and makes the credentials required fields, because left empty Silo falls back to the well-known minioadmin:minioadmin account.&#xD;
+&#xD;
+Ports: 9000 is the S3 endpoint every client connects to. 9001 is the web console.&#xD;
+&#xD;
+Coming from pgsty/minio or another MinIO container: point Data at the old data folder and keep the same credentials. If that container ran as root, run chown -R nobody:users on the folder first, or Silo stops at startup with "file access denied". The README has the details.&#xD;
+  </Overview>
+  <Category>Backup: Cloud: Network:Web Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:9001]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/silo/silo.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/silo/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --user 99:100</ExtraParams>
+  <PostArgs>server /data --console-address ":9001"</PostArgs>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>Set a Root User and a Root Password below, at least 8 characters for the password. Left empty, Silo starts with the default account minioadmin:minioadmin, which everyone knows.</Requires>
+
+  <Config Name="S3 API Port" Target="9000" Default="9000" Mode="tcp" Description="The S3 endpoint every client (rclone, restic, aws-cli, ...) connects to." Type="Port" Display="always" Required="true" Mask="false">9000</Config>
+
+  <Config Name="Console Port" Target="9001" Default="9001" Mode="tcp" Description="The web console. This is what WebUI opens. Log in with the root user and password below." Type="Port" Display="always" Required="true" Mask="false">9001</Config>
+
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/silo/data" Mode="rw" Description="Where the objects live. Must be writable by 99:100, which is what this template runs the container as. Taking over data from a MinIO container that ran as root: chown -R nobody:users on this folder first." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/silo/data</Config>
+
+  <Config Name="Root User" Target="MINIO_ROOT_USER" Default="" Mode="" Description="The admin account, also the access key for S3 clients. At least 3 characters. Left empty, Silo uses minioadmin." Type="Variable" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Root Password" Target="MINIO_ROOT_PASSWORD" Default="" Mode="" Description="The admin password, also the secret key for S3 clients. At least 8 characters, or Silo stops at startup. Use a generated secret (e.g. openssl rand -hex 24)." Type="Variable" Display="always" Required="true" Mask="true"/>
+
+</Container>

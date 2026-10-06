@@ -118,11 +118,14 @@ view close to useless.
 
 ## 5. How it compares to the other object stores here
 
-There are five now, and they solve different problems:
+There are six now, and they solve different problems:
 
 **RustFS** is a plain S3 object store. Objects go in, objects come out, and the folder it
 writes to is its own business. Closest in spirit to MinIO, and the reason people are
 looking at it.
+
+**[Silo](../silo/README.md)** is MinIO itself, kept alive as a maintained fork. If you ran
+MinIO and want to keep your data folder and client settings as they are, take this one.
 
 **[Garage](https://github.com/junkerderprovinz/garage)** is also a plain object store, but
 it comes with a web admin panel in the same container and has a stable release behind it.

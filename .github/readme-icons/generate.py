@@ -44,7 +44,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork"}
 FILL = {"bombvault", "standardnotes-server", "standardnotes-webui", "excalidraw"}
 APP = {"arrowloop", "bombvaultwidget", "parleyport"}
-KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile"}
+KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 
 OC_PETROL = (32, 67, 79, 255)     # #20434F

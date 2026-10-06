@@ -7,7 +7,7 @@
     Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud, HandBrake, StrawDroid,
     Excalidraw, Euro Office, Garage and JuiceFS. Thin wrappers over an upstream
     image: CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n,
-    Claper, SeaweedFS, VersityGW and RustFS. Plugins: BombVault Widget, ShipLog
+    Claper, SeaweedFS, VersityGW, RustFS and Silo. Plugins: BombVault Widget, ShipLog
     and FireSquire. Each app folder has its own template, icon and README; images
     and full source live in their per-app repositories. Maintained by
     junkerderprovinz; support via the per-app Unraid forum threads.
