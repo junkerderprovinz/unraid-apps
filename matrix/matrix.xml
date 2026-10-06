@@ -200,6 +200,10 @@
           Description="Optional. Public TURN port advertised to clients (default 3478). Change only if you remapped the published TURN port."
           Type="Variable" Display="advanced" Required="false" Mask="false">3478</Config>
 
+  <Config Name="TURN External IP" Target="TURN_EXTERNAL_IP" Default=""
+          Description="Your public IP, needed when the server sits behind a router with NAT (the usual home setup). Without it coturn hands out its private address as the relay address, and calls between networks fail even with the TURN ports forwarded. Leave it empty only if the server has a public IP of its own."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
   <Config Name="PostgreSQL Host" Target="POSTGRES_HOST" Default="192.168.1.10"
           Description="IP of your PostgreSQL server (e.g. Unraid host IP). 192.168.1.10 is a placeholder; replace it with your server's IP. An IP and port are more reliable than container names."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
