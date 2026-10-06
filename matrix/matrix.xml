@@ -204,6 +204,10 @@
           Description="Your public IP, needed when the server sits behind a router with NAT (the usual home setup). Without it coturn hands out its private address as the relay address, and calls between networks fail even with the TURN ports forwarded. Leave it empty only if the server has a public IP of its own."
           Type="Variable" Display="always" Required="false" Mask="false"/>
 
+  <Config Name="Element Call: LiveKit JWT service URL" Target="ELEMENT_CALL_LIVEKIT_SERVICE_URL" Default=""
+          Description="Optional. Element X places every call through Element Call, which needs a LiveKit server and the LiveKit JWT service running as two more containers. Enter the public https URL of the JWT service, e.g. https://livekit-jwt.yourdomain.tld, and the container sets up Synapse and Element Web for it. See 'Element Call' in the setup guide."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
   <Config Name="PostgreSQL Host" Target="POSTGRES_HOST" Default="192.168.1.10"
           Description="IP of your PostgreSQL server (e.g. Unraid host IP). 192.168.1.10 is a placeholder; replace it with your server's IP. An IP and port are more reliable than container names."
           Type="Variable" Display="always" Required="true" Mask="false">192.168.1.10</Config>
