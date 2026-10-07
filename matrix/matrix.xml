@@ -14,31 +14,36 @@
     All-in-one Matrix homeserver for Unraid: Synapse, coturn, Element Web (/element/) and the Ketesa admin UI (/admin/).
     Fill in SERVER_NAME and the Postgres connection; everything else is generated automatically.
 
-    Optional and off by default: delegated authentication via Matrix Authentication Service, which is what
-    makes QR code device linking ("Link new device" in Element) possible. Leave the Delegated Auth field
-    alone and the container behaves exactly as before. Enabling it needs a second empty Postgres database
-    and a second reverse-proxy host with HTTPS, and it changes how your users sign in. Read the README
-    section "Delegated Auth and QR Code Login" first.
-
-    Prerequisites (before starting the container):
+    Important, before the first start: set up the database and the proxy.
 
     1) PostgreSQL database: connect to your Postgres container and run:
        CREATE USER matrix WITH PASSWORD 'yourpass';
        CREATE DATABASE matrix ENCODING 'UTF8' LC_COLLATE='C' LC_CTYPE='C' TEMPLATE template0 OWNER matrix;
-       (UTF8 with LC_COLLATE='C' is required, otherwise Synapse refuses to start.)
+       UTF8 with LC_COLLATE='C' is required. Otherwise Synapse refuses to start, and a database created
+       with the defaults has to be created again.
 
-    2) Reverse proxy (Nginx Proxy Manager) for matrix.yourdomain.tld &#x2192; Unraid-IP:8008.
+    2) Reverse proxy (Nginx Proxy Manager) for matrix.yourdomain.tld &#x2192; Unraid-IP:8008, with WebSockets on.
        In the proxy host &#x2192; Advanced tab, add:
-         client_max_body_size 100m;
+         client_max_body_size 100M;
          proxy_read_timeout 600s;
-       (Without these, media uploads fail and long-running requests time out.)
+         proxy_send_timeout 600s;
+         proxy_set_header X-Forwarded-For $remote_addr;
+         proxy_set_header X-Forwarded-Proto $scheme;
+         proxy_set_header Host $host;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection "upgrade";
+       Without these, media uploads fail and syncing times out.
 
-    3) Federation discovery works out of the box: Synapse serves
-       /.well-known/matrix/server and /.well-known/matrix/client itself on the
-       API port (8008), so the proxy host from step 2 already covers them.
-       No extra Custom Locations needed (remove any manual ones from older setups).
-       Full step-by-step guide (NPM screenshots, well-known, first user):
-       https://github.com/junkerderprovinz/matrix#readme
+    Federation discovery needs nothing extra: Synapse serves /.well-known/matrix/server and
+    /.well-known/matrix/client itself on port 8008, so the proxy host above covers them.
+    Step by step, with screenshots: https://github.com/junkerderprovinz/matrix/blob/main/docs/setup.md
+
+    Optional and off by default: delegated authentication via Matrix Authentication Service, which is what
+    makes QR code device linking ("Link new device" in Element) possible. Leave the Delegated Auth field
+    alone and the container behaves exactly as before. Enabling it needs a second empty Postgres database
+    and a second reverse-proxy host with HTTPS, and it changes how your users sign in. Read the section
+    "Delegated Auth and QR Code Login" in the setup guide first.
   </Overview>
   <Category>Network:Messenger Network:Other Productivity:</Category>
   <WebUI>http://[IP]:[PORT:8080]/element/</WebUI>
