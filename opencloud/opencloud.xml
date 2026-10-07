@@ -13,6 +13,13 @@
   <Overview>
 OpenCloud - a modern, self-hosted file sync and share platform (a lightweight OpenCloud/ownCloud-family server) - packaged as a genuine one-click Unraid app. The official OpenCloud image has no PUID/PGID support and needs a manual init step, so a fresh install normally fails with "permission denied". This wrapper fixes that: it runs the one-time init for you, heals the appdata permissions and runs as your chosen PUID/PGID (99/100 = nobody/users by default).&#xD;
 &#xD;
+Important, before the first start: keep every OpenCloud folder off /mnt/user.&#xD;
+OpenCloud has no database. Its metadata and message bus are files that it writes all the time, and a large sync through Unraid's share layer (any /mnt/user/... path) can hang that layer. Every container that uses it hangs along, and only a reboot helps.&#xD;
+&#x2022; Config: the SSD pool itself, for example /mnt/cache/appdata/opencloud/config&#xD;
+&#x2022; Data: the SSD pool itself, for example /mnt/cache/appdata/opencloud/data&#xD;
+&#x2022; Files (optional, if your files don't fit on the pool): one array disk, for example /mnt/disk1/opencloud/files, with the share behind it set to that one disk&#xD;
+Use the pool and disk names from your Main tab. At startup the container log warns about any path that still goes through the share layer.&#xD;
+&#xD;
 What's pre-configured:&#xD;
 &#x2022; One-click: auto-runs 'opencloud init' on first boot, then the server - nothing to do on the console.&#xD;
 &#x2022; Permission heal: root-created appdata folders are handed to your PUID/PGID automatically.&#xD;
@@ -26,7 +33,6 @@ Getting started:&#xD;
 &#xD;
 Notes:&#xD;
 &#x2022; Public URL: Unraid does NOT auto-fill the "Public URL" field. Set it to https://YOUR-SERVER-IP:9200 (your Unraid LAN IP), or your external https URL behind a reverse proxy. Leaving the placeholder lets the container guess its own IP so it still starts, but client logins only work reliably once it is correct.&#xD;
-&#x2022; Paths: no OpenCloud folder may go through Unraid's share layer (shfs). A large sync can hang it, and every container with a /mnt/user path hangs along until the server is rebooted. Give Config and Data the pool path itself, for example /mnt/cache/appdata/opencloud/data. A /mnt/user/appdata path only skips the share layer when appdata is an exclusive share. If the pool is too small for all your files, set Files to a single array disk such as /mnt/disk1/opencloud/files, with the share set to that one disk. Set it before the first start. The container log warns at startup when a path still goes through the share layer.&#xD;
 &#x2022; Storage driver: keep it on 'posix' (the default). A blank driver or the unsupported 'local' driver makes files show up but stay greyed out (not openable/downloadable). The Data folder must sit on a filesystem with extended-attribute support - the Unraid array and cache/pool disks have it; if files stay greyed out on an exotic share, move Data to a normal appdata/cache-backed path.&#xD;
 &#x2022; Use a FRESH, empty Data folder. Do NOT point Data at an old OpenCloud/oCIS data directory: the on-disk layout differs between versions and the storage backends (local vs S3) are not interchangeable, so the server crash-loops (symptom in the log: search 'cannot open index, metadata missing'). There is no in-place migration between storage backends - to keep old files, start fresh and re-upload them.&#xD;
 &#x2022; Why rolling is the default: OpenCloud's production line is currently 7.2.x, where a single transient NATS timeout ends the whole server process. Slow storage is exactly what produces those timeouts, so the risk is real on an array-backed setup. Rolling carries the fix from 7.5.0 onwards. Production releases about every six months, so the stable line will not pick it up for a while.&#xD;
