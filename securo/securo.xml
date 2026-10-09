@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Securo</Name>
+  <Beta>true</Beta>
+  <Repository>junkerderprovinz/securo:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/securo</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/securo/blob/main/README.md</ReadMe>
+  <Support>https://github.com/junkerderprovinz/securo/issues</Support>
+  <Project>https://github.com/securo-finance/securo</Project>
+  <Overview>
+Securo is a self-hosted personal finance manager: accounts, transactions, budgets, goals, assets and reports, with imports from OFX, QIF, CAMT and CSV and optional bank sync for European, US and Brazilian banks. Upstream runs it as six containers; this image puts the official backend and web app, the Celery worker and the scheduler into one.&#xD;
+&#xD;
+Getting started:&#xD;
+&#x2022; PostgreSQL already running? Enter its host, user and password. It needs pgvector, which pgvector/pgvector:pg16 and the PostgreSQL image Immich uses both have and the plain postgres image does not. Securo creates its database on the first start if the user may.&#xD;
+&#x2022; Redis already running? Enter its host. If other apps use database 0 on it, give Securo another number under Redis database.&#xD;
+&#x2022; No PostgreSQL or Redis? Set Built-in PostgreSQL and Built-in Redis to true and leave their host fields empty.&#xD;
+&#x2022; Set App address to the address you open Securo on. Bank sync and single sign-on send you back there.&#xD;
+&#x2022; The first start creates the tables, which takes under a minute. Securo is ready when the log says SECURO IS READY. Then open the web app and create your account.&#xD;
+&#xD;
+Passkeys only work over HTTPS on a domain, not on http://IP:port. Behind a reverse proxy, set Trusted proxies to 2.&#xD;
+&#xD;
+Source on GitHub: https://github.com/junkerderprovinz/securo&#xD;
+This is an independent packaging of Securo and is not affiliated with the Securo project.&#xD;
+  </Overview>
+  <Category>Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/securo.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A PostgreSQL server with pgvector and a Redis server, or Built-in PostgreSQL and Built-in Redis set to true.</Requires>
+
+  <Config Name="WebUI Port" Target="8080" Default="3000" Mode="tcp"
+          Description="Port of the Securo web app."
+          Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/securo" Mode="rw"
+          Description="Attachments, secrets.env with the generated secret key, the secrets folder for an Enable Banking key and, with Built-in PostgreSQL and Redis, their data."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/securo</Config>
+
+  <Config Name="App address" Target="FRONTEND_URL" Default="" Mode=""
+          Description="The address you open Securo on, such as http://192.168.1.10:3000 or https://securo.example.com. Bank sync and single sign-on send you back there."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Built-in PostgreSQL" Target="BUILTIN_POSTGRES" Default="false|true" Mode=""
+          Description="true runs PostgreSQL 16 with pgvector inside this container, with its data in the Data folder. Leave it false to use your own PostgreSQL."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Database host" Target="POSTGRES_HOST" Default="" Mode=""
+          Description="IP or name of your PostgreSQL server. It needs pgvector. Leave it empty with Built-in PostgreSQL."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Database user" Target="POSTGRES_USER" Default="postgres" Mode=""
+          Description="A user that may create databases, or the owner of a database you created for Securo. Not used with Built-in PostgreSQL."
+          Type="Variable" Display="always" Required="false" Mask="false">postgres</Config>
+
+  <Config Name="Database password" Target="POSTGRES_PASSWORD" Default="" Mode=""
+          Description="Password of the database user. It must not contain @ or %. Not used with Built-in PostgreSQL."
+          Type="Variable" Display="always" Required="false" Mask="true"></Config>
+
+  <Config Name="Built-in Redis" Target="BUILTIN_REDIS" Default="false|true" Mode=""
+          Description="true runs Redis inside this container. Leave it false to use your own Redis."
+          Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+
+  <Config Name="Redis host" Target="REDIS_HOST" Default="" Mode=""
+          Description="IP or name of your Redis server. Leave it empty with Built-in Redis."
+          Type="Variable" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Registration" Target="REGISTRATION_ENABLED" Default="true|false" Mode=""
+          Description="Whether new people can sign up. Set it to false once your own account exists."
+          Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+
+  <Config Name="Database port" Target="POSTGRES_PORT" Default="5432" Mode=""
+          Description="Port of your PostgreSQL server."
+          Type="Variable" Display="advanced" Required="false" Mask="false">5432</Config>
+
+  <Config Name="Database name" Target="POSTGRES_DB" Default="securo" Mode=""
+          Description="Created on the first start if it does not exist and the user may create databases."
+          Type="Variable" Display="advanced" Required="false" Mask="false">securo</Config>
+
+  <Config Name="Redis port" Target="REDIS_PORT" Default="6379" Mode=""
+          Description="Port of your Redis server."
+          Type="Variable" Display="advanced" Required="false" Mask="false">6379</Config>
+
+  <Config Name="Redis password" Target="REDIS_PASSWORD" Default="" Mode=""
+          Description="Only when your Redis server asks for one."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="Redis database" Target="REDIS_DB" Default="0" Mode=""
+          Description="Database number on your Redis server. Give Securo one no other app uses, since its task queue shares the name every Celery app uses."
+          Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
+
+  <Config Name="Trusted proxies" Target="TRUSTED_PROXY_HOPS" Default="1" Mode=""
+          Description="How many proxies stand in front of Securo, counting the one inside this container. 1 without a reverse proxy, 2 behind one. The login rate limit counts visitors by the address this finds."
+          Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+
+  <Config Name="Secret key" Target="SECRET_KEY" Default="" Mode=""
+          Description="Signs the login tokens. Leave it empty to get a generated one, kept in secrets.env. Changing it signs everyone out."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="Enable Banking app ID" Target="ENABLE_BANKING_APP_ID" Default="" Mode=""
+          Description="Bank sync for about 2500 European banks. Put the application's private key into the secrets folder of the Data folder as enable_banking_private.pem. The redirect URL to register is your App address followed by /oauth/callback, over https."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="SimpleFIN" Target="SIMPLEFIN_ENABLED" Default="false|true" Mode=""
+          Description="Bank sync for US and other banks through the SimpleFIN Bridge. You paste a setup token into Securo under Accounts."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="SimpleFIN bridge" Target="SIMPLEFIN_API_URL" Default="https://beta-bridge.simplefin.org" Mode=""
+          Description="The beta bridge hands out demo tokens for trying it. For real banks use https://bridge.simplefin.org."
+          Type="Variable" Display="advanced" Required="false" Mask="false">https://beta-bridge.simplefin.org</Config>
+
+  <Config Name="Pluggy client ID" Target="PLUGGY_CLIENT_ID" Default="" Mode=""
+          Description="Bank sync for Brazilian banks, from dashboard.pluggy.ai."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Pluggy client secret" Target="PLUGGY_CLIENT_SECRET" Default="" Mode=""
+          Description="The client secret that belongs to the Pluggy client ID."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="OIDC" Target="OIDC_ENABLED" Default="false|true" Mode=""
+          Description="Sign-in through Authentik, Pocket ID or another OIDC provider. The redirect URI to register is your App address followed by /api/auth/oidc/callback."
+          Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="OIDC provider name" Target="OIDC_PROVIDER_NAME" Default="OIDC" Mode=""
+          Description="Shown on the sign-in button."
+          Type="Variable" Display="advanced" Required="false" Mask="false">OIDC</Config>
+
+  <Config Name="OIDC discovery URL" Target="OIDC_DISCOVERY_URL" Default="" Mode=""
+          Description="Ends in /.well-known/openid-configuration."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="OIDC client ID" Target="OIDC_CLIENT_ID" Default="" Mode=""
+          Description="From the application you created at your provider."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="OIDC client secret" Target="OIDC_CLIENT_SECRET" Default="" Mode=""
+          Description="From the application you created at your provider."
+          Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <Config Name="Password sign-in" Target="LOCAL_AUTH_ENABLED" Default="true|false" Mode=""
+          Description="false allows only OIDC sign-in. Securo refuses to start that way until OIDC is fully set up."
+          Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+
+  <Config Name="Open Exchange Rates app ID" Target="OPENEXCHANGERATES_APP_ID" Default="" Mode=""
+          Description="Optional key for exchange rates between your currencies, from openexchangerates.org."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="PUID" Target="PUID" Default="99" Mode=""
+          Description="User that owns the files in the Data folder. 99 is nobody on Unraid."
+          Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+
+  <Config Name="PGID" Target="PGID" Default="100" Mode=""
+          Description="Group that owns the files in the Data folder. 100 is users on Unraid."
+          Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+
+</Container>

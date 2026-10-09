@@ -171,6 +171,14 @@ The official Seafile server from one template, with its secrets generated on fir
 
 <br clear="all">
 
+<img src=".github/readme-icons/securo.png" width="84" align="left" alt="Securo">
+<a href="https://github.com/junkerderprovinz/securo#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**Securo**<br>
+The Securo finance manager with its worker and scheduler in one container, on your own PostgreSQL and Redis or on built-in ones.
+
+<br clear="all">
+
 
 ## Wrappers
 
