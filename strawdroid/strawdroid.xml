@@ -32,6 +32,17 @@
     one - and the Play Store wants a recent target level anyway. The google_apis&#13;
     image carries Play services and a real DocumentsUI, the SAF folder picker.&#13;
     &#13;
+    Everything a phone has that the emulator can fake is switched on: a SIM&#13;
+    that takes calls and SMS, a front and a back camera, every sensor the&#13;
+    image offers (heart rate and wrist tilt among them), Bluetooth, and sound&#13;
+    in the browser. Shizuku and PCAPdroid come installed for testing, and&#13;
+    ROOT=true gives apps root. Android 14 is available as the latest-api34&#13;
+    tag.&#13;
+    &#13;
+    Flutter apps need vm.overcommit_memory=1 on the host: without it the&#13;
+    emulator crashes as soon as one draws. Add sysctl -w&#13;
+    vm.overcommit_memory=1 to /boot/config/go to keep it after a reboot.&#13;
+    &#13;
     Screen: Selkies over HTTPS on 3001. No login.&#13;
     &#13;
     Deploy from a development machine:&#13;
@@ -68,6 +79,12 @@
   <Config Name="Emulator rendering (EMULATOR_GPU)" Target="EMULATOR_GPU" Default="swiftshader_indirect" Mode="" Description="How the emulator draws. swiftshader_indirect works everywhere, including with no GPU wired in at all. 'host' is faster and is what makes scrolling read honestly, but it needs the nvidia runtime and /dev/dri - set it once the GPU is confirmed." Type="Variable" Display="always" Required="true" Mask="false">swiftshader_indirect</Config>
   <Config Name="Device profile (EMULATOR_DEVICE)" Target="EMULATOR_DEVICE" Default="pixel_6" Mode="" Description="Which device the emulator pretends to be. Decides screen size and density, which is what a layout is actually judged against. Read on FIRST boot only: the AVD is created once and then kept, so changing this later needs the AVD removed from /config/.android/avd." Type="Variable" Display="always" Required="true" Mask="false">pixel_6</Config>
   <Config Name="Emulated RAM in MB (EMULATOR_RAM)" Target="EMULATOR_RAM" Default="2048" Mode="" Description="Memory given to the emulated phone. Read on FIRST boot only, same as the device profile. Below about 1536 Android 14 boots badly or not at all." Type="Variable" Display="advanced" Required="false" Mask="false">2048</Config>
+  <Config Name="Phone number (EMULATOR_PHONE_NUMBER)" Target="EMULATOR_PHONE_NUMBER" Default="12015550123" Mode="" Description="The SIM's number, digits only. The emulator's own default, 555-521-5554, is not a valid number to libphonenumber, so SMS apps that check numbers hide it. The default here is libphonenumber's US example number. Incoming SMS and calls come from the container's terminal: sk sms &lt;number&gt; &lt;text&gt;, sk call &lt;number&gt;." Type="Variable" Display="advanced" Required="false" Mask="false">12015550123</Config>
+  <Config Name="Back camera (EMULATOR_CAMERA_BACK)" Target="EMULATOR_CAMERA_BACK" Default="picture" Mode="" Description="picture shows a QR code that sk camera swaps for another code or a picture of your own, so scanning apps can be tested. emulated shows the emulator's moving test scene. none removes the camera, for testing how an app copes without one. imagefile:&lt;path&gt; and videofile:&lt;path&gt; show a picture or a video from inside the container." Type="Variable" Display="advanced" Required="false" Mask="false">picture</Config>
+  <Config Name="Front camera (EMULATOR_CAMERA_FRONT)" Target="EMULATOR_CAMERA_FRONT" Default="emulated" Mode="" Description="Same choices as the back camera." Type="Variable" Display="advanced" Required="false" Mask="false">emulated</Config>
+  <Config Name="Sound (EMULATOR_AUDIO)" Target="EMULATOR_AUDIO" Default="true" Mode="" Description="true sends the phone's sound to the browser tab, through the desktop's own audio. false starts the emulator without audio." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Test tools (TEST_TOOLS)" Target="TEST_TOOLS" Default="true" Mode="" Description="true installs Shizuku and PCAPdroid once on each new device and starts the Shizuku server again after every boot, so apps that need it find it running. PCAPdroid shows which hosts an app talks to, without root. false leaves both alone." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Root for apps (ROOT)" Target="ROOT" Default="false" Mode="" Description="true gives apps root through su, for testing an app's root mode. The first start with it reboots the phone once to make the system partition writable. SELinux runs permissive then, unlike on most rooted phones, so leave it false unless a test needs root." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Extra emulator arguments (EMULATOR_EXTRA_ARGS)" Target="EMULATOR_EXTRA_ARGS" Default="" Mode="" Description="Passed to the emulator verbatim, for the occasional one-off (-writable-system, -dns-server, -netdelay). Empty is the ordinary case." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="AVD name (AVD_NAME)" Target="AVD_NAME" Default="strawdroid" Mode="" Description="The name of the virtual device inside /config. Changing it creates a SECOND device rather than renaming the first, which is a way to keep two side by side." Type="Variable" Display="advanced" Required="false" Mask="false">strawdroid</Config>
   <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode="" Description="Optional. Leave EMPTY together with the password for no login. Set both to enable login." Type="Variable" Display="always" Required="false" Mask="false"/>
