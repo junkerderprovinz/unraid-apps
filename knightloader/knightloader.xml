@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>KnightLoader</Name>
+  <Repository>junkerderprovinz/knightloader:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/knightloader</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/junkerderprovinz/knightloader/issues</Support>
+  <Project>https://github.com/junkerderprovinz/knightloader</Project>
+  <ReadMe>https://github.com/junkerderprovinz/knightloader/blob/main/README.md</ReadMe>
+  <Overview>A download manager for hosters, debrid services, torrents, Usenet, videos and streams, all in one web interface.
+
+Hoster links go through the debrid service you already pay for. Torrents go to the built-in client or to a debrid service, .nzb files to your own Usenet servers with par2 repair, videos and streams to yt-dlp. Anything left over goes to a headless JDownloader, which KnightLoader sets up by itself. Links wait in the collector first. It checks each one and shows what will fetch it, and rules sort links into packages and folders. When a download finishes, archives are unpacked and checksums checked. Sonarr and Radarr see it as qBittorrent or SABnzbd.
+
+The Android app, the browser extension and your other instances reach it from other networks with twelve words, without an account, a domain or a port forward.
+
+Set a password under Settings, Security, where two-factor authentication and passkeys live too. Until then anyone who can reach the port can use it, so keep it on your LAN. Fill in the App key below, so that a copy of the appdata folder alone opens nothing.
+
+The manual is at https://junkerderprovinz.github.io/knightloader/</Overview>
+  <Category>Downloaders:</Category>
+  <WebUI>http://[IP]:[PORT:8749]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/knightloader.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/icon.png?v=2</Icon>
+  <ExtraParams>--restart unless-stopped --user 99:100</ExtraParams>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Config
+    Name="WebUI Port"
+    Target="8749"
+    Default="8749"
+    Mode="tcp"
+    Description="The port of the web interface. Until a password is set under Settings, Security, anyone who can reach it can use it, so do not forward it from the internet."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">8749</Config>
+  <Config
+    Name="Appdata"
+    Target="/data"
+    Default="/mnt/user/appdata/knightloader"
+    Mode="rw"
+    Description="The database, the settings, the encrypted accounts, the list of instances and the headless JDownloader KnightLoader sets up on its first start."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/knightloader</Config>
+  <Config
+    Name="Downloads"
+    Target="/data/downloads"
+    Default="/mnt/user/downloads"
+    Mode="rw"
+    Description="Where downloads land. The download folder in Settings is /data/downloads unless you change it there."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/downloads</Config>
+  <Config
+    Name="App key"
+    Target="KL_APP_KEY"
+    Default=""
+    Mode=""
+    Description="64 hexadecimal characters. Open a terminal, run openssl rand -hex 32 and paste the result here. The password hash, the stored accounts and tokens and the backups you download are then sealed with it, so a copy of the appdata folder opens nothing. Keep it with your other passwords: KnightLoader does not start on sealed data with a different key or with none."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="true"></Config>
+  <Config
+    Name="Watched folder"
+    Target="/watch"
+    Default="/mnt/user/downloads/knightloader-watch"
+    Mode="rw"
+    Description="Drop a .txt link list, a .magnet, a JDownloader .crawljob, a .torrent, a container file or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false">/mnt/user/downloads/knightloader-watch</Config>
+  <Config
+    Name="Base path"
+    Target="KL_BASE_PATH"
+    Default=""
+    Mode=""
+    Description="Only for a reverse proxy that serves KnightLoader in a folder of another host name, for example /kl for https://example.com/kl/. Leave it empty for a host name of its own or the LAN address."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="File permission mask"
+    Target="UMASK"
+    Default="000"
+    Mode=""
+    Description="The umask for every file and folder KnightLoader creates. With 000, downloads land as nobody:users with mode 0666 and folders with 0777, the way an Unraid share expects, so the account you use over SMB can move, rename and delete them. Set 022 for restrictive permissions."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">000</Config>
+</Container>
