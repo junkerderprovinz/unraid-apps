@@ -29,8 +29,8 @@ Modes per app:
               knightloader, parleyport): the card shows app/<name>.png as it
               is, the logo on the white and grey house tile, while the CA icon
               stays the bare logo. app/tile.mjs builds a tile from a logo;
-              parleyport.svg is the original, and bombvaultwidget.svg was drawn
-              as a tile.
+              parleyport.svg is the original, and bombvaultwidget.svg and
+              knightloader.svg were drawn as tiles.
 
 ShipLog + FireSquire are excluded (theme-flipping <picture> pairs from their own
 SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
