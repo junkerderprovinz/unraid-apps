@@ -13,7 +13,7 @@
   <Overview>
 Euro Office Document Server - a sovereign, European document server for browser-based editing of text documents, spreadsheets and presentations. It is a maintained fork of the OnlyOffice Document Server, so it speaks the same WOPI and OnlyOffice APIs and plugs straight into OpenCloud (and Nextcloud/ownCloud). Use it to edit .docx / .xlsx / .pptx and .odt / .ods / .odp files right in your browser, without any desktop office suite.&#xD;
 &#xD;
-This is a thin wrapper (github.com/junkerderprovinz/euro-office) around the official image. It fixes an upstream permission bug on the Data folder, lets OpenCloud show the editor under OpenCloud's own address, serves https out of the box for other clouds, and replaces the vendor's start page with one that shows what to enter in OpenCloud.&#xD;
+This is a thin wrapper (github.com/junkerderprovinz/euro-office) around the official image. It lets OpenCloud show the editor under OpenCloud's own address, serves https out of the box for other clouds, and replaces the vendor's start page with one that shows what to enter in OpenCloud.&#xD;
 &#xD;
 This is not a standalone app. It is the editor behind a file server: you point your cloud (e.g. the OpenCloud container) at it and edit the files stored in that cloud. On its own it only shows its start page.&#xD;
 &#xD;
