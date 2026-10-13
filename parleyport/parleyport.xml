@@ -56,6 +56,26 @@ Plain mode listens on port 8760 for a reverse proxy in front, which must allow W
     Required="false"
     Mask="false"></Config>
   <Config
+    Name="Public URL"
+    Target="PARLEYPORT_PUBLIC_URL"
+    Default=""
+    Mode=""
+    Description="The address your instances dial, for example https://relay.example.org, or several separated by commas. A KnightLoader instance proves who it is only to the relay it names when it connects, so set this in plain mode behind a proxy. In domain mode the names above already count and this can stay empty."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Trusted proxies"
+    Target="PARLEYPORT_TRUSTED_PROXIES"
+    Default=""
+    Mode=""
+    Description="For a reverse proxy in another container or on another machine: its address, for example 172.18.0.5, or a range no wider than a /28 (IPv4) or /124 (IPv6). Separate several with commas. Failed handshakes then count against the caller and not against the proxy everyone comes through. Left empty, only a proxy on the same host is trusted; none trusts no proxy at all."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
     Name="Data"
     Target="/var/lib/parleyport"
     Default="/mnt/user/appdata/parleyport"

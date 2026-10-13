@@ -14,7 +14,7 @@ Modes per app:
   TILE      - the CA icon is already a full-bleed brand tile (krusader, euro-office,
               featherdrop, opencloud, stellarium): keep it, just guarantee
               transparent rounded corners (no white peeking at the corners).
-  FILL      - a logo mark on a removable background (bombvault, standardnotes-*):
+  FILL      - a logo mark on a removable background (standardnotes-*):
               flood-fill the outer background to transparent (inner white, e.g.
               inside the Standard Notes frame, is kept), crop
               to the logo and scale it to fill the tile, so no white is left over.
@@ -26,11 +26,11 @@ Modes per app:
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged, in the OpenCloud brand colours.
   APP       - the house's own apps with an app tile (arrowloop, bombvault,
-              bombvaultwidget, parleyport): the card shows app/<name>.png as it
-              is, the logo on the white and grey house tile, while the CA icon
-              stays the bare logo. app/tile.mjs builds a tile from a logo;
-              parleyport.svg is the original, and bombvaultwidget.svg was drawn
-              as a tile.
+              bombvaultwidget, knightloader, parleyport): the card shows
+              app/<name>.png as it is, the logo on the white and grey house
+              tile, while the CA icon stays the bare logo. app/tile.mjs builds a
+              tile from a logo; parleyport.svg is the original, and
+              bombvaultwidget.svg and knightloader.svg were drawn as tiles.
 
 ShipLog + FireSquire are excluded (theme-flipping <picture> pairs from their own
 SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
@@ -44,7 +44,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}
-APP = {"arrowloop", "bombvault", "bombvaultwidget", "parleyport"}
+APP = {"arrowloop", "bombvault", "bombvaultwidget", "knightloader", "parleyport"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 
