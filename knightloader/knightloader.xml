@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/junkerderprovinz/knightloader/issues</Support>
+  <Support>https://forums.unraid.net/topic/200895-support-junkerderprovinz-knightloader/</Support>
   <Project>https://github.com/junkerderprovinz/knightloader</Project>
   <ReadMe>https://github.com/junkerderprovinz/knightloader/blob/main/README.md</ReadMe>
   <Overview>A download manager for hosters, debrid services, torrents, Usenet, videos and streams, all in one web interface.
