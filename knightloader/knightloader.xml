@@ -10,15 +10,11 @@
   <Support>https://forums.unraid.net/topic/200895-support-junkerderprovinz-knightloader/</Support>
   <Project>https://github.com/junkerderprovinz/knightloader</Project>
   <ReadMe>https://github.com/junkerderprovinz/knightloader/blob/main/README.md</ReadMe>
-  <Overview>A download manager for hosters, debrid services, torrents, Usenet, videos and streams, all in one web interface.
+  <Overview>A download manager that downloads everything and kneels to nothing.
 
-Hoster links go through the debrid service you already pay for. Torrents go to the built-in client or to a debrid service, .nzb files to your own Usenet servers with par2 repair, videos and streams to yt-dlp. Anything left over goes to a headless JDownloader, which KnightLoader sets up by itself. Links wait in the collector first. It checks each one and shows what will fetch it, and rules sort links into packages and folders. When a download finishes, archives are unpacked and checksums checked. Sonarr and Radarr see it as qBittorrent or SABnzbd.
+Hosters, debrid services, torrents, Usenet, videos and streams all land in one place. It runs as a container on your server and as a desktop app on Windows, macOS and Linux, and the Android app and the browser extension send it links from wherever you are. They all find each other with the twelve words KnightLoader shows you on its first start, without an account, a domain or a port forward.
 
-The Android app, the browser extension and your other instances reach it from other networks with twelve words, without an account, a domain or a port forward.
-
-Set a password under Settings, Security, where two-factor authentication and passkeys live too. Until then anyone who can reach the port can use it, so keep it on your LAN. Fill in the App key below, so that a copy of the appdata folder alone opens nothing.
-
-The manual is at https://junkerderprovinz.github.io/knightloader/</Overview>
+Free, no ads, no account, and nothing about you leaves your server. Set a password under Settings, Security before anyone else can reach it.</Overview>
   <Category>Downloaders:</Category>
   <WebUI>http://[IP]:[PORT:8749]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/knightloader.xml</TemplateURL>
@@ -42,7 +38,7 @@ The manual is at https://junkerderprovinz.github.io/knightloader/</Overview>
     Target="/data"
     Default="/mnt/user/appdata/knightloader"
     Mode="rw"
-    Description="The database, the settings, the encrypted accounts, the list of instances and the headless JDownloader KnightLoader sets up on its first start."
+    Description="The database, the settings, the encrypted accounts and the list of instances."
     Type="Path"
     Display="always"
     Required="true"
@@ -72,7 +68,7 @@ The manual is at https://junkerderprovinz.github.io/knightloader/</Overview>
     Target="/watch"
     Default="/mnt/user/downloads/knightloader-watch"
     Mode="rw"
-    Description="Drop a .txt link list, a .magnet, a JDownloader .crawljob, a .torrent, a container file or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
+    Description="Drop a .txt link list, a .magnet, a .crawljob, a .torrent, a container file or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
     Type="Path"
     Display="advanced"
     Required="false"
