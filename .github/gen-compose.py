@@ -29,6 +29,19 @@ HEADER = """\
 # has its first user at 1000 and expects the usual umask.
 GENERIC_VALUES = {"PUID": "1000", "PGID": "1000", "UMASK": "022"}
 
+# On Unraid these apps share a database container; a compose file has to run
+# on its own, so it starts the one built into the image.
+APP_VALUES = {
+    "securo": {"BUILTIN_POSTGRES": "true", "BUILTIN_REDIS": "true"},
+    "seafile": {"BUILTIN_MARIADB": "true", "BUILTIN_REDIS": "true"},
+}
+
+# Values the template fills with an example that has to be replaced.
+PLACEHOLDERS = {
+    "matrix": {"SERVER_NAME", "POSTGRES_HOST"},
+    "opencloud": {"OC_URL"},
+}
+
 
 def quote(value):
     if value == "" or re.search(r"[:#{}\[\],&*?|<>=!%@`'\"\s]", value) or value.lower() in (
@@ -108,8 +121,10 @@ def compose(app):
         elif kind == "Device" and value:
             devices.append(value)
         elif kind == "Variable":
-            value = GENERIC_VALUES.get(target, value)
-            if value:
+            value = APP_VALUES.get(app, {}).get(target, GENERIC_VALUES.get(target, value))
+            if value and target in PLACEHOLDERS.get(app, ()):
+                env.append(f"      {target}: {quote(value)}  # required")
+            elif value:
                 env.append(f"      {target}: {quote(value)}")
             elif required:
                 env.append(f'      {target}: ""  # required')
