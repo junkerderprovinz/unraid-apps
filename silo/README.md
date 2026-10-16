@@ -73,6 +73,14 @@ WebUI: http://<container-ip>:9001 http://127.0.0.1:9001
 
 The WebUI button opens the console on port 9001. Log in with the root user and password.
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs Silo on any Linux server with Docker. Put it in a folder of its own, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install Silo from the [MOS Hub](https://mos-official.net/apps.html?search=Silo).
+
 <br>
 
 ## 3. Connecting a client

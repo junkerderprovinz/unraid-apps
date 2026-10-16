@@ -143,6 +143,16 @@ share a custom Docker network you can use the container name as the host; otherw
    Key**, generated with `openssl rand -hex 32` and backed up somewhere safe.
 5. **Apply**, wait for the pull, open the WebUI on port **5678**.
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs n8n on any Linux server with Docker. Put it in a folder of its own, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+n8n needs a PostgreSQL database first, set up as in [section 3](#3-postgresql-setup-do-this-first). It runs as user 1000, so create its folder before the first start: `mkdir -p appdata/files && sudo chown -R 1000:1000 appdata`.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install n8n from the [MOS Hub](https://mos-official.net/apps.html?search=n8n).
+
 <br>
 
 ## 5. Permissions (important)

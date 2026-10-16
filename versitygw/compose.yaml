@@ -1,0 +1,31 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  versitygw:
+    image: versity/versitygw:latest
+    container_name: versitygw
+    restart: unless-stopped
+    ports:
+      - "7070:7070"
+      - "7071:7071"
+      - "7080:7080"
+    volumes:
+      - "./data:/data"
+      - "./appdata:/config"
+    environment:
+      VGW_BACKEND: posix
+      VGW_BACKEND_ARG: /data
+      ROOT_ACCESS_KEY: ""  # required
+      ROOT_SECRET_KEY: ""  # required
+      VGW_PORT: ":7070"
+      VGW_WEBUI_PORT: ":7071"
+      VGW_ADMIN_PORT: ":7080"
+      VGW_WEBUI_NO_TLS: "true"
+      VGW_IAM_DIR: /config
+      VGW_REGION: us-east-1
+      VGW_HEALTH: /_health

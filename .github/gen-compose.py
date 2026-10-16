@@ -38,8 +38,11 @@ APP_VALUES = {
 
 # Values the template fills with an example that has to be replaced.
 PLACEHOLDERS = {
+    "claper": {"BASE_URL"},
     "matrix": {"SERVER_NAME", "POSTGRES_HOST"},
+    "n8n": {"DB_POSTGRESDB_HOST", "WEBHOOK_URL", "N8N_HOST"},
     "opencloud": {"OC_URL"},
+    "openhands": {"SANDBOX_VOLUMES"},
 }
 
 
@@ -63,6 +66,9 @@ def host_dir(host, target, app):
     appdata = f"/mnt/user/appdata/{app}"
     if host == appdata or host.startswith(appdata + "/"):
         return "./appdata" + host[len(appdata):].rstrip("/")
+    # A system path such as the Docker socket is the same on every host.
+    if host.startswith("/") and host.split("/")[1] != "mnt":
+        return host
     return "./" + target.rstrip("/").rsplit("/", 1)[-1]
 
 

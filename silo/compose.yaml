@@ -1,0 +1,21 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  silo:
+    image: pgsty/silo:latest
+    container_name: silo
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - "./appdata/data:/data"
+    environment:
+      MINIO_ROOT_USER: ""  # required
+      MINIO_ROOT_PASSWORD: ""  # required
+    command: "server /data --console-address \":9001\""

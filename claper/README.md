@@ -107,6 +107,15 @@ Migrations run automatically on container start, with no manual step needed.
 5. Start the container, open the WebUI, log in with the seeded admin account
    `admin@claper.co` / `claper`, and **change that password immediately.**
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs Claper on any Linux server with Docker. Put it in a folder of its own, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+Claper needs a PostgreSQL database first, set up as in [section 3](#3-postgresql-setup-do-this-first).
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+
 <br>
 
 ## 5. Configuration

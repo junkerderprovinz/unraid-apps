@@ -90,6 +90,14 @@ Rough guide:
 A bucket has to exist before an object can go in it. Either create it from an S3 client, or
 create a folder under the mapped path and it is a bucket.
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs VersityGW on any Linux server with Docker. Put it in a folder of its own, point the folders under `volumes` at your files, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install VersityGW from the [MOS Hub](https://mos-official.net/apps.html?search=VersityGW).
+
 ## 4. Connecting a client
 
 Anything that speaks S3 works. Three that come up most often:

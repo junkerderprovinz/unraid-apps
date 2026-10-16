@@ -1,0 +1,23 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  claper:
+    image: ghcr.io/claperco/claper:latest
+    container_name: claper
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    volumes:
+      - "./appdata/uploads:/app/uploads"
+    environment:
+      DATABASE_URL: ""  # required
+      SECRET_KEY_BASE: ""  # required
+      BASE_URL: "http://192.168.1.10:4000"  # required
+      ENABLE_ACCOUNT_CREATION: "true"
+      MAX_FILE_SIZE_MB: "15"
+      LANGUAGES: "en,fr,es,it,de"

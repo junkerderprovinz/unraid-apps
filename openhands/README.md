@@ -174,24 +174,14 @@ curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-OpenHands.xml \
 Then in the Unraid Web UI: **Docker** → **Add Container** → in the
 **Template** dropdown, pick **OpenHands** under *User templates*.
 
-### Plain Docker (no Unraid)
+### Other Docker hosts
 
-```bash
-docker run -d \
-  --name openhands \
-  --restart unless-stopped \
-  --add-host host.docker.internal:host-gateway \
-  -p 3000:3000 \
-  -v /mnt/user/appdata/openhands:/.openhands \
-  -v /mnt/user/ai-workspace:/workspace \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -e SANDBOX_VOLUMES=/mnt/user/ai-workspace:/workspace:rw \
-  -e LLM_API_KEY=ollama \
-  -e LLM_MODEL=ollama/qwen2.5-coder:14b \
-  -e LLM_BASE_URL=http://host.docker.internal:11434 \
-  -e LLM_EMBEDDING_MODEL=local \
-  docker.openhands.dev/openhands/openhands:1.7
-```
+[compose.yaml](compose.yaml) runs OpenHands on any Linux server with Docker. Put it in a folder of its own, point the folders under `volumes` at your files, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+OpenHands starts its sandboxes through the host's Docker socket, so `SANDBOX_VOLUMES` takes the absolute host path of the workspace folder, for example `/home/you/openhands/workspace:/workspace:rw`.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
 
 <br>
 

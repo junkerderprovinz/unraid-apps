@@ -1,0 +1,14 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  standardnotes-webui:
+    image: standardnotes/web:latest
+    container_name: standardnotes-webui
+    restart: unless-stopped
+    ports:
+      - "3001:80"

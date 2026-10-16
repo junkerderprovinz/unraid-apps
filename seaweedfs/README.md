@@ -65,6 +65,14 @@ File ownership inside the data volume is fixed automatically by the image's own 
 
 **Security:** leaving both keys empty starts the S3 API in unauthenticated "Allow All" mode. That's fine for a five-minute local test, not for anything you actually care about - set both before storing real data, and don't expose port 8333 to the internet without a reverse proxy and TLS in front of it.
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs SeaweedFS on any Linux server with Docker. Put it in a folder of its own and start it with `docker compose up -d`. The folders are created next to the file.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install SeaweedFS from the [MOS Hub](https://mos-official.net/apps.html?search=SeaweedFS).
+
 ## 4. Connecting a client
 
 Any S3-compatible tool works. A few common ones:

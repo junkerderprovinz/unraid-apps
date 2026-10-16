@@ -74,6 +74,14 @@ A working start runs to a handful of warnings and then goes quiet. There is no "
 is listening" line, so do not wait for one. If you see `Permission denied` instead, the
 Data folder is not writable by `99:100`, or you mapped the Logs folder and that one is not.
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs RustFS on any Linux server with Docker. Put it in a folder of its own, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install RustFS from the [MOS Hub](https://mos-official.net/apps.html?search=RustFS).
+
 <br>
 
 ## 3. Connecting a client

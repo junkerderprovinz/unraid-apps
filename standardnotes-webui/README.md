@@ -156,6 +156,14 @@ Hit **Apply**. The container starts in seconds; visit
 Set up a reverse-proxy host for the web app (see § 4), then open the web
 app at your public URL and configure the sync server (§ 5).
 
+### Other Docker hosts
+
+[compose.yaml](compose.yaml) runs the Standard Notes web app on any Linux server with Docker. Put it in a folder of its own and start it with `docker compose up -d`.
+
+- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install Standard Notes WebUI from the [MOS Hub](https://mos-official.net/apps.html?search=StandardNotes-WebUI).
+
 <br>
 
 ## 4. Reverse Proxy

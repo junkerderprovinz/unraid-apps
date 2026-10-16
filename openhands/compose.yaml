@@ -1,0 +1,26 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  openhands:
+    image: docker.openhands.dev/openhands/openhands:1.7
+    container_name: openhands
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./appdata:/.openhands"
+      - "./workspace:/workspace"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      SANDBOX_VOLUMES: "/mnt/user/ai-workspace:/workspace:rw"  # required
+      LLM_API_KEY: ollama
+      LLM_MODEL: "ollama/qwen2.5-coder:14b"
+      LLM_BASE_URL: "http://host.docker.internal:11434"
+      LLM_EMBEDDING_MODEL: local
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
