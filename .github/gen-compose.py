@@ -103,8 +103,8 @@ def extra(params):
     return keys, unknown
 
 
-def compose(app):
-    root = ET.parse(FEED / app / f"{app}.xml").getroot()
+def compose(app, xml=None):
+    root = ET.parse(FEED / app / (xml or f"{app}.xml")).getroot()
     keys, unknown = extra(root.findtext("ExtraParams"))
     lines = [HEADER, "services:", f"  {app}:", f"    image: {(root.findtext('Repository') or '').strip()}",
              f"    container_name: {app}", f"    restart: {keys.pop('restart', 'unless-stopped')}"]
