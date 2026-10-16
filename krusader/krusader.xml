@@ -60,8 +60,8 @@ Source on GitHub: https://github.com/junkerderprovinz/krusader&#xD;
        select-dropdown when the value has at least one '|' separator. The
        first value before the first '|' is the pre-selected default. -->
   <Config Name="UI Language (KRUSADER_LANG)" Target="KRUSADER_LANG"
-          Default="de = Deutsch|en = English|fr = Français|es = Español|it = Italiano|pt = Português|nl = Nederlands|ca = Català|eu = Euskara|ga = Gaeilge|da = Dansk|sv = Svenska|nb = Norsk (Bokmål)|fi = Suomi|is = Íslenska|pl = Polski|cs = Čeština|sk = Slovenčina|hu = Magyar|ro = Română|sl = Slovenščina|hr = Hrvatski|sr = Srpski|bg = Български|uk = Українська|ru = Русский|el = Ελληνικά|tr = Türkçe|he = עברית|ar = العربية|ja = 日本語|ko = 한국어|zh = 中文|system = System default" Mode=""
-          Description="Language for the Krusader / Kate UI (33 languages). The container reads the leading code, so the full label is fine as a value. Pick 'system' for the container default. Re-applied on every container start."
+          Default="de = Deutsch|en = English|en_gb = English (UK)|fr = Français|es = Español|it = Italiano|pt = Português|pt_br = Português (Brasil)|nl = Nederlands|ca = Català|eu = Euskara|ga = Gaeilge|da = Dansk|sv = Svenska|nb = Norsk (Bokmål)|fi = Suomi|is = Íslenska|pl = Polski|cs = Čeština|sk = Slovenčina|hu = Magyar|ro = Română|sl = Slovenščina|hr = Hrvatski|sr = Srpski|bg = Български|uk = Українська|ru = Русский|el = Ελληνικά|tr = Türkçe|he = עברית|ar = العربية|ja = 日本語|ko = 한국어|zh = 中文|zh_tw = 中文 (繁體)|system = System default" Mode=""
+          Description="Language for the Krusader / Kate UI (33 languages). It also sets the date and number format: 'en' gives US dates, 'en_gb' gives UK dates. The container reads the leading code, so the full label is fine as a value. Pick 'system' for the container default. Re-applied on every container start."
           Type="Variable" Display="always" Required="false" Mask="false">de = Deutsch</Config>
 
   <Config Name="Theme (KRUSADER_THEME)" Target="KRUSADER_THEME"
