@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#apps"><img src="https://img.shields.io/badge/Templates-34-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#apps"><img src="https://img.shields.io/badge/Templates-47-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
@@ -203,6 +203,123 @@ The official Seafile server from one template, with its secrets generated on fir
 
 **Securo**<br>
 The Securo finance manager with its worker and scheduler in one container, on your own PostgreSQL and Redis or on built-in ones.
+
+<br clear="all">
+
+<img src=".github/readme-icons/cadcraft.png" width="84" align="left" alt="CADCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#cadcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/cadcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**CADCraft**<br>
+CADCraft on a Selkies web desktop: 2D drafting with layers, blocks and dimensions, and DXF and DWG files, all in the browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/deckcraft.png" width="84" align="left" alt="DeckCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#deckcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/deckcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**DeckCraft**<br>
+DeckCraft on a Selkies web desktop, for building and presenting PowerPoint decks from any browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/designcraft.png" width="84" align="left" alt="DesignCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#designcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/designcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**DesignCraft**<br>
+DesignCraft on a Selkies web desktop: lay out magazines and flyers in the browser and export print-ready PDFs.
+
+<br clear="all">
+
+<img src=".github/readme-icons/effectcraft.png" width="84" align="left" alt="EffectCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#effectcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/effectcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**EffectCraft**<br>
+EffectCraft on a Selkies web desktop, for motion graphics with compositions, keyframes and effects in the browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/figcraft.png" width="84" align="left" alt="FigCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#figcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/figcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**FigCraft**<br>
+FigCraft on a Selkies web desktop: design interfaces with frames and components and click through prototypes in the browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/filmcraft.png" width="84" align="left" alt="FilmCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#filmcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/filmcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**FilmCraft**<br>
+FilmCraft on a Selkies web desktop, a nonlinear video editor that cuts the footage on your array from any browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/gridcraft.png" width="84" align="left" alt="GridCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#gridcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/gridcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**GridCraft**<br>
+GridCraft on a Selkies web desktop: a spreadsheet with formulas and charts that opens and saves Excel workbooks.
+
+<br clear="all">
+
+<img src=".github/readme-icons/lightcraft.png" width="84" align="left" alt="LightCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#lightcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/lightcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**LightCraft**<br>
+LightCraft on a Selkies web desktop, a photo library and raw developer that sits right next to the photos on your array.
+
+<br clear="all">
+
+<img src=".github/readme-icons/pdfcraft.png" width="84" align="left" alt="PdfCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#pdfcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/pdfcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**PdfCraft**<br>
+PdfCraft on a Selkies web desktop, for reading, editing, signing and running OCR on PDFs in the browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/photocraft.png" width="84" align="left" alt="PhotoCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#photocraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/photocraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**PhotoCraft**<br>
+PhotoCraft on a Selkies web desktop: a layered photo editor in the browser that opens PSD, Krita and Affinity files.
+
+<br clear="all">
+
+<img src=".github/readme-icons/soundcraft.png" width="84" align="left" alt="SoundCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#soundcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/soundcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**SoundCraft**<br>
+SoundCraft on a Selkies web desktop, a multitrack audio workstation whose sound plays in the browser.
+
+<br clear="all">
+
+<img src=".github/readme-icons/vectorcraft.png" width="84" align="left" alt="VectorCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#vectorcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/vectorcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**VectorCraft**<br>
+VectorCraft on a Selkies web desktop: vector illustration with paths and type, SVG and PDF in and out.
+
+<br clear="all">
+
+<img src=".github/readme-icons/wordcraft.png" width="84" align="left" alt="WordCraft">
+<a href="https://github.com/junkerderprovinz/artcraft-apps#wordcraft"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/artcraft-apps/blob/main/compose/wordcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**WordCraft**<br>
+WordCraft on a Selkies web desktop, a word processor in the browser that opens and saves Word documents.
 
 <br clear="all">
 

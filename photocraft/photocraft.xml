@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>PhotoCraft</Name>
+  <Beta>false</Beta>
+  <Repository>junkerderprovinz/photocraft:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/photocraft</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/artcraft-apps#photocraft</ReadMe>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://github.com/storytold/photocraft</Project>
+  <Overview>
+PhotoCraft, a layered photo editor that opens PSD, Krita and Affinity files, on a Selkies web desktop. It runs in your browser without a VNC client or a local install, on amd64 and arm64.&#xD;
+&#xD;
+What you get:&#xD;
+• The real Linux build of PhotoCraft, streamed as video by Selkies, so drawing and zooming stay smooth.&#xD;
+• The official release package from github.com/storytold/photocraft, checked against its published SHA-256 sum.&#xD;
+• Settings, recent files and workspaces persist under /config.&#xD;
+&#xD;
+Notes:&#xD;
+• Open the WebUI over HTTPS on port 3001 and accept the self-signed certificate once. The Selkies client needs a secure connection; port 3000 (HTTP) is meant for a reverse proxy that terminates TLS.&#xD;
+• Your files live under /storage (default /mnt/user, all shares), which is where PhotoCraft's open and save dialogs should point.&#xD;
+• Leave WebUI Username and Password empty to run without a login, or set both for HTTP basic auth. Set them whenever the container is reachable from outside your LAN.&#xD;
+• The app renders in software through Mesa, which is fine for documents and slower for large images and video. A passed-through Nvidia GPU takes over the video encoding of the stream (NVENC), but not the app's own drawing.&#xD;
+• PhotoCraft ships new versions often; they reach this image with its next release.&#xD;
+&#xD;
+Source on GitHub: https://github.com/junkerderprovinz/artcraft-apps&#xD;
+  </Overview>
+  <Category>MediaApp:Photos Productivity:</Category>
+  <WebUI>https://[IP]:[PORT:3001]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/photocraft/photocraft.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/photocraft/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
+
+  <!-- Ports -->
+  <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
+          Description="HTTPS port of the Selkies WebUI with a self-signed certificate. This is the one to open in the browser; accept the certificate once."
+          Type="Port" Display="always" Required="true" Mask="false">3001</Config>
+
+  <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
+          Description="HTTP port of the Selkies WebUI, for a reverse proxy that terminates TLS in front of the container. Opened directly in a browser it shows a 'requires a secure connection (HTTPS)' error."
+          Type="Port" Display="always" Required="false" Mask="false">3000</Config>
+
+  <!-- Paths -->
+  <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/photocraft" Mode="rw"
+          Description="Persistent PhotoCraft settings, workspaces, recent files and logs."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/photocraft</Config>
+
+  <Config Name="Files (/storage)" Target="/storage" Default="/mnt/user" Mode="rw,slave"
+          Description="The folder PhotoCraft opens and saves under /storage. The default /mnt/user gives access to all shares; point it at a single share to narrow that down."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user</Config>
+
+  <!-- WebUI auth (Selkies) -->
+  <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
+          Description="Optional. Username for HTTP basic auth on the WebUI. Leave it empty together with the password for no login."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="WebUI Password" Target="PASSWORD" Default="" Mode=""
+          Description="Optional. Password for HTTP basic auth on the WebUI. Set it whenever the container is reachable from outside your LAN."
+          Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <!-- Advanced env variables -->
+  <Config Name="Timezone (TZ)" Target="TZ" Default="Europe/Vienna" Mode=""
+          Description="Container timezone, used for log timestamps and file times."
+          Type="Variable" Display="always" Required="false" Mask="false">Europe/Vienna</Config>
+
+  <Config Name="User ID (PUID)" Target="PUID" Default="99" Mode=""
+          Description="User ID PhotoCraft runs as. Default 99 (nobody on Unraid)."
+          Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+
+  <Config Name="Group ID (PGID)" Target="PGID" Default="100" Mode=""
+          Description="Group ID. Default 100 (users on Unraid)."
+          Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+
+  <Config Name="UMASK" Target="UMASK" Default="000|022|002|077" Mode=""
+          Description="Permission mask for new files. The default 000 lets every container user read and write them, which suits shares that other containers touch too. Set 022 or 077 for stricter permissions."
+          Type="Variable" Display="advanced" Required="false" Mask="false">000</Config>
+
+</Container>

@@ -40,6 +40,12 @@ APP_VALUES = {
 # their own that cannot write there.
 USERS = {"rustfs": "0:0"}
 
+# The ArtCraft images all build from one repository, which keeps their compose
+# files side by side.
+ARTCRAFT = ("cadcraft", "deckcraft", "designcraft", "effectcraft", "figcraft", "filmcraft", "gridcraft",
+            "lightcraft", "pdfcraft", "photocraft", "soundcraft", "vectorcraft", "wordcraft")
+TARGETS = {app: f"artcraft-apps/compose/{app}.yaml" for app in ARTCRAFT}
+
 # Values the template fills with an example that has to be replaced.
 PLACEHOLDERS = {
     "claper": {"BASE_URL"},
@@ -169,7 +175,7 @@ def main():
         content, unknown = compose(app)
         for arg in unknown:
             print(f"{app}: extra parameter not carried over: {arg}", file=sys.stderr)
-        target = args.repos / app / "compose.yaml"
+        target = args.repos / TARGETS.get(app, f"{app}/compose.yaml")
         if not target.exists() or target.read_text(encoding="utf-8") != content:
             stale.append(app)
             if not args.check:
