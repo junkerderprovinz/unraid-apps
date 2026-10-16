@@ -36,6 +36,10 @@ APP_VALUES = {
     "seafile": {"BUILTIN_MARIADB": "true", "BUILTIN_REDIS": "true"},
 }
 
+# Docker creates missing folders as root, and these images run as a user of
+# their own that cannot write there.
+USERS = {"rustfs": "0:0"}
+
 # Values the template fills with an example that has to be replaced.
 PLACEHOLDERS = {
     "claper": {"BASE_URL"},
@@ -108,6 +112,8 @@ def compose(app):
         lines.append("    network_mode: host")
     if (root.findtext("Privileged") or "").strip() == "true":
         lines.append("    privileged: true")
+    if app in USERS:
+        lines.append(f'    user: "{USERS[app]}"')
     for key in ("hostname", "shm_size"):
         if key in keys:
             lines.append(f"    {key}: {keys[key]}")

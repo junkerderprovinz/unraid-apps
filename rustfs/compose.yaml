@@ -10,6 +10,7 @@ services:
     image: rustfs/rustfs:latest
     container_name: rustfs
     restart: unless-stopped
+    user: "0:0"
     ports:
       - "9000:9000"
       - "9001:9001"
