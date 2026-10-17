@@ -78,7 +78,7 @@ Free, no ads, no account, and nothing about you leaves your server. Set a passwo
     Target="/watch"
     Default="/mnt/user/downloads/knightloader-watch"
     Mode="rw"
-    Description="Drop a .txt link list, a .magnet, a .crawljob, a .torrent, a container file or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
+    Description="Drop a .txt link list, a .magnet, a .crawljob, a .torrent, a .dlc, .ccf or .rsdf container or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
     Type="Path"
     Display="advanced"
     Required="false"
