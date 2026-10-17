@@ -54,6 +54,16 @@ Free, no ads, no account, and nothing about you leaves your server. Set a passwo
     Required="true"
     Mask="false">/mnt/user/downloads</Config>
   <Config
+    Name="Unraid shares"
+    Target="/mnt/user"
+    Default="/mnt/user"
+    Mode="rw"
+    Description="Every share of this server, at the same path as on Unraid. The folder chooser in Settings then lists them under /mnt/user, so the download folder can be any share, for example /mnt/user/downloads. KnightLoader can then write to every share. Clear this path to keep it to the Downloads folder above."
+    Type="Path"
+    Display="always"
+    Required="false"
+    Mask="false">/mnt/user</Config>
+  <Config
     Name="App key"
     Target="KL_APP_KEY"
     Default=""
