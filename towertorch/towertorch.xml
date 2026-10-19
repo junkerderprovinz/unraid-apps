@@ -11,7 +11,7 @@
 TowerTorch gives your whole Unraid server a fully revamped, modern interface, without replacing a single page. Dashboard, Main, Shares, Docker, Plugins, VMs and Settings get one clean, consistent look: tiles or lists, cards with switches instead of checkboxes, small animated pictures for the disks, the array and the mover, one accent colour or a rainbow, light and dark. Everything stays where Unraid put it, so nothing you know moves.&#xD;
 &#xD;
 Underneath, it looks after your containers: a start plan starts each one only once the container it depends on is actually ready, not just running, with per-container CPU, RAM and bandwidth limits, a watchdog, schedules and an idle stop on top. A master switch turns all theming off and keeps only the orchestration.</Overview>
-  <Support>https://github.com/junkerderprovinz/towertorch/issues</Support>
+  <Support>https://forums.unraid.net/topic/200952-support-junkerderprovinz-towertorch/</Support>
   <Project>https://github.com/junkerderprovinz/towertorch</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/.github/assets/icon.png?v=1</Icon>
   <DonateText>Buy me a coffee</DonateText>
