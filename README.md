@@ -324,10 +324,7 @@ Update advisor in Unraid's Docker tab showing what changes and how risky before 
 
 <br clear="all">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/firesquire-dark.png">
-  <img src=".github/readme-icons/firesquire.png" width="84" align="left" alt="FireSquire">
-</picture>
+<img src=".github/readme-icons/firesquire.png" width="84" align="left" alt="FireSquire">
 <a href="https://github.com/junkerderprovinz/firesquire#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **FireSquire**<br>
