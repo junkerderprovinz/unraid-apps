@@ -13,7 +13,7 @@ TowerTorch gives your whole Unraid server a fully revamped, modern interface, wi
 Underneath, it looks after your containers: a start plan starts each one only once the container it depends on is actually ready, not just running, with per-container CPU, RAM and bandwidth limits, a watchdog, schedules and an idle stop on top. A master switch turns all theming off and keeps only the orchestration.</Overview>
   <Support>https://forums.unraid.net/topic/200952-support-junkerderprovinz-towertorch/</Support>
   <Project>https://github.com/junkerderprovinz/towertorch</Project>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/.github/assets/icon.png?v=1</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/.github/assets/icon.png?v=2</Icon>
   <DonateText>Buy me a coffee</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
 </Containers>
