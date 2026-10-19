@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Containers>
+  <Plugin>True</Plugin>
+  <PluginURL>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/plugin/towertorch.plg</PluginURL>
+  <PluginAuthor>Junker der Provinz</PluginAuthor>
+  <Beta>False</Beta>
+  <Category>Tools:Utilities Productivity:</Category>
+  <Name>TowerTorch</Name>
+  <Overview>Your server's UI on fire. Your disks stay cool.&#xD;
+&#xD;
+TowerTorch starts your containers in the right order and gives Unraid's pages a new coat, without replacing any of them. A start plan says which container waits for which, and the next one only starts once the one before is actually ready, not just running. Each container can get CPU, RAM and bandwidth limits, a watchdog, schedules and an idle stop.&#xD;
+&#xD;
+The Docker, Main, Shares, Plugins and VMs pages can show tiles as well as lists, disks and the array get small animated pictures, and Unraid's own settings pages and forms turn into cards with switches. One accent colour or a rainbow, light and dark, and a master switch that turns all theming off and keeps only the orchestration.</Overview>
+  <Support>https://github.com/junkerderprovinz/towertorch/issues</Support>
+  <Project>https://github.com/junkerderprovinz/towertorch</Project>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/.github/assets/icon.png?v=1</Icon>
+  <DonateText>Buy me a coffee</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+</Containers>

@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#apps"><img src="https://img.shields.io/badge/Templates-33-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#apps"><img src="https://img.shields.io/badge/Templates-34-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
@@ -335,6 +335,14 @@ A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict befor
 
 <br clear="all">
 
+<img src=".github/readme-icons/towertorch.png" width="84" align="left" alt="TowerTorch">
+<a href="https://github.com/junkerderprovinz/towertorch#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+
+**TowerTorch**<br>
+Starts your containers in dependency order once each is really ready, adds per-container limits, and gives Unraid's pages tiles, cards and small animated pictures.
+
+<br clear="all">
+
 
 ## Install
 
@@ -345,7 +353,7 @@ To add a single template by hand, paste its raw `*.xml` URL into **Add Container
 
 Apps and Images link to their dedicated repository's README; Wrappers keep their README in their folder here.
 
-**Plugins** (BombVault Widget, ShipLog, FireSquire) are published from this repository too. CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
+**Plugins** (BombVault Widget, ShipLog, FireSquire, TowerTorch) are published from this repository too. CA lists them the same way as containers (a template with `<Plugin>True</Plugin>` + `<PluginURL>`), so search for them in **Apps**. You can also install a plugin directly from **Plugins → Install Plugin** with its raw `.plg` URL, e.g.
 `https://raw.githubusercontent.com/junkerderprovinz/firesquire/main/plugin/firesquire.plg`
 
 
