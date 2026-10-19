@@ -339,7 +339,7 @@ A pre-reboot health check returning one clear GO / CAUTION / NO-GO verdict befor
 <a href="https://github.com/junkerderprovinz/towertorch#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **TowerTorch**<br>
-Starts your containers in dependency order once each is really ready, adds per-container limits, and gives Unraid's pages tiles, cards and small animated pictures.
+A fully revamped, modern interface for your whole Unraid server, plus containers that start in the right order once each is really ready.
 
 <br clear="all">
 

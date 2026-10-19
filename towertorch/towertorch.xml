@@ -8,9 +8,9 @@
   <Name>TowerTorch</Name>
   <Overview>Your server's UI on fire. Your disks stay cool.&#xD;
 &#xD;
-TowerTorch starts your containers in the right order and gives Unraid's pages a new coat, without replacing any of them. A start plan says which container waits for which, and the next one only starts once the one before is actually ready, not just running. Each container can get CPU, RAM and bandwidth limits, a watchdog, schedules and an idle stop.&#xD;
+TowerTorch gives your whole Unraid server a fully revamped, modern interface, without replacing a single page. Dashboard, Main, Shares, Docker, Plugins, VMs and Settings get one clean, consistent look: tiles or lists, cards with switches instead of checkboxes, small animated pictures for the disks, the array and the mover, one accent colour or a rainbow, light and dark. Everything stays where Unraid put it, so nothing you know moves.&#xD;
 &#xD;
-The Docker, Main, Shares, Plugins and VMs pages can show tiles as well as lists, disks and the array get small animated pictures, and Unraid's own settings pages and forms turn into cards with switches. One accent colour or a rainbow, light and dark, and a master switch that turns all theming off and keeps only the orchestration.</Overview>
+Underneath, it looks after your containers: a start plan starts each one only once the container it depends on is actually ready, not just running, with per-container CPU, RAM and bandwidth limits, a watchdog, schedules and an idle stop on top. A master switch turns all theming off and keeps only the orchestration.</Overview>
   <Support>https://github.com/junkerderprovinz/towertorch/issues</Support>
   <Project>https://github.com/junkerderprovinz/towertorch</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/towertorch/main/.github/assets/icon.png?v=1</Icon>
