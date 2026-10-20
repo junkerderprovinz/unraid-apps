@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>OpenHands</Name>
-  <Repository>docker.openhands.dev/openhands/openhands:1.7</Repository>
+  <Repository>docker.openhands.dev/openhands/openhands:1.13</Repository>
   <Registry>https://github.com/All-Hands-AI/OpenHands</Registry>
   <Network>bridge</Network>
   <MyIP/>
