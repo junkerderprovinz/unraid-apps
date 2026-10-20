@@ -26,14 +26,13 @@ Modes per app:
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged, in the OpenCloud brand colours.
   APP       - the house's own apps with an app tile (arrowloop, bombvault,
-              bombvaultwidget, firesquire, knightloader, parleyport, towertorch): the card shows
+              bombvaultwidget, firesquire, knightloader, parleyport, shiplog, towertorch): the card shows
               app/<name>.png as it is, the logo on the white and grey house
               tile, while the CA icon stays the bare logo. app/tile.mjs builds a
               tile from a logo; parleyport.svg is the original, and
               bombvaultwidget.svg and knightloader.svg were drawn as tiles.
 
-ShipLog is excluded (a theme-flipping <picture> pair from its own
-SVG masters). Usage: python .github/readme-icons/generate.py   (requires Pillow)
+Usage: python .github/readme-icons/generate.py   (requires Pillow)
 """
 import os
 from collections import deque
@@ -44,7 +43,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
 TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}
-APP = {"arrowloop", "bombvault", "bombvaultwidget", "firesquire", "knightloader", "parleyport", "towertorch"}
+APP = {"arrowloop", "bombvault", "bombvaultwidget", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 

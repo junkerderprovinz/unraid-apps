@@ -313,10 +313,7 @@ BombVault's activity log as a real, native tile on the Unraid dashboard: every b
 
 <br clear="all">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-icons/shiplog-dark.png">
-  <img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
-</picture>
+<img src=".github/readme-icons/shiplog.png" width="84" align="left" alt="ShipLog">
 <a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **ShipLog**<br>
