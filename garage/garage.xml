@@ -52,6 +52,8 @@ IMPORTANT: map BOTH the Data and Config volumes. Config holds the generated gara
 
   <Config Name="Bucket" Target="BUCKET" Default="" Mode="" Description="Optional. Name of a bucket to create automatically on first boot (e.g. backups). Leave empty to create buckets later via the admin panel or any S3 client." Type="Variable" Display="always" Required="false" Mask="false"/>
 
+  <Config Name="S3 Region" Target="S3_REGION" Default="" Mode="" Description="Optional. The region your S3 clients connect with. Leave it empty to keep the region in garage.toml (garage on a new install). Set it, for example to us-east-1, when a client only accepts AWS region names. It is applied on every start." Type="Variable" Display="always" Required="false" Mask="false"/>
+
   <Config Name="DB Engine" Target="DB_ENGINE" Default="sqlite|lmdb" Mode="" Description="Garage's metadata engine. 'sqlite' (default) is the safer choice; 'lmdb' is faster but less tolerant of an unclean shutdown." Type="Variable" Display="advanced" Required="false" Mask="false">sqlite</Config>
 
   <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the processes run as. Default 99 = 'nobody' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
