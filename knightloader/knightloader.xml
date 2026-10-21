@@ -76,13 +76,13 @@ Free, no ads, no account, and nothing about you leaves your server. Set a passwo
   <Config
     Name="Watched folder"
     Target="/watch"
-    Default="/mnt/user/downloads/knightloader-watch"
+    Default=""
     Mode="rw"
-    Description="Drop a .txt link list, a .magnet, a .crawljob, a .torrent, a .dlc, .ccf or .rsdf container or an .nzb here and KnightLoader takes it. Set the watched folder in Settings to /watch to switch it on."
+    Description="Optional. Drop a .txt link list, a .magnet, a .crawljob, a .torrent, a .dlc, .ccf or .rsdf container or an .nzb here and KnightLoader takes it. Left empty, no folder is created. To use it, pick a host folder here and switch on the watched folder in Settings with /watch."
     Type="Path"
     Display="advanced"
     Required="false"
-    Mask="false">/mnt/user/downloads/knightloader-watch</Config>
+    Mask="false"></Config>
   <Config
     Name="Base path"
     Target="KL_BASE_PATH"
