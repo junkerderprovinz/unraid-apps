@@ -6,7 +6,7 @@
     featherdrop, TrickWork, ArrowLoop, ParleyPort and KnightLoader. Own image builds
     of third-party apps: JDownloader,
     Krusader, PrusaSlicer, Stellarium, Matrix, OpenCloud, HandBrake, StrawDroid,
-    Excalidraw, Euro Office, Garage and JuiceFS, plus the thirteen ArtCraft apps
+    Excalidraw, Euro Office, Garage, JuiceFS and RustDesk, plus the thirteen ArtCraft apps
     from CADCraft to WordCraft, one image each. Thin wrappers over an upstream
     image: CouchDB, OpenHands, Standard Notes Server, Standard Notes Web UI, n8n,
     Claper, SeaweedFS, VersityGW, RustFS and Silo. Plugins: BombVault Widget, ShipLog

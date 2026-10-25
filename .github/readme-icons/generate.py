@@ -46,7 +46,7 @@ TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "se
         "lightcraft", "pdfcraft", "photocraft", "soundcraft", "vectorcraft", "wordcraft"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}
 APP = {"arrowloop", "bombvault", "bombvaultwidget", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch"}
-KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo"}
+KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo", "rustdesk"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 
 OC_PETROL = (32, 67, 79, 255)     # #20434F

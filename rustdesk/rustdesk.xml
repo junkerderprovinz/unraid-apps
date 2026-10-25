@@ -8,7 +8,7 @@
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <ReadMe>https://github.com/junkerderprovinz/rustdesk/blob/main/README.md</ReadMe>
-  <Support>https://github.com/junkerderprovinz/rustdesk/issues</Support>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://github.com/junkerderprovinz/rustdesk</Project>
   <Overview>
 Your own RustDesk server: the ID server and the relay, with a web console, user accounts, an address book that follows you to every client and a web client in the browser. Devices can also change their ID, which the stock open-source server refuses.&#xD;
