@@ -41,7 +41,7 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-TILE = {"krusader", "euro-office", "featherdrop", "opencloud", "stellarium", "seaweedfs", "trickwork",
+TILE = {"krusader", "euro-office", "featherdrop", "filebot", "opencloud", "stellarium", "seaweedfs", "trickwork",
         "cadcraft", "deckcraft", "designcraft", "effectcraft", "figcraft", "filmcraft", "gridcraft",
         "lightcraft", "pdfcraft", "photocraft", "soundcraft", "vectorcraft", "wordcraft"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}

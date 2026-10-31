@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>FileBot</Name>
+  <Beta>false</Beta>
+  <Repository>junkerderprovinz/filebot:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/filebot</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/filebot/blob/main/README.md</ReadMe>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://www.filebot.net/</Project>
+  <Overview>
+FileBot, the renamer for movies, shows, anime and music, on a Selkies web desktop. The full FileBot desktop app runs in the container and streams to your browser as H.264 video, so you need no VNC client and no local install. Built for amd64 and arm64.&#xD;
+&#xD;
+What you get:&#xD;
+• FileBot 5.3 from FileBot's own package repository, updated with every weekly build. Rename, Episodes, Subtitles, SFV, Filter and List work as on a desktop.&#xD;
+• The helpers FileBot matches with: MediaInfo, chromaprint for AcoustID, 7-Zip and unrar, mkvtoolnix, AtomicParsley and ffmpeg.&#xD;
+• Dark Darcula theme from the first start, file dialogs that open in your media folder, and FileBot comes back by itself if you close it.&#xD;
+&#xD;
+License:&#xD;
+FileBot is commercial software and renaming needs your own license from filebot.net. This image ships none. Put your license.txt into the appdata folder and restart, or click Rename in FileBot and paste the key. Coming from another FileBot container, copy its license.psm into the filebot folder inside appdata.&#xD;
+&#xD;
+Notes:&#xD;
+• Open the WebUI over HTTPS on port 3001 and accept the self-signed certificate once. Port 3000 (HTTP) is for a reverse proxy that handles TLS, the Selkies client refuses to start over plain HTTP.&#xD;
+• Leave WebUI Username and Password empty to run without a login on a trusted LAN. Set both to turn on the login, which you want whenever the container is reachable from outside.&#xD;
+&#xD;
+Source on GitHub: https://github.com/junkerderprovinz/filebot&#xD;
+  </Overview>
+  <Category>MediaApp:Video MediaApp:Music Tools:</Category>
+  <WebUI>https://[IP]:[PORT:3001]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/filebot/filebot.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/filebot/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --shm-size=1gb</ExtraParams>
+
+  <!-- Ports -->
+  <Config Name="WebUI Port (HTTPS / Selkies)" Target="3001" Default="3001" Mode="tcp"
+          Description="HTTPS port of the Selkies WebUI with a self-signed certificate. Open this one in the browser and accept the certificate once."
+          Type="Port" Display="always" Required="true" Mask="false">3001</Config>
+
+  <Config Name="WebUI Port (HTTP / Selkies)" Target="3000" Default="3000" Mode="tcp"
+          Description="HTTP port of the Selkies WebUI, for a reverse proxy that handles TLS in front of the container. Opened directly in a browser it shows a 'requires a secure connection (HTTPS)' error, so use port 3001 for that."
+          Type="Port" Display="always" Required="false" Mask="false">3000</Config>
+
+  <!-- Paths -->
+  <Config Name="AppData (/config)" Target="/config" Default="/mnt/user/appdata/filebot" Mode="rw"
+          Description="FileBot's license, settings, rename history and cache (under /config/filebot), plus the desktop session. Put license.txt here to activate your license."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/filebot</Config>
+
+  <Config Name="Media (/storage)" Target="/storage" Default="/mnt/user" Mode="rw"
+          Description="The folders FileBot renames and moves files in. Every file dialog opens here. Map the share that holds both your downloads and your library, so moving a file is a rename and not a copy."
+          Type="Path" Display="always" Required="true" Mask="false">/mnt/user</Config>
+
+  <!-- WebUI auth (Selkies) -->
+  <Config Name="WebUI Username" Target="CUSTOM_USER" Default="" Mode=""
+          Description="Username for the WebUI login. Leave it empty together with the password to run without a login."
+          Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="WebUI Password" Target="PASSWORD" Default="" Mode=""
+          Description="Password for the WebUI login. Leave it empty together with the username to run without a login. Set it whenever the container is reachable from outside your LAN."
+          Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <!-- Advanced env variables -->
+  <Config Name="Timezone (TZ)" Target="TZ" Default="Europe/Vienna" Mode=""
+          Description="Container timezone for log times and file dates. The LSIO base manages /etc/localtime from this value, so set it here rather than mounting /etc/localtime."
+          Type="Variable" Display="always" Required="false" Mask="false">Europe/Vienna</Config>
+
+  <Config Name="User ID (PUID)" Target="PUID" Default="99" Mode=""
+          Description="User ID FileBot runs as. Default 99 (nobody on Unraid)."
+          Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+
+  <Config Name="Group ID (PGID)" Target="PGID" Default="100" Mode=""
+          Description="Group ID. Default 100 (users on Unraid)."
+          Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+
+  <Config Name="UMASK" Target="UMASK" Default="000|022|002|077" Mode=""
+          Description="Permission mask for new files and folders. 000 lets every container user read and write them, which suits shares that other containers use too. Set 022 or 077 for stricter permissions."
+          Type="Variable" Display="advanced" Required="false" Mask="false">000</Config>
+
+  <Config Name="Theme for a new appdata folder" Target="FILEBOT_THEME" Default="Darcula|System|Nimbus|Metal" Mode=""
+          Description="FileBot's look on the first start. It is written once into /config/filebot/system.properties, so a later change goes into that file."
+          Type="Variable" Display="advanced" Required="false" Mask="false">Darcula</Config>
+
+</Container>
