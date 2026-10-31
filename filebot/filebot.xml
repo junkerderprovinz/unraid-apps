@@ -17,6 +17,7 @@ What you get:&#xD;
 • FileBot 5.3 from FileBot's own package repository, updated with every weekly build. Rename, Episodes, Subtitles, SFV, Filter and List work as on a desktop.&#xD;
 • The helpers FileBot matches with: MediaInfo, chromaprint for AcoustID, 7-Zip and unrar, mkvtoolnix, AtomicParsley and ffmpeg.&#xD;
 • Dark Darcula theme from the first start, file dialogs that open in your media folder, and FileBot comes back by itself if you close it.&#xD;
+• An optional automatic mode: FileBot's amc script checks a watch folder at a set interval and sorts new movies, shows and music into your library. It is off by default and starts in test mode, which only logs what it would do.&#xD;
 &#xD;
 License:&#xD;
 FileBot is commercial software and renaming needs your own license from filebot.net. This image ships none. Put your license.txt into the appdata folder and restart, or click Rename in FileBot and paste the key. Coming from another FileBot container, copy its license.psm into the filebot folder inside appdata.&#xD;
@@ -80,5 +81,82 @@ Source on GitHub: https://github.com/junkerderprovinz/filebot&#xD;
   <Config Name="Theme for a new appdata folder" Target="FILEBOT_THEME" Default="Darcula|System|Nimbus|Metal" Mode=""
           Description="FileBot's look on the first start. It is written once into /config/filebot/system.properties, so a later change goes into that file."
           Type="Variable" Display="advanced" Required="false" Mask="false">Darcula</Config>
+
+  <!-- Automatic mode (amc) -->
+  <Config Name="Automatic mode" Target="AMC_ENABLED" Default="0|1" Mode=""
+          Description="1 runs FileBot's amc script on the watch folder at every interval: new movies, shows and music are matched and renamed into the output folder without opening the app. It needs your license, also in test mode."
+          Type="Variable" Display="always" Required="false" Mask="false">0</Config>
+
+  <Config Name="Automatic: watch folder (/watch)" Target="/watch" Default="" Mode="rw"
+          Description="Folder the automatic mode takes new files from. Leave it empty if you use /storage and set the watch folder below to a path inside it."
+          Type="Path" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Automatic: output folder (/output)" Target="/output" Default="" Mode="rw"
+          Description="Library the automatic mode sorts into, with Movies, TV Shows, Anime and Music folders. Leave it empty if you use /storage and set the output folder below to a path inside it."
+          Type="Path" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Automatic: watch folder path" Target="AMC_INPUT_DIR" Default="/watch" Mode=""
+          Description="Path inside the container the automatic mode watches, /watch or a folder under /storage such as /storage/download/complete."
+          Type="Variable" Display="advanced" Required="false" Mask="false">/watch</Config>
+
+  <Config Name="Automatic: output folder path" Target="AMC_OUTPUT_DIR" Default="/output" Mode=""
+          Description="Path inside the container the automatic mode sorts into, /output or a folder under /storage such as /storage/media."
+          Type="Variable" Display="advanced" Required="false" Mask="false">/output</Config>
+
+  <Config Name="Automatic: action" Target="AMC_ACTION" Default="test|move|copy|hardlink|keeplink|symlink|duplicate" Mode=""
+          Description="What happens to a matched file. test only writes the plan into /config/filebot/amc.log and leaves every file alone, so start with it. hardlink keeps seeding torrents working when watch and output folder are on the same share."
+          Type="Variable" Display="advanced" Required="false" Mask="false">test</Config>
+
+  <Config Name="Automatic: on conflict" Target="AMC_CONFLICT" Default="auto|skip|override|index|fail" Mode=""
+          Description="What to do when the target file already exists. auto replaces it only with a file of better quality."
+          Type="Variable" Display="advanced" Required="false" Mask="false">auto</Config>
+
+  <Config Name="Automatic: match mode" Target="AMC_MATCH_MODE" Default="opportunistic|strict" Mode=""
+          Description="opportunistic also matches files whose names leave some doubt. strict only renames what FileBot is sure about."
+          Type="Variable" Display="advanced" Required="false" Mask="false">opportunistic</Config>
+
+  <Config Name="Automatic: language" Target="AMC_LANG" Default="English" Mode=""
+          Description="Language of the titles in new file names, such as English or German."
+          Type="Variable" Display="advanced" Required="false" Mask="false">English</Config>
+
+  <Config Name="Automatic: interval (seconds)" Target="AMC_INTERVAL" Default="1800" Mode=""
+          Description="Seconds between two looks at the watch folder."
+          Type="Variable" Display="advanced" Required="false" Mask="false">1800</Config>
+
+  <Config Name="Automatic: settle time (seconds)" Target="AMC_INPUT_STABLE_TIME" Default="10" Mode=""
+          Description="A run waits while any file in the watch folder changed within these seconds, so a download or unpack in progress is not moved half finished."
+          Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
+
+  <Config Name="Automatic: music" Target="AMC_PROCESS_MUSIC" Default="y|n" Mode=""
+          Description="y also renames music files."
+          Type="Variable" Display="advanced" Required="false" Mask="false">y</Config>
+
+  <Config Name="Automatic: artwork" Target="AMC_ARTWORK" Default="n|y" Mode=""
+          Description="y also fetches posters, fan art and NFO files for each movie and show."
+          Type="Variable" Display="advanced" Required="false" Mask="false">n</Config>
+
+  <Config Name="Automatic: subtitle languages" Target="AMC_SUBTITLE_LANG" Default="" Mode=""
+          Description="Language codes for subtitles to download, separated by commas, such as en,de. Leave it empty for none."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Automatic: movie format" Target="AMC_MOVIE_FORMAT" Default="" Mode=""
+          Description="FileBot format for movies, such as {plex}. Leave it empty for FileBot's default."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Automatic: series format" Target="AMC_SERIES_FORMAT" Default="" Mode=""
+          Description="FileBot format for episodes. Leave it empty for FileBot's default."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Automatic: anime format" Target="AMC_ANIME_FORMAT" Default="" Mode=""
+          Description="FileBot format for anime. Leave it empty for FileBot's default."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Automatic: music format" Target="AMC_MUSIC_FORMAT" Default="" Mode=""
+          Description="FileBot format for music. Leave it empty for FileBot's default."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Automatic: extra options" Target="AMC_CUSTOM_OPTIONS" Default="" Mode=""
+          Description="More amc options, added to every run as written, such as --def clean=y to remove leftover folders."
+          Type="Variable" Display="advanced" Required="false" Mask="false"/>
 
 </Container>
