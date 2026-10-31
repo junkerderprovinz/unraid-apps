@@ -55,7 +55,7 @@ Source on GitHub: https://github.com/junkerderprovinz/jdownloader&#xD;
   <!-- UI preferences -->
   <Config Name="Theme (JD_THEME)" Target="JD_THEME"
           Default="jd-highlighter-dark|jd-highlighter-light|plain-dark|Light|JDDEFAULT" Mode=""
-          Description="jd-highlighter-dark = JD Highlighter Dark, borderless Carbon #161616 with one accent (the default, Dark means the same). jd-highlighter-light = the same design in light. plain-dark = the plain monochrome Carbon look, Light = JD's light theme, JDDEFAULT = JDownloader's own classic look. The accent colour and Dark or Light are picked in JDownloader under Settings > User Interface."
+          Description="jd-highlighter-dark = JD Highlighter Dark, borderless Carbon #161616 with one accent (the default, Dark means the same). jd-highlighter-light = the same design in light. plain-dark = the plain monochrome Carbon look, Light = JD's light theme, JDDEFAULT = JDownloader's own classic look. This is only the look a new container starts with: the accent colour and the look are picked in JDownloader under Settings > User Interface, and that pick wins."
           Type="Variable" Display="always" Required="false" Mask="false">jd-highlighter-dark</Config>
 
   <Config Name="Self-Update (JD_SELFUPDATE)" Target="JD_SELFUPDATE"
