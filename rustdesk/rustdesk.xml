@@ -11,19 +11,21 @@
   <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
   <Project>https://github.com/junkerderprovinz/rustdesk</Project>
   <Overview>
-Your own RustDesk server: the ID server and the relay, with a web console, user accounts, an address book that follows you to every client and a web client in the browser. Devices can also change their ID, which the stock open-source server refuses.&#xD;
+The most complete RustDesk server on Community Applications. Pro features come unlocked and free: a web console, user accounts, an address book that follows you to every client, a web client in the browser and ID changes. One container, set up entirely from this template.&#xD;
 &#xD;
 What you get:&#xD;
 • Web console at /_admin/ on port 21114: devices, users, groups, address books, connection and file transfer logs&#xD;
 • Log in once in the RustDesk client and your address book is on every device&#xD;
 • Web client at /webclient/ for a session from any browser&#xD;
-• "Change ID" in the client works, for the machine that registered the old ID and a free new ID&#xD;
+• "Change ID" in the client works&#xD;
 • Encrypted connections only, by default&#xD;
+• amd64 and arm64&#xD;
 &#xD;
-Notes:&#xD;
+Coming from another RustDesk server? Copy id_ed25519, id_ed25519.pub and db_v2.sqlite3 into the data folder before the first start, and every device keeps its ID.&#xD;
+&#xD;
+Setup:&#xD;
 • Fill in the four address fields with the name or IP your clients reach this server under.&#xD;
 • The first start creates the key pair in the data folder and prints the console's admin password in the container log (search for "Admin Password").&#xD;
-• Moving from another RustDesk server: copy id_ed25519, id_ed25519.pub and db_v2.sqlite3 into the data folder before the first start, and every device keeps its ID.&#xD;
 • Clients need the ID server (port 21116), the relay (21117), the API server (http://...:21114) and the key from id_ed25519.pub.&#xD;
 &#xD;
 Source on GitHub: https://github.com/junkerderprovinz/rustdesk&#xD;
@@ -31,7 +33,7 @@ Source on GitHub: https://github.com/junkerderprovinz/rustdesk&#xD;
   <Category>Network:Remote Tools: Productivity:</Category>
   <WebUI>http://[IP]:[PORT:21114]/_admin/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/rustdesk.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png?v=2</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
 
   <!-- Ports -->
