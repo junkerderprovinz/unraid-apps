@@ -18,7 +18,7 @@ Free, no ads, no account, and nothing about you leaves your server. Set a passwo
   <Category>Downloaders:</Category>
   <WebUI>http://[IP]:[PORT:8749]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/knightloader.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/icon.png?v=2</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/knightloader/icon.png?v=3</Icon>
   <ExtraParams>--restart unless-stopped --user 99:100</ExtraParams>
   <DateInstalled/>
   <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
