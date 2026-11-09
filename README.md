@@ -63,7 +63,7 @@ Two-way file sync that shows you the plan before it touches a file, sends deleti
 <a href="https://github.com/junkerderprovinz/parleyport/blob/main/compose.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
 
 **ParleyPort**<br>
-Your own relay for KnightLoader and BombVault: instances on different networks meet there, and it passes on what it cannot read.
+Your own relay for apps that pair their instances: on different networks they meet there, and it passes on what it cannot read.
 
 <br clear="all">
 

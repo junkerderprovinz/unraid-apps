@@ -10,11 +10,11 @@
   <Support>https://github.com/junkerderprovinz/parleyport/issues</Support>
   <Project>https://github.com/junkerderprovinz/parleyport</Project>
   <ReadMe>https://github.com/junkerderprovinz/parleyport/blob/main/README.md</ReadMe>
-  <Overview>Your own relay for KnightLoader and BombVault.
+  <Overview>Your own relay for apps that pair their instances.
 
-Both apps pair their instances with twelve words. Instances on the same network talk directly, but two instances on different networks, behind NAT or a firewall that lets nothing in, need a third point both can dial out to. ParleyPort is that point. It groups the connections that share a relay key and passes their messages on, sealed end to end with a key that never leaves your instances, so it cannot read what it carries.
+Instances on the same network talk directly, but two instances on different networks, behind NAT or a firewall that lets nothing in, need a third point both can dial out to. ParleyPort is that point. It groups the connections that share a relay key and passes their messages on, sealed end to end with a key that never leaves your instances, so it cannot read what it carries.
 
-You only need it if you want your own relay. The project relay at relay.halleluja.design is the default in both apps, and an instance that is already reachable from outside can serve as the relay itself. ParleyPort is for running your own without putting a download manager or a backup tool on the open internet: a few megabytes, no accounts, no database, nothing stored.
+You only need it if you want your own relay. The apps it serves use a project relay by default, and an instance that is already reachable from outside can serve as the relay itself. ParleyPort is for running your own without putting the app itself on the open internet: a few megabytes, no accounts, no database, nothing stored.
 
 Plain mode listens on port 8760 for a reverse proxy in front, which must allow WebSocket upgrades on /relay/connect. Set a domain and map port 443 instead, and it fetches and renews its own Let's Encrypt certificate, with port 80 left closed. Then enter the address under Settings, Pairing, Relay, Own relay on every instance of the group.</Overview>
   <Category>Network:Other Tools:Utilities</Category>
@@ -60,7 +60,7 @@ Plain mode listens on port 8760 for a reverse proxy in front, which must allow W
     Target="PARLEYPORT_PUBLIC_URL"
     Default=""
     Mode=""
-    Description="The address your instances dial, for example https://relay.example.org, or several separated by commas. A KnightLoader instance proves who it is only to the relay it names when it connects, so set this in plain mode behind a proxy. In domain mode the names above already count and this can stay empty."
+    Description="The address your instances dial, for example https://relay.example.org, or several separated by commas. An instance may prove who it is only to the relay it names when it connects, so set this in plain mode behind a proxy. In domain mode the names above already count and this can stay empty."
     Type="Variable"
     Display="always"
     Required="false"
