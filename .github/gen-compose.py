@@ -40,6 +40,10 @@ APP_VALUES = {
 # their own that cannot write there.
 USERS = {"rustfs": "0:0"}
 
+# A renamed app keeps the appdata folder of its old name, so existing installs
+# keep their data.
+APPDATA = {"castleparcel": "featherdrop"}
+
 # The ArtCraft images all build from one repository, which keeps their compose
 # files side by side.
 ARTCRAFT = ("cadcraft", "deckcraft", "designcraft", "effectcraft", "figcraft", "filmcraft", "gridcraft",
@@ -73,7 +77,7 @@ def config_value(config):
 
 
 def host_dir(host, target, app):
-    appdata = f"/mnt/user/appdata/{app}"
+    appdata = f"/mnt/user/appdata/{APPDATA.get(app, app)}"
     if host == appdata or host.startswith(appdata + "/"):
         return "./appdata" + host[len(appdata):].rstrip("/")
     # A system path such as the Docker socket is the same on every host.
