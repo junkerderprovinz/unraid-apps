@@ -1,7 +1,7 @@
 /**
  * Builds an app tile for the README cards from a logo: the white and grey
  * ground of parleyport.svg, the house tile, with the logo
- * centred on it at the size the ParleyPort logo has there.
+ * centred on it at 83 percent of the tile's width.
  *
  *   node .github/readme-icons/app/tile.mjs <logo.svg> <name>
  *
@@ -33,10 +33,10 @@ function inline(svg) {
     .replace(/class="([\w-]+)"/g, (_, c) => `fill="${fills[c]}"`);
 }
 
-const S = 610;
-// The ParleyPort logo spans 506 of the tile's 610 units, centred.
-const LOGO = 506;
-const ground = inline(readFileSync(join(here, "parleyport.svg"), "utf8")).match(/<g>\s*<path[\s\S]*?<\/g>/)[0];
+const house = inline(readFileSync(join(here, "parleyport.svg"), "utf8"));
+const S = Number(house.match(/viewBox="([^"]+)"/)[1].split(/\s+/)[2]);
+const LOGO = 0.83 * S;
+const ground = house.match(/<g>\s*<path[\s\S]*?<\/g>/)[0];
 const logo = inline(readFileSync(logoPath, "utf8"));
 const [, , w, h] = logo.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
 const scale = LOGO / Math.max(w, h);
