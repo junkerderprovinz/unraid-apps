@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>CastleParcel</Name>
+  <Repository>junkerderprovinz/castleparcel:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/castleparcel</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/199203-support-junkerderprovinz-castleparcel/</Support>
+  <Project>https://github.com/junkerderprovinz/castleparcel</Project>
+  <ReadMe>https://github.com/junkerderprovinz/castleparcel/blob/main/README.md</ReadMe>
+  <Overview>CastleParcel is a self-hosted file sharer, a private WeTransfer without accounts or size paywalls. Open the page, drop a file, set an expiry (plus an optional password or download limit), and share a short link or QR code. Files are end-to-end encrypted in your browser before upload, so the server only stores ciphertext and never sees your files, their names or the key. Uploads are resumable (tus), files sit on a local volume and the metadata lives in a single SQLite file, so there is no separate database, no account system and no tracking. The UI comes in 26 languages with light and dark mode, and you can brand it with APP_NAME, APP_LOGO and ACCENT_COLOR. Put it behind a reverse proxy and set BASE_URL so share links use your public domain. CastleParcel used to be called featherdrop. The appdata folder keeps that name, so an existing install keeps its shares and every link still opens.</Overview>
+  <Category>Tools:Utilities Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/castleparcel/castleparcel.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/castleparcel/icon.png?v=1</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Config
+    Name="WebUI Port"
+    Target="3000"
+    Default="3000"
+    Mode="tcp"
+    Description="Port the CastleParcel web interface listens on."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">3000</Config>
+  <Config
+    Name="Data Directory (uploads)"
+    Target="/data"
+    Default="/mnt/user/appdata/featherdrop/data"
+    Mode="rw"
+    Description="Bulk storage for the uploaded files. Can live on slower array storage. Kept separate from the small metadata database (see Config Directory). The folder keeps the featherdrop name so existing shares stay where they are."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/featherdrop/data</Config>
+  <Config
+    Name="Config Directory (database)"
+    Target="/config"
+    Default="/mnt/user/appdata/featherdrop/config"
+    Mode="rw"
+    Description="Stores the small SQLite metadata database (db.sqlite). Best kept on fast storage (e.g. the SSD cache/appdata). Separate from the bulk uploads (see Data Directory)."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/featherdrop/config</Config>
+  <Config
+    Name="Config Dir (container path)"
+    Target="CONFIG_DIR"
+    Default="/config"
+    Mode=""
+    Description="Container path the SQLite database is written to. Must match the Config Directory mount above (/config), so leave it as /config."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">/config</Config>
+  <Config
+    Name="Public Base URL"
+    Target="BASE_URL"
+    Default=""
+    Mode=""
+    Description="Public base URL for share links behind a reverse proxy, e.g. https://share.yourdomain.tld. Leave empty to use the browser address."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Default Expiry"
+    Target="DEFAULT_EXPIRY"
+    Default="7d|1h|6h|1d|30d|never"
+    Mode=""
+    Description="Expiry pre-selected in the UI when an uploader does not choose one. Pick from the dropdown: 1h, 6h, 1d, 7d, 30d, or never."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">7d</Config>
+  <Config
+    Name="Max File Size (bytes)"
+    Target="MAX_FILE_SIZE"
+    Default="0"
+    Mode=""
+    Description="Maximum upload size in bytes. 0 = unlimited (only limited by disk space). Example: 5368709120 = 5 GB."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">0</Config>
+  <Config
+    Name="Max Expiry"
+    Target="MAX_EXPIRY"
+    Default="never|1h|6h|1d|7d|30d"
+    Mode=""
+    Description="Longest expiry an uploader may pick. 'never' (default) = no cap. Pick a shorter value to cap it; longer options (incl. 'never') then disappear from the UI and the server rejects them, and the Default Expiry is clamped to the cap."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">never</Config>
+  <Config
+    Name="Storage Quota (bytes)"
+    Target="STORAGE_QUOTA"
+    Default="0"
+    Mode=""
+    Description="Optional. Maximum combined size of all stored shares, in bytes. 0 = unlimited. Uploads that would exceed the quota are rejected before any byte lands. Example: 53687091200 = 50 GB."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">0</Config>
+  <Config
+    Name="Rate Limit"
+    Target="RATE_LIMIT"
+    Default="true|false"
+    Mode=""
+    Description="Built-in per-IP rate limiting on uploads and download/password attempts (HTTP 429). Leave on unless you run your own limiter in a reverse proxy."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">true</Config>
+  <Config
+    Name="Trust Proxy"
+    Target="TRUST_PROXY"
+    Default="false|true"
+    Mode=""
+    Description="Set true only when CastleParcel runs behind a reverse proxy: rate limits then use the client address from X-Forwarded-For. Leave it false on a directly reachable instance, because there any client could send its own X-Forwarded-For header and get around the rate limits."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">false</Config>
+  <Config
+    Name="Custom App Name"
+    Target="APP_NAME"
+    Default=""
+    Mode=""
+    Description="Optional. Replaces the 'CastleParcel' name in the header and the browser tab title with your own. Leave empty to keep 'CastleParcel'."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Custom Logo URL"
+    Target="APP_LOGO"
+    Default=""
+    Mode=""
+    Description="Optional. Your own logo (SVG/PNG) to replace the castle: either a public image URL, or a data: URI so you need no hosting and no file on disk. To make a data URI, run 'base64 -w0 logo.svg' and prefix the output with data:image/svg+xml;base64, (use image/png for a PNG). Leave empty to keep the castle."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Accent Color"
+    Target="ACCENT_COLOR"
+    Default=""
+    Mode=""
+    Description="Optional. A 6-digit hex colour (e.g. #3daee9) for buttons, the upload ring and other accents. Leave empty to keep the gold (#d4af37)."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Upload Password"
+    Target="UPLOAD_PASSWORD"
+    Default=""
+    Mode=""
+    Description="Optional. If set, only people who know this password can upload / create shares; download links still work for everyone (instance-private uploads). Leave empty to allow open uploads. Use a value without leading or trailing spaces."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="true"></Config>
+</Container>
