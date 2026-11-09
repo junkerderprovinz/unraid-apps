@@ -282,6 +282,25 @@ copied.</p>
 
 <hr>
 
+<h3>Companions</h3>
+
+<p><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png" alt="" width="40" height="40"></p>
+<h2>ParleyPort</h2>
+<p>Your own relay for apps that pair their instances. When two of your instances sit on
+different networks and neither can reach the other, both dial out to ParleyPort and meet
+there. It passes their messages on without being able to read them, and it keeps no accounts
+and stores nothing.</p>
+<ul>
+  <li>Every message is sealed end to end with a key that never leaves your instances</li>
+  <li>Set a domain and map port 443, and it fetches and renews its own Let's Encrypt certificate, with port 80 left closed</li>
+  <li>Without a domain it listens on port 8760 for a reverse proxy, which has to allow WebSocket upgrades on <code>/relay/connect</code></li>
+  <li>You only need it for a relay of your own: the apps use a project relay by default</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps/parleyport-1ucelx3086hypv">ParleyPort</a></li>
+  <li><a href="https://github.com/junkerderprovinz/parleyport#readme">Repository &amp; README</a></li>
+</ul>
+
+<hr>
+
 <h2>Requirements</h2>
 <ul>
   <li>Unraid 6.10+ with the <strong>Community Applications</strong> plugin</li>
