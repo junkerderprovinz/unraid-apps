@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>CannonCommander</Name>
+  <Repository>junkerderprovinz/cannoncommander:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/cannoncommander</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/201231-support-junkerderprovinz-cannoncommand/</Support>
+  <Project>https://github.com/junkerderprovinz/cannoncommander</Project>
+  <ReadMe>https://github.com/junkerderprovinz/cannoncommander/blob/main/README.md</ReadMe>
+  <Overview>The most beautiful file manager you will ever run. Also the only one you need.
+
+Two panels side by side, the keys the classic commanders taught your fingers, and an interface polished down to the last pixel, in light or dark and in your own accent colour. F5 copies, F6 moves, F8 deletes. Copies and moves run as jobs in the background with speed and time left, and whatever you delete waits in a trash first.
+
+It knows its way around a NAS: which files still sit on a fast cache, which disks are asleep, which permissions your shares expect. Folder compare and sync, batch rename, archives, checksums, duplicates, disk usage and a viewer and editor for almost any file are built in. Clouds and remote servers come in through rclone and open like any other folder.
+
+On the first start the container writes a password for the user admin into its log. Sign in with it and pick your own. Users, groups, access rules, two-factor sign-in, passkeys and OIDC decide who gets to see what.</Overview>
+  <Category>Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/cannoncommander.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png</Icon>
+  <ExtraParams>--restart unless-stopped --hostname=cannoncommander --cap-add=SYS_ADMIN --cap-add=DAC_READ_SEARCH --cap-add=DAC_OVERRIDE</ExtraParams>
+  <DateInstalled/>
+  <DonateText>If CannonCommander helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Config
+    Name="WebUI Port"
+    Target="80"
+    Default="8480"
+    Mode="tcp"
+    Description="The port of the web interface. Keep it on your own network. To reach it from outside, put it behind a reverse proxy with https."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false">8480</Config>
+  <Config
+    Name="Config"
+    Target="/config"
+    Default="/mnt/user/appdata/cannoncommander"
+    Mode="rw"
+    Description="Holds config.yaml, the database with users, settings, jobs and the index, the thumbnail cache and rclone's configuration. Nobody can open this folder through the file manager, not even an admin."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt/user/appdata/cannoncommander</Config>
+  <Config
+    Name="Storage"
+    Target="/mnt"
+    Default="/mnt"
+    Mode="rw,slave"
+    Description="Your user shares, disks and pools, at the same paths as on the server. Everyone works in the user shares. The disks and pools are for admins alone, who need them to see where a file lies and to move a folder onto one disk. To browse one, add it under Settings, Sources."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false">/mnt</Config>
+  <Config
+    Name="FUSE"
+    Target="/dev/fuse"
+    Default="/dev/fuse"
+    Mode=""
+    Description="rclone needs it to mount remote storage. Together with the SYS_ADMIN capability under Extra Parameters it lets rclone mount inside the container, and nothing on the server changes."
+    Type="Device"
+    Display="advanced"
+    Required="false"
+    Mask="false">/dev/fuse</Config>
+  <Config
+    Name="Unraid state"
+    Target="/var/local/emhttp"
+    Default="/var/local/emhttp"
+    Mode="ro"
+    Description="Read only. The disks, pools and shares as Unraid sees them right now: cache or array, sleeping disks and the parity check."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false">/var/local/emhttp</Config>
+  <Config
+    Name="Unraid settings"
+    Target="/boot/config"
+    Default="/boot/config"
+    Mode="ro"
+    Description="Read only. The settings of each share, where appdata and the VM disks live, and which disks belong where. Unraid keeps this folder for root alone, so the container reads it with the DAC_READ_SEARCH capability under Extra Parameters."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false">/boot/config</Config>
+  <Config
+    Name="PUID"
+    Target="PUID"
+    Default="99"
+    Mode=""
+    Description="The user CannonCommander runs as and writes new files as. 99 is Unraid's nobody, which every share expects. 0 runs it as root."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">99</Config>
+  <Config
+    Name="PGID"
+    Target="PGID"
+    Default="100"
+    Mode=""
+    Description="The group for new files. 100 is Unraid's users group."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">100</Config>
+  <Config
+    Name="UMASK"
+    Target="UMASK"
+    Default="000"
+    Mode=""
+    Description="The permission mask for new files and folders. 000 matches Unraid's shares, so you can still change what CannonCommander writes over SMB. 022 keeps new files writable for their owner alone."
+    Type="Variable"
+    Display="advanced"
+    Required="true"
+    Mask="false">000</Config>
+  <Config
+    Name="Timezone"
+    Target="TZ"
+    Default="Europe/Berlin"
+    Mode=""
+    Description="Used for dates in the log and for times the server works out by itself."
+    Type="Variable"
+    Display="always"
+    Required="false"
+    Mask="false">Europe/Berlin</Config>
+  <Config
+    Name="Unraid write access"
+    Target="CC_UNRAID_SOCKET"
+    Default="false"
+    Mode=""
+    Description="Off by default. Set it to true to let admins spin disks down from the file manager and send Unraid notifications. It also needs the emhttpd socket below, and the notifications need their folder as well."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false">false</Config>
+  <Config
+    Name="emhttpd socket"
+    Target="/var/run/emhttpd.socket"
+    Default=""
+    Mode="rw"
+    Description="Only with Unraid write access. Enter /var/run/emhttpd.socket to spin disks down. Leave it empty otherwise: this socket controls the whole array."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Unraid notifications"
+    Target="/tmp/notifications"
+    Default=""
+    Mode="rw"
+    Description="Only with Unraid write access. Enter /tmp/notifications to send Unraid notifications when a job is done. Unraid lets only root write there, so the container writes with the DAC_OVERRIDE capability under Extra Parameters."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+</Container>

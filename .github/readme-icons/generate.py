@@ -26,7 +26,7 @@ Modes per app:
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged, in the OpenCloud brand colours.
   APP       - the house's own apps with an app tile (arrowloop, bombvault,
-              bombvaultwidget, firesquire, knightloader, parleyport, shiplog, towertorch): the card shows
+              bombvaultwidget, cannoncommander, firesquire, knightloader, parleyport, shiplog, towertorch): the card shows
               app/<name>.png as it is, the logo on the white and grey house
               tile, while the CA icon stays the bare logo. app/tile.mjs builds a
               tile from a logo; parleyport.svg is the original, and
@@ -45,7 +45,7 @@ TILE = {"krusader", "euro-office", "castleparcel", "featherdrop", "filebot", "op
         "cadcraft", "deckcraft", "designcraft", "effectcraft", "figcraft", "filmcraft", "gridcraft",
         "lightcraft", "pdfcraft", "photocraft", "soundcraft", "vectorcraft", "wordcraft"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}
-APP = {"arrowloop", "bombvault", "bombvaultwidget", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch"}
+APP = {"arrowloop", "bombvault", "bombvaultwidget", "cannoncommander", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo", "rustdesk"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 

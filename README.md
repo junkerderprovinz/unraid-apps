@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/junkerderprovinz/unraid-apps/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/unraid-apps/validate.yml?branch=main&label=Validate&style=for-the-badge&logo=githubactions&logoColor=white" alt="Validate" height="36"></a>&nbsp;
-  <a href="#apps"><img src="https://img.shields.io/badge/Templates-49-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
+  <a href="#apps"><img src="https://img.shields.io/badge/Templates-50-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Templates" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/unraid-apps/commits/main"><img src="https://img.shields.io/github/last-commit/junkerderprovinz/unraid-apps?branch=main&style=for-the-badge&logo=git&logoColor=white&label=Updated" alt="Last commit" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
@@ -73,6 +73,15 @@ Your own relay for apps that pair their instances: on different networks they me
 
 **KnightLoader**<br>
 Self-hosted download manager for hosters, debrid, torrents, Usenet and video, with an Android app and a browser extension.
+
+<br clear="all">
+
+<img src=".github/readme-icons/cannoncommander.png" width="84" align="left" alt="CannonCommander">
+<a href="https://github.com/junkerderprovinz/cannoncommander#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
+<a href="https://github.com/junkerderprovinz/cannoncommander/blob/main/compose.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+**CannonCommander**<br>
+The most beautiful file manager you will ever run, and the only one you need: two panels, F5 to copy, jobs in the background and a trash for second thoughts.
 
 <br clear="all">
 
