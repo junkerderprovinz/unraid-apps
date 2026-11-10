@@ -20,7 +20,7 @@ On the first start the container writes a password for the user admin into its l
   <Category>Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:80]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/cannoncommander.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png</Icon>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png?v=2</Icon>
   <ExtraParams>--restart unless-stopped --hostname=cannoncommander --cap-add=SYS_ADMIN --cap-add=DAC_READ_SEARCH --cap-add=DAC_OVERRIDE</ExtraParams>
   <DateInstalled/>
   <DonateText>If CannonCommander helps you, consider buying me a coffee.</DonateText>
