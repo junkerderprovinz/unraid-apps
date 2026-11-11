@@ -26,11 +26,13 @@ Modes per app:
   opencloud - special: rebuild on the OpenCloud petrol tile (#20434F) with the
               lavender logo enlarged, in the OpenCloud brand colours.
   APP       - the house's own apps with an app tile (arrowloop, bombvault,
-              bombvaultwidget, cannoncommander, firesquire, knightloader, parleyport, shiplog, towertorch): the card shows
+              bombvaultwidget, cannoncommander, firesquire, knightloader, parleyport, shiplog, towertorch,
+              trickwork): the card shows
               app/<name>.png as it is, the logo on the white and grey house
               tile, while the CA icon stays the bare logo. app/tile.mjs builds a
-              tile from a logo; parleyport.svg is the original, and
-              bombvaultwidget.svg and knightloader.svg were drawn as tiles.
+              tile from a logo; parleyport.svg and trickwork.svg are the
+              originals, and bombvaultwidget.svg and knightloader.svg were
+              drawn as tiles.
 
 Usage: python .github/readme-icons/generate.py   (requires Pillow)
 """
@@ -41,11 +43,11 @@ from PIL import Image, ImageDraw
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 
-TILE = {"krusader", "euro-office", "castleparcel", "featherdrop", "filebot", "opencloud", "stellarium", "seaweedfs", "trickwork",
+TILE = {"krusader", "euro-office", "castleparcel", "featherdrop", "filebot", "opencloud", "stellarium", "seaweedfs",
         "cadcraft", "deckcraft", "designcraft", "effectcraft", "figcraft", "filmcraft", "gridcraft",
         "lightcraft", "pdfcraft", "photocraft", "soundcraft", "vectorcraft", "wordcraft"}
 FILL = {"standardnotes-server", "standardnotes-webui", "excalidraw"}
-APP = {"arrowloop", "bombvault", "bombvaultwidget", "cannoncommander", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch"}
+APP = {"arrowloop", "bombvault", "bombvaultwidget", "cannoncommander", "firesquire", "knightloader", "parleyport", "shiplog", "towertorch", "trickwork"}
 KEEP = {"matrix", "n8n", "openhands", "jdownloader", "prusaslicer", "couchdb", "garage", "claper", "handbrake", "versitygw", "juicefs", "rustfs", "seafile", "silo", "securo", "rustdesk"}
 ALL = sorted(TILE | FILL | KEEP | APP)
 
