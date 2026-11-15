@@ -157,6 +157,7 @@ gateway adds no locking of its own.
 | **Admin API** | `7080` | Account administration. The web interface needs it. |
 | **Region** | `us-east-1` | The region string the gateway answers with. Client and gateway just have to agree. |
 | **Health Path** | `/_health` | A GET here answers without credentials, for a monitor or a proxy. |
+| **Write Through Temp Files** | `false` | Set to `true` when a folder inside a bucket is its own dataset or a symlink to another disk. Uploads there fail with "internal error" otherwise. |
 
 The advanced variables (`VGW_BACKEND`, `VGW_BACKEND_ARG`, the listen addresses) exist because
 the image is driven by environment variables rather than a config file. They are set correctly
