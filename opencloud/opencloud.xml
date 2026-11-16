@@ -38,6 +38,7 @@ Notes:&#xD;
 &#x2022; Why rolling is the default: OpenCloud's production line is currently 7.2.x, where a single transient NATS timeout ends the whole server process. Slow storage is exactly what produces those timeouts, so the risk is real on an array-backed setup. Rolling carries the fix from 7.5.0 onwards. Production releases about every six months, so the stable line will not pick it up for a while.&#xD;
 &#x2022; Production channel: change the Repository tag from ':rolling' to ':latest' if you prefer OpenCloud's fully QA'd line over the newest features. Keep your appdata backed up before switching either way.&#xD;
 &#x2022; Reverse proxy: if you terminate TLS in front of OpenCloud, set "OpenCloud terminates TLS" to 'false' (advanced) and set the Public URL to your external https URL (e.g. https://cloud.example.com). Then "Allow self-signed TLS" can be 'false'. Your proxy must connect to the container over plain HTTP on port 9200 (not HTTPS) once "OpenCloud terminates TLS" is 'false'.&#xD;
+&#x2022; Sign-in through your own login provider (Authentik, Keycloak, Pocket ID, ...): fill the three 'Login' fields under the advanced settings. The guide on GitHub lists what to set up at the provider.&#xD;
 &#x2022; PUID/PGID default to 99/100 (nobody/users on Unraid).&#xD;
 &#xD;
 S3 object storage (optional, advanced):&#xD;
@@ -188,6 +189,24 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
   <Config Name="Tika server URL" Target="TIKA_URL"
           Default="" Mode=""
           Description="Network-reachable URL of your Apache Tika container, e.g. http://192.168.1.10:9998. Only used when 'Full-text search (Tika)' is 'true'."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <!-- Sign-in through your own login provider (optional). Leave
+       the provider URL empty to keep OpenCloud's own sign-in.
+       See the guide section on the login provider. -->
+  <Config Name="Login provider URL" Target="OIDC_ISSUER"
+          Default="" Mode=""
+          Description="Optional: sign in through your own OpenID Connect provider instead of OpenCloud's own login page. Enter the provider's issuer address, which has to be https, for example https://auth.example.com/application/o/opencloud/ for Authentik, https://auth.example.com/realms/home for Keycloak or https://id.example.com for Pocket ID. OpenCloud's own login page is then switched off, and each account is created the first time that person signs in. Create a public client at the provider first. The guide section 'Sign-in through your own login provider' lists the redirect addresses to allow. Left empty, OpenCloud keeps its own login."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Login client ID" Target="OIDC_CLIENT_ID"
+          Default="" Mode=""
+          Description="The client ID of the public client you created at the provider, for example OpenCloud. The web interface, the desktop app and the mobile apps all use it. Left empty, OpenCloud uses its own IDs (web, OpenCloudDesktop, OpenCloudAndroid and OpenCloudIOS), and you create one client for each at the provider."
+          Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+
+  <Config Name="Login role claim" Target="OIDC_ROLE_CLAIM"
+          Default="" Mode=""
+          Description="Optional: let the provider decide the roles. Enter the name of a claim that lists roles or groups, for example groups or roles. OpenCloud then sets the role at every sign-in from the values opencloudAdmin, opencloudSpaceAdmin, opencloudUser and opencloudGuest, and refuses anyone who has none of them. Left empty, new accounts get the User role and an admin changes roles in OpenCloud. The built-in admin can't sign in through your provider, so you need this at least once to get an admin."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
 </Container>
