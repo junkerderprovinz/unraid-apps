@@ -1,0 +1,28 @@
+# Built from the Unraid template in junkerderprovinz/unraid-apps by
+# .github/gen-compose.py. Change the template there, not this file.
+#
+# Folders are created next to this file on the first start. Point the ones
+# that hold your own files (downloads, storage and the like) at real folders
+# first, and fill in every value marked "required".
+
+services:
+  pocket-id:
+    image: pocketid/pocket-id:v2
+    container_name: pocket-id
+    restart: unless-stopped
+    ports:
+      - "1411:1411"
+    volumes:
+      - "./appdata:/app/data"
+    environment:
+      APP_URL: "https://id.example.com"  # required
+      ENCRYPTION_KEY: ""  # required
+      TRUST_PROXY: "false"
+      PUID: "1000"
+      PGID: "1000"
+      CLOUDFLARE_LOCATION_HEADERS: "false"
+      AUDIT_LOG_RETENTION_DAYS: "90"
+      UI_CONFIG_DISABLED: "false"
+      ANALYTICS_DISABLED: "false"
+      VERSION_CHECK_DISABLED: "false"
+      LOG_LEVEL: info

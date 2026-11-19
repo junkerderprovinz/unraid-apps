@@ -57,6 +57,7 @@ PLACEHOLDERS = {
     "n8n": {"DB_POSTGRESDB_HOST", "WEBHOOK_URL", "N8N_HOST"},
     "opencloud": {"OC_URL"},
     "openhands": {"SANDBOX_VOLUMES"},
+    "pocket-id": {"APP_URL"},
 }
 
 

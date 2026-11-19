@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Pocket-ID</Name>
+  <Repository>pocketid/pocket-id:v2</Repository>
+  <Registry>https://hub.docker.com/r/pocketid/pocket-id</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://pocket-id.org</Project>
+  <ReadMe>https://github.com/junkerderprovinz/unraid-apps/blob/main/pocket-id/README.md</ReadMe>
+  <Overview>A small OpenID Connect provider that signs people in with passkeys instead of passwords. Put it in front of the apps on your server that support OIDC login, from the photo library to the dashboards, and all of them share one login: a fingerprint, a face or a security key. Nobody has a password left to reuse or leak.&#xD;&#xD;Users, groups and the apps allowed to sign in are managed in the web interface. Data lives in SQLite in the appdata folder unless you point it at PostgreSQL.&#xD;&#xD;Browsers only create passkeys over HTTPS, so Pocket ID belongs behind a reverse proxy with a real domain. After the first start, open https://your-domain/setup and create the admin account with your passkey.&#xD;&#xD;Detailed README (reverse proxy, first admin, connecting an app): https://github.com/junkerderprovinz/unraid-apps/blob/main/pocket-id/README.md</Overview>
+  <Category>Security: Network:Other Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:1411]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/pocket-id/pocket-id.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/pocket-id/icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A domain with HTTPS in front of the container, for example through Nginx Proxy Manager. Passkeys do not work over plain HTTP or a bare IP address. Generate the encryption key before the first start and keep a copy somewhere safe: without it the stored data cannot be read.</Requires>
+  <Config Name="WebUI" Target="1411" Default="1411" Mode="tcp" Description="The web interface and the OIDC endpoints. Point your reverse proxy here. Opened directly over http://&lt;tower-ip&gt;:1411 the pages load, but passkeys fail." Type="Port" Display="always" Required="true" Mask="false">1411</Config>
+  <Config Name="Data" Target="/app/data" Default="/mnt/user/appdata/pocket-id" Mode="rw" Description="The SQLite database, uploaded logos and the GeoLite database. Back this folder up together with the encryption key." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pocket-id</Config>
+  <Config Name="App URL" Target="APP_URL" Default="https://id.example.com" Mode="" Description="The public address Pocket ID is reached at, with https:// and without a path. Passkeys are bound to this domain, so pick it before the first user signs up. Replace the example with your own domain." Type="Variable" Display="always" Required="true" Mask="false">https://id.example.com</Config>
+  <Config Name="Encryption Key" Target="ENCRYPTION_KEY" Default="" Mode="" Description="Encrypts the token signing keys and other secrets in the database. At least 16 characters; generate one with: openssl rand -base64 32. Losing it makes the existing data unreadable. To change it later, use the built-in encryption-key-rotate command rather than editing this field." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Trust Proxy" Target="TRUST_PROXY" Default="false" Mode="" Description="Set to true behind a reverse proxy so the audit log and rate limits see the visitor's address instead of the proxy's. Instead of true you can list the proxy addresses, separated by commas, for example 192.168.1.20." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="Database Connection String" Target="DB_CONNECTION_STRING" Default="" Mode="" Description="Leave empty for SQLite in the Data folder, which is plenty for a home server. For PostgreSQL: postgres://USER:PASSWORD@HOST:5432/DBNAME. Create the database and the user first." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="MaxMind License Key" Target="MAXMIND_LICENSE_KEY" Default="" Mode="" Description="Optional. With a free GeoLite2 key from maxmind.com, the audit log shows the city and country of each sign-in. Without it, only the IP address is shown." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User the app runs as. 99 is nobody on Unraid, which owns the appdata share." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group the app runs as. 100 is users on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="Cloudflare Location Headers" Target="CLOUDFLARE_LOCATION_HEADERS" Default="false|true" Mode="" Description="Take the sign-in location from the headers Cloudflare adds instead of GeoLite. Only switch it on when every request reaches Pocket ID through Cloudflare, since anyone else could set those headers themselves." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Audit Log Retention Days" Target="AUDIT_LOG_RETENTION_DAYS" Default="90" Mode="" Description="How many days the audit log keeps sign-in events." Type="Variable" Display="advanced" Required="false" Mask="false">90</Config>
+  <Config Name="Disable UI Configuration" Target="UI_CONFIG_DISABLED" Default="false|true" Mode="" Description="When true, application settings such as SMTP come from environment variables only and the settings page is read-only. Leave false to configure everything in the web interface." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Disable Analytics" Target="ANALYTICS_DISABLED" Default="false|true" Mode="" Description="Pocket ID sends a daily heartbeat with its version and a random instance ID to analytics.pocket-id.org, so the developers can count installs. Set to true to switch it off." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Disable Version Check" Target="VERSION_CHECK_DISABLED" Default="false|true" Mode="" Description="Set to true to stop asking GitHub for the latest release, which the admin page uses to announce updates." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Log Level" Target="LOG_LEVEL" Default="info|debug|warn|error" Mode="" Description="How much the container log shows." Type="Variable" Display="advanced" Required="false" Mask="false">info</Config>
+</Container>

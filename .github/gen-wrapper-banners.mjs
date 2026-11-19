@@ -46,6 +46,9 @@ const APPS = [
     claim: "Buckets on top, files still files." },
   { slug: "rustfs", name: { text: "RustFS" }, claim: "Object storage, forged not rusted." },
   { slug: "silo", name: { wordmark: true }, claim: "Same buckets, new silo." },
+  // A black mark, recoloured on the dark ground for the same reason as VersityGW's.
+  { slug: "pocket-id", name: { text: "Pocket ID" }, markDark: { 'fill="#000"': 'fill="#e6edf3"' },
+    claim: "Passwords retired, passkeys on duty." },
 ];
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
