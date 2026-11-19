@@ -5,7 +5,7 @@ Shown only in the root README cards (not the Community Applications icons at
 ``<app>/icon.png``). The tiles exist so the README list looks uniform; the CA
 icon is the opposite: the bare logo on transparent, with no background baked
 in. The exceptions are a logo that is a full-bleed brand tile upstream, and the
-CA icons kept on a white tile by name: matrix and versitygw because those marks
+CA icons kept on a white tile by name: matrix, versitygw and pocket-id because those marks
 are near-black and would vanish on Unraid's dark UI, plus prusaslicer and n8n.
 No light corners: each logo either keeps its own brand tile (full-bleed colour)
 or sits transparent, filling the icon, with transparent rounded corners.
