@@ -1,7 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    "helpers:pinGitHubActionDigests"
+    "local>junkerderprovinz/junkerderprovinz//renovate/base"
+  ],
+  "packageRules": [
+    {
+      "description": "The compose files are built from the Unraid templates and stay on :latest like them. People copy them to run an app. A digest would freeze every copy on one build, and the next rebuild would drop it anyway.",
+      "matchManagers": ["docker-compose"],
+      "enabled": false
+    }
   ]
 }
