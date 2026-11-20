@@ -155,4 +155,84 @@ On the first start the container writes a password for the user admin into its l
     Display="advanced"
     Required="false"
     Mask="false"></Config>
+  <Config
+    Name="Dashboard Link"
+    Target="homepage.href"
+    Default=""
+    Mode=""
+    Description="The address you open CannonCommander at in your browser, for example http://192.168.1.10:80/. Dashboards that read container labels link to it."
+    Type="Label"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Dashboard Group"
+    Target="homepage.group"
+    Default="Tools"
+    Mode=""
+    Description="The section dashboards that read container labels list CannonCommander under."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Tools</Config>
+  <Config
+    Name="Dashboard Name"
+    Target="homepage.name"
+    Default="CannonCommander"
+    Mode=""
+    Description="The name dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">CannonCommander</Config>
+  <Config
+    Name="Dashboard Icon"
+    Target="homepage.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png?v=2"
+    Mode=""
+    Description="The logo dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png?v=2</Config>
+  <Config
+    Name="Dashboard Description"
+    Target="homepage.description"
+    Default="Two-panel file manager"
+    Mode=""
+    Description="The short line dashboards that read container labels show under the name."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Two-panel file manager</Config>
+  <Config
+    Name="Alt Dashboard Name"
+    Target="glance.name"
+    Default="CannonCommander"
+    Mode=""
+    Description="The same name under the glance.* keys, which other dashboards read."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">CannonCommander</Config>
+  <Config
+    Name="Alt Dashboard Icon"
+    Target="glance.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png?v=2"
+    Mode=""
+    Description="The same logo under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/icon.png?v=2</Config>
+  <Config
+    Name="Alt Dashboard Description"
+    Target="glance.description"
+    Default="Two-panel file manager"
+    Mode=""
+    Description="The same short line under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Two-panel file manager</Config>
 </Container>

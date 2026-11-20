@@ -229,4 +229,20 @@ Source on GitHub: https://github.com/junkerderprovinz/handbrake&#xD;
           Description="Permission mask for newly created files. The default 000 lets every container user read and write them, which is what you want when other containers touch the same shares. Set 022 or 077 for stricter permissions."
           Type="Variable" Display="advanced" Required="false" Mask="false">000</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open HandBrake at in your browser, for example https://192.168.1.10:3001/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Media" Mode="" Description="The section dashboards that read container labels list HandBrake under." Type="Label" Display="advanced" Required="false" Mask="false">Media</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="HandBrake" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">HandBrake</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/handbrake/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/handbrake/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Video converter with a watch folder" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Video converter with a watch folder</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="HandBrake" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">HandBrake</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/handbrake/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/handbrake/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Video converter with a watch folder" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Video converter with a watch folder</Config>
+
 </Container>

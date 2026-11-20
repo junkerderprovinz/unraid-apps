@@ -85,4 +85,74 @@ Plain mode listens on port 8760 for a reverse proxy in front, which must allow W
     Display="always"
     Required="true"
     Mask="false">/mnt/user/appdata/parleyport</Config>
+  <Config
+    Name="Dashboard Group"
+    Target="homepage.group"
+    Default="Network"
+    Mode=""
+    Description="The section dashboards that read container labels list ParleyPort under."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Network</Config>
+  <Config
+    Name="Dashboard Name"
+    Target="homepage.name"
+    Default="ParleyPort"
+    Mode=""
+    Description="The name dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">ParleyPort</Config>
+  <Config
+    Name="Dashboard Icon"
+    Target="homepage.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png?v=3"
+    Mode=""
+    Description="The logo dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png?v=3</Config>
+  <Config
+    Name="Dashboard Description"
+    Target="homepage.description"
+    Default="Relay for apps that pair their instances"
+    Mode=""
+    Description="The short line dashboards that read container labels show under the name."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Relay for apps that pair their instances</Config>
+  <Config
+    Name="Alt Dashboard Name"
+    Target="glance.name"
+    Default="ParleyPort"
+    Mode=""
+    Description="The same name under the glance.* keys, which other dashboards read."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">ParleyPort</Config>
+  <Config
+    Name="Alt Dashboard Icon"
+    Target="glance.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png?v=3"
+    Mode=""
+    Description="The same logo under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/parleyport/icon.png?v=3</Config>
+  <Config
+    Name="Alt Dashboard Description"
+    Target="glance.description"
+    Default="Relay for apps that pair their instances"
+    Mode=""
+    Description="The same short line under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Relay for apps that pair their instances</Config>
 </Container>

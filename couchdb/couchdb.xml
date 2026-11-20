@@ -58,4 +58,21 @@
   <Config Name="Admin Password" Target="COUCHDB_PASSWORD" Default="" Mode="" Description="Password for the admin user. Use a strong one - CouchDB is a database, keep it on your LAN or behind a reverse proxy, never exposed raw to the internet." Type="Variable" Display="always" Required="true" Mask="true"/>
 
   <Config Name="Cookie Secret (COUCHDB_SECRET)" Target="COUCHDB_SECRET" Default="" Mode="" Description="Optional. A fixed secret for signing session/proxy-auth cookies. Leave empty for a single node (one is generated). Set a stable value (openssl rand -hex 32) if you use proxy auth or plan to cluster. Masked." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open CouchDB at in your browser, for example http://192.168.1.10:5984/_utils/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Tools" Mode="" Description="The section dashboards that read container labels list CouchDB under." Type="Label" Display="advanced" Required="false" Mask="false">Tools</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="CouchDB" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">CouchDB</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Document database over HTTP and JSON" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Document database over HTTP and JSON</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="CouchDB" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">CouchDB</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/couchdb/icon.png?v=2</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Document database over HTTP and JSON" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Document database over HTTP and JSON</Config>
+
 </Container>

@@ -161,4 +161,20 @@ This is an independent packaging of Securo and is not affiliated with the Securo
           Description="Group that owns the files in the Data folder. 100 is users on Unraid."
           Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open Securo at in your browser, for example http://192.168.1.10:8080/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Productivity" Mode="" Description="The section dashboards that read container labels list Securo under." Type="Label" Display="advanced" Required="false" Mask="false">Productivity</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="Securo" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">Securo</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Personal finance manager" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Personal finance manager</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="Securo" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">Securo</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/securo/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Personal finance manager" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Personal finance manager</Config>
+
 </Container>

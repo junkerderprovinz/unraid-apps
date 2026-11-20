@@ -161,4 +161,18 @@
           Description="Bare domain only. No https://, no trailing slash, no path. Example: standardnotesserver.mydomain.tld. Wrong: https://standardnotesserver.mydomain.tld. A URL here breaks session cookies. The Custom Sync Server URL entered into clients is a separate value and is a full HTTPS URL."
           Type="Variable" Display="always" Required="false" Mask="false"/>
 
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Productivity" Mode="" Description="The section dashboards that read container labels list Standard Notes Server under." Type="Label" Display="advanced" Required="false" Mask="false">Productivity</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="Standard Notes Server" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">Standard Notes Server</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Sync server for encrypted notes" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Sync server for encrypted notes</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="Standard Notes Server" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">Standard Notes Server</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/standardnotes-server/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Sync server for encrypted notes" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Sync server for encrypted notes</Config>
+
 </Container>

@@ -165,4 +165,84 @@ Full documentation: https://junkerderprovinz.github.io/bombvault/</Overview>
     Display="always"
     Required="false"
     Mask="false">root</Config>
+  <Config
+    Name="Dashboard Link"
+    Target="homepage.href"
+    Default=""
+    Mode=""
+    Description="The address you open BombVault at in your browser, for example https://192.168.1.10:3443/. Dashboards that read container labels link to it."
+    Type="Label"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Dashboard Group"
+    Target="homepage.group"
+    Default="Backup"
+    Mode=""
+    Description="The section dashboards that read container labels list BombVault under."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Backup</Config>
+  <Config
+    Name="Dashboard Name"
+    Target="homepage.name"
+    Default="BombVault"
+    Mode=""
+    Description="The name dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">BombVault</Config>
+  <Config
+    Name="Dashboard Icon"
+    Target="homepage.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/bombvault/main/.github/assets/icon.png?v=6"
+    Mode=""
+    Description="The logo dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/bombvault/main/.github/assets/icon.png?v=6</Config>
+  <Config
+    Name="Dashboard Description"
+    Target="homepage.description"
+    Default="Backup and disaster recovery for containers and VMs"
+    Mode=""
+    Description="The short line dashboards that read container labels show under the name."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Backup and disaster recovery for containers and VMs</Config>
+  <Config
+    Name="Alt Dashboard Name"
+    Target="glance.name"
+    Default="BombVault"
+    Mode=""
+    Description="The same name under the glance.* keys, which other dashboards read."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">BombVault</Config>
+  <Config
+    Name="Alt Dashboard Icon"
+    Target="glance.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/bombvault/main/.github/assets/icon.png?v=6"
+    Mode=""
+    Description="The same logo under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/bombvault/main/.github/assets/icon.png?v=6</Config>
+  <Config
+    Name="Alt Dashboard Description"
+    Target="glance.description"
+    Default="Backup and disaster recovery for containers and VMs"
+    Mode=""
+    Description="The same short line under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Backup and disaster recovery for containers and VMs</Config>
 </Container>

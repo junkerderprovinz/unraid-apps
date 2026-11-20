@@ -209,4 +209,20 @@ This is an independent, community-maintained packaging of OpenCloud and is not a
           Description="Optional: let the provider decide the roles. Enter the name of a claim that lists roles or groups, for example groups or roles. OpenCloud then sets the role at every sign-in from the values opencloudAdmin, opencloudSpaceAdmin, opencloudUser and opencloudGuest, and refuses anyone who has none of them. Left empty, new accounts get the User role and an admin changes roles in OpenCloud. Provider accounts get accounts of their own and never sign in as the built-in admin, so set this at least once to give someone the Admin role."
           Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open OpenCloud at in your browser, for example https://192.168.1.10:9200/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Cloud" Mode="" Description="The section dashboards that read container labels list OpenCloud under." Type="Label" Display="advanced" Required="false" Mask="false">Cloud</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="OpenCloud" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">OpenCloud</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/icon.png?v=2" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/icon.png?v=2</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="File sync and share" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">File sync and share</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="OpenCloud" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">OpenCloud</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/icon.png?v=2" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/opencloud/icon.png?v=2</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="File sync and share" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">File sync and share</Config>
+
 </Container>

@@ -58,4 +58,20 @@
 
   <Config Name="Languages" Target="LANGUAGES" Default="en,fr,es,it,de" Mode="" Description="Comma-separated list of UI languages to offer, from Claper's supported set." Type="Variable" Display="advanced" Required="false" Mask="false">en,fr,es,it,de</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open Claper at in your browser, for example http://192.168.1.10:4000. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Productivity" Mode="" Description="The section dashboards that read container labels list Claper under." Type="Label" Display="advanced" Required="false" Mask="false">Productivity</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="Claper" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">Claper</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Live polls, Q&amp;A and quizzes for your talks" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Live polls, Q&amp;A and quizzes for your talks</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="Claper" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">Claper</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Live polls, Q&amp;A and quizzes for your talks" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Live polls, Q&amp;A and quizzes for your talks</Config>
+
 </Container>

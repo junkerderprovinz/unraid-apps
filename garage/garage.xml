@@ -60,4 +60,20 @@ IMPORTANT: map BOTH the Data and Config volumes. Config holds the generated gara
 
   <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the processes run as. Default 100 = 'users' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open Garage at in your browser, for example http://192.168.1.10:3909. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Backup" Mode="" Description="The section dashboards that read container labels list Garage under." Type="Label" Display="advanced" Required="false" Mask="false">Backup</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="Garage" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">Garage</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=3" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=3</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="S3-compatible object store with a web admin" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">S3-compatible object store with a web admin</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="Garage" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">Garage</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=3" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/garage/icon.png?v=3</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="S3-compatible object store with a web admin" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">S3-compatible object store with a web admin</Config>
+
 </Container>

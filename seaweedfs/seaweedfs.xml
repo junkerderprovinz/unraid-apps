@@ -60,4 +60,21 @@
   <Config Name="Secret Key" Target="AWS_SECRET_ACCESS_KEY" Default="" Mode="" Description="S3 secret key, paired with Access Key above. Use a real generated secret (e.g. openssl rand -hex 24), not a short password - this is what protects your data over the network." Type="Variable" Display="always" Required="false" Mask="true"/>
 
   <Config Name="Pre-create Bucket" Target="S3_BUCKET" Default="" Mode="" Description="Optional. Name of a bucket to create automatically on first start (comma-separated for more than one, e.g. backups,media). Leave empty to create buckets yourself later via any S3 client." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open SeaweedFS at in your browser, for example http://192.168.1.10:23646. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Backup" Mode="" Description="The section dashboards that read container labels list SeaweedFS under." Type="Label" Display="advanced" Required="false" Mask="false">Backup</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="SeaweedFS" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">SeaweedFS</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png?v=2" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png?v=2</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="S3-compatible object store" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">S3-compatible object store</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="SeaweedFS" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">SeaweedFS</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png?v=2" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/seaweedfs/icon.png?v=2</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="S3-compatible object store" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">S3-compatible object store</Config>
+
 </Container>

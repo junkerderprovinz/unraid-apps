@@ -108,4 +108,20 @@ Source on GitHub: https://github.com/junkerderprovinz/rustdesk&#xD;
           Description="Container timezone for log timestamps."
           Type="Variable" Display="always" Required="false" Mask="false">Europe/Vienna</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open RustDesk at in your browser, for example http://192.168.1.10:21114/_admin/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Network" Mode="" Description="The section dashboards that read container labels list RustDesk under." Type="Label" Display="advanced" Required="false" Mask="false">Network</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="RustDesk" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">RustDesk</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png?v=2" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png?v=2</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Remote desktop server with a web console" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Remote desktop server with a web console</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="RustDesk" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">RustDesk</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png?v=2" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustdesk/icon.png?v=2</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Remote desktop server with a web console" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Remote desktop server with a web console</Config>
+
 </Container>

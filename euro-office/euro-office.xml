@@ -135,4 +135,20 @@ This is an independent, community-maintained Unraid packaging and is not affilia
           Description="'true' (the default) tells browsers to use https for this host for a year. It only matters with your own trusted certificate and a hostname: browsers ignore it for IP addresses and for the self-signed certificate. Set 'false' if that hostname also serves things you reach over plain http, e.g. unraid.example.com, because the rule applies to the whole hostname regardless of port."
           Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open Euro-Office at in your browser, for example http://192.168.1.10:80/. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Productivity" Mode="" Description="The section dashboards that read container labels list Euro-Office under." Type="Label" Display="advanced" Required="false" Mask="false">Productivity</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="Euro-Office" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">Euro-Office</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="Edit office documents in the browser" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">Edit office documents in the browser</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="Euro-Office" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">Euro-Office</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/euro-office/icon.png?v=3</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="Edit office documents in the browser" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">Edit office documents in the browser</Config>
+
 </Container>

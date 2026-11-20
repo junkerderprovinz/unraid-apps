@@ -49,4 +49,20 @@ First start: the log runs to a handful of warnings and then goes quiet, which is
 
   <Config Name="Log Level" Target="RUSTFS_OBS_LOGGER_LEVEL" Default="warn" Mode="" Description="How much RustFS writes to its log: error, warn, info, debug or trace." Type="Variable" Display="advanced" Required="false" Mask="false">warn</Config>
 
+  <Config Name="Dashboard Link" Target="homepage.href" Default="" Mode="" Description="The address you open RustFS at in your browser, for example http://192.168.1.10:9001. Dashboards that read container labels link to it." Type="Label" Display="always" Required="false" Mask="false"></Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Backup" Mode="" Description="The section dashboards that read container labels list RustFS under." Type="Label" Display="advanced" Required="false" Mask="false">Backup</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="RustFS" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">RustFS</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="S3 object store written in Rust" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">S3 object store written in Rust</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="RustFS" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">RustFS</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/rustfs/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="S3 object store written in Rust" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">S3 object store written in Rust</Config>
+
 </Container>

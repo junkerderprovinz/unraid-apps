@@ -76,4 +76,18 @@ First start: watch the container log for "JUICEFS IS READY".&#xD;
 
   <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the gateway runs as. Default 100 = 'users' on Unraid." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
 
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Backup" Mode="" Description="The section dashboards that read container labels list JuiceFS under." Type="Label" Display="advanced" Required="false" Mask="false">Backup</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="JuiceFS" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">JuiceFS</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="S3 gateway for a JuiceFS file system" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">S3 gateway for a JuiceFS file system</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="JuiceFS" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">JuiceFS</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="S3 gateway for a JuiceFS file system" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">S3 gateway for a JuiceFS file system</Config>
+
 </Container>

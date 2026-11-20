@@ -97,4 +97,84 @@ Set a password for the WebUI under Settings, Security, where two-factor authenti
     Display="advanced"
     Required="false"
     Mask="false">000</Config>
+  <Config
+    Name="Dashboard Link"
+    Target="homepage.href"
+    Default=""
+    Mode=""
+    Description="The address you open ArrowLoop at in your browser, for example http://192.168.1.10:8422/. Dashboards that read container labels link to it."
+    Type="Label"
+    Display="always"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Dashboard Group"
+    Target="homepage.group"
+    Default="Backup"
+    Mode=""
+    Description="The section dashboards that read container labels list ArrowLoop under."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Backup</Config>
+  <Config
+    Name="Dashboard Name"
+    Target="homepage.name"
+    Default="ArrowLoop"
+    Mode=""
+    Description="The name dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">ArrowLoop</Config>
+  <Config
+    Name="Dashboard Icon"
+    Target="homepage.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/arrowloop/icon.png"
+    Mode=""
+    Description="The logo dashboards that read container labels show."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/arrowloop/icon.png</Config>
+  <Config
+    Name="Dashboard Description"
+    Target="homepage.description"
+    Default="Two-way file sync that shows its plan first"
+    Mode=""
+    Description="The short line dashboards that read container labels show under the name."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Two-way file sync that shows its plan first</Config>
+  <Config
+    Name="Alt Dashboard Name"
+    Target="glance.name"
+    Default="ArrowLoop"
+    Mode=""
+    Description="The same name under the glance.* keys, which other dashboards read."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">ArrowLoop</Config>
+  <Config
+    Name="Alt Dashboard Icon"
+    Target="glance.icon"
+    Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/arrowloop/icon.png"
+    Mode=""
+    Description="The same logo under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/arrowloop/icon.png</Config>
+  <Config
+    Name="Alt Dashboard Description"
+    Target="glance.description"
+    Default="Two-way file sync that shows its plan first"
+    Mode=""
+    Description="The same short line under the glance.* keys."
+    Type="Label"
+    Display="advanced"
+    Required="false"
+    Mask="false">Two-way file sync that shows its plan first</Config>
 </Container>
