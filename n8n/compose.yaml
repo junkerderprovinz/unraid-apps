@@ -33,3 +33,12 @@ services:
       WEBHOOK_URL: "https://n8n.mydomain.tld/"  # required
       N8N_HOST: n8n.mydomain.tld  # required
       N8N_PROTOCOL: http
+    labels:
+      homepage.href: ""
+      homepage.group: Productivity
+      homepage.name: n8n
+      homepage.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/n8n/icon.png?v=3"
+      homepage.description: "Workflow automation for apps and APIs"
+      glance.name: n8n
+      glance.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/n8n/icon.png?v=3"
+      glance.description: "Workflow automation for apps and APIs"

@@ -21,3 +21,12 @@ services:
       ENABLE_ACCOUNT_CREATION: "true"
       MAX_FILE_SIZE_MB: "15"
       LANGUAGES: "en,fr,es,it,de"
+    labels:
+      homepage.href: ""
+      homepage.group: Productivity
+      homepage.name: Claper
+      homepage.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png"
+      homepage.description: "Live polls, Q&A and quizzes for your talks"
+      glance.name: Claper
+      glance.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/claper/icon.png"
+      glance.description: "Live polls, Q&A and quizzes for your talks"

@@ -22,5 +22,14 @@ services:
       LLM_MODEL: "ollama/qwen2.5-coder:14b"
       LLM_BASE_URL: "http://host.docker.internal:11434"
       LLM_EMBEDDING_MODEL: local
+    labels:
+      homepage.href: ""
+      homepage.group: Tools
+      homepage.name: OpenHands
+      homepage.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/icon.png"
+      homepage.description: "AI coding agent on a local model"
+      glance.name: OpenHands
+      glance.icon: "https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/openhands/icon.png"
+      glance.description: "AI coding agent on a local model"
     extra_hosts:
       - "host.docker.internal:host-gateway"
