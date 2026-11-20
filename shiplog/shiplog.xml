@@ -6,11 +6,13 @@
   <Beta>False</Beta>
   <Category>Productivity: Tools:</Category>
   <Name>ShipLog</Name>
-  <Overview>Read the changelog before you update - right inside Unraid's Docker tab.&#xD;
+  <Overview>Read the changelog before you set sail.&#xD;
 &#xD;
-Next to each container ShipLog shows WHAT changes between your running image and the newest: the release notes, a risk badge (patch / minor / major) and the real version jump (e.g. 1.7 -&gt; 1.8).&#xD;
+ShipLog adds a Changelog chip to every container in Unraid's Docker tab. Its window shows what changes between your running image and the newest: the release notes, a risk badge (patch, minor, major, or critical for a breaking change) and the real version jump (e.g. 1.7 -&gt; 1.8). A second chip counts the known critical and high vulnerabilities of the running image and tells you which of them the update closes. Only package names and versions leave your server for that check.&#xD;
 &#xD;
-Read-only by construction - updates always run through Unraid's own mechanism, including the one-click "Update all (N)" button ShipLog adds next to the Basic/Advanced toggle. Registry-friendly: HEAD-only manifest checks (no Docker Hub pull-limit cost), token caching and host-wide backoff; digest-pinned and locally built images are labelled honestly instead of guessing. Optional AI summary (Ollama) + Matrix alerts.</Overview>
+Updates run through Unraid's own update, by hand, with Update all or on a schedule limited to the level you choose. In a fortress with a backup app, every auto-update waits for a backup and goes back to the old image if the new one fails.&#xD;
+&#xD;
+Optional: changelog summaries from a model server on your own network, and messages through Unraid's notifications, a chat or push service, mail or a webhook. In 26 languages.</Overview>
   <Support>https://forums.unraid.net/topic/199510-support-junkerderprovinz-shiplog/</Support>
   <Project>https://github.com/junkerderprovinz/shiplog</Project>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/shiplog/main/.github/assets/icon.png?v=12</Icon>

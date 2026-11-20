@@ -470,7 +470,7 @@ BombVault's activity log as a real, native tile on the Unraid dashboard: every b
 <a href="https://github.com/junkerderprovinz/shiplog#readme"><img src="https://img.shields.io/badge/Repository%20%26%20ReadMe-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Repository &amp; ReadMe"></a>
 
 **ShipLog**<br>
-Update advisor in Unraid's Docker tab showing what changes and how risky before you update, with optional SemVer-gated auto-update.
+An update advisor in Unraid's Docker tab that shows what changes, how risky it is and which known vulnerabilities an update closes, with an optional auto-update that backs up first.
 
 <br clear="all">
 
