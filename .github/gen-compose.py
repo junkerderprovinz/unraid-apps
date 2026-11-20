@@ -129,7 +129,7 @@ def compose(app, xml=None):
         if key in keys:
             lines.append(f"    {key}: {keys[key]}")
 
-    ports, volumes, env, devices = [], [], [], list(keys.get("devices", []))
+    ports, volumes, env, labels, devices = [], [], [], [], list(keys.get("devices", []))
     for config in root.iter("Config"):
         kind, target = config.get("Type"), config.get("Target", "")
         required = config.get("Required") == "true"
@@ -143,6 +143,8 @@ def compose(app, xml=None):
             volumes.append(f"{host_dir(value, target, app)}:{target}{suffix}")
         elif kind == "Device" and value:
             devices.append(value)
+        elif kind == "Label":
+            labels.append(f"      {target}: {quote(value)}")
         elif kind == "Variable":
             value = APP_VALUES.get(app, {}).get(target, GENERIC_VALUES.get(target, value))
             if value and target in PLACEHOLDERS.get(app, ()):
@@ -158,6 +160,8 @@ def compose(app, xml=None):
         lines += ["    volumes:"] + [f"      - {quote(v)}" for v in volumes]
     if env:
         lines += ["    environment:"] + env
+    if labels:
+        lines += ["    labels:"] + labels
     if devices:
         lines += ["    devices:"] + [f"      - {quote(d)}" for d in devices]
     if keys.get("extra_hosts"):
