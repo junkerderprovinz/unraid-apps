@@ -62,9 +62,19 @@ Set a password for the WebUI under Settings, Security, where two-factor authenti
     Target="ARROWLOOP_PASSWORD_HASH"
     Default=""
     Mode=""
-    Description="Optional. The password is normally set in the interface, under Settings, Security, which also offers two-factor authentication and passkeys. A hash here wins over that password and cannot be changed from the interface, which makes it the way back in after a forgotten one: open this container's console, run: arrowloop hash-password, type the password twice and paste the line it prints here. Neither lives in arrowloop.json, because that file can be downloaded and restored from inside the interface."
+    Description="Optional. The password is normally set in the interface, under Settings, Security, which also offers two-factor authentication and passkeys. A hash here wins over that password and cannot be changed from the interface, which makes it the way back in after a forgotten one: open this container's console, run: arrowloop hash-password -config /config/arrowloop.json, type the password twice and paste the line it prints here. Neither lives in arrowloop.json, because that file can be downloaded and restored from inside the interface."
     Type="Variable"
     Display="always"
+    Required="false"
+    Mask="true"></Config>
+  <Config
+    Name="API token"
+    Target="ARROWLOOP_API_TOKEN"
+    Default=""
+    Mode=""
+    Description="Optional. Lets another program on your network, such as CannonCommander, add a job to ArrowLoop. Put a long random string here, for example what openssl rand -hex 32 prints, and enter the same string in that program. The token can only add jobs and read the job list."
+    Type="Variable"
+    Display="advanced"
     Required="false"
     Mask="true"></Config>
   <Config
