@@ -16,7 +16,7 @@ Two panels side by side, the keys the classic commanders taught your fingers, an
 
 It knows its way around a NAS: which files still sit on a fast cache, which disks are asleep, which permissions your shares expect. Folder compare and sync, batch rename, archives, checksums, duplicates, disk usage and a viewer and editor for almost any file are built in. Clouds and remote servers come in through rclone and open like any other folder.
 
-On the first start the container writes a password for the user admin into its log. Sign in with it and pick your own. Users, groups, access rules, two-factor sign-in, passkeys and OIDC decide who gets to see what.</Overview>
+It opens without a password, so you can start right away. Set one under Settings, Account &amp; security whenever you like, and users, groups, access rules, two-factor sign-in, passkeys and sign-in services such as Pocket ID decide who gets to see what.</Overview>
   <Category>Tools:Utilities</Category>
   <WebUI>http://[IP]:[PORT:80]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/cannoncommander/cannoncommander.xml</TemplateURL>
