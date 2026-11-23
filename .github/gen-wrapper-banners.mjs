@@ -1,9 +1,9 @@
 /**
  * Feed wrapper banners to the GitHub style guide (the krusader layout):
  *   logo (the app mark) on the left, largest ink ~400px, ink-left x=165, ink-vcentre y=250;
- *   the name to its right (official wordmark where the app has one, else Bree Serif) at a
- *   uniform cap-height and a uniform colour (foreground; the brand colour is not used for
- *   text); one Lato claim (grey, 44) below the name; name+claim group vcentred on H/2.
+ *   the name to its right (official wordmark where the app has one, else Bree Serif Light)
+ *   at a uniform cap-height and a uniform colour (foreground; the brand colour is not used
+ *   for text); one Bree Light claim (grey, 44) below the name; name+claim group vcentred on H/2.
  *   Theme-flip.
  *
  * Uniform size: every name is scaled so its capitals are TARGET_CAP px tall (wordmarks by
@@ -13,7 +13,8 @@
  * its brand colour.
  *
  * Text is rendered at the origin and positioned with a <g transform> so opentype.js never
- * emits NaN control points at large coordinates. Deps (global): opentype.js, @resvg/resvg-js.
+ * emits NaN control points at large coordinates. Deps (global): opentype.js, @resvg/resvg-js,
+ * and the house fonts as TTF in HOUSE_FONTS (default %LOCALAPPDATA%\halleluja-fonts).
  * Run: node .github/gen-wrapper-banners.mjs [slug...]
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -53,19 +54,15 @@ const APPS = [
 const ONLY = process.argv.slice(2);
 const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
 
-async function font(file, url) {
-  const p = join(tmpdir(), file);
-  if (!existsSync(p)) { const r = await fetch(url); if (!r.ok) throw new Error(`${file} ${r.status}`); writeFileSync(p, Buffer.from(await r.arrayBuffer())); }
-  const b = readFileSync(p);
-  return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength));
-}
-const bree = await font("jdp-BreeSerif-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/breeserif/BreeSerif-Regular.ttf");
-const lato = await font("jdp-Lato-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf");
+// The house typeface is licensed, so it is read from a local folder and never committed.
+const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
+const bree = opentype.parse(readFileSync(join(fonts, "bree-serif-light.ttf")).buffer);
+const claimFont = opentype.parse(readFileSync(join(fonts, "bree-light.ttf")).buffer);
 const sc = (f, s) => s / f.unitsPerEm;
 const bbox = (svg) => new Resvg(svg, { fitTo: { mode: "original" } }).getBBox();
 function fitClaim(text, maxW, cap) {
-  let size = Math.min(cap, Math.floor((100 * maxW) / lato.getAdvanceWidth(text, 100)));
-  for (; size > 10; size--) if (!lato.getPath(text, 0, 0, size).toPathData(2).includes("NaN")) return size;
+  let size = Math.min(cap, Math.floor((100 * maxW) / claimFont.getAdvanceWidth(text, 100)));
+  for (; size > 10; size--) if (!claimFont.getPath(text, 0, 0, size).toPathData(2).includes("NaN")) return size;
   return 10;
 }
 
@@ -154,6 +151,8 @@ for (const app of RUN) {
     let ns = TARGET_CAP / breeCapRatio;                 // Bree size for cap-height == TARGET_CAP
     const adv = bree.getAdvanceWidth(app.name.text, ns);
     if (adv > maxNameW) ns = ns * maxNameW / adv;
+    // opentype.js rounds some coordinates to NaN, so step the size down until both paths are clean.
+    while ([0, 500].some((y) => bree.getPath(app.name.text, 0, y, ns).toPathData(2).includes("NaN"))) ns -= 0.01;
     const cb = bbox(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5000 800"><path d="${bree.getPath(app.name.text, 0, 500, ns).toPathData(2)}" fill="#000"/></svg>`);
     nameH = cb.height; nameW = cb.width;
     const d = bree.getPath(app.name.text, 0, 0, ns).toPathData(2);
@@ -162,11 +161,11 @@ for (const app of RUN) {
   }
 
   const claimSize = fitClaim(app.claim, maxNameW, CLAIM_CAP);
-  const claimAsc = lato.ascender * sc(lato, claimSize), claimDesc = -lato.descender * sc(lato, claimSize);
+  const claimAsc = claimFont.ascender * sc(claimFont, claimSize), claimDesc = -claimFont.descender * sc(claimFont, claimSize);
   const groupH = nameH + GAP_NAME_CLAIM + claimAsc + claimDesc;
   const top = H / 2 - groupH / 2;
   const claimBaseline = Math.round(top + nameH + GAP_NAME_CLAIM + claimAsc);
-  const claimD = lato.getPath(app.claim, 0, 0, claimSize).toPathData(2);
+  const claimD = claimFont.getPath(app.claim, 0, 0, claimSize).toPathData(2);
 
   for (const t of THEMES) {
     let markContent = mark.content;
