@@ -1,7 +1,7 @@
 /**
  * Feed wrapper banners to the GitHub style guide (the krusader layout):
  *   logo (the app mark) on the left, largest ink ~400px, ink-left x=165, ink-vcentre y=250;
- *   the name to its right (official wordmark where the app has one, else Bree Serif Light)
+ *   the name to its right (official wordmark where the app has one, else Bree Serif Regular)
  *   at a uniform cap-height and a uniform colour (foreground; the brand colour is not used
  *   for text); one Bree Light claim (grey, 44) below the name; name+claim group vcentred on H/2.
  *   Theme-flip.
@@ -56,7 +56,7 @@ const RUN = ONLY.length ? APPS.filter((a) => ONLY.includes(a.slug)) : APPS;
 
 // The house typeface is licensed, so it is read from a local folder and never committed.
 const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
-const bree = opentype.parse(readFileSync(join(fonts, "bree-serif-light.ttf")).buffer);
+const bree = opentype.parse(readFileSync(join(fonts, "bree-serif-regular.ttf")).buffer);
 const claimFont = opentype.parse(readFileSync(join(fonts, "bree-light.ttf")).buffer);
 const sc = (f, s) => s / f.unitsPerEm;
 const bbox = (svg) => new Resvg(svg, { fitTo: { mode: "original" } }).getBBox();
