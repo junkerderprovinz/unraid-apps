@@ -121,6 +121,20 @@ the first start, so there is no command-line step.</p>
   <li><a href="https://github.com/junkerderprovinz/garage#readme">Repository &amp; README</a></li>
 </ul>
 
+<p><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png" alt="" width="40" height="40"></p>
+<h2>GitHub-Runner</h2>
+<p>Self-hosted GitHub Actions runners for several repositories in one container. A personal
+GitHub account can attach a runner to a single repository only, so the usual templates need a
+container for every repository. This one starts a runner for each repository you list and
+removes them from GitHub again when it stops.</p>
+<ul>
+  <li>You need a personal access token that may manage runners in every listed repository: a fine-grained token with Administration: Read and write, or a classic token with the repo scope</li>
+  <li>A repository the token cannot reach is reported in the log and tried again every five minutes, while the others keep running</li>
+  <li>Map the Docker socket if your jobs build images or start containers</li>
+  <li>In Community Applications: <a href="https://ca.unraid.net/apps?q=github-runner">GitHub-Runner</a></li>
+  <li><a href="https://github.com/junkerderprovinz/github-runner#readme">Repository &amp; README</a></li>
+</ul>
+
 <p><img src="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/juicefs/icon.png" alt="" width="40" height="40"></p>
 <h2>JuiceFS</h2>
 <p>The JuiceFS S3 gateway as a ready-to-run container: file metadata in a database, file
