@@ -95,7 +95,7 @@ def extra(params):
     while i < len(args):
         arg = args[i]
         name, _, value = arg.partition("=")
-        if not value and name in ("--restart", "--shm-size", "--hostname", "--user", "--add-host", "--device") and i + 1 < len(args):
+        if not value and name in ("--restart", "--shm-size", "--hostname", "--user", "--add-host", "--device", "--stop-timeout") and i + 1 < len(args):
             value = args[i + 1]
             i += 1
         if name == "--restart":
@@ -104,6 +104,8 @@ def extra(params):
             keys["shm_size"] = value
         elif name == "--hostname":
             keys["hostname"] = value
+        elif name == "--stop-timeout":
+            keys["stop_grace_period"] = f"{value}s"
         elif name == "--add-host":
             keys.setdefault("extra_hosts", []).append(value)
         elif name == "--device":
@@ -125,7 +127,7 @@ def compose(app, xml=None):
         lines.append("    privileged: true")
     if app in USERS:
         lines.append(f'    user: "{USERS[app]}"')
-    for key in ("hostname", "shm_size"):
+    for key in ("hostname", "shm_size", "stop_grace_period"):
         if key in keys:
             lines.append(f"    {key}: {keys[key]}")
 

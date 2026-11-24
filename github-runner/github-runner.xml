@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>GitHub-Runner</Name>
+  <Beta>false</Beta>
+  <Repository>junkerderprovinz/github-runner:latest</Repository>
+  <Registry>https://hub.docker.com/r/junkerderprovinz/github-runner</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <ReadMe>https://github.com/junkerderprovinz/github-runner/blob/main/README.md</ReadMe>
+  <Support>https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/</Support>
+  <Project>https://github.com/junkerderprovinz/github-runner</Project>
+  <Overview>
+Self-hosted GitHub Actions runners for several repositories in one container.&#xD;
+&#xD;
+Why this template exists: a personal GitHub account can attach a self-hosted runner to a single repository only. Sharing one runner across repositories needs an organization. The usual runner templates therefore need one container per repository. This one starts a runner for every repository you list and keeps them all in one container.&#xD;
+&#xD;
+• List your repositories as owner/name, separated by spaces or commas. Each one gets its own runner named GitHub-Runner.&#xD;
+• Stopping the container removes every runner from GitHub again, so your repositories never fill up with offline leftovers.&#xD;
+• A repository the token cannot reach is reported in the log and tried again every five minutes. The others keep running.&#xD;
+• Map the Docker socket and your jobs can build images and start containers.&#xD;
+&#xD;
+You need a personal access token that may manage runners in every listed repository: a fine-grained token with Administration: Read and write on those repositories, or a classic token with the repo scope.&#xD;
+&#xD;
+In your workflows, use runs-on: self-hosted.&#xD;
+&#xD;
+A self-hosted runner runs whatever the workflow tells it to. Use it for your own repositories, not for public ones where strangers can open pull requests.&#xD;
+&#xD;
+Built on myoung34/github-runner. Not affiliated with GitHub.&#xD;
+  </Overview>
+  <Category>Tools:Utilities</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/github-runner.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --stop-timeout=60</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
+  <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
+  <Requires>A GitHub personal access token with administration rights on every repository you list.</Requires>
+
+  <Config Name="Access Token" Target="ACCESS_TOKEN" Default="" Mode="" Description="Personal access token that may manage runners in every repository below. Fine-grained: Administration: Read and write on those repositories. Classic: the repo scope." Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Repositories" Target="RUNNER_REPOS" Default="" Mode="" Description="The repositories that get a runner, as owner/name, separated by spaces or commas. For example: you/website you/backend. Without an owner, Owner below is used." Type="Variable" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Owner" Target="REPO_OWNER" Default="" Mode="" Description="Owner for repositories written without one, so Repositories can be just website backend." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Lets your jobs build images and start containers on this server. Remove it if your workflows do not use Docker. Anything with the socket can control every container here, so only list repositories you trust." Type="Path" Display="advanced" Required="false" Mask="false">/var/run/docker.sock</Config>
+
+  <Config Name="Runner Name" Target="RUNNER_NAME" Default="GitHub-Runner" Mode="" Description="Name of the runner in every repository, as shown under Settings, Actions, Runners." Type="Variable" Display="advanced" Required="false" Mask="false">GitHub-Runner</Config>
+
+  <Config Name="Labels" Target="LABELS" Default="self-hosted" Mode="" Description="Extra labels for the runners, comma-separated. Workflows pick a runner by its labels in runs-on." Type="Variable" Display="advanced" Required="false" Mask="false">self-hosted</Config>
+
+  <Config Name="No Default Labels" Target="NO_DEFAULT_LABELS" Default="false" Mode="" Description="true drops the labels GitHub adds by itself (self-hosted, Linux, X64), so only jobs that ask for your own labels run here." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+
+  <Config Name="Run As Root" Target="RUN_AS_ROOT" Default="true" Mode="" Description="false runs the runners as the unprivileged runner user instead of root." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+
+  <Config Name="Remove On Stop" Target="DEREGISTER_ON_STOP" Default="true" Mode="" Description="Removes the runners from GitHub when the container stops and registers them again on start. false keeps them listed as offline while stopped." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+
+  <Config Name="Retry Seconds" Target="RETRY_SECONDS" Default="300" Mode="" Description="How long to wait before trying again a repository that could not be registered." Type="Variable" Display="advanced" Required="false" Mask="false">300</Config>
+
+  <Config Name="Dashboard Group" Target="homepage.group" Default="Tools" Mode="" Description="The section dashboards that read container labels list GitHub-Runner under." Type="Label" Display="advanced" Required="false" Mask="false">Tools</Config>
+
+  <Config Name="Dashboard Name" Target="homepage.name" Default="GitHub-Runner" Mode="" Description="The name dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">GitHub-Runner</Config>
+
+  <Config Name="Dashboard Icon" Target="homepage.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png" Mode="" Description="The logo dashboards that read container labels show." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png</Config>
+
+  <Config Name="Dashboard Description" Target="homepage.description" Default="GitHub Actions runners for several repositories" Mode="" Description="The short line dashboards that read container labels show under the name." Type="Label" Display="advanced" Required="false" Mask="false">GitHub Actions runners for several repositories</Config>
+
+  <Config Name="Alt Dashboard Name" Target="glance.name" Default="GitHub-Runner" Mode="" Description="The same name under the glance.* keys, which other dashboards read." Type="Label" Display="advanced" Required="false" Mask="false">GitHub-Runner</Config>
+
+  <Config Name="Alt Dashboard Icon" Target="glance.icon" Default="https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png" Mode="" Description="The same logo under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png</Config>
+
+  <Config Name="Alt Dashboard Description" Target="glance.description" Default="GitHub Actions runners for several repositories" Mode="" Description="The same short line under the glance.* keys." Type="Label" Display="advanced" Required="false" Mask="false">GitHub Actions runners for several repositories</Config>
+
+</Container>
