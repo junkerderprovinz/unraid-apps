@@ -22,6 +22,8 @@ Why this template exists: a personal GitHub account can attach a self-hosted run
 &#xD;
 You need a personal access token that may manage runners in every listed repository: a fine-grained token with Administration: Read and write on those repositories, or a classic token with the repo scope.&#xD;
 &#xD;
+Everything is managed in the web interface on port 8080: add and remove repositories, watch the runners and their jobs, replace the token and set an optional password. The fields below only fill the settings on the first start. A new token here replaces the saved one at the next start, and repositories new in the list are added.&#xD;
+&#xD;
 In your workflows, use runs-on: self-hosted.&#xD;
 &#xD;
 A self-hosted runner runs whatever the workflow tells it to. Use it for your own repositories, not for public ones where strangers can open pull requests.&#xD;
@@ -29,7 +31,7 @@ A self-hosted runner runs whatever the workflow tells it to. Use it for your own
 Built on myoung34/github-runner. Not affiliated with GitHub.&#xD;
   </Overview>
   <Category>Tools:Utilities</Category>
-  <WebUI/>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/github-runner.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/junkerderprovinz/unraid-apps/main/github-runner/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --stop-timeout=60</ExtraParams>
@@ -38,11 +40,15 @@ Built on myoung34/github-runner. Not affiliated with GitHub.&#xD;
   <DateInstalled/>
   <DonateText>If this template helps you, consider buying me a coffee.</DonateText>
   <DonateLink>https://buymeacoffee.com/junkerderprovinz</DonateLink>
-  <Requires>A GitHub personal access token with administration rights on every repository you list.</Requires>
+  <Requires>A GitHub personal access token with administration rights on every repository you add. You can paste it here or later in the web interface.</Requires>
 
-  <Config Name="Access Token" Target="ACCESS_TOKEN" Default="" Mode="" Description="Personal access token that may manage runners in every repository below. Fine-grained: Administration: Read and write on those repositories. Classic: the repo scope." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Web Interface" Target="8080" Default="8080" Mode="tcp" Description="The port of the web interface." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
 
-  <Config Name="Repositories" Target="RUNNER_REPOS" Default="" Mode="" Description="The repositories that get a runner, as owner/name, separated by spaces or commas. For example: you/website you/backend. Without an owner, Owner below is used." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Config" Target="/config" Default="/mnt/user/appdata/github-runner" Mode="rw" Description="Settings, repositories and the job history of the last two days. Back it up to keep them." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/github-runner</Config>
+
+  <Config Name="Access Token" Target="ACCESS_TOKEN" Default="" Mode="" Description="Personal access token that may manage runners in your repositories. Fine-grained: Administration: Read and write on those repositories. Classic: the repo scope. Optional here, you can also paste it in the web interface. A new value replaces the saved token at the next start." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="Repositories" Target="RUNNER_REPOS" Default="" Mode="" Description="Repositories that get a runner, as owner/name, separated by spaces or commas. For example: you/website you/backend. Optional, you can add them in the web interface. New entries are added at the next start, one taken out keeps its runner until you remove it in the web interface." Type="Variable" Display="always" Required="false" Mask="false"/>
 
   <Config Name="Owner" Target="REPO_OWNER" Default="" Mode="" Description="Owner for repositories written without one, so Repositories can be just website backend." Type="Variable" Display="always" Required="false" Mask="false"/>
 
