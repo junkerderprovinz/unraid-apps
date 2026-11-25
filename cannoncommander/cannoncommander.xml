@@ -156,6 +156,36 @@ It opens without a password, so you can start right away. Set one under Settings
     Required="false"
     Mask="false"></Config>
   <Config
+    Name="Docker socket"
+    Target="/var/run/docker.sock"
+    Default=""
+    Mode="rw"
+    Description="Enter /var/run/docker.sock to find unused templates, appdata folders and Docker leftovers, and the OnlyOffice, Euro-Office or Collabora containers next to CannonCommander, which you then connect with one click. CannonCommander joins the socket's docker group on its own. Clearing them away into the storeroom also needs Unraid write access, and for templates and compose stacks their folders below. Leave it empty otherwise: this socket controls every container."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Docker templates"
+    Target="/boot/config/plugins/dockerMan/templates-user"
+    Default=""
+    Mode="rw"
+    Description="Only with Unraid write access. Enter /boot/config/plugins/dockerMan/templates-user to clear unused templates away into the storeroom. Of the read-only Unraid settings, only this folder becomes writable."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
+    Name="Compose stacks"
+    Target="/boot/config/plugins/compose.manager/projects"
+    Default=""
+    Mode="rw"
+    Description="Only with Unraid write access. Enter /boot/config/plugins/compose.manager/projects to clear unused compose stacks away into the storeroom. Of the read-only Unraid settings, only this folder becomes writable. If you set CC_STOREROOM_STACKS, map that folder instead."
+    Type="Path"
+    Display="advanced"
+    Required="false"
+    Mask="false"></Config>
+  <Config
     Name="Dashboard Link"
     Target="homepage.href"
     Default=""
