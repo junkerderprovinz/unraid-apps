@@ -69,9 +69,9 @@ File ownership inside the data volume is fixed automatically by the image's own 
 
 [compose.yaml](compose.yaml) runs SeaweedFS on any Linux server with Docker. Put it in a folder of its own and start it with `docker compose up -d`. The folders are created next to the file.
 
-- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
-- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
-- **QNAP:** in Container Station, create an application from the file.
+- **Synology:** see [Synology](#synology) below.
+- **QNAP:** see [QNAP](#qnap) below.
+- **UGREEN:** see [UGREEN](#ugreen) below.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install SeaweedFS from the [MOS Hub](https://mos-official.net/apps.html?search=SeaweedFS).
 
@@ -138,6 +138,18 @@ Everything lives under the single Data mount (`/mnt/user/appdata/seaweedfs/data`
 One knight builds this, and AI is one of the tools I work with, the same way I work with an editor or a compiler. It helps me write code and documentation and it checks my work, and that saves me a good many evenings. It does not make the decisions, though. I read and understand everything before it ships, and if something here breaks, that is on me and not on the tool.
 
 You do not have to take my word for it. The code is open and every release note is written by hand. The issue tracker shows how problems actually get handled, including the ones I got wrong the first time. If you find something that is not right, open an issue and I will look at it.
+
+### Synology
+
+In Container Manager (DSM 7.2 or newer), open **Project** and click **Create**. Pick a folder for SeaweedFS and upload [compose.yaml](compose.yaml). Container Manager does not create missing folders, so create the ones the file names under `volumes` in File Station first.
+
+### QNAP
+
+In Container Station, open **Applications** and click **Create**. Paste [compose.yaml](compose.yaml) and point the folders under `volumes` at a share, for example `/share/Container/seaweedfs`.
+
+### UGREEN
+
+In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for SeaweedFS and paste [compose.yaml](compose.yaml).
 
 <br>
 

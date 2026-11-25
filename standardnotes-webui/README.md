@@ -160,11 +160,23 @@ app at your public URL and configure the sync server (§ 5).
 
 [compose.yaml](compose.yaml) runs the Standard Notes web app on any Linux server with Docker. Put it in a folder of its own and start it with `docker compose up -d`.
 
-- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
-- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
-- **QNAP:** in Container Station, create an application from the file.
+- **Synology:** see [Synology](#synology) below.
+- **QNAP:** see [QNAP](#qnap) below.
+- **UGREEN:** see [UGREEN](#ugreen) below.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install Standard Notes WebUI from the [MOS Hub](https://mos-official.net/apps.html?search=StandardNotes-WebUI).
+
+### Synology
+
+In Container Manager (DSM 7.2 or newer), open **Project** and click **Create**. Pick a folder for the Standard Notes web app and upload [compose.yaml](compose.yaml). Container Manager does not create missing folders, so create the ones the file names under `volumes` in File Station first.
+
+### QNAP
+
+In Container Station, open **Applications** and click **Create**. Paste [compose.yaml](compose.yaml) and point the folders under `volumes` at a share, for example `/share/Container/standardnotes-webui`.
+
+### UGREEN
+
+In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for the Standard Notes web app and paste [compose.yaml](compose.yaml).
 
 <br>
 

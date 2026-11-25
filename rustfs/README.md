@@ -78,11 +78,23 @@ Data folder is not writable by `99:100`, or you mapped the Logs folder and that 
 
 [compose.yaml](compose.yaml) runs RustFS on any Linux server with Docker. Put it in a folder of its own, fill in every value marked `required` and start it with `docker compose up -d`. The folders are created next to the file.
 
-- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
-- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
-- **QNAP:** in Container Station, create an application from the file.
+- **Synology:** see [Synology](#synology) below.
+- **QNAP:** see [QNAP](#qnap) below.
+- **UGREEN:** see [UGREEN](#ugreen) below.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install RustFS from the [MOS Hub](https://mos-official.net/apps.html?search=RustFS).
+
+### Synology
+
+In Container Manager (DSM 7.2 or newer), open **Project** and click **Create**. Pick a folder for RustFS and upload [compose.yaml](compose.yaml). Container Manager does not create missing folders, so create the ones the file names under `volumes` in File Station first.
+
+### QNAP
+
+In Container Station, open **Applications** and click **Create**. Paste [compose.yaml](compose.yaml) and point the folders under `volumes` at a share, for example `/share/Container/rustfs`.
+
+### UGREEN
+
+In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for RustFS and paste [compose.yaml](compose.yaml).
 
 <br>
 

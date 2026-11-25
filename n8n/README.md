@@ -149,11 +149,23 @@ share a custom Docker network you can use the container name as the host; otherw
 
 n8n needs a PostgreSQL database first, set up as in [section 3](#3-postgresql-setup-do-this-first). It runs as user 1000, so create its folder before the first start: `mkdir -p appdata/files && sudo chown -R 1000:1000 appdata`.
 
-- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
-- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
-- **QNAP:** in Container Station, create an application from the file.
+- **Synology:** see [Synology](#synology) below.
+- **QNAP:** see [QNAP](#qnap) below.
+- **UGREEN:** see [UGREEN](#ugreen) below.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install n8n from the [MOS Hub](https://mos-official.net/apps.html?search=n8n).
+
+### Synology
+
+In Container Manager (DSM 7.2 or newer), open **Project** and click **Create**. Pick a folder for n8n and upload [compose.yaml](compose.yaml). Container Manager does not create missing folders, so create the ones the file names under `volumes` in File Station first.
+
+### QNAP
+
+In Container Station, open **Applications** and click **Create**. Paste [compose.yaml](compose.yaml) and point the folders under `volumes` at a share, for example `/share/Container/n8n`.
+
+### UGREEN
+
+In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for n8n and paste [compose.yaml](compose.yaml).
 
 <br>
 
