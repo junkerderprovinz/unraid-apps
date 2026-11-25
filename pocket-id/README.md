@@ -212,6 +212,8 @@ In Container Station, open **Applications** and click **Create**. Paste [compose
 
 In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for Pocket ID and paste [compose.yaml](compose.yaml).
 
+On its first start the container takes over the folders under `volumes`. Set `PUID` and `PGID` to your own user's IDs so the files stay yours and you can still open them over the network. `id` over SSH shows them, and the first user on a Synology is usually 1026 in group 100.
+
 <br>
 
 ## 9. Support this project

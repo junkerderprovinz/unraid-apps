@@ -167,6 +167,8 @@ In Container Station, open **Applications** and click **Create**. Paste [compose
 
 In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for n8n and paste [compose.yaml](compose.yaml).
 
+n8n runs as user 1000, so give its folder to that user before the first start, as described above. On these systems you run that command over SSH in the project's folder.
+
 <br>
 
 ## 5. Permissions (important)
