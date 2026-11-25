@@ -181,6 +181,8 @@ Then in the Unraid Web UI: **Docker** → **Add Container** → in the
 OpenHands starts its sandboxes through the host's Docker socket, so `SANDBOX_VOLUMES` takes the absolute host path of the workspace folder, for example `/home/you/openhands/workspace:/workspace:rw`.
 
 - **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
+- **QNAP:** in Container Station, create an application from the file.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 
 <br>

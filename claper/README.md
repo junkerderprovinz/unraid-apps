@@ -114,6 +114,8 @@ Migrations run automatically on container start, with no manual step needed.
 Claper needs a PostgreSQL database first, set up as in [section 3](#3-postgresql-setup-do-this-first).
 
 - **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
+- **QNAP:** in Container Station, create an application from the file.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 
 <br>

@@ -70,6 +70,8 @@ File ownership inside the data volume is fixed automatically by the image's own 
 [compose.yaml](compose.yaml) runs SeaweedFS on any Linux server with Docker. Put it in a folder of its own and start it with `docker compose up -d`. The folders are created next to the file.
 
 - **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
+- **QNAP:** in Container Station, create an application from the file.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install SeaweedFS from the [MOS Hub](https://mos-official.net/apps.html?search=SeaweedFS).
 
