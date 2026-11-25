@@ -203,7 +203,7 @@ You do not have to take my word for it. The code is open and every release note 
 
 ## 8. Support this project
 
-Questions? Check the [support thread](https://forums.unraid.net/topic/198811-support-junkerderprovinz-unraid-apps/). Bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues). Problems with Silo itself belong upstream at [pgsty/silo](https://github.com/pgsty/silo/issues).
+Questions, bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/unraid-apps/issues). Problems with Silo itself belong upstream at [pgsty/silo](https://github.com/pgsty/silo/issues).
 
 A one-knight job: I build it, keep it running, work through the issues and add what people ask for, until nothing is missing. It is free, with no accounts, no telemetry, no ads and no paid tier. No asterisk anywhere. Nothing readable ever leaves your own walls. Forged on evenings and weekends, with heart and stubbornness.
 
